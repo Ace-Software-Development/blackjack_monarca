@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
+    'eslint-config-prettier',
     'airbnb',
   ],
   parserOptions: {
@@ -16,10 +17,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
-    'no-undef': 'warn',
+    'react/react-in-jsx-scope': 'off',
+    // example: 'no-undef': 'warn',
   },
 };
