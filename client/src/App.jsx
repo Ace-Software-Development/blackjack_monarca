@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Login from './components/login';
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 function App() {
   return (
     <BrowserRouter>

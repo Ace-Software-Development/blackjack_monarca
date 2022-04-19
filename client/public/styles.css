@@ -1,0 +1,40 @@
+body {
+    background-color: #f9f9f9;
+}
+
+.home-card{
+    width: 360px;
+    height: 265px;
+	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
+    position: absolute;
+	border-radius: 21px;
+}
+
+.home-card > h6 {
+	font-style: bold;
+}
+    
+.home-card > .card-title {
+	font-family: 'Poppins';
+	font-style: bold;
+	font-weight: 600;
+	font-size: 100px;
+	line-height: 143%;
+	/* or 57px */
+
+	text-align: center;
+	letter-spacing: -0.03em;
+
+	color: #1F1F1F;
+}
+
+.home-card > .card-icon{
+    width: 100px;
+    height: 100px;
+}
+
+.home-card ion-icon {
+    font-size: 64px;
+	color: rgba(245, 143, 61, 1);
+    --ionicon-stroke-width: 25px;
+}
