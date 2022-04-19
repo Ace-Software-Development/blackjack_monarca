@@ -3,27 +3,32 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function Inicio() {
   return (
-    <div className="container position-absolute top-50 start-50 translate-middle">
-      <div className="row">
-        <div className="col-4">
-          {Card('calculator', 'Conteo')}
-        </div>
-        <div className="col-4">
-          {Card('calculator', '2')}
-        </div>
-        <div className="col-4">
-          {Card('calculator', '3')}
-        </div>
+    <div>
+      <div className="logo-monarca">
+        <img src="./logo.svg" alt="logo monarca" />
       </div>
-      <div className="row">
-        <div className="col-4">
-          {Card('calculator', '4')}
+      <div className="container position-absolute top-50 start-50 translate-middle">
+        <div className="row">
+          <div className="col-4">
+            {Card('calculator', 'Conteo')}
+          </div>
+          <div className="col-4">
+            {Card('hammer', 'Rechazado')}
+          </div>
+          <div className="col-4">
+            {Card('brush', 'Esmerilado')}
+          </div>
         </div>
-        <div className="col-4">
-          {Card('calculator', '5')}
-        </div>
-        <div className="col-4">
-          {Card('calculator', '6')}
+        <div className="row">
+          <div className="col-4">
+            {Card('water', 'Pulido')}
+          </div>
+          <div className="col-4">
+            {Card('color-fill', 'Remachado')}
+          </div>
+          <div className="col-4">
+            {Card('cube', 'Empaquetado')}
+          </div>
         </div>
       </div>
     </div>
