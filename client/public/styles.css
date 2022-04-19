@@ -3,11 +3,12 @@ body {
 }
 
 .home-card{
-    width: 360px;
-    height: 265px;
+    width: 300px;
+    height: 205px;
 	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
     position: absolute;
 	border-radius: 21px;
+	margin-top: 30px;
 }
 
 .home-card > h6 {

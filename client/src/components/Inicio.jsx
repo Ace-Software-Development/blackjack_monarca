@@ -1,8 +1,9 @@
 import Card from './Card';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function Inicio() {
   return (
-    <div className="container">
+    <div className="container position-absolute top-50 start-50 translate-middle">
       <div className="row">
         <div className="col-4">
           {Card('calculator', 'Conteo')}
