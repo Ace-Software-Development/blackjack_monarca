@@ -1,10 +1,12 @@
-var http = require('http')
 
-http.createServer(onRequest).listen(8888);
-console.log('Server has started');
+const express = require('express')
+const app = express();
 
-function onRequest(request, response){
-  response.writeHead(200);
-  response.write('Hello World');
-  response.end();
-}
+const roles = require('./routes/role');
+app.use('/role', roles);
+
+app.use('/',(request, response,next) => {   
+  response.status(404).redirect('/role');
+});
+
+app.listen(8888);
