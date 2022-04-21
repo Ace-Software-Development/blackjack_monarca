@@ -2,11 +2,11 @@ const role = require('../model/role');
 const { request, response } = require('express');
 
 exports.getRole = (request, response) => {
-    role.fetchValue(1)
+    role.fetchValues()
     .then(([rows, fieldData]) => {
-        response.send(rows[0].name);
+        response.status(200).send({status:"success",error: null, data: rows, message:"Welcome To Roles"});
     })
     .catch(err => {
         console.log(err);
-    }); 
+    });
 }

@@ -6,13 +6,12 @@ module.exports = class role{
         this.name = name;
     }
 
-    static Save(id, name) {
+    static save(id, name) {
         return db.execute('INSERT INTO role (id, name) VALUES (?, ?);',
         [id, name]);
     }
 
-    static fetchValue(id){
-        return db.execute('SELECT name FROM role WHERE id = ?;',
-        [id]);
+    static fetchValues(){
+        return db.execute('SELECT * FROM role;');
     }
 }
