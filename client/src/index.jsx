@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Inicio from './components/Inicio';
+import Proceso from './components/Proceso';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Inicio />
+    <Proceso />
   </React.StrictMode>,
   document.getElementById('root'),
 );

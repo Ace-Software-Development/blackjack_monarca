@@ -41,7 +41,31 @@ body {
     --ionicon-stroke-width: 25px;
 }
 
+.header-icon {
+	margin-left: 35px;
+}
+
 .logo-monarca{
-	margin-top: 30	px;
+	margin-top: 30px;
 	margin-left: 15px;
 }
+
+.header {
+	margin-top: 15px;
+}
+
+.table-container {
+	min-width: 1300px;
+	min-height: auto;
+	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
+	position: absolute;
+	border-radius: 21px;
+	margin-top: -80px;
+	padding: 30px;
+}
+
+ion-icon {
+	color: rgba(245, 143, 61, 1);
+	--ionicon-stroke-width: 35px;
+}
+
