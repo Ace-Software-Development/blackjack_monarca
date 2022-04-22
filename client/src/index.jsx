@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Inicio from './components/Inicio';
-//  import Rechazado from './components/Rechazado';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
