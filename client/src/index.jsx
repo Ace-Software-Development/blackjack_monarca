@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Dashboard from './components/admin/Dashboard';
 import './index.css';
-import Inicio from './components/Inicio';
+// import Inicio from './components/Inicio';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Inicio />
+    <Dashboard />
   </React.StrictMode>,
   document.getElementById('root'),
 );
