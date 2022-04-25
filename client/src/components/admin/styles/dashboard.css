@@ -1,0 +1,40 @@
+.container-fluid {
+	padding: 0;
+	height: 100%;
+	font-family: 'Inter', sans-serif;
+}
+
+.content {
+	margin-left: 250px;
+	background-color: #F9F9F9;
+	height: 100%;
+	flex-direction: column;
+}
+
+.admin-card{
+	background: #FFFFFF;
+	box-shadow: 0px 10px 30px rgba(122, 137, 254, 0.04);
+	border-radius: 10px;
+    width: 100%;
+}
+
+h1 {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 26px;
+	line-height: 31px;
+	color: #0F0F0F;
+}
+
+h5 {
+	font-size: 1rem;
+}
+
+.processName {
+	margin: 1.5rem 0;
+	font-size: 1.5rem;
+}
+
+hr {
+	color: #F2F2F2;
+}
