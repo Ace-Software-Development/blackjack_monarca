@@ -45,3 +45,22 @@ body {
 	margin-top: 30	px;
 	margin-left: 15px;
 }
+
+
+/**/
+.gradient-white-orange{
+	background: linear-gradient(to bottom right, #ffffff, #FF800A);
+}
+
+.flex-align-center{
+	display: flex;
+	flex: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.div-middle{
+	height: 49%;
+  	background-color: #ffffff;
+}
+

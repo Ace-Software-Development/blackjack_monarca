@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Inicio from './components/Inicio';
+import './styleLogin.css';
+//  import Inicio from './components/Inicio';
+import Login from './components/login';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Inicio />
+    <Login />
   </React.StrictMode>,
   document.getElementById('root'),
 );
