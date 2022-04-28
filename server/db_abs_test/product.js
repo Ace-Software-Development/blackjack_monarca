@@ -1,38 +1,38 @@
 class Product
 {
-    constructor(AssignObj)
+    constructor(pAssignObj)
     {
-        this.Id = AssignObj.Id;
+        this.id = pAssignObj.id;
         /*TODO make all the field*/
     }
 
     static getEmpty()
     {
-        return new Product({Id:null});/*TODO make all the field*/
+        return new Product({id:null});/*TODO make all the field*/
     }
 
-    static getById(Id)
+    static getById(id)
     {
         let oProduct = Product.getEmpty();
         /*TODO implement*/
         return oProduct;
     }
 
-    static getByKey(Key)
+    static getByKey(key)
     {
         let oProduct = Product.getEmpty();
         /*TODO implement*/
         return oProduct;
     }
 
-    static getByName(MatchName)
+    static getByName(name)
     {
         let listProduct = [];
         /*TODO implement*/
         return listProduct;
     }
 
-    static getByCategory(Category)
+    static getByCategory(category)
     {
         let listProduct = [];
         /*TODO implement*/

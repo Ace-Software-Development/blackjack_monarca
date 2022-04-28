@@ -1,24 +1,24 @@
 class Worker
 {
-    constructor(AssignObj)
+    constructor(pAssignObj)
     {
-        this.Id = AssignObj.Id;
+        this.id = pAssignObj.id;
         /*TODO make all the field*/
     }
 
     static getEmpty()
     {
-        return new Worker({Id:null});/*TODO make all the field*/
+        return new Worker({id:null});/*TODO make all the field*/
     }
 
-    static getById(Id)
+    static getById(id)
     {
         let oWorker = Worker.getEmpty();
         /*TODO implement*/
         return oWorker;
     }
 
-    static getByAssign(Process)
+    static getByAssign(process)
     {
         let listWorker = [];
         /*TODO implement*/

@@ -1,17 +1,17 @@
 class IncomeDisk
 {
-    constructor(AssignObj)
+    constructor(pAssignObj)
     {
-        this.Id = AssignObj.Id;
+        this.id = pAssignObj.id;
         /*TODO make all the field*/
     }
 
     static getEmpty()
     {
-        return new cIncomeDisk({Id:null});/*TODO make all the field*/
+        return new cIncomeDisk({id:null});/*TODO make all the field*/
     }
 
-    static getById(Id)
+    static getById(id)
     {
         let oIncomeDisk = oIncomeDisk.getEmpty();
         /*TODO implement*/

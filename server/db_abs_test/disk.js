@@ -1,35 +1,35 @@
 class Disk
 {
-    constructor(AssignObj)
+    constructor(pAssignObj)
     {
-        this.Id = AssignObj.Id;
-        this.Name = AssignObj.Name;
-        this.Delete = AssignObj.Delete;
+        this.id = pAssignObj.id;
+        this.name = pAssignObj.name;
+        this.delete = pAssignObj.delete;
         /*TODO make all the field*/
     }
 
     static getEmpty()
     {
-        return new Disk({Id:null, Name:null, Delete:false});/*TODO make all the field*/
+        return new Disk({id:null, name:null, delete:false});/*TODO make all the field*/
     }
 
-    static getById(Id)
+    static getById(id)
     {
         let oDisk = Disk.getEmpty();
         /*TODO implement*/
         return oDisk;
     }
 
-    static getByName_NonDelete(NameMatch)
+    static getByName_NonDelete(name)
     {
         let listDisk = [];
         /*TODO implement*/
         return listDisk;
     }
 
-    static getAll_NonDelete(NameMatch)
+    static getAll_NonDelete(name)
     {
-        let listDisk = [{Id:1, Name: "name1", Delete: false}, {Id:2, Name: "name2", Delete: false}];
+        let listDisk = [{id:1, name: "name1", delete: false}, {id:2, name: "name2", delete: false}];
         /*TODO implement*/
         return listDisk;
     }

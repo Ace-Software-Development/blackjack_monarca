@@ -2,18 +2,18 @@ const cPartInventory = require('part_inventory.js');
 
 class Production
 {
-    constructor(assign_obj)
+    constructor(pAssignObj)
     {
-        this.Id = assign_obj.Id;
+        this.id = pAssignObj.id;
         /*TODO make all the field*/
     }
 
     static getEmpty()
     {
-        return new Production({Id:null});/*TODO make all the field*/
+        return new Production({id:null});/*TODO make all the field*/
     }
 
-    static getById(Id)
+    static getById(id)
     {
         let oProduction = Production.getEmpty();
         /*TODO implement*/

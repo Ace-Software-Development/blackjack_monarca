@@ -1,14 +1,14 @@
 class PartInventory
 {
-    constructor(AssignObj)
+    constructor(pAssignObj)
     {
-        this.Id = AssignObj.Id;
+        this.id = pAssignObj.id;
         /*TODO make all the field*/
     }
 
     static getEmpty()
     {
-        return new PartInventory({Id:null});/*TODO make all the field*/
+        return new PartInventory({id:null});/*TODO make all the field*/
     }
 
     static getById(id)

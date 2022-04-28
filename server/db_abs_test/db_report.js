@@ -1,23 +1,23 @@
 class DbReport
 {
-    static getPartNum_ByWorker(Worker, TimeStart = null, TimeEnd = null)
+    static getPartNum_ByWorker(worker, startTime = null, endTime = null)
     {
         /*TODO make all the field*/
         return 0;
     }
 
-    static getScrapNum(Part = null, TimeStart = null, TimeEnd = null)
+    static getScrapNum(part = null, startTime = null, endTime = null)
     {
         /*TODO make all the field*/
         return 0;
     }
 
-    static getDiskStock(Disk)
+    static getDiskStock(disk)
     {
         return 0;
     }
 
-    static getProductStock(Product)
+    static getProductStock(product)
     {
         return 0;
     }
