@@ -29,19 +29,9 @@ class Disk
 
     static getAll_NonDelete(NameMatch)
     {
-        let listDisk = [];
+        let listDisk = [{Id:1, Name: "name1", Delete: false}, {Id:2, Name: "name2", Delete: false}];
         /*TODO implement*/
         return listDisk;
-        /*
-        return db.execute('SELECT * FROM Disk')
-        .then(([rows, fieldData]) => {
-            let listDisk = [...rows];
-            return listDisk;
-        })
-        .catch(err => {
-            console.log(err);
-        });
-        */
     }
 
     add()
