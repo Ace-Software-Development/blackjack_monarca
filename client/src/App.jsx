@@ -7,13 +7,13 @@ import Login from './components/login';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route exact path="/login" element={<Login />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;

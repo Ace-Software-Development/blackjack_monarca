@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Proceso from './components/Proceso';
 import reportWebVitals from './reportWebVitals';
+import Dashboard from './components/admin/Dashboard';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Proceso />
-  </React.StrictMode>,
-  document.getElementById('root'),
+    <React.StrictMode>
+        <Dashboard />
+    </React.StrictMode>,
+    document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
