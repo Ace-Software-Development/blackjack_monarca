@@ -1,0 +1,22 @@
+{
+    "apps": [{
+        "name": "CapulloDEV",
+        "script": "app.js",
+        "watch": ["cloud", "functions", "app.js", "controller", "model"],
+        "watch_options": {
+            "useFsEvents": false
+        },
+        "ignore_watch": ["node_modules/", "logs"],
+        "env": {
+            "NAME": "CapulloDEV",
+            "APP_NAME": "Capullo DEV",
+            "PORT": 8888,
+            "NODE_ENV": "development",
+            "DATABASE_URI": "mongodb://localhost:27017/mydb",
+            "APP_ID": "myAppId",
+            "MASTER_KEY": "36346xv",
+            "SECRET_KEY_USERS": "4",
+            "SERVER_URL": "http://localhost:8888/parse"
+        }
+    }]
+}

@@ -1,17 +1,20 @@
-const db = require('../util/mySQL');
+Parse.initialize("myAppId", "YOUR_JAVASCRIPT_KEY", "36346xv");
+Parse.serverURL = 'http://localhost:8888/parse';
+const express = require('express');
 
 module.exports = class role{
-    constructor(id, name){
-        this.id = id;
-        this.name = name;
+    constructor(objectId, username){
+        this.objectId = objectId;
+        this.username = username;
     }
 
-    static save(id, name) {
-        return db.execute('INSERT INTO role (id, name) VALUES (?, ?);',
-        [id, name]);
+    static save(objectId, username) {
+        return 0;
     }
 
     static fetchValues(){
-        return db.execute('SELECT * FROM role;');
+        const query = new Parse.Query('_User');
+        const res = query.get("AkCppw4rCg");
+        return(res);
     }
 }

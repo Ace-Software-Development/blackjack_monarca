@@ -4,12 +4,17 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
-    "express-session": "^1.17.2"
+    "express-session": "^1.17.2",
+    "mongodb-runner": "^4.9.0",
+    "parse": "2.19.0",
+    "parse-dashboard": "^4.1.0",
+    "parse-server": "^4.5.0"
   }
 }
