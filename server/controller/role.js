@@ -1,4 +1,4 @@
-const role = require('../model/role');
+const role = require('../db_abs/role');
 const { request, response } = require('express');
 
 exports.getRole = async function (request, response){
