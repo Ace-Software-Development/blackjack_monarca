@@ -2,10 +2,11 @@ const ParseDashboard = require('parse-dashboard');
 
 const dashboard = new ParseDashboard({
     "apps": [{
-        "serverURL": 'http://localhost:8888/parse',
-        "appId": 'myAppId',
-        "masterKey": '36346xv',
-        "appName": 'appName'
+        "serverURL": process.env.SERVER_URL,
+        "graphQLServerURL": "http://localhost:8888/graphql",
+        "appId": process.env.APP_ID,
+        "masterKey": process.env.MASTER_KEY,
+        "appName": process.env.APP_NAME
     }],
     "users": [{
         "user": "user",

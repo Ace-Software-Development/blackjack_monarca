@@ -1,5 +1,5 @@
-Parse.initialize("myAppId", "YOUR_JAVASCRIPT_KEY", "36346xv");
-Parse.serverURL = 'http://localhost:8888/parse';
+Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
+Parse.serverURL = process.env.SERVER_URL;
 const express = require('express');
 
 module.exports = class role{
@@ -13,8 +13,8 @@ module.exports = class role{
     }
 
     static fetchValues(){
-        const query = new Parse.Query('_User');
-        const res = query.get("AkCppw4rCg");
-        return(res);
+        // const query = new Parse.Query('_User');
+        // const res = query.get("C9uEJqub4f");
+        return("res");
     }
 }

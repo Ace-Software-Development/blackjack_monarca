@@ -6,21 +6,21 @@ const roles = require('./routes/role');
 // /*********************************************/
 // /******************CONFIG*********************/
 // /*********************************************/
-// var databaseUri = process.env.DATABASE_URI
-// if (!databaseUri) {
-//     console.log('DATABASE_URI not specified, falling back to localhost.')
-// }
+var databaseUri = process.env.DATABASE_URI
+if (!databaseUri) {
+    console.log('DATABASE_URI not specified, falling back to localhost.')
+}
 
 /*********************************************/
 /*********************************************/
 /*******************PARSE*********************/
 
 var api = new ParseServer({
-    databaseURI: 'mongodb://localhost:27017/mydb',
-    appId: 'myAppId',
-    masterKey: '36346xv',
-    serverURL: 'http://localhost:8888/parse',
-    appName: 'appName',
+    databaseURI: process.env.DATABASE_URI,
+    appId: process.env.APP_ID,
+    masterKey: process.env.MASTER_KEY,
+    serverURL: process.env.SERVER_URL,
+    appName: process.env.APP_NAME,
 })
 
 app.use('/parse', api)
