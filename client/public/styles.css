@@ -50,6 +50,7 @@ body {
 	margin-left: 15px;
 }
 
+<<<<<<< HEAD
 .header {
 	margin-top: 15px;
 }
@@ -67,5 +68,23 @@ body {
 ion-icon {
 	color: rgba(245, 143, 61, 1);
 	--ionicon-stroke-width: 35px;
+=======
+
+/**/
+.gradient-white-orange{
+	background: linear-gradient(to bottom right, #ffffff, #FF800A);
+}
+
+.flex-align-center{
+	display: flex;
+	flex: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.div-middle{
+	height: 49%;
+  	background-color: #ffffff;
+>>>>>>> interface_diego
 }
 
