@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-function ListElement(props) {
-  const { record } = props;
-  return (
-    <tr>
-      <td>{record.id}</td>
-      <td>{record.name}</td>
-    </tr>
-  );
-}
-
 export default function Roles() {
   const [roles, setRoles] = useState([]);
 
@@ -30,13 +20,6 @@ export default function Roles() {
     getRoles();
   });
 
-  // Maps the roles on the table
-  function roleList() {
-    return roles.map((record) => (
-      <ListElement record={record} key={record.id} />
-    ));
-  }
-
   // Displays a table with the roles
   return (
     <div>
@@ -48,7 +31,10 @@ export default function Roles() {
             <th>Nombre</th>
           </tr>
         </thead>
-        <tbody>{roleList()}</tbody>
+        <tbody>
+          <th>{roles.objectId}</th>
+          <th>{roles.username}</th>
+        </tbody>
       </table>
     </div>
   );
