@@ -11,7 +11,7 @@
     "datatables.net-bs": "^1.11.5",
     "datatables.net-dt": "^1.11.5",
     "jquery": "^3.6.0",
-    "react": "^18.0.0",
+    "react": "^18.1.0",
     "react-bootstrap": "^2.3.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
