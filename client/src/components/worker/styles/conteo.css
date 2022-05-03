@@ -1,0 +1,29 @@
+.conteo-card{
+	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
+	border-radius: 10px;
+}
+
+.conteo-input{
+	background: #F4F5F4;
+	border-radius: 5px;
+    width: 100%;
+	border-width: 0px;
+	outline-color: #5E6574;
+
+}
+
+h2, p{
+	color: #5E6574;
+	font-weight: bold;
+}
+
+.btn-orange{
+    background: #F69223;
+	color: #F4F5F4;
+	border-width: 0px;
+	border-radius: 5px;
+	height: 30px;
+	width: 90px;
+	font-size: 15px;
+	font-weight: bold;
+}

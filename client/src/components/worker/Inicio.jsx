@@ -10,7 +10,7 @@ function Inicio() {
             <div className="container position-absolute top-50 start-50 translate-middle">
                 <div className="row">
                     <div id="Conteo" className="col-4">
-                        <a href="/empacado">
+                        <a href="/conteo">
                             {Card('calculator', 'Conteo')}
                         </a>
                     </div>

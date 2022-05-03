@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/login';
 import Empacado from './components/Empacado';
 import Inicio from './components/worker/Inicio';
+import Conteo from './components/worker/Conteo';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -15,6 +16,7 @@ function App() {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/inicio" element={<Inicio />} />
                 <Route exact path="/empacado" element={<Empacado />} />
+                <Route exact path="/conteo" element={<Conteo />} />
             </Routes>
         </BrowserRouter>
     );
