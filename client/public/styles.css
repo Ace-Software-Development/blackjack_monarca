@@ -11,6 +11,19 @@ body {
 	margin-top: 30px;
 }
 
+div > a {
+	color: rgb(14, 14, 14);
+  	text-decoration: none;
+}
+
+div > a:hover {
+	color: rgb(14, 14, 14);
+}
+
+div > a:visited {
+	color: rgb(14, 14, 14);
+}
+
 .home-card > h6 {
 	font-style: bold;
 }
@@ -50,7 +63,6 @@ body {
 	margin-left: 15px;
 }
 
-<<<<<<< HEAD
 .header {
 	margin-top: 15px;
 }
@@ -68,7 +80,7 @@ body {
 ion-icon {
 	color: rgba(245, 143, 61, 1);
 	--ionicon-stroke-width: 35px;
-=======
+}
 
 /**/
 .gradient-white-orange{
@@ -85,6 +97,6 @@ ion-icon {
 .div-middle{
 	height: 49%;
   	background-color: #ffffff;
->>>>>>> interface_diego
+
 }
 
