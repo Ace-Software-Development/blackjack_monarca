@@ -18,13 +18,19 @@ function Sidebar() {
                 {TabSidebar(null, 'Administrador', 'apps')}
             </ul>
             <div className="sidebar-footer">
-                <a className="nav-link" href="https://getbootstrap.com/docs/5.1/examples/sidebars/#">
+                <a
+                  className="nav-link"
+                  href="https://getbootstrap.com/docs/5.1/examples/sidebars/#"
+                >
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name="book-outline" />
                     </div>
                     Manual
                 </a>
-                <a className="nav-link" href="https://getbootstrap.com/docs/5.1/examples/sidebars/#">
+                <a
+                  className="nav-link"
+                  href="https://getbootstrap.com/docs/5.1/examples/sidebars/#"
+                >
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name="log-out-outline" />
                     </div>
