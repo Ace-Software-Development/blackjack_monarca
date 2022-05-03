@@ -1,7 +1,4 @@
 function Login() {
-<<<<<<< HEAD
-    return (<h1>Welcome to the world of Geeks!</h1>);
-=======
   return (
     <div>
       <section className="h-100 gradient-form">
@@ -56,6 +53,5 @@ function Login() {
       </section>
     </div>
   );
->>>>>>> interface_diego
 }
 export default Login;
