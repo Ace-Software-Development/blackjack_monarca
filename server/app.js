@@ -1,7 +1,31 @@
-
 const express = require('express')
+const ParseServer = require('parse-server').ParseServer
 const app = express();
 const roles = require('./routes/role');
+
+// /*********************************************/
+// /******************CONFIG*********************/
+// /*********************************************/
+var databaseUri = process.env.DATABASE_URI
+if (!databaseUri) {
+    console.log('DATABASE_URI not specified, falling back to localhost.')
+}
+
+/*********************************************/
+/*********************************************/
+/*******************PARSE*********************/
+
+var api = new ParseServer({
+    databaseURI: process.env.DATABASE_URI,
+    appId: process.env.APP_ID,
+    masterKey: process.env.MASTER_KEY,
+    serverURL: process.env.SERVER_URL,
+    appName: process.env.APP_NAME,
+})
+
+app.use('/parse', api)
+const parseDashboard = require('./parse/dashboard');
+app.use(parseDashboard.url, parseDashboard.dashboard);
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

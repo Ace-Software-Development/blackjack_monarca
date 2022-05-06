@@ -15,27 +15,20 @@ export default function Roles() {
 
     // Fetches roles from database
     useEffect(() => {
-    async function getRoles() {
-        const response = await fetch('http://localhost:8888/role');
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
-            return;
+        async function getRoles() {
+            const response = await fetch('http://localhost:8888/role');
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const role = await response.json();
+            setRoles(role.data);
         }
 
-        const role = await response.json();
-        setRoles(role.data);
-    }
-
-    getRoles();
+        getRoles();
     });
-
-    // Maps the roles on the table
-    function roleList() {
-    return roles.map((record) => (
-        <ListElement record={record} key={record.id} />
-    ));
-    }
 
     // Displays a table with the roles
     return (
@@ -48,7 +41,10 @@ export default function Roles() {
                         <th>Nombre</th>
                     </tr>
                 </thead>
-                <tbody>{roleList()}</tbody>
+                <tbody>
+                    <th>{roles.objectId}</th>
+                    <th>{roles.username}</th>
+                </tbody>
             </table>
         </div>
     );

@@ -19,7 +19,6 @@ function Login() {
 
                                     <div className="col-lg-6">
                                         <div className="card-body p-md-5 mx-md-4">
-
                                             <div className="text-center">
                                                 <h4 classNameName="mt-1 mb-5 pb-1">Inicia Sesión</h4>
                                             </div>

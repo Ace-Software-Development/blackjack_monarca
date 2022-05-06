@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Parse-server configuration
+*/dev_capullo.json
+
+*/prod_capullo.json
