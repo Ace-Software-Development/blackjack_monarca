@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-color: #E5E5E5;
+    background-color: #F9F9F9;
 	height: 100%;
 	font-family: 'Inter', sans-serif;
 }
@@ -128,3 +128,44 @@ ion-icon {
 	font-size: 50px;
 }
 
+.card-shadow {
+	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
+	border-radius: 16px;
+	padding: 20px;
+}
+
+.search-box {
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 7px 0px 8px 16px;
+
+	background: #F5F5F5;
+	border-radius: 8px;
+	border-color: transparent;
+
+	/* Inside auto layout */
+	/* flex: none;
+	order: 0;
+	align-self: stretch;
+	flex-grow: 1;
+	margin: 0px 16px; */
+}
+
+.search-box > input {
+	background-color: transparent;
+	border-color: transparent;
+	margin-left: 5px;
+}
+
+.search-box ion-icon {
+	color: #9E9E9E;
+}
+
+.btn-monarca {
+	background: linear-gradient(95.71deg, #F69223 -39.64%, rgba(238, 98, 52, 0.7) 135.31%);
+	border-radius: 8px;
+	color: white;
+	font-style: bold;
+}

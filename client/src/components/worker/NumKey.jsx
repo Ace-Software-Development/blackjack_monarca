@@ -12,7 +12,7 @@ function NumberButton(number) {
 
 function NumKey() {
     return (
-        <div className="col-5 h-100 p-5 position-absolute top-0 end-0 keypad">
+        <div className="col-5 h-100 p-5 position-absolute top-0 end-0 keypad bg-white">
             <div className="row d-flex justify-content-evenly">
                 {NumberButton(1)}
                 {NumberButton(2)}
@@ -30,7 +30,7 @@ function NumKey() {
             </div>
             <div className="row d-flex justify-content-evenly">
                 <div className="col-4 m-2 numberBtn">
-                    0
+                    {NumberButton(0)}
                 </div>
             </div>
         </div>

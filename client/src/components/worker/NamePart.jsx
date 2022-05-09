@@ -4,7 +4,7 @@ export function CardName(name) {
     return (
         <div className="text-center my-4">
             <a href="#">
-                <button type="button" className="cardName btn text-center w-100 py-4">
+                <button type="button" className="cardName btn text-center w-100 py-4 bg-white">
                     {name}
                 </button>
             </a>
