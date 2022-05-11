@@ -32,6 +32,13 @@ class IncomeDisk
         return oIncomeDisk;
     }
 
+    /**
+   * registerIncomingDisk
+   * @description Register new incoming disk
+   * @param number: Number of disks registered
+   * @param id_disk: Id of the disks registered
+   * @returns Parse object with number and id_disk
+   */
     static registerIncomingDisk(number, id_disk){
         const incomeDisk = new Parse.Object(Constants.IncomeDisk);
         incomeDisk.set('number', parseInt(number));
@@ -39,6 +46,11 @@ class IncomeDisk
         return incomeDisk;
     }
 
+    /**
+   * getAllDisks
+   * @description Query to get all existing disks
+   * @returns Parse object with name and Id of the disks in table "Disks"
+   */
     static getAllDisks(){
         const disks = new Parse.Query(Constants.Disk);
         disks.select("objectId", "name");

@@ -6,6 +6,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 
+/**
+   * Disks
+   * @description React component to asign an option value for each existing disk in a select
+   * @param disk: Json with the attributes objectId and name
+   * @returns Option component for a select
+   */
 function Disks({ disk }) {
     return (
         <option value={disk.objectId}>
@@ -17,10 +23,19 @@ Disks.propTypes = {
     disk: PropTypes.string.isRequired,
 };
 
+/**
+   * Conteo
+   * @description Set of functions to display Conteo
+   * @returns HTML with fetched data
+   */
 function Conteo() {
     const [disks, setDisks] = useState([]);
 
     useEffect(() => {
+        /**
+         * getDisks
+         * @description Fetches existing disks from the database through the server
+         */
         async function getDisks() {
             const response = await fetch('http://localhost:8888/discos/get');
             if (!response.ok) {
@@ -42,14 +57,24 @@ function Conteo() {
         id_disk: '',
     });
 
+    /**
+   * updateForm
+   * @description updates data of a form
+   * @param value: new values of the form
+   * @returns an updated form
+   */
     function updateForm(value) {
         return setForm((prev) => ({ ...prev, ...value }));
     }
 
+    /**
+   * onSubmit
+   * @description Posts incoming disk through a fetch to the server
+   * @param e: Context
+   */
     async function onSubmit(e) {
         e.preventDefault();
 
-        // When a post request is sent to the create url, we'll add a new record to the database.
         const newDisk = { ...form };
 
         await fetch('http://localhost:8888/discos/post', {
@@ -74,7 +99,12 @@ function Conteo() {
         navigate('/conteo');
     }
 
-    function discosList() {
+    /**
+   * disksList
+   * @description Maps all disks in the interface
+   * @returns Component with name and id of the disk
+   */
+    function disksList() {
         return disks.map((disk) => (
             <Disks disk={disk} key={disk.objectID} />
         ));
@@ -102,7 +132,7 @@ function Conteo() {
                                     <div className="col-8 form group">
                                         <select className="form-control form-select form-select-lg" id="id_disk" name="id_disk" value={form.id_disk} onChange={(e) => updateForm({ id_disk: e.target.value })} required>
                                             <option value="" disabled selected>Selecciona un disco</option>
-                                            {discosList()}
+                                            {disksList()}
                                         </select>
                                     </div>
                                     <div className="col form group">
