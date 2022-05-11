@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 function ListElement(props) {
     const { record } = props;
@@ -9,6 +10,10 @@ function ListElement(props) {
         </tr>
     );
 }
+
+ListElement.propTypes = {
+    record: propTypes.string.isRequired,
+};
 
 export default function Roles() {
     const [roles, setRoles] = useState([]);
