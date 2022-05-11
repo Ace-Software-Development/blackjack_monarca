@@ -2,7 +2,7 @@
 
 function NumberButton(number) {
     return (
-        <div className="col-4 m-2 numberBtn">
+        <div className="col-4 numberBtn ">
             <div>
                 {number}
             </div>
