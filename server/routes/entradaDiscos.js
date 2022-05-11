@@ -4,6 +4,7 @@ const path = require('path');
 
 const discosController = require('../controller/entradaDiscos');
 
-router.post('/add', discosController.add);
+router.post('/post', discosController.post);
+router.get('/get', discosController.get);
 
 module.exports = router;

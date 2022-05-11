@@ -32,7 +32,19 @@ class IncomeDisk
         return oIncomeDisk;
     }
 
-    
+    static registerIncomingDisk(number, id_disk){
+        const incomeDisk = new Parse.Object(Constants.IncomeDisk);
+        incomeDisk.set('number', parseInt(number));
+        incomeDisk.set('id_disk', id_disk);
+        return incomeDisk;
+    }
+
+    static getAllDisks(){
+        const disks = new Parse.Query(Constants.Disk);
+        disks.select("objectId", "name");
+        disks.notEqualTo("delete", "True");
+        return disks.find();
+    }
 
 }
 

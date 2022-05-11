@@ -2,22 +2,40 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 
-function Disks({ disco }) {
+function Disks({ disk }) {
     return (
-        <option value={disco.objectID}>
-            {disco.material}
+        <option value={disk.objectId}>
+            {disk.name}
         </option>
     );
 }
 Disks.propTypes = {
-    disco: PropTypes.string.isRequired,
+    disk: PropTypes.string.isRequired,
 };
 
 function Conteo() {
+    const [disks, setDisks] = useState([]);
+
+    useEffect(() => {
+        async function getDisks() {
+            const response = await fetch('http://localhost:8888/discos/get');
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const disk = await response.json();
+            setDisks(disk.data);
+        }
+
+        getDisks();
+    });
+
     const navigate = useNavigate();
     const [form, setForm] = useState({
         number: '',
@@ -34,7 +52,7 @@ function Conteo() {
         // When a post request is sent to the create url, we'll add a new record to the database.
         const newDisk = { ...form };
 
-        await fetch('http://localhost:8888/discos/add', {
+        await fetch('http://localhost:8888/discos/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,27 +74,9 @@ function Conteo() {
         navigate('/conteo');
     }
 
-    const discos = [
-        {
-            objectID: 'KDJFSDF',
-            material: 'Alumnio 340*520 super fuerte',
-            cantidad: '20',
-        },
-        {
-            objectID: 'FJHGGH',
-            material: 'Alumnio 30*50 super fuerte',
-            cantidad: '200',
-        },
-        {
-            objectID: 'NFHGFDG',
-            material: 'Alumnio 30*50',
-            cantidad: '1500',
-        },
-    ];
-
     function discosList() {
-        return discos.map((disco) => (
-            <Disks disco={disco} key={disco.objectID} />
+        return disks.map((disk) => (
+            <Disks disk={disk} key={disk.objectID} />
         ));
     }
 
@@ -106,7 +106,7 @@ function Conteo() {
                                         </select>
                                     </div>
                                     <div className="col form group">
-                                        <input type="number" className="conteo-input form-control" id="number" name="number" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} />
+                                        <input type="number" className="conteo-input form-control" id="number" name="number" min="1" pattern="^[0-9]+" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
                                     </div>
                                     <div className="col d-flex align-content-center form group">
                                         <button placeholder="Cantidad" className="btn-orange" type="submit">Agregar</button>
@@ -132,14 +132,14 @@ function Conteo() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {discos.map((disco) => (
+                                        {disks.map((disk) => (
                                             <tr>
                                                 <th>
-                                                    <div>{disco.material}</div>
+                                                    <div>{disk.name}</div>
                                                     <div className="sub-text2">compatibles</div>
                                                 </th>
                                                 <th>
-                                                    <div>{disco.cantidad}</div>
+                                                    <div>{disk.key}</div>
                                                     <div className="sub-text1">piezas</div>
                                                 </th>
                                                 <th>Editar</th>
