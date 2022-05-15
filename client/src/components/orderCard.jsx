@@ -7,15 +7,12 @@ function orderCard(prog, title) {
                 <div>
                     <br />
                     <br />
-                    <ProgressBar
-                      variant="warning"
-                      now={prog}
-                      style={{ height: '25px' }}
-                    />
+                    <ProgressBar variant="warning" now={prog} style={{ height: '25px' }} />
                     <h2 className="card-title align-middle">{title}</h2>
                 </div>
             </div>
         </div>
+
     );
 }
 

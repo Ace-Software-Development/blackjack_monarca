@@ -1,8 +1,16 @@
-const express = require('express')
-const ParseServer = require('parse-server').ParseServer
+const express = require('express');
+const ParseServer = require('parse-server').ParseServer;
 const app = express();
+const bodyParser = require('body-parser');
 const roles = require('./routes/role');
 const entrega = require('./routes/entrega');
+const discos = require('./routes/entradaDiscos');
+
+app.use(bodyParser.json())
+app.use(bodyParser.json({ type: 'application/*+json' }))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+app.use(bodyParser.text({ type: 'text/html' }))
 
 // /*********************************************/
 // /******************CONFIG*********************/
@@ -50,5 +58,6 @@ app.use('/entrega', entrega);
 app.use('/',(request, response,next) => {   
   response.status(404).redirect('/role');
 });
+app.use('/discos', discos);
 
 app.listen(8888);

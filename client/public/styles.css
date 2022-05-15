@@ -21,6 +21,19 @@ body {
 	margin-top: 30px;
 }
 
+div > a {
+	color: rgb(14, 14, 14);
+  	text-decoration: none;
+}
+
+div > a:hover {
+	color: rgb(14, 14, 14);
+}
+
+div > a:visited {
+	color: rgb(14, 14, 14);
+}
+
 .home-card > h6 {
 	font-style: bold;
 }
@@ -78,7 +91,7 @@ ion-icon {
 	color: rgba(245, 143, 61, 1);
 	--ionicon-stroke-width: 35px;
 }
-/**/
+
 .gradient-white-orange{
 	background: linear-gradient(to bottom right, #ffffff, #FF800A);
 }
