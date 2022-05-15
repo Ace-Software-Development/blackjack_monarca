@@ -19,13 +19,10 @@ function Quantity() {
                                     <div>
                                         <ul className="nav nav-pills nav-fill mb-3 tab-select" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
-                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Completados</button>
                                             </li>
                                             <li className="nav-item" role="presentation">
-                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
-                                            </li>
-                                            <li className="nav-item" role="presentation">
-                                                <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Segunda</button>
                                             </li>
                                         </ul>
                                         <div className="tab-content" id="pills-tabContent">
@@ -33,9 +30,6 @@ function Quantity() {
                                                 {QuantityInput()}
                                             </div>
                                             <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                                {QuantityInput()}
-                                            </div>
-                                            <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                                 {QuantityInput()}
                                             </div>
                                         </div>

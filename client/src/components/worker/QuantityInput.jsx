@@ -7,7 +7,7 @@ function QuantityInput() {
                 </button>
             </div>
             <div className="col-6">
-                <input className="w-100 h-100" type="number" name="quantityNumber" />
+                <input className="w-100 h-100" type="text" name="quantityNumber" disabled />
             </div>
             <div className="col-3">
                 <button className="btn btnNumber w-100 ratio ratio-1x1 p-5" type="submit">
