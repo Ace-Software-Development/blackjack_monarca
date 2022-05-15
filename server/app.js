@@ -2,6 +2,7 @@ const express = require('express')
 const ParseServer = require('parse-server').ParseServer
 const app = express();
 const roles = require('./routes/role');
+const entrega = require('./routes/entrega');
 
 // /*********************************************/
 // /******************CONFIG*********************/
@@ -44,6 +45,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/role', roles);
+app.use('/entrega', entrega);
 
 app.use('/',(request, response,next) => {   
   response.status(404).redirect('/role');

@@ -1,10 +1,12 @@
+import { useParams } from 'react-router-dom';
 import Card from './Card';
 import Header from './Header';
 
 function Process() {
+    const { process } = useParams();
     return (
         <div>
-            <div className="header">{Header('Conteo')}</div>
+            <Header processName={process} />
             {Card('home', 'Check In')}
             {Card('home', 'Check Out')}
         </div>

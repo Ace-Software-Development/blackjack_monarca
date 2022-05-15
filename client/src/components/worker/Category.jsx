@@ -43,7 +43,7 @@ function Category() {
                 {CardCategory('Paella')}
             </div>
             <div className="col-4 px-5">
-                {CardCategory('Aiuda')}
+                {CardCategory('Circular')}
             </div>
         </div>
     );
