@@ -16,5 +16,6 @@ module.exports = class role{
         // const query = new Parse.Query('_User');
         // const res = query.get("C9uEJqub4f");
         return("res");
+        
     }
 }

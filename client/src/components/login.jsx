@@ -9,17 +9,11 @@ function Login() {
                                 <div className="row g-0">
                                     <div className="col-lg-6 d-flex align-items-center justify-content-center gradient-custom-2">
                                         <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                                            <img
-                                              src="./logo.svg"
-                                              style={{ width: '300px' }}
-                                              alt="logo"
-                                            />
+                                            <img src="./logo.svg" style={{ width: '300px' }} alt="logo" />
                                             <br />
                                             <br />
                                             <h5 className="mb-0 text-center">Capullo</h5>
-                                            <h5 className="mb-0 text-center">
-                                                Sistema de inventario
-                                            </h5>
+                                            <h5 className="mb-0 text-center">Sistema de inventario</h5>
                                         </div>
                                     </div>
 
@@ -33,36 +27,21 @@ function Login() {
                                                 <p>Por favor ingresa tu usuario y contraseña.</p>
 
                                                 <div className="form-outline mb-4">
-                                                    <input
-                                                      type="email"
-                                                      id="form2Example11"
-                                                      className="form-control"
-                                                      placeholder="Usuario"
-                                                    />
+                                                    <input type="email" id="form2Example11" className="form-control" placeholder="Usuario" />
                                                 </div>
 
                                                 <div className="form-outline mb-4">
-                                                    <input
-                                                      type="password"
-                                                      id="form2Example22"
-                                                      className="form-control"
-                                                      placeholder="Contraseña"
-                                                    />
+                                                    <input type="password" id="form2Example22" className="form-control" placeholder="Contraseña" />
                                                 </div>
 
                                                 <div className="text-center pt-1 mb-5 pb-1">
-                                                    <button
-                                                      className="btn btn-primary btn-block btn-orange fa-lg mb-3"
-                                                      type="button"
-                                                    >
-                                                        Log in
-                                                    </button>
+                                                    <button className="btn btn-primary btn-block btn-orange fa-lg mb-3" type="button">Log in</button>
                                                     <br />
-                                                    <a className="text-muted" href="#!">
-                                                        ¿Olvidaste tu contraseña?
-                                                    </a>
+                                                    <a className="text-muted" href="#!">¿Olvidaste tu contraseña?</a>
                                                 </div>
+
                                             </form>
+
                                         </div>
                                     </div>
                                 </div>

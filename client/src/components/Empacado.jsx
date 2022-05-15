@@ -8,7 +8,9 @@ function Empacado() {
             <div>
                 <h2 align="center">Empacado</h2>
             </div>
-            <div>{orderCard('75', 'Puebla')}</div>
+            <div>
+                {orderCard('75', 'Puebla')}
+            </div>
         </container>
     );
 }
