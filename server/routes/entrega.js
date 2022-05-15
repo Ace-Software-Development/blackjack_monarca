@@ -4,5 +4,6 @@ const router = express.Router();
 const entregaController = require('../controller/entrega');
 
 router.get('/partes/get', entregaController.getAllPartsController);
+router.get('/trabajadores/get', entregaController.getAllWorkersController);
 
 module.exports = router;
