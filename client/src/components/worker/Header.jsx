@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import PropTypes from 'prop-types';
 
-function Header(processName) {
+function Header({ processName }) {
     return (
         <div>
             <div className="row header">
@@ -16,5 +17,8 @@ function Header(processName) {
         </div>
     );
 }
+Header.propTypes = {
+    processName: PropTypes.string.isRequired,
+};
 
 export default Header;
