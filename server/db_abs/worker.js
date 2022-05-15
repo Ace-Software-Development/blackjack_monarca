@@ -7,7 +7,7 @@ class Worker
     }
 
     /**
-   * getAllParts
+   * getAllWorkers
    * @description Query to get all existing workers
    * @returns Parse object with name and Id of the parts in table "Workers"
    */
