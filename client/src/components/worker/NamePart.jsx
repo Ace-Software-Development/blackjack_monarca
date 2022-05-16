@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Header from './Header';
+import ButtonNext from './ButtonNext';
 
 export function CardName(name) {
     return (
@@ -119,14 +122,20 @@ function NamePart() {
         ));
     }
 
-    return (
-        <div className="d-flex row h-100 w-100">
-            <div className="col-6 bg-white px-5 justify-content-center d-flex flex-column">
-                {workersList()}
+    const { process } = useParams();
 
-            </div>
-            <div className="col-6 px-5 d-flex justify-content-center flex-column">
-                {partsList()}
+    return (
+        <div>
+            <Header processName={process} />
+            <div className="d-flex row h-100 w-100">
+                <div className="col-6 bg-white px-5 justify-content-center d-flex flex-column">
+                    {workersList()}
+
+                </div>
+                <div className="col-6 px-5 d-flex justify-content-center flex-column">
+                    {partsList()}
+                    <ButtonNext />
+                </div>
             </div>
         </div>
     );

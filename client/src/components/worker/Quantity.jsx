@@ -1,9 +1,105 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { CardName } from './NamePart';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { NumKey } from './NumKey';
 import QuantityInput from './QuantityInput';
 
+/**
+ * Categories
+ * @description React component to display each category in a card
+ * @param category: Json with the attributes objectId and name
+ * @returns Div component
+ */
+function Categories({ category }) {
+    return (
+        <option value={category.objectId}>
+            {category.name}
+        </option>
+    );
+}
+Categories.propTypes = {
+    category: PropTypes.string.isRequired,
+};
+/**
+   * Workers
+   * @description React component to display each worker in a card
+   * @param worker: Json with the attributes objectId and nick_name
+   * @returns Div component
+   */
+function Workers({ worker }) {
+    return (
+        <option value={worker.objectId}>
+            {worker.nick_name}
+        </option>
+    );
+}
+Workers.propTypes = {
+    worker: PropTypes.string.isRequired,
+};
+
 function Quantity() {
+    const [workers, setWorkers] = useState([]);
+    const [categories, setCategories] = useState([]);
+
+    /**
+     * getWorkers
+     * @description Fetches existing workers from the database through the server
+     */
+    async function getWorkers() {
+        const response = await fetch('http://localhost:8888/entrega/trabajadores/get');
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const worker = await response.json();
+        setWorkers(worker.data);
+    }
+
+    /**
+     * getCategories
+     * @description Fetches existing categories from the database through the server
+     */
+    async function getCategories() {
+        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const category = await response.json();
+        setCategories(category.data);
+    }
+
+    useEffect(() => {
+        getWorkers();
+        getCategories();
+    });
+
+    /**
+   * workersList
+   * @description Maps all workers in the interface
+   * @returns Component with name and id of the worker
+   */
+    function workersList() {
+        return workers.map((worker) => (
+            <Workers worker={worker} key={worker.objectID} />
+        ));
+    }
+
+    /**
+   * categoriesList
+   * @description Maps all categories in the interface
+   * @returns Component with name and id of the category
+   */
+    function categoriesList() {
+        return categories.map((category) => (
+            <Categories category={category} key={category.objectID} />
+        ));
+    }
+
     return (
         <div className="row">
             <div className="col-7 p-4">
@@ -41,11 +137,15 @@ function Quantity() {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-6">
-                        {CardName('Parka')}
+                    <div className="col-6 mt-3">
+                        <select className="form-control form-select form-select-lg" id="id_worker" name="id_worker">
+                            {workersList()}
+                        </select>
                     </div>
-                    <div className="col-6">
-                        {CardName('Vaporera')}
+                    <div className="col-6 mt-3">
+                        <select className="form-control form-select form-select-lg" id="id_category" name="id_category">
+                            {categoriesList()}
+                        </select>
                     </div>
                 </div>
             </div>

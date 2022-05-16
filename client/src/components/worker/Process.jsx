@@ -4,11 +4,16 @@ import Header from './Header';
 
 function Process() {
     const { process } = useParams();
+    const href = `/parte/${process}`;
     return (
         <div>
             <Header processName={process} />
-            {Card('home', 'Check In')}
-            {Card('home', 'Check Out')}
+            <a href={href}>
+                {Card('home', 'Recibir')}
+            </a>
+            <a href={href}>
+                {Card('home', 'Entregar')}
+            </a>
         </div>
     );
 }

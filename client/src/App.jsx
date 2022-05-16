@@ -25,7 +25,7 @@ function App() {
                 <Route exact path="/conteo" element={<Conteo />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/proceso/:process" element={<Process />} />
-                <Route excat path="/parte" element={<NamePart />} />
+                <Route excat path="/parte/:process" element={<NamePart />} />
                 <Route excat path="/categoria" element={<Category />} />
                 <Route exact path="/modelo" element={<ModelNumber />} />
                 <Route exact path="/cantidad" element={<Quantity />} />

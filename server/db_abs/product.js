@@ -6,6 +6,11 @@ class Product
         /*TODO make all the field*/
     }
 
+    static getAllModels()
+    {
+        
+    }
+
     static getEmpty()
     {
         return new Product({id:null});/*TODO make all the field*/
