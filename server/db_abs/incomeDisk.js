@@ -58,6 +58,27 @@ class IncomeDisk
         return disks.find();
     }
 
+    static getDisksQuantity(){
+        var disks = {};
+        var inventoryQuery = this.getAllDisks();
+        inventoryQuery.each(
+            function (result) {
+                if(disks.key == null){
+                    disks[result] = result.get("number");
+                }
+                else{
+                    disks.result = disks.result + result.get("number")
+                }
+            }, {
+            success: function () {
+                // looped through everything
+            },
+            error: function (error) {
+                // error is an instance of Parse.Error.
+            }
+        });
+        return disks;
+    }
 }
 
 module.exports = IncomeDisk;

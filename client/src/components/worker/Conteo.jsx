@@ -172,7 +172,9 @@ function Conteo() {
                                                     <div>{disk.key}</div>
                                                     <div className="sub-text1">piezas</div>
                                                 </th>
-                                                <th>Editar</th>
+                                                <th>
+                                                    Editar
+                                                </th>
                                             </tr>
                                         ))}
                                     </tbody>
