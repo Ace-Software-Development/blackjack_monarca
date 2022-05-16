@@ -60,21 +60,23 @@ class IncomeDisk
 
     static getDisksQuantity(){
         var disks = {};
-        var inventoryQuery = this.getAllDisks();
+        const inventoryQuery = new Parse.Query(Constants.IncomeDisk);
+        inventoryQuery.equalTo("id_disk", "CfPcQ4ivgE")
         inventoryQuery.each(
             function (result) {
-                if(disks.key == null){
-                    disks[result] = result.get("number");
+                var num = result.get("number");
+                if (result.get("CfPcQ4ivgE") in disks) {
+                    disks[result.get("CfPcQ4ivgE")] += num;
                 }
-                else{
-                    disks.result = disks.result + result.get("number")
+                else {
+                    disks[result.get("CfPcQ4ivgE")] = num;
                 }
             }, {
             success: function () {
-                // looped through everything
+                return disks;
             },
             error: function (error) {
-                // error is an instance of Parse.Error.
+                response.error("Query failed. Error = " + error.message);
             }
         });
         return disks;

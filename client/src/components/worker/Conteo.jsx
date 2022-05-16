@@ -48,7 +48,20 @@ function Conteo() {
             setDisks(disk.data);
         }
 
+        async function getIncomeDisks() {
+            const response = await fetch('http://localhost:8888/discos/get');
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const disk = await response.json();
+            setDisks(disk.data);
+        }
+
         getDisks();
+        getIncomeDisks();
     });
 
     const navigate = useNavigate();
