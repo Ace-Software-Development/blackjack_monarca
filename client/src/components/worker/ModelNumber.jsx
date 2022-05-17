@@ -42,13 +42,13 @@ function ModelNumber() {
     }
 
     /**
-   * product\sList
+   * productsList
    * @description Maps all products in the interface
    * @returns Component with name and id of the product
    */
     function productsList() {
         return products.map((product) => (
-            <Products worker={product} key={product.objectID} />
+            <Products product={product} key={product.objectId} />
         ));
     }
 

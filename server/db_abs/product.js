@@ -1,3 +1,5 @@
+const Constants = require("../constants");
+
 class Product
 {
     constructor(pAssignObj)
@@ -8,7 +10,10 @@ class Product
 
     static getAllModels()
     {
-        
+        const models = new Parse.Query(Constants.Product);
+        models.select("objectId", "model")
+        models.equalTo("id_category", "427jtEP2PQ");
+        return models.find();
     }
 
     static getEmpty()
