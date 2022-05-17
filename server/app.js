@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const roles = require('./routes/role');
 const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
+const path = require('path');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -50,6 +51,12 @@ app.use(function(req, res, next) {
   res.header("Content-Security-Policy", "default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;");
 
   next();
+});
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.use('/role', roles);
