@@ -1,6 +1,6 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { registerIncomingDisk, getAllDisks, getDisksQuantity } = require('../db_abs/incomeDisk');
+const { registerIncomingDisk, getAllDisks } = require('../db_abs/incomeDisk');
 
 /**
    * postIncomingDiskController
@@ -10,7 +10,7 @@ const { registerIncomingDisk, getAllDisks, getDisksQuantity } = require('../db_a
    */
 exports.postIncomingDiskController = async function (request, response){
     try{
-        const incomeDisk = registerIncomingDisk(request.body.number, request.body.id_disk);
+        const incomeDisk = registerIncomingDisk(request.body.number, request.body.name);
         await incomeDisk.save();
     } catch(error){
         console.error(error.message);

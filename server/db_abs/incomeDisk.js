@@ -39,10 +39,10 @@ class IncomeDisk
    * @param id_disk: Id of the disks registered
    * @returns Parse object with number and id_disk
    */
-    static registerIncomingDisk(number, id_disk){
+    static registerIncomingDisk(number, name){
         const incomeDisk = new Parse.Object(Constants.IncomeDisk);
         incomeDisk.set('number', parseInt(number));
-        incomeDisk.set('id_disk', id_disk);
+        incomeDisk.set('name', name);
         return incomeDisk;
     }
 
@@ -58,29 +58,10 @@ class IncomeDisk
         return disks.find();
     }
 
-    static getDisksQuantity(){
-        var disks = {};
-        const inventoryQuery = new Parse.Query(Constants.IncomeDisk);
-        inventoryQuery.equalTo("id_disk", "CfPcQ4ivgE")
-        inventoryQuery.each(
-            function (result) {
-                var num = result.get("number");
-                if (result.get("CfPcQ4ivgE") in disks) {
-                    disks[result.get("CfPcQ4ivgE")] += num;
-                }
-                else {
-                    disks[result.get("CfPcQ4ivgE")] = num;
-                }
-            }, {
-            success: function () {
-                return disks;
-            },
-            error: function (error) {
-                response.error("Query failed. Error = " + error.message);
-            }
-        });
-        return disks;
+    static getAllIncomeDisks() {
+        const disks = new Parse.Query(Constants.IncomeDisk);
+        disks.select("name", "number", "updatedAt");
+        return disks.find();
     }
 }
-
 module.exports = IncomeDisk;
