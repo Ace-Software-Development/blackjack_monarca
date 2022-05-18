@@ -14,12 +14,37 @@ import PropTypes from 'prop-types';
    */
 function Disks({ disk }) {
     return (
-        <option value={disk.objectId}>
+        <option value={disk.name}>
             {disk.name}
         </option>
     );
 }
 Disks.propTypes = {
+    disk: PropTypes.string.isRequired,
+};
+
+function IncomeDisks({ disk }) {
+    return (
+        <tr>
+            <th>
+                <div>{disk.name}</div>
+                <div className="sub-text2">disco</div>
+            </th>
+            <th>
+                <div>{disk.number}</div>
+                <div className="sub-text1">piezas</div>
+            </th>
+            <th>
+                <div>{(disk.updatedAt).slice(0, 10)}</div>
+                <div className="sub-text1">fecha</div>
+            </th>
+            <th>
+                Editar
+            </th>
+        </tr>
+    );
+}
+IncomeDisks.propTypes = {
     disk: PropTypes.string.isRequired,
 };
 
@@ -30,44 +55,46 @@ Disks.propTypes = {
    */
 function Conteo() {
     const [disks, setDisks] = useState([]);
+    const [incomeDisks, setIncomeDisks] = useState([]);
+
+    async function getAllIncomeDisks() {
+        const response = await fetch('http://localhost:8888/entradaDiscos/get');
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const disk = await response.json();
+        setIncomeDisks(disk.data);
+    }
+
+    /**
+     * getDisks
+     * @description Fetches existing disks from the database through the server
+     */
+    async function getDisks() {
+        const response = await fetch('http://localhost:8888/discos/get');
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const disk = await response.json();
+        setDisks(disk.data);
+    }
 
     useEffect(() => {
-        /**
-         * getDisks
-         * @description Fetches existing disks from the database through the server
-         */
-        async function getDisks() {
-            const response = await fetch('http://localhost:8888/discos/get');
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
-                window.alert(message);
-                return;
-            }
-
-            const disk = await response.json();
-            setDisks(disk.data);
-        }
-
-        async function getIncomeDisks() {
-            const response = await fetch('http://localhost:8888/discos/get');
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
-                window.alert(message);
-                return;
-            }
-
-            const disk = await response.json();
-            setDisks(disk.data);
-        }
-
         getDisks();
-        getIncomeDisks();
+        getAllIncomeDisks();
     });
 
     const navigate = useNavigate();
     const [form, setForm] = useState({
         number: '',
         id_disk: '',
+        name: '',
     });
 
     /**
@@ -107,6 +134,7 @@ function Conteo() {
         setForm({
             number: '',
             id_disk: '',
+            name: '',
         });
 
         navigate('/conteo');
@@ -120,6 +148,17 @@ function Conteo() {
     function disksList() {
         return disks.map((disk) => (
             <Disks disk={disk} key={disk.objectID} />
+        ));
+    }
+
+    /**
+   * disksList
+   * @description Maps all disks in the interface
+   * @returns Component with name and id of the disk
+   */
+    function incomeDisksList() {
+        return incomeDisks.slice(0).reverse().map((disk) => (
+            <IncomeDisks disk={disk} key={disk.name} />
         ));
     }
 
@@ -143,7 +182,7 @@ function Conteo() {
                                 </div>
                                 <div className="row">
                                     <div className="col-8 form group">
-                                        <select className="form-control form-select form-select-lg" id="id_disk" name="id_disk" value={form.id_disk} onChange={(e) => updateForm({ id_disk: e.target.value })} required>
+                                        <select className="form-control form-select form-select-lg" id="id_disk" name="id_disk" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required>
                                             <option value="" disabled selected>Selecciona un disco</option>
                                             {disksList()}
                                         </select>
@@ -171,25 +210,12 @@ function Conteo() {
                                         <tr>
                                             <th>Material</th>
                                             <th>Cantidad</th>
-                                            <th hidden>Cantidad</th>
+                                            <th>Fecha</th>
+                                            <th> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {disks.map((disk) => (
-                                            <tr>
-                                                <th>
-                                                    <div>{disk.name}</div>
-                                                    <div className="sub-text2">compatibles</div>
-                                                </th>
-                                                <th>
-                                                    <div>{disk.key}</div>
-                                                    <div className="sub-text1">piezas</div>
-                                                </th>
-                                                <th>
-                                                    Editar
-                                                </th>
-                                            </tr>
-                                        ))}
+                                        {incomeDisksList()}
                                     </tbody>
                                 </table>
                             </div>
