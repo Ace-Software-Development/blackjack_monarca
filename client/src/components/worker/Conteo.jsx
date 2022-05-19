@@ -23,6 +23,12 @@ Disks.propTypes = {
     disk: PropTypes.string.isRequired,
 };
 
+/**
+ * IncomeDisk
+ * @param {disk} show all Income Disk data 
+ * @description Shows the income disk information on the page
+ * @returns HTML with fetched data
+ */
 function IncomeDisks({ disk }) {
     return (
         <tr>

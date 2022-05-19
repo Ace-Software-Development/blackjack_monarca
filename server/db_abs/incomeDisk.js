@@ -58,6 +58,11 @@ class IncomeDisk
         return disks.find();
     }
 
+    /**
+   * getAllDisks
+   * @description Query to get all existing Income disks
+   * @returns Parse object with name, number and the Update date of the disks in table "IncomeDisks"
+   */
     static getAllIncomeDisks() {
         const disks = new Parse.Query(Constants.IncomeDisk);
         disks.select("name", "number", "updatedAt");
