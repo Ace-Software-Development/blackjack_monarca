@@ -10,7 +10,7 @@ const { registerIncomingDisk, getAllDisks } = require('../db_abs/incomeDisk');
    */
 exports.postIncomingDiskController = async function (request, response){
     try{
-        const incomeDisk = registerIncomingDisk(request.body.number, request.body.id_disk);
+        const incomeDisk = registerIncomingDisk(request.body.number, request.body.name);
         await incomeDisk.save();
     } catch(error){
         console.error(error.message);
@@ -28,4 +28,6 @@ exports.getAllDisksController = async function (request, response){
     const disks = await getAllDisks();
     response.status(200).send({status:"success", data:disks});
 }
+
+
 

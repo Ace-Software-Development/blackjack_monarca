@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const roles = require('./routes/role');
 const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
+const entradaDiscos = require('./routes/visualizarEntradaDiscos');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -55,5 +56,8 @@ app.use(function(req, res, next) {
 app.use('/role', roles);
 app.use('/entrega', entrega);
 app.use('/discos', discos);
+app.use('/entradaDiscos', entradaDiscos);
+
+  
 
 app.listen(8888);
