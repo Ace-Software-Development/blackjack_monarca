@@ -7,6 +7,19 @@ import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 
 /**
+ * internetConnection
+ * @description checks if the website have internet
+ */
+function internetConnection() {
+    window.ononline = () => {
+        console.log('Conectado a internet');
+    };
+    window.onoffline = () => {
+        window.alert('No tienes conexión a internet');
+    };
+}
+
+/**
    * Disks
    * @description React component to asign an option value for each existing disk in a select
    * @param disk: Json with the attributes objectId and name
@@ -25,7 +38,7 @@ Disks.propTypes = {
 
 /**
  * IncomeDisk
- * @param {disk} show all Income Disk data 
+ * @param {disk} show all Income Disk data
  * @description Shows the income disk information on the page
  * @returns HTML with fetched data
  */
@@ -94,6 +107,7 @@ function Conteo() {
     useEffect(() => {
         getDisks();
         getAllIncomeDisks();
+        internetConnection();
     });
 
     const navigate = useNavigate();
