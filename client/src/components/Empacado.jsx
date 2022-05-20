@@ -9,7 +9,7 @@ function Empacado() {
                 <h2 align="center">Empacado</h2>
             </div>
             <div>
-                {orderCard('75', 'Puebla')}
+                {orderCard('75', 'Pedido1', 'Puebla')}
             </div>
         </container>
     );

@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import { useParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { CardAdmin, SideCards } from './CardsAdmin';
+import { SideCards } from './CardsAdmin';
 
-function Dashboard() {
+function DashboardProceso() {
     const { process } = useParams();
     return (
         <div className="container-fluid">
@@ -14,17 +14,6 @@ function Dashboard() {
                     <div className="col">
                         <h1 className="my-2">Dashboard</h1>
                         <h3>{process}</h3>
-                    </div>
-                </div>
-                <div className="row mt-3">
-                    <div className="col-4">
-                        <CardAdmin />
-                    </div>
-                    <div className="col-4">
-                        <CardAdmin />
-                    </div>
-                    <div className="col-4">
-                        <CardAdmin />
                     </div>
                 </div>
                 <div className="row my-4">
@@ -56,5 +45,4 @@ function Dashboard() {
         </div>
     );
 }
-
-export default Dashboard;
+export default DashboardProceso;

@@ -8,7 +8,7 @@ function Sidebar() {
             <img src="logo.svg" alt="Aluminios Monarca logo" />
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
-                {TabSidebar('active', 'Dashboard', 'apps')}
+                {TabSidebar(null, 'Dashboard', 'apps')}
                 {TabSidebar(null, 'Conteo', 'apps')}
                 {TabSidebar(null, 'Rechazado', 'apps')}
                 {TabSidebar(null, 'Esmerilado', 'apps')}

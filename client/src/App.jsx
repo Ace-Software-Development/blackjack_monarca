@@ -8,12 +8,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Inicio from './components/worker/Inicio';
 import Conteo from './components/worker/Conteo';
-import Dashboard from './components/admin/Dashboard';
 import Category from './components/worker/Category';
 import Process from './components/worker/Process';
 import Quantity from './components/worker/Quantity';
 import ModelNumber from './components/worker/ModelNumber';
 import NamePart from './components/worker/NamePart';
+import DashboardProceso from './components/admin/DashboardProceso';
+import Dashboard from './components/admin/Dashboard';
+import Administrador from './components/admin/Administrador';
 
 function App() {
     return (
@@ -24,6 +26,8 @@ function App() {
                 <Route exact path="/empacado" element={<Empacado />} />
                 <Route exact path="/conteo" element={<Conteo />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
+                <Route exact path="/dashboard/:process" element={<DashboardProceso />} />
+                <Route exact path="/administrador/:process" element={<Administrador />} />
                 <Route exact path="/proceso/:process" element={<Process />} />
                 <Route excat path="/parte" element={<NamePart />} />
                 <Route excat path="/categoria" element={<Category />} />
