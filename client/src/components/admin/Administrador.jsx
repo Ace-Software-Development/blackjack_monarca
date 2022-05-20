@@ -6,15 +6,63 @@ import {
     Navbar,
     Container,
 } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router';
 import Sidebar from './Sidebar';
 import orderCard from '../orderCard';
 
+/**
+ * Categories
+ * @description React component to display each category in a card
+ * @param part: Json with the attributes objectId and name
+ * @returns Div component
+ */
+function Orders({ order }) {
+    return (
+        <div className="col-4 px-5" value={order.objectId}>{orderCard('75', order.id_buyer, order.city_buyer)}</div>
+    );
+}
+Orders.propTypes = {
+    order: PropTypes.string.isRequired,
+};
+
 function Order() {
+    const [orders, setOrders] = useState([]);
+
+    /**
+     * getCategories
+     * @description Fetches existing categories from the database through the server
+     */
+    async function getOrders() {
+        const response = await fetch('http://localhost:8888/dash/ordenes/get');
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const order = await response.json();
+        setOrders(order.data);
+    }
+    useEffect(() => {
+        getOrders();
+    }, []);
+
+    /**
+   * categoryList
+   * @description Maps all categories in the interface
+   * @returns Component with name and id of the category
+   */
+    function orderList() {
+        return orders.map((order) => (
+            <Orders order={order} key={order.objectId} />
+        ));
+    }
+
     return (
         <div className="row w-100 justify-content-center align-self-stretch">
-            <a href="/login">
-                {orderCard('75', 'pedido1', 'puebla')}
-            </a>
+            {orderList()}
         </div>
     );
 }
@@ -84,5 +132,4 @@ function Administrador() {
         );
     }
 }
-
 export default Administrador;
