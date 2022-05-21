@@ -24,11 +24,11 @@ function App() {
                 <Route exact path="/empacado" element={<Empacado />} />
                 <Route exact path="/conteo" element={<Conteo />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
-                <Route exact path="/proceso/:process" element={<Process />} />
-                <Route excat path="/parte/:process" element={<NamePart />} />
-                <Route excat path="/categoria" element={<Category />} />
-                <Route exact path="/modelo" element={<ModelNumber />} />
-                <Route exact path="/cantidad" element={<Quantity />} />
+                <Route exact path="/proceso/:process/:nextProcess" element={<Process />} />
+                <Route excat path="/parte/:process/:nextProcess" element={<NamePart />} />
+                <Route excat path="/categoria/:process/:nextProcess/:worker/:part" element={<Category />} />
+                <Route exact path="/modelo/:process/:nextProcess/:worker/:part/:category" element={<ModelNumber />} />
+                <Route exact path="/cantidad/:process/:nextProcess/:worker/:part/:category/:model" element={<Quantity />} />
             </Routes>
         </BrowserRouter>
     );

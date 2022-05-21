@@ -136,7 +136,7 @@ function Conteo() {
                                         </select>
                                     </div>
                                     <div className="col form group">
-                                        <input type="number" className="conteo-input form-control" id="number" name="number" min="1" pattern="^[0-9]+" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
+                                        <input type="number" className="conteo-input form-control" id="number" name="number" min="1" pattern="^[0-9]+" />
                                     </div>
                                     <div className="col d-flex align-content-center form group">
                                         <button placeholder="Cantidad" className="btn-orange" type="submit">Agregar</button>

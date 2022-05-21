@@ -1,12 +1,36 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import ButtonNext from './ButtonNext';
+import Header from './Header';
 
-export function CardCategory(name) {
+let selectedCategory = '';
+let selectedWorker = '';
+let selectedPart = '';
+let nextProcess = '';
+let nextBtn;
+let url = '';
+let process = '';
+
+/**
+   * setContext
+   * @description Saves selected category in a variable
+   * @param id: id of the category
+   */
+function setContext(id) {
+    selectedCategory = id;
+
+    url = `/modelo/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}`;
+
+    nextBtn = ButtonNext(url);
+}
+
+export function CardCategory(name, id) {
     return (
         <div className="text-center my-4">
             <a href="#">
-                <button type="button" className="cardName btn text-center w-100 py-4">
+                <button type="button" className="cardName btn text-center w-100 py-4" onClick={() => setContext(id)}>
                     {name}
                 </button>
             </a>
@@ -22,7 +46,7 @@ export function CardCategory(name) {
  */
 function Categories({ category }) {
     return (
-        <div className="col-4 px-5" value={category.objectId}>{CardCategory(category.name)}</div>
+        <div className="col-4 px-5" value={category.objectId}>{CardCategory(category.name, category.objectId)}</div>
     );
 }
 Categories.propTypes = {
@@ -30,6 +54,12 @@ Categories.propTypes = {
 };
 
 function Category() {
+    const params = useParams();
+    process = params.process;
+    selectedWorker = params.worker;
+    selectedPart = params.part;
+    nextProcess = params.nextProcess;
+
     const [categories, setCategories] = useState([]);
 
     /**
@@ -49,7 +79,7 @@ function Category() {
     }
     useEffect(() => {
         getCategories();
-    });
+    }, []);
 
     /**
    * categoryList
@@ -64,7 +94,9 @@ function Category() {
 
     return (
         <div className="row w-100 justify-content-center align-self-stretch">
+            <Header processName={process} />
             {categoryList()}
+            {nextBtn}
         </div>
     );
 }

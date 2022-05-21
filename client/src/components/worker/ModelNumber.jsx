@@ -1,9 +1,46 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { CardName } from './NamePart';
+import { useParams } from 'react-router-dom';
 import { NumKey } from './NumKey';
+import { CardName } from './NamePart';
 import Search from './Search';
+import ButtonNext from './ButtonNext';
+import Header from './Header';
+
+let selectedModel = '';
+let selectedCategory = '';
+let selectedWorker = '';
+let selectedPart = '';
+let nextProcess = '';
+let nextBtn;
+let url = '';
+let process = '';
+
+/**
+   * setContext
+   * @description Saves selected model in a variable
+   * @param name: name of the model
+   */
+function setContext(id) {
+    selectedModel = id;
+
+    url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
+
+    nextBtn = ButtonNext(url);
+}
+
+export function CardModel(name, id) {
+    return (
+        <div className="text-center my-4">
+            <a href="#">
+                <button type="button" className="cardName btn text-center w-100 py-4" onClick={() => setContext(id)}>
+                    {name}
+                </button>
+            </a>
+        </div>
+    );
+}
 
 /**
  * Products
@@ -14,7 +51,7 @@ import Search from './Search';
 function Products({ product }) {
     return (
         <div className="col-4" value={product.objectId}>
-            {CardName(product.model)}
+            {CardModel(product.model, product.objectId)}
         </div>
     );
 }
@@ -23,6 +60,13 @@ Products.propTypes = {
 };
 
 function ModelNumber() {
+    const params = useParams();
+    process = params.process;
+    selectedCategory = params.category;
+    selectedWorker = params.worker;
+    selectedPart = params.part;
+    nextProcess = params.nextProcess;
+
     const [products, setProducts] = useState([]);
 
     /**
@@ -30,7 +74,7 @@ function ModelNumber() {
      * @description Fetches existing products from the database through the server
      */
     async function getModels() {
-        const response = await fetch('http://localhost:8888/entrega/modelos/get');
+        const response = await fetch(`http://localhost:8888/entrega/modelos/get/${selectedCategory}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.alert(message);
@@ -54,10 +98,11 @@ function ModelNumber() {
 
     useEffect(() => {
         getModels();
-    });
+    }, []);
 
     return (
         <div className="row">
+            <Header processName={process} />
             <div className="col-7 p-4">
                 <div className="row">
                     {Search()}
@@ -75,6 +120,7 @@ function ModelNumber() {
                 </div>
             </div>
             {NumKey()}
+            {nextBtn}
         </div>
     );
 }

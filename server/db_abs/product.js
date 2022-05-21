@@ -8,12 +8,20 @@ class Product
         /*TODO make all the field*/
     }
 
-    static getAllModels()
+    static getAllModels(categoryId)
     {
         const models = new Parse.Query(Constants.Product);
         models.select("objectId", "model")
-        models.equalTo("id_category", "427jtEP2PQ");
+        models.equalTo("id_category", categoryId);
         return models.find();
+    }
+
+    static getModelById(id)
+    {
+        const models = new Parse.Query(Constants.Product);
+        models.select("objectId", "model");
+        models.equalTo("objectId", id);
+        return models.first();
     }
 
     static getEmpty()

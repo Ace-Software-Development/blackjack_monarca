@@ -1,30 +1,49 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+// eslint-disable-next-line no-trailing-spaces
+import {
+    useEffect, useState, React,
+} from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import ButtonNext from './ButtonNext';
+import './styles/styles.css';
 
-export function CardName(name) {
+let selectedWorker = '';
+let selectedPart = '';
+let nextBtn;
+let url = '';
+let process = '';
+let nextProcess = '';
+
+/**
+   * setContext
+   * @description Saves selected worker and part in variables
+   * @param id: id of the worker or part
+   * @param type: specifies if the id is a worker or part
+   */
+function setContext(id, type) {
+    if (type === 'p') {
+        selectedPart = id;
+    } else {
+        selectedWorker = id;
+    }
+
+    url = `/categoria/${process}/${nextProcess}/${selectedWorker}/${selectedPart}`;
+
+    if (selectedWorker && selectedPart) {
+        nextBtn = ButtonNext(url);
+    }
+}
+
+export function CardName(name, id, type) {
     return (
         <div className="text-center my-4">
             <a href="#">
-                <button type="button" className="cardName btn text-center w-100 py-4 bg-white">
+                <button type="button" id={id} className="cardName btn text-center w-100 py-4" onClick={() => setContext(id, type)}>
                     {name}
                 </button>
             </a>
-        </div>
-    );
-}
-
-export function CardPart(name) {
-    return (
-        <div className="card text-center">
-            <div className="card-body text-center w-100 py-4">
-                <a href="#">
-                    <h2 className="workerName">{name}</h2>
-                </a>
-            </div>
         </div>
     );
 }
@@ -37,7 +56,9 @@ export function CardPart(name) {
    */
 function Parts({ part }) {
     return (
-        <div value={part.objectId}>{CardName(part.name)}</div>
+        <div type="button" value={part.objectId}>
+            {CardName(part.name, part.objectId, 'p')}
+        </div>
     );
 }
 Parts.propTypes = {
@@ -52,7 +73,9 @@ Parts.propTypes = {
    */
 function Workers({ worker }) {
     return (
-        <div value={worker.objectId}>{CardName(worker.nick_name)}</div>
+        <div type="button" value={worker.objectId}>
+            {CardName(worker.nick_name, worker.objectId, 'w')}
+        </div>
     );
 }
 Workers.propTypes = {
@@ -60,6 +83,9 @@ Workers.propTypes = {
 };
 
 function NamePart() {
+    const params = useParams();
+    process = params.process;
+    nextProcess = params.nextProcess;
     const [parts, setParts] = useState([]);
     const [workers, setWorkers] = useState([]);
 
@@ -84,7 +110,7 @@ function NamePart() {
      * @description Fetches existing workers from the database through the server
      */
     async function getWorkers() {
-        const response = await fetch('http://localhost:8888/entrega/trabajadores/get');
+        const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${process}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.alert(message);
@@ -98,7 +124,7 @@ function NamePart() {
     useEffect(() => {
         getParts();
         getWorkers();
-    });
+    }, []);
 
     /**
    * partsList
@@ -122,19 +148,17 @@ function NamePart() {
         ));
     }
 
-    const { process } = useParams();
-
     return (
         <div>
             <Header processName={process} />
             <div className="d-flex row h-100 w-100">
-                <div className="col-6 bg-white px-5 justify-content-center d-flex flex-column">
+                <div className="col-6 px-5 justify-content-center d-flex flex-column">
                     {workersList()}
 
                 </div>
                 <div className="col-6 px-5 d-flex justify-content-center flex-column">
                     {partsList()}
-                    <ButtonNext />
+                    {nextBtn}
                 </div>
             </div>
         </div>

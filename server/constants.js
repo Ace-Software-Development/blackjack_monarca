@@ -10,7 +10,8 @@ const Constants = {
 	SellOrder: "SellOrder",
 	FinishProduct: "FinishProduct",
 	Process: "Process",
-	Buyer: "Buyer"
+	Buyer: "Buyer",
+	Category: "Category",
 }
 
 module.exports = Constants;

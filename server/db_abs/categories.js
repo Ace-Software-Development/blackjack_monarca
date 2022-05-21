@@ -1,3 +1,5 @@
+const Constants = require('../constants');
+
 class Category
 {
     constructor(pAssignObj)
@@ -12,9 +14,21 @@ class Category
    * @returns Parse object with name and Id of the parts in table "Categories"
    */
     static getAllCategories(){
-        const categories = new Parse.Query("Category");
+        const categories = new Parse.Query(Constants.Category);
         categories.select("objectId", "name");
         return categories.find();
+    }
+
+    /**
+   * getCategoryById
+   * @description Query to get a category with the id
+   * @returns Parse object with name and Id of the parts in table "Categories"
+   */
+    static getCategoryById(id){
+        const categories = new Parse.Query(Constants.Category);
+        categories.select("name");
+        categories.equalTo("objectId", id);
+        return categories.first();
     }
 
 
@@ -22,6 +36,7 @@ class Category
     {
         return new Category({id:null});/*TODO make all the field*/
     }
+    
 
     static getById(id)
     {
