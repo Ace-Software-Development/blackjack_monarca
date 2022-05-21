@@ -98,7 +98,7 @@ function NamePart() {
     useEffect(() => {
         getParts();
         getWorkers();
-    });
+    }, []);
 
     /**
    * partsList

@@ -76,7 +76,7 @@ function Quantity() {
     useEffect(() => {
         getWorkers();
         getCategories();
-    });
+    }, []);
 
     /**
    * workersList
