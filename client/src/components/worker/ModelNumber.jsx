@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import Select from 'react-select';
 import { useParams } from 'react-router-dom';
 import { NumKey } from './NumKey';
-import { CardName } from './NamePart';
 import Search from './Search';
 import ButtonNext from './ButtonNext';
 import Header from './Header';
@@ -13,21 +13,27 @@ let selectedCategory = '';
 let selectedWorker = '';
 let selectedPart = '';
 let nextProcess = '';
-let nextBtn;
+let nextBtn = '';
 let url = '';
 let process = '';
 
 /**
-   * setContext
-   * @description Saves selected model in a variable
-   * @param name: name of the model
-   */
+     * setContext
+     * @description Saves selected model in a variable
+     * @param name: name of the model
+     */
 function setContext(id) {
-    selectedModel = id;
-
-    url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
-
-    nextBtn = ButtonNext(url);
+    if (id) {
+        selectedModel = id;
+        url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
+        nextBtn = ButtonNext(url);
+    } else {
+        url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
+        if (nextBtn) {
+            const button = document.getElementById('buttonNext');
+            button.href = url;
+        }
+    }
 }
 
 export function CardModel(name, id) {
@@ -68,6 +74,102 @@ function ModelNumber() {
     nextProcess = params.nextProcess;
 
     const [products, setProducts] = useState([]);
+    const workersOption = [];
+    const categoriesOption = [];
+
+    const [workers, setWorkers] = useState([]);
+    const [categories, setCategories] = useState([]);
+
+    const [categoryName, setCategory] = useState(0);
+    const [workerName, setWorker] = useState(0);
+
+    /**
+     * workersList
+     * @description Creates a json array with workers for the select component
+     * @returns Array with label and value of workers
+     */
+    function workersList() {
+        // eslint-disable-next-line no-plusplus
+        for (let i = 0; i < workers.length; i++) {
+            workersOption[i] = { label: workers[i].nick_name, value: workers[i].objectId };
+        }
+    }
+
+    /**
+    * categoriesList
+    * @description Creates a json array with categories for the select component
+    * @returns Array with label and value of categories
+    */
+    function categoriesList() {
+        // eslint-disable-next-line no-plusplus
+        for (let i = 0; i < categories.length; i++) {
+            categoriesOption[i] = { label: categories[i].name, value: categories[i].objectId };
+        }
+    }
+
+    /**
+         * getWorkers
+         * @description Fetches existing workers from the database through the server
+         */
+    async function getWorkers() {
+        const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${process}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const worker = await response.json();
+        setWorkers(worker.data);
+    }
+
+    /**
+     * getCategories
+     * @description Fetches existing categories from the database through the server
+     */
+    async function getCategories() {
+        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const category = await response.json();
+        setCategories(category.data);
+    }
+
+    /**
+     * getCategory
+     * @description Fetches category from the database through the server
+     */
+    async function getCategory() {
+        const response = await fetch(`http://localhost:8888/entrega/categoria/get/${selectedCategory}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const category = await response.json();
+        setCategory(category.data);
+    }
+
+    /**
+     * getWorker
+     * @description Fetches category from the database through the server
+     */
+    async function getWorker() {
+        const response = await fetch(`http://localhost:8888/entrega/trabajador/get/${selectedWorker}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const worker = await response.json();
+        setWorker(worker.data);
+    }
 
     /**
      * getModels
@@ -97,30 +199,70 @@ function ModelNumber() {
     }
 
     useEffect(() => {
+        getWorkers();
+        getCategories();
         getModels();
-    }, []);
+        getWorker();
+        getCategory();
+    }, [nextBtn]);
+
+    workersList();
+    categoriesList();
+
+    function onChangeWorker(worker) {
+        selectedWorker = worker.value;
+        setContext('');
+        setWorker((previousState) => (
+            {
+                ...previousState,
+                objectId: worker.value,
+                nick_name: worker.label,
+            }));
+        params.worker = worker.value;
+    }
+
+    function onChangeCategory(category) {
+        selectedCategory = category.value;
+        setContext('');
+        setCategory((previousState) => (
+            {
+                ...previousState,
+                objectId: category.value,
+                name: category.label,
+            }));
+        params.category = category.value;
+    }
 
     return (
         <div className="row">
             <Header processName={process} />
             <div className="col-7 p-4">
                 <div className="row">
-                    {Search()}
+                    <div className="col">
+                        <h5>Resumen</h5>
+                        <p>
+                            {workerName.nick_name}
+                            {' - '}
+                            {categoryName.name}
+                            {Search()}
+                        </p>
+                    </div>
                 </div>
                 <div className="row">
                     {productsList()}
                 </div>
                 <div className="row">
                     <div className="col-6">
-                        {CardName('Parka')}
+                        <Select value={{ label: workerName.nick_name, value: workerName.objectId }} options={workersOption} className="form-control" id="id_worker" name="id_worker" onChange={(e) => onChangeWorker(e)} />
                     </div>
                     <div className="col-6">
-                        {CardName('Vaporera')}
+                        <Select value={{ label: categoryName.name, value: categoryName.objectId }} options={categoriesOption} className="form-control" id="id_category" name="id_category" onChange={(e) => onChangeCategory(e)} />
                     </div>
                 </div>
             </div>
             {NumKey()}
             {nextBtn}
+            {url}
         </div>
     );
 }
