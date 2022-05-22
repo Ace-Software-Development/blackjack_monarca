@@ -29,6 +29,7 @@ function App() {
                 <Route excat path="/categoria" element={<Category />} />
                 <Route exact path="/modelo" element={<ModelNumber />} />
                 <Route exact path="/cantidad" element={<Quantity />} />
+                <Route exact path="/" element={<Login />} />
             </Routes>
         </BrowserRouter>
     );
