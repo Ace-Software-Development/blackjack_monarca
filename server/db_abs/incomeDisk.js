@@ -39,10 +39,10 @@ class IncomeDisk
    * @param id_disk: Id of the disks registered
    * @returns Parse object with number and id_disk
    */
-    static registerIncomingDisk(number, id_disk){
+    static registerIncomingDisk(number, name){
         const incomeDisk = new Parse.Object(Constants.IncomeDisk);
         incomeDisk.set('number', parseInt(number));
-        incomeDisk.set('id_disk', id_disk);
+        incomeDisk.set('name', name);
         return incomeDisk;
     }
 
@@ -58,6 +58,15 @@ class IncomeDisk
         return disks.find();
     }
 
+    /**
+   * getAllDisks
+   * @description Query to get all existing Income disks
+   * @returns Parse object with name, number and the Update date of the disks in table "IncomeDisks"
+   */
+    static getAllIncomeDisks() {
+        const disks = new Parse.Query(Constants.IncomeDisk);
+        disks.select("name", "number", "updatedAt");
+        return disks.find();
+    }
 }
-
 module.exports = IncomeDisk;
