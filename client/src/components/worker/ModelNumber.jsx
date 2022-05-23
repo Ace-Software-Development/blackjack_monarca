@@ -44,6 +44,7 @@ export function CardModel(name, id, aluminium) {
                 </button>
             </a>
         </div>
+
     );
 }
 
