@@ -36,6 +36,13 @@ function setContext(id, type) {
     }
 }
 
+/**
+   * CardName
+   * @description deploy a card with a name
+   * @param id: id of object
+   * @param name name of object
+   * @param type: specifies if the id
+   */
 export function CardName(name, id, type) {
     return (
         <a href="#">

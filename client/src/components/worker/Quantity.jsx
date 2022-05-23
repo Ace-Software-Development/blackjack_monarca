@@ -298,6 +298,11 @@ function Quantity() {
         navigate('/inicio');
     }
 
+    /**
+   * sum
+   * @description Increment the number of pieces registered by the user
+   * @param input: Where to increment the value. Completed pieces or second pieces.
+   */
     function sum(input) {
         if (input === 'completed') {
             document.getElementById('numberCompleted').stepUp();
@@ -305,6 +310,12 @@ function Quantity() {
             document.getElementById('numberSecond').stepUp();
         }
     }
+
+    /**
+   * sum
+   * @description Substract the number of pieces registered by the user
+   * @param input: Where to decrement the value. Completed pieces or second pieces.
+   */
     function res(input) {
         if (input === 'completed') {
             document.getElementById('numberCompleted').stepDown();
@@ -313,16 +324,31 @@ function Quantity() {
         }
     }
 
+    /**
+   * onChangeWorker
+   * @description Changes the saved value of the selected worker
+   * @param worker: Id of the most resent selected worker
+   */
     function onChangeWorker(worker) {
         navigate(`/cantidad/${selectedProcess}/${nextProcess}/${worker.value}/${selectedPart}/${selectedCategory}/${selectedModel}`);
         window.location.reload();
     }
 
+    /**
+   * onChangeCategory
+   * @description Changes the saved value of the selected category
+   * @param worker: Id of the most resent selected category
+   */
     function onChangeCategory(category) {
         navigate(`/cantidad/${selectedProcess}/${nextProcess}/${selectedWorker}/${selectedPart}/${category.value}/${-1}`);
         window.location.reload();
     }
 
+    /**
+   * onChangeModel
+   * @description Changes the saved value of the selected model
+   * @param worker: Id of the most resent selected model
+   */
     function onChangeModel(model) {
         navigate(`/cantidad/${selectedProcess}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${model.value}`);
         window.location.reload();

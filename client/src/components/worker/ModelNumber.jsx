@@ -34,6 +34,13 @@ function setContext(id) {
     }
 }
 
+/**
+ * CardModel
+ * @description Component with the model and type of aluminium of a product
+ * @param name: name of the model
+ * @param id: id of the model
+ * @param aluminium: kind of aluminium of the model
+ */
 export function CardModel(name, id, aluminium) {
     return (
         <a href="#">
@@ -209,12 +216,22 @@ function ModelNumber() {
     workersList();
     categoriesList();
 
+    /**
+   * onChangeWorker
+   * @description Change the url with a new id worker
+   * @param worker: the new worker
+   */
     function onChangeWorker(worker) {
         setContext('');
         navigate(`/modelo/${process}/${nextProcess}/${worker.value}/${selectedPart}/${selectedCategory}`);
         window.location.reload();
     }
 
+    /**
+   * onChangeCategory
+   * @description Change the url with a new id category
+   * @param category: the new category
+   */
     function onChangeCategory(category) {
         setContext('');
         navigate(`/modelo/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${category.value}`);
