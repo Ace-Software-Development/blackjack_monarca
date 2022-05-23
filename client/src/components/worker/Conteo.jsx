@@ -5,6 +5,7 @@ import './styles/conteo.css';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
+import Header from './Header';
 
 /**
  * internetConnection
@@ -184,9 +185,7 @@ function Conteo() {
 
     return (
         <container>
-            <div>
-                <h1 className="mt-4" align="center">Conteo</h1>
-            </div>
+            <Header processName="Conteo" />
             <form onSubmit={onSubmit}>
                 <div className="form-group row d-flex justify-content-center">
                     <div className="col-10 mt-4">
