@@ -49,7 +49,7 @@ function Conteo() {
         }
 
         getDisks();
-    });
+    }, []);
 
     const navigate = useNavigate();
     const [form, setForm] = useState({
