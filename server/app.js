@@ -6,6 +6,7 @@ const roles = require('./routes/role');
 const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
 const dashboard = require('./routes/dashboard');
+const buyer1 = require('./routes/buyer');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -53,10 +54,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/role', roles);
-app.use('/entrega', entrega);
-app.use('/discos', discos);
-app.use('/dash', dashboard);
+app
+  .use('/role', roles)
+  .use('/entrega', entrega)
+  .use('/discos', discos)
+  .use('/dash', dashboard)
+  .use('/buyer', buyer1)
 
 
 app.listen(8888);

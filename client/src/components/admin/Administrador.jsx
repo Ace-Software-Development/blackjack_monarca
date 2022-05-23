@@ -20,7 +20,9 @@ import orderCard from '../orderCard';
  */
 function Orders({ order }) {
     return (
-        <div className="col-4 px-5" value={order.objectId}>{orderCard('75', order.id_buyer, order.city_buyer)}</div>
+        <div className="col-4 px-5" value={order.objectId}>
+            <a href={`/pedidos/${order.objectId}`}>{orderCard('75', order.id_buyer, order.city_buyer)}</a>
+        </div>
     );
 }
 Orders.propTypes = {
@@ -67,6 +69,10 @@ function Order() {
     );
 }
 
+/**
+ * NavbarAdmin
+ * @description navegation for each rout of Admin
+ */
 function NavbarAdmin() {
     return (
         <Navbar bg="light" variant="light">
@@ -84,6 +90,11 @@ function NavbarAdmin() {
     );
 }
 
+/**
+ * AdminPedido
+ * @description shows the 'Orders' in the interface
+ * @returns HTML with the data of the table 'Orders'
+ */
 function AdminPedido() {
     const { process } = useParams();
     return (
@@ -124,6 +135,11 @@ function AdminPedido() {
     );
 }
 
+/**
+ * Administrador
+ * @description get the data of the table 'Order'
+ * @returns a map with the orders
+ */
 function Administrador() {
     const { process } = useParams();
     if (process === 'Pedidos') {
