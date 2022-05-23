@@ -38,13 +38,11 @@ function setContext(id, type) {
 
 export function CardName(name, id, type) {
     return (
-        <div className="text-center my-4">
-            <a href="#">
-                <button type="button" id={id} className="cardName btn text-center w-100 py-4" onClick={() => setContext(id, type)}>
-                    {name}
-                </button>
-            </a>
-        </div>
+        <a href="#">
+            <button type="button" id={id} className="cardName card-shadow btn text-center w-100 py-4 my-4 mt-5 mb-5" onClick={() => setContext(id, type)}>
+                {name}
+            </button>
+        </a>
     );
 }
 

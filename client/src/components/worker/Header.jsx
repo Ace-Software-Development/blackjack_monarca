@@ -10,9 +10,9 @@ function Header({ processName }) {
                         <ion-icon name="home-outline" size="large" />
                     </a>
                 </div>
-                <div className="col align-self-center">
-                    <h3>{processName}</h3>
-                </div>
+            </div>
+            <div className="col text-center">
+                <h1>{processName}</h1>
             </div>
         </div>
     );

@@ -329,9 +329,9 @@ function Quantity() {
     }
 
     return (
-        <div className="row">
+        <div className="row d-flex justify-content-center">
             <Header processName={selectedProcess} />
-            <div className="col">
+            <div className="col-10">
                 <div className="row">
                     <div className="col">
                         <div className="card-shadow bg-white">
@@ -401,13 +401,13 @@ function Quantity() {
                 </div>
                 <div className="row">
                     <div className="col-4 mt-3">
-                        <Select value={{ label: workerName.nick_name, value: workerName.objectId }} options={workersOption} className="form-control" id="id_worker" name="id_worker" onChange={(e) => onChangeWorker(e)} />
+                        <Select value={{ label: workerName.nick_name, value: workerName.objectId }} options={workersOption} className="form-control form-select-lg" id="id_worker" name="id_worker" onChange={(e) => onChangeWorker(e)} />
                     </div>
                     <div className="col-4 mt-3">
-                        <Select value={{ label: categoryName.name, value: categoryName.objectId }} options={categoriesOption} className="form-control" id="id_category" name="id_category" onChange={(e) => onChangeCategory(e)} />
+                        <Select value={{ label: categoryName.name, value: categoryName.objectId }} options={categoriesOption} className="form-control form-select-lg" id="id_category" name="id_category" onChange={(e) => onChangeCategory(e)} />
                     </div>
                     <div className="col-4 mt-3">
-                        <Select value={{ label: modelName.model, value: modelName.objectId }} options={modelsOption} className="form-control" id="id_model" name="id_model" onChange={(e) => onChangeModel(e)} />
+                        <Select value={{ label: modelName.model, value: modelName.objectId }} options={modelsOption} className="form-control form-select-lg" id="id_model" name="id_model" onChange={(e) => onChangeModel(e)} />
                     </div>
                 </div>
             </div>

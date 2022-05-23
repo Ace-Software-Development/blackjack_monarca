@@ -36,14 +36,12 @@ function setContext(id) {
 
 export function CardModel(name, id, aluminium) {
     return (
-        <div className="text-center my-4">
-            <a href="#">
-                <button type="button" className="btn text-center w-100 py-4" onClick={() => setContext(id)}>
-                    <div className="card-title">{name}</div>
-                    <h5 className="text-muted">{aluminium}</h5>
-                </button>
-            </a>
-        </div>
+        <a href="#">
+            <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
+                <div>{name}</div>
+                <h5>{aluminium}</h5>
+            </button>
+        </a>
 
     );
 }
@@ -237,15 +235,15 @@ function ModelNumber() {
                         </p>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row d-flex justify-content-center">
                     {productsList()}
                 </div>
                 <div className="row">
                     <div className="col-6">
-                        <Select value={{ label: workerName.nick_name, value: workerName.objectId }} options={workersOption} className="form-control" id="id_worker" name="id_worker" onChange={(e) => onChangeWorker(e)} />
+                        <Select value={{ label: workerName.nick_name, value: workerName.objectId }} options={workersOption} className="form-control form-select-lg" id="id_worker" name="id_worker" onChange={(e) => onChangeWorker(e)} />
                     </div>
                     <div className="col-6">
-                        <Select value={{ label: categoryName.name, value: categoryName.objectId }} options={categoriesOption} className="form-control" id="id_category" name="id_category" onChange={(e) => onChangeCategory(e)} />
+                        <Select value={{ label: categoryName.name, value: categoryName.objectId }} options={categoriesOption} className="form-control form-select-lg" id="id_category" name="id_category" onChange={(e) => onChangeCategory(e)} />
                     </div>
                 </div>
             </div>
