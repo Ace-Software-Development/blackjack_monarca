@@ -11,7 +11,7 @@ class Product
     static getAllModels(categoryId)
     {
         const models = new Parse.Query(Constants.Product);
-        models.select("objectId", "model")
+        models.select("objectId", "model", "aluminium")
         models.equalTo("id_category", categoryId);
         return models.find();
     }

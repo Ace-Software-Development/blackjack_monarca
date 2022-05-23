@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
-import { NumKey } from './NumKey';
 import Header from './Header';
 
 let selectedModel = '';
@@ -71,8 +70,13 @@ Products.propTypes = {
 
 function Quantity() {
     const params = useParams();
+    const navigate = useNavigate();
     selectedProcess = params.process;
-    selectedModel = params.model;
+    if (params.model !== '-1') {
+        selectedModel = params.model;
+    } else {
+        selectedModel = '-1';
+    }
     selectedCategory = params.category;
     selectedWorker = params.worker;
     selectedPart = params.part;
@@ -100,7 +104,6 @@ function Quantity() {
         for (let i = 0; i < workers.length; i++) {
             workersOption[i] = { label: workers[i].nick_name, value: workers[i].objectId };
         }
-        return (workersOption);
     }
 
     /**
@@ -113,7 +116,6 @@ function Quantity() {
         for (let i = 0; i < categories.length; i++) {
             categoriesOption[i] = { label: categories[i].name, value: categories[i].objectId };
         }
-        return (categoriesOption);
     }
 
     /**
@@ -126,7 +128,6 @@ function Quantity() {
         for (let i = 0; i < products.length; i++) {
             modelsOption[i] = { label: products[i].model, value: products[i].objectId };
         }
-        return (modelsOption);
     }
 
     /**
@@ -214,16 +215,17 @@ function Quantity() {
      * @description Fetches category from the database through the server
      */
     async function getModel() {
-        const response = await fetch(`http://localhost:8888/entrega/modelo/get/${selectedModel}`);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
-            return;
+        if (selectedModel !== '-1') {
+            const response = await fetch(`http://localhost:8888/entrega/modelo/get/${selectedModel}`);
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+            const model = await response.json();
+            setModel(model.data);
+            productsList();
         }
-
-        const model = await response.json();
-        setModel(model.data);
-        productsList();
     }
 
     useEffect(() => {
@@ -239,7 +241,6 @@ function Quantity() {
     categoriesList();
     productsList();
 
-    const navigate = useNavigate();
     const [form, setForm] = useState({
         process: nextProcess,
         worker: selectedWorker,
@@ -313,54 +314,24 @@ function Quantity() {
     }
 
     function onChangeWorker(worker) {
-        selectedWorker = worker.value;
-        setWorker((previousState) => (
-            {
-                ...previousState,
-                objectId: worker.value,
-                nick_name: worker.label,
-            }));
-        setForm((previousState) => (
-            {
-                ...previousState,
-                worker: worker.value,
-            }));
+        navigate(`/cantidad/${selectedProcess}/${nextProcess}/${worker.value}/${selectedPart}/${selectedCategory}/${selectedModel}`);
+        window.location.reload();
     }
 
     function onChangeCategory(category) {
-        selectedCategory = category.value;
-        setCategory((previousState) => (
-            {
-                ...previousState,
-                objectId: category.value,
-                name: category.label,
-            }));
-        setForm((previousState) => (
-            {
-                ...previousState,
-                category: category.value,
-            }));
+        navigate(`/cantidad/${selectedProcess}/${nextProcess}/${selectedWorker}/${selectedPart}/${category.value}/${-1}`);
+        window.location.reload();
     }
 
     function onChangeModel(model) {
-        selectedModel = model.value;
-        setModel((previousState) => (
-            {
-                ...previousState,
-                objectId: model.value,
-                model: model.label,
-            }));
-        setForm((previousState) => (
-            {
-                ...previousState,
-                model: model.value,
-            }));
+        navigate(`/cantidad/${selectedProcess}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${model.value}`);
+        window.location.reload();
     }
 
     return (
         <div className="row">
             <Header processName={selectedProcess} />
-            <div className="col-7 p-4">
+            <div className="col">
                 <div className="row">
                     <div className="col">
                         <div className="card-shadow bg-white">
@@ -440,7 +411,6 @@ function Quantity() {
                     </div>
                 </div>
             </div>
-            {NumKey()}
         </div>
     );
 }

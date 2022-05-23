@@ -2,9 +2,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import { useParams } from 'react-router-dom';
-import { NumKey } from './NumKey';
-import Search from './Search';
+import { useParams, useNavigate } from 'react-router-dom';
 import ButtonNext from './ButtonNext';
 import Header from './Header';
 
@@ -36,12 +34,13 @@ function setContext(id) {
     }
 }
 
-export function CardModel(name, id) {
+export function CardModel(name, id, aluminium) {
     return (
         <div className="text-center my-4">
             <a href="#">
-                <button type="button" className="cardName btn text-center w-100 py-4" onClick={() => setContext(id)}>
-                    {name}
+                <button type="button" className="btn text-center w-100 py-4" onClick={() => setContext(id)}>
+                    <div className="card-title">{name}</div>
+                    <h5 className="text-muted">{aluminium}</h5>
                 </button>
             </a>
         </div>
@@ -57,7 +56,7 @@ export function CardModel(name, id) {
 function Products({ product }) {
     return (
         <div className="col-4" value={product.objectId}>
-            {CardModel(product.model, product.objectId)}
+            {CardModel(product.model, product.objectId, product.aluminium)}
         </div>
     );
 }
@@ -67,6 +66,8 @@ Products.propTypes = {
 
 function ModelNumber() {
     const params = useParams();
+    const navigate = useNavigate();
+
     process = params.process;
     selectedCategory = params.category;
     selectedWorker = params.worker;
@@ -210,33 +211,21 @@ function ModelNumber() {
     categoriesList();
 
     function onChangeWorker(worker) {
-        selectedWorker = worker.value;
         setContext('');
-        setWorker((previousState) => (
-            {
-                ...previousState,
-                objectId: worker.value,
-                nick_name: worker.label,
-            }));
-        params.worker = worker.value;
+        navigate(`/modelo/${process}/${nextProcess}/${worker.value}/${selectedPart}/${selectedCategory}`);
+        window.location.reload();
     }
 
     function onChangeCategory(category) {
-        selectedCategory = category.value;
         setContext('');
-        setCategory((previousState) => (
-            {
-                ...previousState,
-                objectId: category.value,
-                name: category.label,
-            }));
-        params.category = category.value;
+        navigate(`/modelo/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${category.value}`);
+        window.location.reload();
     }
 
     return (
-        <div className="row">
+        <div className="row d-flex justify-content-center">
             <Header processName={process} />
-            <div className="col-7 p-4">
+            <div className="card-shadow bg-white col-10 p-4">
                 <div className="row">
                     <div className="col">
                         <h5>Resumen</h5>
@@ -244,7 +233,6 @@ function ModelNumber() {
                             {workerName.nick_name}
                             {' - '}
                             {categoryName.name}
-                            {Search()}
                         </p>
                     </div>
                 </div>
@@ -260,9 +248,7 @@ function ModelNumber() {
                     </div>
                 </div>
             </div>
-            {NumKey()}
             {nextBtn}
-            {url}
         </div>
     );
 }
