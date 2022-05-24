@@ -70,7 +70,7 @@ function Category() {
         const response = await fetch('http://localhost:8888/entrega/categorias/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 

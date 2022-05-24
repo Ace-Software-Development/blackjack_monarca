@@ -122,7 +122,7 @@ function ModelNumber() {
         const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${process}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 
@@ -138,7 +138,7 @@ function ModelNumber() {
         const response = await fetch('http://localhost:8888/entrega/categorias/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 
@@ -154,7 +154,7 @@ function ModelNumber() {
         const response = await fetch(`http://localhost:8888/entrega/categoria/get/${selectedCategory}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 
@@ -170,7 +170,7 @@ function ModelNumber() {
         const response = await fetch(`http://localhost:8888/entrega/trabajador/get/${selectedWorker}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 
@@ -186,7 +186,7 @@ function ModelNumber() {
         const response = await fetch(`http://localhost:8888/entrega/modelos/get/${selectedCategory}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 

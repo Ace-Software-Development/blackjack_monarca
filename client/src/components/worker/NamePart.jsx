@@ -102,7 +102,7 @@ function NamePart() {
         const response = await fetch('http://localhost:8888/entrega/partes/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 
@@ -118,7 +118,7 @@ function NamePart() {
         const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${process}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 
