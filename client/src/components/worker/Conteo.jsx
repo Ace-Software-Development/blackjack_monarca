@@ -16,7 +16,7 @@ function internetConnection() {
         console.log('Conectado a internet');
     };
     window.onoffline = () => {
-        window.alert('No tienes conexión a internet');
+        window.customAlert('No tienes conexión a internet');
     };
 }
 
@@ -81,7 +81,7 @@ function Conteo() {
         const response = await fetch('http://localhost:8888/entradaDiscos/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.cutomAlert(message);
             return;
         }
 
@@ -97,7 +97,7 @@ function Conteo() {
         const response = await fetch('http://localhost:8888/discos/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 
@@ -149,7 +149,7 @@ function Conteo() {
                 console.log('new disk added');
             })
             .catch((error) => {
-                window.alert(error);
+                window.customAlert(error);
             });
 
         setForm({
