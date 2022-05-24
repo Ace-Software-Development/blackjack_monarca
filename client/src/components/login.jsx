@@ -19,27 +19,29 @@ function Login() {
         e.preventDefault();
         console.log('iniciando sesión');
         const credentials = { ...form };
-        await fetch('http://localhost:8888/login/post', {
+        const response = await fetch('http://localhost:8888/login/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(credentials),
-        })
-            .then((response) => {
-                setRes(response);
-                console.log('user logged in: ', response);
-                if (response.status === 500) {
-                    alert('Lo sentimos, en este momento no es posible procesar tu solicitud.');
-                } else if (response.status === 403) {
-                    alert('El usuario o contraseña ingresados son incorrectos.');
-                }
-                navigate('/');
-            })
-            .catch(() => {
-                window.alert('Lo sentimos, en este momento no es posible procesar tu solicitud.');
-            });
-        const data = await res.json();
+        });
+
+        console.log(response);
+
+        const data = await response.json();
+        console.log('hello');
+        console.log(data);
+        setRes(response);
+        console.log(res);
+        console.log('user logged in: ', response);
+        if (response.status === 500) {
+            //  window.alert('Lo sentimos, en este momento no es posible procesar tu solicitud.');
+        } else if (response.status === 403) {
+            //  window.alert('El usuario o contraseña ingresados son incorrectos.');
+        } else {
+            navigate('/');
+        }
         Cookies.set('sessionToken', data.sessionToken);
     }
 
