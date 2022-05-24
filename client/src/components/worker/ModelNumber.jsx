@@ -244,7 +244,16 @@ function ModelNumber() {
             <div className="card-shadow bg-white col-10 p-4">
                 <div className="row">
                     <div className="col">
-                        <h5>Resumen</h5>
+                        <div className="row">
+                            <div className="col-9">
+                                <h5>Resumen</h5>
+                            </div>
+                            <div className="col-2 text-center cardNext">
+                                <a type="button" className="buttonNext mt-2 mb-2" id="buttonNext" href={url}>
+                                    Siguiente
+                                </a>
+                            </div>
+                        </div>
                         <p>
                             {workerName.nick_name}
                             {' - '}
@@ -264,7 +273,6 @@ function ModelNumber() {
                     </div>
                 </div>
             </div>
-            {nextBtn}
         </div>
     );
 }

@@ -360,9 +360,16 @@ function Quantity() {
             <div className="col-10">
                 <div className="row">
                     <div className="col">
-                        <div className="card-shadow bg-white">
+                        <form className="card-shadow bg-white" onSubmit={onSubmit}>
                             <div className="row">
-                                <h5>Resumen</h5>
+                                <div className="col-9">
+                                    <h5>Resumen</h5>
+                                </div>
+                                <div className="col-2 text-center cardNext">
+                                    <button type="submit" className="btn buttonNext mt-2 mb-2" id="buttonNext">
+                                        Confirmar
+                                    </button>
+                                </div>
                                 <p>
                                     {workerName.nick_name}
                                     {' - '}
@@ -382,7 +389,7 @@ function Quantity() {
                                                 <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Segunda</button>
                                             </li>
                                         </ul>
-                                        <form className="tab-content" id="pills-tabContent" onSubmit={onSubmit}>
+                                        <div className="tab-content" id="pills-tabContent">
                                             <div className="tab-pane fade show active form group" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                                 <div className="row quantity-input">
                                                     <div className="col-3">
@@ -391,7 +398,7 @@ function Quantity() {
                                                         </button>
                                                     </div>
                                                     <div className="col-6">
-                                                        <input className="w-100 h-100 form-control" type="number" min="0" pattern="^[0-9]+" name="numberCompleted" id="numberCompleted" value={form.numberCompleted} onChange={(e) => updateForm({ numberCompleted: e.target.value })} required />
+                                                        <input className="w-100 h-100 form-control text-center" type="number" min="0" pattern="^[0-9]+" name="numberCompleted" id="numberCompleted" value={form.numberCompleted} onChange={(e) => updateForm({ numberCompleted: e.target.value })} required />
                                                     </div>
                                                     <div className="col-3">
                                                         <button className="btn btnNumber w-100 ratio ratio-1x1 p-5" type="button" onClick={() => sum('completed')}>
@@ -408,7 +415,7 @@ function Quantity() {
                                                         </button>
                                                     </div>
                                                     <div className="col-6">
-                                                        <input className="w-100 h-100 form-control" type="number" min="0" pattern="^[0-9]+" name="numberSecond" id="numberSecond" value={form.numberSecond} onChange={(e) => updateForm({ numberSecond: e.target.value })} required />
+                                                        <input className="w-100 h-100 form-control text-center" type="number" min="0" pattern="^[0-9]+" name="numberSecond" id="numberSecond" value={form.numberSecond} onChange={(e) => updateForm({ numberSecond: e.target.value })} required />
                                                     </div>
                                                     <div className="col-3">
                                                         <button className="btn btnNumber w-100 ratio ratio-1x1 p-5" type="button" onClick={() => sum('second')}>
@@ -417,15 +424,14 @@ function Quantity() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" className="btn btn-monarca">Confirmar</button>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row d-flex justify-content-center">
                     <div className="col-4 mt-3">
                         <Select value={{ label: workerName.nick_name, value: workerName.objectId }} options={workersOption} className="form-control form-select-lg" id="id_worker" name="id_worker" onChange={(e) => onChangeWorker(e)} />
                     </div>

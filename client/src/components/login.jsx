@@ -1,26 +1,25 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Divider, Input } from 'antd';
-
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [currentUser, setCurrentUser] = useState(null);
 
-    const [form, setForm] = useState({
-        number: '',
-        id_disk: '',
-    });
+    //     const [form, setForm] = useState({
+    //         number: '',
+    //         id_disk: '',
+    //     });
 
-    /**
-   * updateForm
-   * @description updates data of a form
-   * @param value: new values of the form
-   * @returns an updated form
-   */
-    function updateForm(value) {
-        return setForm((prev) => ({ ...prev, ...value }));
-    }
+    //     /**
+    //    * updateForm
+    //    * @description updates data of a form
+    //    * @param value: new values of the form
+    //    * @returns an updated form
+    //    */
+    //     function updateForm(value) {
+    //         return setForm((prev) => ({ ...prev, ...value }));
+    //     }
 
     const getCurrentUser = async function () {
         const response = await fetch('http://localhost:8888/usuario/getCurrentUser');
@@ -72,7 +71,7 @@ function Login() {
                     </div>
                     <div className="form_buttons">
                         <Button
-                          onClick={() => doUserLogIn()}
+                        //   onClick={() => doUserLogIn()}
                           type="primary"
                           className="form_button"
                           color="#208AEC"
@@ -107,7 +106,7 @@ function Login() {
                     <h2 className="heading">{`Hello ${currentUser.get('username')}!`}</h2>
                     <div className="form_buttons">
                         <Button
-                          onClick={() => doUserLogOut()}
+                        //   onClick={() => doUserLogOut()}
                           type="primary"
                           className="form_button"
                           color="#208AEC"

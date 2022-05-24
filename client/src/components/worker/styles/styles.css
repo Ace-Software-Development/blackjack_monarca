@@ -128,7 +128,7 @@ ion-icon {
 .cardName:hover {
 	background-color: #F69223;
   	color: white;
-	box-shadow: 0px 10px 30px rgba(122, 137, 254, 0.04);
+	box-shadow: 5px 10px 30px rgba(122, 137, 254, 0.04);
 }
 
 .cardName:focus {
@@ -150,7 +150,7 @@ ion-icon {
 }
 
 .card-shadow {
-	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
+	box-shadow: rgba(42, 80, 118, 0.25) 3px 3px 5px 3px;
 	border-radius: 16px;
 	padding: 20px;
 }
@@ -228,7 +228,7 @@ ion-icon {
 .cardNext {
 	transition-duration: 0.4s;
 	border-radius: 10px;
-	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
+	box-shadow: rgba(122, 104, 45, 0.25) 5px 5px 7px 5px;
 	color: #1F1F1F;
 	font-size: 20px;
 }
