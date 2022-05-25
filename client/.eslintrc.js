@@ -20,6 +20,7 @@ module.exports = {
     plugins: ['react'],
     rules: {
         'react/react-in-jsx-scope': 'off',
+        'no-console': 'off',
         'react/jsx-indent': [2, 4],
         'linebreak-style': 0,
         indent: ['error', 4, { ignoredNodes: ['JSXElement *'] }],

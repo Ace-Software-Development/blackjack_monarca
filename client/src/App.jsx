@@ -14,6 +14,7 @@ import Process from './components/worker/Process';
 import Quantity from './components/worker/Quantity';
 import ModelNumber from './components/worker/ModelNumber';
 import NamePart from './components/worker/NamePart';
+import ModifyQuantity from './components/worker/ModifyQuantity';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 <Route exact path="/inicio" element={<Inicio />} />
                 <Route exact path="/empacado" element={<Empacado />} />
                 <Route exact path="/conteo" element={<Conteo />} />
+                <Route exact path="/conteo/modificar/:id/:name" element={<ModifyQuantity />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/proceso/:process/:nextProcess" element={<Process />} />
                 <Route excat path="/parte/:process/:nextProcess" element={<NamePart />} />

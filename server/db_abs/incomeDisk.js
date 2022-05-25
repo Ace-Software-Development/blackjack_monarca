@@ -68,5 +68,18 @@ class IncomeDisk
         disks.select("name", "number", "updatedAt");
         return disks.find();
     }
+
+    /**
+   * modifyIncomingDisk
+   * @description Query to get all existing Income disks
+   * @returns Parse object with name, number and the Update date of the disks in table "IncomeDisks"
+   */
+     static modifyIncomingDisk(number, id) {
+        let disk = new Parse.Object('IncomeDisk');
+        disk.set("objectId", id)
+        disk.set("number", parseInt(number))
+        disk.save()
+        return disk;
+    }
 }
 module.exports = IncomeDisk;

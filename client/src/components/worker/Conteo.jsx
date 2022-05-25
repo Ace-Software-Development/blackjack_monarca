@@ -2,9 +2,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Alert } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
+import Header from './Header';
 
 /**
  * internetConnection
@@ -15,7 +16,8 @@ function internetConnection() {
         console.log('Conectado a internet');
     };
     window.onoffline = () => {
-        window.alert('No tienes conexión a internet');
+        window.customAlert('No tienes conexión a internet');
+            <Alert severity="warning">No tienes conexión a internet</Alert>;
     };
 }
 
@@ -43,6 +45,7 @@ Disks.propTypes = {
  * @returns HTML with fetched data
  */
 function IncomeDisks({ disk }) {
+    const href = `/conteo/modificar/${disk.objectId}/${disk.name}`;
     return (
         <tr>
             <th>
@@ -58,7 +61,9 @@ function IncomeDisks({ disk }) {
                 <div className="sub-text1">fecha</div>
             </th>
             <th>
-                Editar
+                <a href={href}>
+                    <ion-icon size="large" name="create-outline" />
+                </a>
             </th>
         </tr>
     );
@@ -80,7 +85,7 @@ function Conteo() {
         const response = await fetch('http://localhost:8888/entradaDiscos/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.cutomAlert(message);
             return;
         }
 
@@ -96,7 +101,7 @@ function Conteo() {
         const response = await fetch('http://localhost:8888/discos/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            window.customAlert(message);
             return;
         }
 
@@ -148,7 +153,7 @@ function Conteo() {
                 console.log('new disk added');
             })
             .catch((error) => {
-                window.alert(error);
+                window.customAlert(error);
             });
 
         setForm({
@@ -184,9 +189,7 @@ function Conteo() {
 
     return (
         <container>
-            <div>
-                <h1 className="mt-4" align="center">Conteo</h1>
-            </div>
+            <Header processName="Conteo" />
             <form onSubmit={onSubmit}>
                 <div className="form-group row d-flex justify-content-center">
                     <div className="col-10 mt-4">
