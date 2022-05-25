@@ -12,6 +12,8 @@ app.use(bodyParser.json({ type: 'application/*+json' }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
 app.use(bodyParser.text({ type: 'text/html' }))
+var cors=require('cors');
+app.use(cors());
 
 // /*********************************************/
 // /******************CONFIG*********************/

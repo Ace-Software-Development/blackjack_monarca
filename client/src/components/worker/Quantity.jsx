@@ -9,7 +9,7 @@ function Quantity() {
             <div className="col-7 p-4">
                 <div className="row">
                     <div className="col">
-                        <div className="card-shadow bg-white">
+                        <div className="conteo-card">
                             <div className="row">
                                 <h5>Resumen</h5>
                                 <p>Parka - Base - Vaporera 70</p>
