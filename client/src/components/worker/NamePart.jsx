@@ -158,10 +158,12 @@ function NamePart() {
             <Header processName={process} />
             <div className="d-flex row h-100 w-100">
                 <div className="col-6 px-5">
+                    <h3 className="text-center">Elige un trabajador</h3>
                     {workersList()}
 
                 </div>
                 <div className="col-6 px-5">
+                    <h3 className="text-center">Elige una pieza</h3>
                     {partsList()}
                 </div>
                 {nextBtn}

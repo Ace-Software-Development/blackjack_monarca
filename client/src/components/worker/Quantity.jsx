@@ -248,7 +248,7 @@ function Quantity() {
         category: selectedCategory,
         model: selectedModel,
         numberCompleted: '',
-        numberSecond: '',
+        numberSecond: 0,
     });
 
     /**
@@ -359,8 +359,8 @@ function Quantity() {
                                 <div className="col-9">
                                     <h5>Resumen</h5>
                                 </div>
-                                <div className="col-2 text-center cardNext">
-                                    <button type="submit" className="btn buttonNext mt-2 mb-2" id="buttonNext">
+                                <div className="col-2 text-center">
+                                    <button type="submit" className="btn cardNext buttonNext mt-2 mb-2" id="buttonNext">
                                         Confirmar
                                     </button>
                                 </div>
@@ -375,6 +375,7 @@ function Quantity() {
                             <div className="row">
                                 <div className="col">
                                     <div>
+                                        <h3 className="text-center">Cantidad de productos a entregar</h3>
                                         <ul className="nav nav-pills nav-fill mb-3 tab-select" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
                                                 <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Completados</button>
@@ -409,7 +410,7 @@ function Quantity() {
                                                         </button>
                                                     </div>
                                                     <div className="col-6">
-                                                        <input className="w-100 h-100 form-control text-center" type="number" min="0" pattern="^[0-9]+" name="numberSecond" id="numberSecond" value={form.numberSecond} onChange={(e) => updateForm({ numberSecond: e.target.value })} required />
+                                                        <input className="w-100 h-100 form-control text-center" type="number" min="0" pattern="^[0-9]+" name="numberSecond" id="numberSecond" value={form.numberSecond} onChange={(e) => updateForm({ numberSecond: e.target.value })} />
                                                     </div>
                                                     <div className="col-3">
                                                         <button className="btn btnNumber w-100 ratio ratio-1x1 p-5" type="button" onClick={() => sum('second')}>

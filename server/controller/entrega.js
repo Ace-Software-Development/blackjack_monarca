@@ -89,12 +89,16 @@ exports.getAllModelsController = async function (request, response){
       console.error(error.message);
       return(response.status(500).send({status:"can't save"}));
    }
-   try{
-      const second = registerPart(request.body.part, request.body.worker, request.body.process, request.body.numberSecond, request.body.model, true);
-      await second.save();
-   } catch(error){
-      console.error(error.message);
-      return(response.status(500).send({status:"can't save"}));
+
+   if(request.body.numberSecond != 0){
+      try{
+         const second = registerPart(request.body.part, request.body.worker, request.body.process, request.body.numberSecond, request.body.model, true);
+         await second.save();
+      } catch(error){
+         console.error(error.message);
+         return(response.status(500).send({status:"can't save"}));
+      }
    }
+
    response.status(200).send({status:"success"});
 }

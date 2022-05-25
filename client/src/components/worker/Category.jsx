@@ -95,6 +95,7 @@ function Category() {
     return (
         <div className="row w-100 justify-content-center align-self-stretch">
             <Header processName={process} />
+            <h3 className="text-center">Elige una categoría</h3>
             {categoryList()}
             {nextBtn}
         </div>

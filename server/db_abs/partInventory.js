@@ -23,6 +23,7 @@ class PartInventory
         part.set('number', parseInt(number));
         part.set('id_product', id_product);
         part.set('is_second', is_second);
+        part.set('estatus', 'pending');
         return part;
     }
 

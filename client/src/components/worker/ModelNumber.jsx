@@ -21,14 +21,15 @@ let process = '';
      * @param name: name of the model
      */
 function setContext(id) {
+    const button = document.getElementById('buttonNext');
     if (id) {
         selectedModel = id;
         url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
         nextBtn = ButtonNext(url);
+        button.hidden = false;
     } else {
         url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
         if (nextBtn) {
-            const button = document.getElementById('buttonNext');
             button.href = url;
         }
     }
@@ -248,11 +249,9 @@ function ModelNumber() {
                             <div className="col-9">
                                 <h5>Resumen</h5>
                             </div>
-                            <div className="col-2 text-center cardNext">
-                                <a type="button" className="buttonNext mt-2 mb-2" id="buttonNext" href={url}>
-                                    Siguiente
-                                </a>
-                            </div>
+                            <a type="button" className="col-2 text-center buttonNext cardNext" id="buttonNext" href={url} hidden>
+                                Siguiente
+                            </a>
                         </div>
                         <p>
                             {workerName.nick_name}
@@ -262,6 +261,7 @@ function ModelNumber() {
                     </div>
                 </div>
                 <div className="row d-flex justify-content-center">
+                    <h3 className="text-center">Elige un modelo</h3>
                     {productsList()}
                 </div>
                 <div className="row">
