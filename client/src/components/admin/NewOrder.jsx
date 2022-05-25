@@ -57,7 +57,7 @@ function AddProduct() {
         const auxModelsOption = [];
         for (let i = 0; i < models.length; i += 1) {
             auxModelsOption[i] = {
-                label: models[i].model + models[i].aluminium,
+                label: `${models[i].model} ${models[i].aluminium}`,
                 value: models[i].objectId,
             };
         }
