@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Alert } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import Header from './Header';
@@ -17,6 +17,7 @@ function internetConnection() {
     };
     window.onoffline = () => {
         window.customAlert('No tienes conexión a internet');
+            <Alert severity="warning">No tienes conexión a internet</Alert>;
     };
 }
 
@@ -44,6 +45,7 @@ Disks.propTypes = {
  * @returns HTML with fetched data
  */
 function IncomeDisks({ disk }) {
+    const href = `/conteo/modificar/${disk.objectId}/${disk.name}`;
     return (
         <tr>
             <th>
@@ -59,7 +61,9 @@ function IncomeDisks({ disk }) {
                 <div className="sub-text1">fecha</div>
             </th>
             <th>
-                Editar
+                <a href={href}>
+                    <ion-icon size="large" name="create-outline" />
+                </a>
             </th>
         </tr>
     );
