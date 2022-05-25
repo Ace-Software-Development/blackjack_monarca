@@ -3,6 +3,8 @@ Parse.serverURL = process.env.SERVER_URL;
 const { getAllParts } = require('../db_abs/part');
 const { getAllWorkers } = require('../db_abs/worker');
 const { getAllCategories } = require('../db_abs/categories');
+const { getAllModels } = require('../db_abs/product');
+const { getModelById } = require('../db_abs/product');
 
 /**
    * getAllPartsController
@@ -30,3 +32,23 @@ exports.getAllPartsController = async function (request, response){
     const categories = await getAllCategories();
     response.status(200).send({status:"success", data:categories});
 }
+
+/**
+   * getAllModelsController
+   * @description Get all models of a category
+   */
+ exports.getAllModelsController = async function (request, response){
+   const categoryId = request.params.categoryId;
+   const models = await getAllModels(categoryId);
+   response.status(200).send({status:"success", data:models});
+}
+
+/**
+   * getModelById
+   * @description Get model
+   */
+ exports.getModelByIdController = async function (request, response){
+   const id = request.params.id;
+   const model = await getModelById(id);
+   response.status(200).send({status:"success", data:model});
+}  

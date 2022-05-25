@@ -7,6 +7,7 @@ const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
 const dashboard = require('./routes/dashboard');
 const buyer1 = require('./routes/buyer');
+const productOrder = require('./routes/productOrder');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -60,6 +61,7 @@ app
   .use('/discos', discos)
   .use('/dash', dashboard)
   .use('/buyer', buyer1)
+  .use('/productOrder', productOrder)
 
 
 app.listen(8888);

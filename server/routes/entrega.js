@@ -6,5 +6,7 @@ const entregaController = require('../controller/entrega');
 router.get('/partes/get', entregaController.getAllPartsController);
 router.get('/trabajadores/get', entregaController.getAllWorkersController);
 router.get('/categorias/get', entregaController.getAllCategoriesController);
+router.get('/modelos/get/:categoryId', entregaController.getAllModelsController);
+router.get('/modelo/get/:id', entregaController.getModelByIdController);
 
 module.exports = router;

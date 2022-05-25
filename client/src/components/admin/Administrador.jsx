@@ -79,11 +79,11 @@ function NavbarAdmin() {
             <Container>
                 <Nav className="me-auto">
                     <Nav.Link href="/administrador/Pedidos">Pedidos</Nav.Link>
-                    <Nav.Link href="/administrador/Usuario">Usuario</Nav.Link>
+                    {/* <Nav.Link href="/administrador/Usuario">Usuario</Nav.Link>
                     <Nav.Link href="/administrador/Trabajador">Trabajador</Nav.Link>
                     <Nav.Link href="/administrador/Proceso">Proceso</Nav.Link>
                     <Nav.Link href="/administrador/Material">Material</Nav.Link>
-                    <Nav.Link href="/administrador/Producto">Producto</Nav.Link>
+                    <Nav.Link href="/administrador/Producto">Producto</Nav.Link> */}
                 </Nav>
             </Container>
         </Navbar>
