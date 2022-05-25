@@ -2,13 +2,31 @@ import { useParams } from 'react-router-dom';
 import Card from './Card';
 import Header from './Header';
 
+/**
+   * Process
+   * @description Displays cards which redirect to check in and checkout features
+   */
 function Process() {
     const { process } = useParams();
+    const { nextProcess } = useParams();
+    const href = `/parte/${process}/${nextProcess}`;
     return (
         <div>
             <Header processName={process} />
-            {Card('home', 'Check In')}
-            {Card('home', 'Check Out')}
+            <div className="d-flex flex-column align-items-center">
+                <div className="row mt-5 pt-5">
+                    <div className="col">
+                        <a href={href}>
+                            {Card('home', 'Recibir')}
+                        </a>
+                    </div>
+                    <div className="col">
+                        <a href={href}>
+                            {Card('home', 'Entregar')}
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
