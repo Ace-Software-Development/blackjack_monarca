@@ -2,10 +2,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
-import React, { useEffect, useState, Alert } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
-import Header from './Header';
 
 /**
  * internetConnection
@@ -16,8 +15,7 @@ function internetConnection() {
         console.log('Conectado a internet');
     };
     window.onoffline = () => {
-        window.customAlert('No tienes conexión a internet');
-            <Alert severity="warning">No tienes conexión a internet</Alert>;
+        window.alert('No tienes conexión a internet');
     };
 }
 
@@ -45,7 +43,6 @@ Disks.propTypes = {
  * @returns HTML with fetched data
  */
 function IncomeDisks({ disk }) {
-    const href = `/conteo/modificar/${disk.objectId}/${disk.name}`;
     return (
         <tr>
             <th>
@@ -61,9 +58,7 @@ function IncomeDisks({ disk }) {
                 <div className="sub-text1">fecha</div>
             </th>
             <th>
-                <a href={href}>
-                    <ion-icon size="large" name="create-outline" />
-                </a>
+                Editar
             </th>
         </tr>
     );
@@ -85,7 +80,7 @@ function Conteo() {
         const response = await fetch('http://localhost:8888/entradaDiscos/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.cutomAlert(message);
+            window.alert(message);
             return;
         }
 
@@ -101,7 +96,7 @@ function Conteo() {
         const response = await fetch('http://localhost:8888/discos/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.customAlert(message);
+            window.alert(message);
             return;
         }
 
@@ -113,7 +108,7 @@ function Conteo() {
         getDisks();
         getAllIncomeDisks();
         internetConnection();
-    }, []);
+    });
 
     const navigate = useNavigate();
     const [form, setForm] = useState({
@@ -153,7 +148,7 @@ function Conteo() {
                 console.log('new disk added');
             })
             .catch((error) => {
-                window.customAlert(error);
+                window.alert(error);
             });
 
         setForm({
@@ -189,7 +184,9 @@ function Conteo() {
 
     return (
         <container>
-            <Header processName="Conteo" />
+            <div>
+                <h1 className="mt-4" align="center">Conteo</h1>
+            </div>
             <form onSubmit={onSubmit}>
                 <div className="form-group row d-flex justify-content-center">
                     <div className="col-10 mt-4">
@@ -211,7 +208,7 @@ function Conteo() {
                                         </select>
                                     </div>
                                     <div className="col form group">
-                                        <input type="number" className="conteo-input form-control" id="number" name="number" min="1" pattern="^[0-9]+" />
+                                        <input type="number" className="conteo-input form-control" id="number" name="number" min="1" pattern="^[0-9]+" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
                                     </div>
                                     <div className="col d-flex align-content-center form group">
                                         <button placeholder="Cantidad" className="btn-orange" type="submit">Agregar</button>

@@ -27,6 +27,13 @@ class PartInventory
         return part;
     }
 
+    static getAllRegisters(){
+        const register = new Parse.query("PartInvetory");
+        register.include("id_worker");
+        return register.find();
+
+    }
+
     static getEmpty()
     {
         return new PartInventory({id:null});/*TODO make all the field*/

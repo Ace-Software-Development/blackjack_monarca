@@ -9,6 +9,7 @@ const { registerIncomingDisk, getAllDisks, modifyIncomingDisk } = require('../db
    * @param response: status of the post
    */
 exports.postIncomingDiskController = async function (request, response){
+    console.log("arriving incoming disc: ", request.body.number);
     try{
         const incomeDisk = registerIncomingDisk(request.body.number, request.body.name);
         await incomeDisk.save();

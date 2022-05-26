@@ -40,9 +40,11 @@ class IncomeDisk
    * @returns Parse object with number and id_disk
    */
     static registerIncomingDisk(number, name){
+        console.log("cualquier cosa", number)
         const incomeDisk = new Parse.Object(Constants.IncomeDisk);
         incomeDisk.set('number', parseInt(number));
         incomeDisk.set('name', name);
+        console.log(number);
         return incomeDisk;
     }
 
