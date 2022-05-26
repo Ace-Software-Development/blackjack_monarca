@@ -10,16 +10,19 @@ class Product
 
     static getAllModels(categoryId)
     {
+        var Foo = Parse.Object.extend("Category");
+        var pointerToFoo = new Foo();
+        pointerToFoo.id = categoryId;
         const models = new Parse.Query(Constants.Product);
-        models.select("objectId", "model", "aluminium")
-        models.equalTo("id_category", categoryId);
+        models.select("objectId", "model", "aluminium");
+        models.equalTo("id_category", pointerToFoo);
         return models.find();
     }
 
     static getModelById(id)
     {
         const models = new Parse.Query(Constants.Product);
-        models.select("objectId", "model");
+        models.select("objectId", "model", "aluminium");
         models.equalTo("objectId", id);
         return models.first();
     }

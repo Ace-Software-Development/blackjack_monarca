@@ -126,7 +126,7 @@ function Quantity() {
     function productsList() {
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < products.length; i++) {
-            modelsOption[i] = { label: products[i].model, value: products[i].objectId };
+            modelsOption[i] = { label: `${products[i].model} ${products[i].aluminium}`, value: products[i].objectId };
         }
     }
 
@@ -434,7 +434,7 @@ function Quantity() {
                         <Select value={{ label: categoryName.name, value: categoryName.objectId }} options={categoriesOption} className="form-control form-select-lg" id="id_category" name="id_category" onChange={(e) => onChangeCategory(e)} />
                     </div>
                     <div className="col-4 mt-3">
-                        <Select value={{ label: modelName.model, value: modelName.objectId }} options={modelsOption} className="form-control form-select-lg" id="id_model" name="id_model" onChange={(e) => onChangeModel(e)} />
+                        <Select value={{ label: `${modelName.model} ${modelName.aluminium}`, value: modelName.objectId }} options={modelsOption} className="form-control form-select-lg" id="id_model" name="id_model" onChange={(e) => onChangeModel(e)} />
                     </div>
                 </div>
             </div>
