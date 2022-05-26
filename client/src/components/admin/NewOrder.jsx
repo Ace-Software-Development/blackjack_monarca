@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Sidebar from './Sidebar';
@@ -23,6 +22,34 @@ Categories.propTypes = {
     category: PropTypes.string.isRequired,
 };
 
+/**
+ * Orders
+ * @description React component to display each order in a table
+ * @param order: Json with the attributes objectId and category, model and number
+ * @returns <tr> component
+ */
+function Orders({ order }) {
+    return (
+        <tr>
+            <th>
+                <div>{order.category_name}</div>
+                <div className="sub-text2">Categoría</div>
+            </th>
+            <th>
+                <div>{order.model_name}</div>
+                <div className="sub-text1">modelo</div>
+            </th>
+            <th>
+                <div>{(order.number)}</div>
+                <div className="sub-text1">Cantidad</div>
+            </th>
+        </tr>
+    );
+}
+Orders.propTypes = {
+    order: PropTypes.string.isRequired,
+};
+
 function AddProduct() {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setCategorySelected] = useState('');
@@ -30,6 +57,7 @@ function AddProduct() {
     const [modelsOption, setModelsOption] = useState([]);
     const [categoryName, setCategoryName] = useState([]);
     const [modelName, setModelName] = useState([]);
+    const [orders, setOrders] = useState([]);
 
     const categoriesOption = [];
     /**
@@ -46,6 +74,22 @@ function AddProduct() {
 
         const category = await response.json();
         setCategories(category.data);
+    }
+
+    /**
+     * getOrders
+     * @description Fetches existing orders from the database through the server
+     */
+    async function getOrders() {
+        const response = await fetch('http://localhost:8888/productOrder/get');
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const order = await response.json();
+        setOrders(order.data);
     }
 
     /**
@@ -116,7 +160,7 @@ function AddProduct() {
     function modelSelect(model) {
         for (let i = 0; i < models.length; i += 1) {
             if (model.value === models[i].objectId) {
-                setModelName(models[i].model + models[i].aluminium);
+                setModelName(`${models[i].model} ${models[i].aluminium}`);
             }
         }
     }
@@ -157,8 +201,6 @@ function AddProduct() {
         updateForm({ modName: modelName });
     }, [modelName]);
 
-    const navigate = useNavigate();
-
     async function onSubmit1(e) {
         e.preventDefault();
         console.log('cut');
@@ -184,8 +226,21 @@ function AddProduct() {
             modName: '',
             number: 0,
         });
+    }
 
-        navigate('/nuevoPedido');
+    useEffect(() => {
+        getOrders();
+    }, []);
+
+    /**
+   * ordersList
+   * @description Maps all orders in the interface
+   * @returns Component with category model and quantity of orders
+   */
+    function ordersList() {
+        return orders.slice(0).reverse().map((order) => (
+            <Orders order={order} key={order.objectID} />
+        ));
     }
 
     return (
@@ -246,6 +301,9 @@ function AddProduct() {
                                         <th hidden> Editar</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    {ordersList()}
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -345,7 +403,7 @@ function NewOrder() {
                             <br />
                             <AddProduct />
                             <div className="mt-4 col-4">
-                                <button type="submit" className="btn-orange">Submit</button>
+                                <button type="submit" className="btn-orange mb-4">Submit</button>
                             </div>
                         </div>
                     </form>

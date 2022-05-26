@@ -1,6 +1,6 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { registerProductOrder  } = require('../db_abs/productOrder');
+const { registerProductOrder, getProductOrderById  } = require('../db_abs/productOrder');
 
 /**
    * postproductOrderController
@@ -17,4 +17,13 @@ exports.postProductOrderController = async function (request, response){
         return(response.status(500).send({status:"can't save"}));
     }
     response.status(200).send({status:"success"});
+}
+
+/**
+   * getProductOrderController
+   * @description Get all products from an order in database
+   */
+ exports.getProductOrderController = async function (request, response){
+    const products = await getProductOrderById();
+    response.status(200).send({status:"success", data:products});
 }
