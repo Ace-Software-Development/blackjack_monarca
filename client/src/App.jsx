@@ -16,6 +16,7 @@ import ModelNumber from './components/worker/ModelNumber';
 import NamePart from './components/worker/NamePart';
 import ModifyQuantity from './components/worker/ModifyQuantity';
 import Confirm from './components/worker/Confirm';
+import ConfirmPart from './components/worker/ConfirmPart';
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/proceso/:prevProcess/:process/:nextProcess" element={<Process />} />
                 <Route exact path="/confirmar/:process/:prevProcess" element={<Confirm />} />
+                <Route exact path="/confirmar/:idPartInventory" element={<ConfirmPart />} />
                 <Route excat path="/parte/:process/:nextProcess" element={<NamePart />} />
                 <Route excat path="/categoria/:process/:nextProcess/:worker/:part" element={<Category />} />
                 <Route exact path="/modelo/:process/:nextProcess/:worker/:part/:category" element={<ModelNumber />} />
