@@ -19,12 +19,12 @@ class Product
         return models.find();
     }
 
-    static getModelById(partId)
+    static getModelById(id)
     {
-        var Part = Parse.Object.extend("PartInventory");
-        var pointerToPart = new Part();
-        pointerToCategory.id = partId;
-        
+        const model = new Parse.Query("Product");
+        model.select("objectId", "model", "aluminium");
+        model.equalTo("objectId", id);
+        return model.first();
     }
 
     static getEmpty()
