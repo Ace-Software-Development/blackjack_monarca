@@ -11,8 +11,12 @@ class PartInventory
     /**
    * registerPart
    * @description Register incoming part
-   * @param number: Number of disks registered
-   * @param id_disk: Id of the disks registered
+   * @param id_part: Number of disks registered
+   * @param id_worker: Id of the disks registered
+   * @param id_process: Number of disks registered
+   * @param id_product: Id of the disks registered
+   * @param number: Id of the disks registered
+   * @param is_second: stat of part
    * @returns Parse object with number and id_disk
    */
      static registerPart(id_part, id_worker, id_process, number, id_product, is_second){
@@ -36,13 +40,22 @@ class PartInventory
         part.set('number', parseInt(number));
         part.set('id_product', pointerToProduct);
         part.set('is_second', is_second);
-        part.set('estatus', 'pending');
+        part.set('status', 'pending');
         return part;
     }
 
-    static getAllRegisters(id_process){
+    /**
+   * getAllRegisters
+   * @description Get al registers
+   * @param id_process: to which process it belongs
+   * @param is_second: stat of part
+   * @returns Parse object with number and id_disk
+   */
+    static getAllRegisters(id_process, is_second, status){
         const query = new Parse.Query("PartInventory");
 
+        query.equalTo("is_second", is_second);
+        query.equalTo("status", status);
         query.equalTo("id_process", id_process);
 
         query.include("id_worker");

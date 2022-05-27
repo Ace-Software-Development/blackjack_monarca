@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router';
 import Header from './Header';
 
 let selectedRegister = '';
-let prevProcess = '';
 let process = '';
 
 /**
@@ -61,7 +60,6 @@ Parts.propTypes = {
 function Confirm() {
     const params = useParams();
     process = params.process;
-    prevProcess = params.prevProcess;
 
     const [parts, setParts] = useState([]);
 
@@ -98,7 +96,6 @@ function Confirm() {
     return (
         <div className="row w-100 justify-content-center align-self-stretch">
             <Header processName={process} />
-            <h3 className="text-center">{prevProcess}</h3>
             {partsList()}
         </div>
     );
