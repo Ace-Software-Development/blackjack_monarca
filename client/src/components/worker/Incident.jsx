@@ -92,6 +92,9 @@ function Incidente() {
     return (
         <div className="row w-100 justify-content-center align-self-stretch">
             <Header processName={process} />
+            <center>
+                <h3>Incidentes</h3>
+            </center>
             {partsList()}
         </div>
     );

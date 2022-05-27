@@ -25,8 +25,8 @@ function Process() {
                             </a>
                         </div>
                         <div className="col">
-                            <a href={hrefEntrega}>
-                                {Card('home', 'Entregar')}
+                            <a href={hrefConfirm}>
+                                {Card('home', 'Recibir')}
                             </a>
                         </div>
                         <div className="col">
