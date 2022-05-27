@@ -63,8 +63,6 @@ class PartInventory
         query.include("id_product.id_category");
         query.include("id_part");
 
-        console.log(query);
-
         return query.find();
     }
 
@@ -88,6 +86,42 @@ class PartInventory
         console.log(query);
 
         return query.find();
+    }
+
+    /**
+   * getOneRegisters
+   * @description Get one register
+   * @param id_register: objectId of the register
+   * @returns Parse object with worker, product, category and part of the register
+   */
+     static getOneRegister(id_register){
+        const query = new Parse.Query("PartInventory");
+
+        query.equalTo("objectId", id_register);
+
+        query.include("id_worker");
+        query.include("id_product");
+        query.include("id_product.id_category");
+        query.include("id_part");
+                
+        return query.first();
+    }
+
+    /**
+   * postRegister
+   * @description Post a new register status
+   * @param id: objectId of the register   
+   * @param status: new status
+   * @returns Parse query with new status
+   */
+
+    static postRegister(id, status) {
+        const query = new Parse.Object("PartInventory");
+
+        query.set("objectId", id);
+        query.set("status", status);
+
+        return query;
     }
 
     static getEmpty()

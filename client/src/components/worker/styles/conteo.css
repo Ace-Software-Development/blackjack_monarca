@@ -33,11 +33,6 @@
 	font-size: 20px;
   }
 
-h4{
-	color: #464F5E;
-	font-weight: lighter;
-}
-
 h2, h3, h5{
 	color: #464F5E;
 	font-weight: bold;
@@ -78,6 +73,14 @@ h1{
 	height: 60px;
 }
 
+.btn-cancel{
+	background: #f63f23;
+	color: #F4F5F4;
+	font-size: 20px;
+	border-width: 0px;
+	border-radius: 5px;
+	height: 60px;
+} 
 th {
 	color: #818386;
 	font-size: 20px;
@@ -94,4 +97,9 @@ thead {
 
 .sub-text2{
 	font-size: 15px;
+}
+
+.btnBack{
+	border-width: 0px;
+	border-radius: 5px;
 }
