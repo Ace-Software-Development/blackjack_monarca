@@ -22,7 +22,7 @@ function setContext(id) {
 export function CardPart(part, category, model, aluminium, number, date, id) {
     return (
         <div className="text-center my-4">
-            <a href={id}>
+            <a href={`/confirmar/${id}`}>
                 <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
                     <div>
                         <div>
