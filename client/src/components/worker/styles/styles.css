@@ -8,6 +8,10 @@ body {
 	font-family: 'Inter', sans-serif;
 }
 
+.confirmCardTitle {
+	font-weight: bold;
+}
+
 h1 {
 	color:rgb(14, 14, 14);
 	margin-bottom: 3%;
@@ -123,6 +127,7 @@ ion-icon {
 	border-radius: 21px;
 	color: #1F1F1F;
 	font-size: 2rem;
+	font-weight: bold;
 }
 
 .cardName:hover {

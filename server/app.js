@@ -6,6 +6,7 @@ const roles = require('./routes/role');
 const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
 const entradaDiscos = require('./routes/visualizarEntradaDiscos');
+const confirmar = require('./routes/confirmar');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -59,6 +60,7 @@ app.use('/role', roles);
 app.use('/entrega', entrega);
 app.use('/discos', discos);
 app.use('/entradaDiscos', entradaDiscos);
+app.use('/confirmar', confirmar);
 
   
 

@@ -10,29 +10,29 @@ function Inicio() {
             <div className="container position-absolute top-50 start-50 translate-middle">
                 <div className="row">
                     <div id="Conteo" className="col">
-                        <a href="/proceso/Conteo/Rechazado">
+                        <a href="/conteo">
                             {Card('calculator', 'Conteo')}
                         </a>
                     </div>
                     <div id="Rechazado" className="col">
-                        <a href="/proceso/Rechazado/Esmerilado">
+                        <a href="/proceso/Conteo/Rechazado/Esmerilado">
                             {Card('hammer', 'Rechazado')}
                         </a>
                     </div>
                     <div id="Esmerilado" className="col">
-                        <a href="/proceso/Esmerilado/Pulido">
+                        <a href="/proceso/Rechazado/Esmerilado/Pulido">
                             {Card('brush', 'Esmerilado')}
                         </a>
                     </div>
                 </div>
                 <div className="row">
                     <div id="Pulido" className="col">
-                        <a href="/proceso/Pulido/Remachado">
+                        <a href="/proceso/Esmerilado/Pulido/Remachado">
                             {Card('water', 'Pulido')}
                         </a>
                     </div>
                     <div id="Remachado" className="col">
-                        <a href="/proceso/Remachado/Empaquetado">
+                        <a href="/proceso/Pulido/Remachado/Empaquetado">
                             {Card('color-fill', 'Remachado')}
                         </a>
                     </div>
