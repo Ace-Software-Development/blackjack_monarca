@@ -68,6 +68,28 @@ class PartInventory
         return query.find();
     }
 
+     /**
+   * getAllIncidentRegisters
+   * @description Get al registers
+   * @param is_second: stat of part
+   * @returns Parse object with number and id_disk
+   */
+      static getAllIncidentRegisters(is_second, status){
+        const query = new Parse.Query("PartInventory");
+
+        query.equalTo("is_second", is_second);
+        query.equalTo("status", status);
+
+        query.include("id_worker");
+        query.include("id_product");
+        query.include("id_product.id_category");
+        query.include("id_part");
+
+        console.log(query);
+
+        return query.find();
+    }
+
     static getEmpty()
     {
         return new PartInventory({id:null});/*TODO make all the field*/

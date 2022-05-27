@@ -72,11 +72,12 @@ function Quantity() {
     const params = useParams();
     const navigate = useNavigate();
     selectedProcess = params.process;
-    if (params.model !== '-1') {
-        selectedModel = params.model;
-    } else {
-        selectedModel = '-1';
-    }
+    selectedModel = params.model;
+    // if (params.model !== '-1') {
+    //     selectedModel = params.model;
+    // } else {
+    //     selectedModel = '-1';
+    // }
     selectedCategory = params.category;
     selectedWorker = params.worker;
     selectedPart = params.part;
@@ -369,7 +370,7 @@ function Quantity() {
                                     {' - '}
                                     {categoryName.name}
                                     {' - '}
-                                    {modelName.model}
+                                    {`${modelName.model} ${modelName.aluminium}`}
                                 </p>
                             </div>
                             <div className="row">

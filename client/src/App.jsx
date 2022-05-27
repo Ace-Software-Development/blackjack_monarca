@@ -16,6 +16,7 @@ import ModelNumber from './components/worker/ModelNumber';
 import NamePart from './components/worker/NamePart';
 import ModifyQuantity from './components/worker/ModifyQuantity';
 import Confirm from './components/worker/Confirm';
+import Incidente from './components/worker/Incident';
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                 <Route excat path="/categoria/:process/:nextProcess/:worker/:part" element={<Category />} />
                 <Route exact path="/modelo/:process/:nextProcess/:worker/:part/:category" element={<ModelNumber />} />
                 <Route exact path="/cantidad/:process/:nextProcess/:worker/:part/:category/:model" element={<Quantity />} />
+                <Route exact path="/rechazado/incidente" element={<Incidente />} />
             </Routes>
         </BrowserRouter>
     );
