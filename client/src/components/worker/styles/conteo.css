@@ -14,13 +14,32 @@
 	font-size: 25px;
 }
 
+.modify-conteo-input{
+	background: #F4F5F4;
+	border-radius: 5px;
+	border-width: 0px;
+	height: 100px;
+	font-size: 30px;
+	color: #464F5E;
+	font-weight: bold;
+}
+
+.modify-conteo-input:focus-visible{
+	outline: none;
+}
+
 ::placeholder {
 	color: #9F9F9E;
 	font-size: 20px;
   }
 
-h2, p{
-	color: #818386;
+h4{
+	color: #464F5E;
+	font-weight: lighter;
+}
+
+h2, h3, h5{
+	color: #464F5E;
 	font-weight: bold;
 }
 
@@ -32,13 +51,31 @@ h1{
 
 .btn-orange{
     background: #F69223;
-	color: #F4F5F4;
+	color:#F4F5F4;
 	border-width: 0px;
 	border-radius: 5px;
 	height: 50px;
 	width: 125px;
 	font-size: 25px;
 	font-weight: bold;
+}
+.btn-cancel{
+	background: #F5F5F5;
+	color: hsl(221, 15%, 32%);
+	border-color: #f3f1f1;
+	font-size: 20px;
+	border-width: 1px;
+	border-radius: 5px;
+	height: 60px;
+}
+
+.btn-accept{
+	background: #F69223;
+	color: #F4F5F4;
+	font-size: 20px;
+	border-width: 0px;
+	border-radius: 5px;
+	height: 60px;
 }
 
 th {

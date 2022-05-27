@@ -8,6 +8,7 @@ const discos = require('./routes/entradaDiscos');
 const entradaDiscos = require('./routes/visualizarEntradaDiscos');
 const iniciarSesion = require('./routes/iniciarSesion');
 
+const confirmar = require('./routes/confirmar');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -16,8 +17,6 @@ app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
 app.use(bodyParser.text({ type: 'text/html' }))
 var cors=require('cors');
 app.use(cors());
-
-
 
 // /*********************************************/
 // /******************CONFIG*********************/
@@ -64,7 +63,5 @@ app.use('/entrega', entrega);
 app.use('/discos', discos);
 app.use('/entradaDiscos', entradaDiscos);
 app.use('/login', iniciarSesion);
-
-  
-
+app.use('/confirmar', confirmar);
 app.listen(8888);

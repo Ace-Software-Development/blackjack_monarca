@@ -1,9 +1,30 @@
+const Constants = require("../constants");
+
 class Product
 {
     constructor(pAssignObj)
     {
         this.id = pAssignObj.id;
         /*TODO make all the field*/
+    }
+
+    static getAllModels(categoryId)
+    {
+        var Category = Parse.Object.extend("Category");
+        var pointerToCategory = new Category();
+        pointerToCategory.id = categoryId;
+        const models = new Parse.Query(Constants.Product);
+        models.select("objectId", "model", "aluminium");
+        models.equalTo("id_category", pointerToCategory);
+        return models.find();
+    }
+
+    static getModelById(partId)
+    {
+        var Part = Parse.Object.extend("PartInventory");
+        var pointerToPart = new Part();
+        pointerToCategory.id = partId;
+        
     }
 
     static getEmpty()
