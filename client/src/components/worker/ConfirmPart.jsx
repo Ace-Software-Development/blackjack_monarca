@@ -79,7 +79,7 @@ function ConfirmPart() {
             status: '',
             objectId: '',
         });
-        navigate(-1);
+        navigate(-2);
     }
 
     return (
