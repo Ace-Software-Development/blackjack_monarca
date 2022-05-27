@@ -20,13 +20,19 @@ function setContext(id) {
     navigate(`/confirmar/${process}/${selectedRegister}`);
 }
 
-export function CardPart(name, id, date) {
+export function CardPart(part, category, model, aluminium, number, date, id) {
     return (
         <div className="text-center my-4">
-            <a href="#">
+            <a href={id}>
                 <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
                     <div>
-                        {name}
+                        <div>
+                            <h4>{`${part} ${category}`}</h4>
+                        </div>
+                        <h4>{`${model} ${aluminium}`}</h4>
+                    </div>
+                    <div>
+                        {number}
                     </div>
                     <h5>
                         {date.slice(0, 10)}
@@ -45,7 +51,7 @@ export function CardPart(name, id, date) {
  */
 function Parts({ part }) {
     return (
-        <div className="col-3 px-5" value={part.objectId}>{CardPart(part.name, part.objectId, part.createdAt)}</div>
+        <div className="col-3 px-5" value={part.objectId}>{CardPart(part.id_part.name, part.id_product.id_category.name, part.id_product.model, part.id_product.aluminium, part.number, part.createdAt, part.objectId)}</div>
     );
 }
 Parts.propTypes = {
@@ -64,7 +70,7 @@ function Confirm() {
      * @description Fetches existing parts from the database through the server
      */
     async function getParts() {
-        const response = await fetch('http://localhost:8888/confirmar/get');
+        const response = await fetch(`http://localhost:8888/confirmar/get/${process}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

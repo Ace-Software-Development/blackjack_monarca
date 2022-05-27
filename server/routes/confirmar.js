@@ -3,6 +3,6 @@ const router = express.Router();
 
 const confirmarController = require('../controller/confirmar');
 
-router.get('/get', confirmarController.getConfirmarController);
+router.get('/get/:id_process', confirmarController.getConfirmarController);
 
 module.exports = router;

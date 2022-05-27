@@ -1,6 +1,6 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { registerIncomingDisk, getAllDisks, modifyIncomingDisk } = require('../db_abs/partInventory');
+const { getAllRegisters } = require('../db_abs/partInventory');
 
 /**
    * getAllDisksController
@@ -8,6 +8,7 @@ const { registerIncomingDisk, getAllDisks, modifyIncomingDisk } = require('../db
    * @param response: status of the get and values of the query
    */
  exports.getConfirmarController = async function (request, response){
-    const registers = await getAllRegisters();
+    const id_process = request.params.id_process;
+    const registers = await getAllRegisters(id_process);
     response.status(200).send({status:"success", data:registers});
 }

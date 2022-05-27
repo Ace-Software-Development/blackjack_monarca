@@ -16,22 +16,43 @@ class PartInventory
    * @returns Parse object with number and id_disk
    */
      static registerPart(id_part, id_worker, id_process, number, id_product, is_second){
+
+        var Part = Parse.Object.extend("Part");
+        var pointerToPart = new Part();
+        pointerToPart.id = id_part;
+
+        var Worker = Parse.Object.extend("Worker");
+        var pointerToWorker = new Worker();
+        pointerToWorker.id = id_worker;
+
+        var Product = Parse.Object.extend("Product");
+        var pointerToProduct = new Product();
+        pointerToProduct.id = id_product;
+
         const part = new Parse.Object(Constants.PartInventory);
-        part.set('id_part', id_part);
-        part.set('id_worker', id_worker);
+        part.set('id_part', pointerToPart);
+        part.set('id_worker', pointerToWorker);
         part.set('id_process', id_process);
         part.set('number', parseInt(number));
-        part.set('id_product', id_product);
+        part.set('id_product', pointerToProduct);
         part.set('is_second', is_second);
         part.set('estatus', 'pending');
         return part;
     }
 
-    static getAllRegisters(){
-        const register = new Parse.query("PartInvetory");
-        register.include("id_worker");
-        return register.find();
+    static getAllRegisters(id_process){
+        const query = new Parse.Query("PartInventory");
 
+        query.equalTo("id_process", id_process);
+
+        query.include("id_worker");
+        query.include("id_product");
+        query.include("id_product.id_category");
+        query.include("id_part");
+
+        console.log(query);
+
+        return query.find();
     }
 
     static getEmpty()
