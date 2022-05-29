@@ -89,6 +89,29 @@ class PartInventory
     }
 
     /**
+   * getIncidentRegisters
+   * @description Get al registers
+   * @param is_incident: stat of part
+   * @returns Parse object with number and id_disk
+   */
+     static getIncidentRegisters(is_incident, status, id){
+        const query = new Parse.Query("PartInventory");
+
+        query.equalTo("is_incident", is_incident);
+        query.equalTo("status", status);
+        query.equalTo("objectId", id);
+
+        query.include("id_worker");
+        query.include("id_product");
+        query.include("id_product.id_category");
+        query.include("id_part");
+
+        console.log(query);
+
+        return query.first();
+    }
+
+    /**
    * getOneRegisters
    * @description Get one register
    * @param id_register: objectId of the register
