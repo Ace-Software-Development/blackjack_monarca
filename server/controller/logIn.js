@@ -1,3 +1,5 @@
+const { getRole } = require('../db_abs/role');
+
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
 
@@ -11,9 +13,8 @@ exports.validateLogin = async function (request, response) {
     var user = Parse.User
         .logIn(request.body.username, request.body.password).then(function (user) {
             const sessionToken = user.getSessionToken();
-            const json = { sessionToken: sessionToken };
-            console.log(json.sessionToken);
-
+            const admin = user.attributes.is_admin
+            const json = { sessionToken: sessionToken, is_admin: admin };
             if (sessionToken) {
 
                 response.status(200).send(json);

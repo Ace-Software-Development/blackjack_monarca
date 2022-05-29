@@ -8,6 +8,9 @@ module.exports = class role{
         this.username = username;
     }
 
+    static getUser(){
+        var user = new Parse.Query("_User");
+    }
     static save(objectId, username) {
         return 0;
     }

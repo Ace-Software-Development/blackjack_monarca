@@ -30,8 +30,7 @@ function Login() {
         console.log(response);
 
         const data = await response.json();
-        console.log('hello');
-        console.log(data);
+        console.log(data.is_admin);
         setRes(response);
         console.log(res);
         console.log('user logged in: ', response);
@@ -39,10 +38,13 @@ function Login() {
             //  window.alert('Lo sentimos, en este momento no es posible procesar tu solicitud.');
         } else if (response.status === 403) {
             //  window.alert('El usuario o contraseña ingresados son incorrectos.');
+        } else if (data.is_admin) {
+            navigate('/dashboard');
         } else {
-            navigate('/');
+            navigate('/inicio');
         }
         Cookies.set('sessionToken', data.sessionToken);
+        Cookies.set('is_admin', data.is_admin);
     }
 
     /**
