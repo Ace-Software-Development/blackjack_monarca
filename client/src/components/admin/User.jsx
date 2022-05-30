@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import CreateUser from './CreateUser';
+import ModifyUser from './ModifyUser';
 
 function isAdmin(role) {
     if (role) {
@@ -16,6 +17,17 @@ function isAdmin(role) {
     );
 }
 
+function getRole(role) {
+    if (role) {
+        return (
+            'true'
+        );
+    }
+    return (
+        'false'
+    );
+}
+
 /**
  * IncomeDisk
  * @param {disk} show all Income Disk data
@@ -23,23 +35,37 @@ function isAdmin(role) {
  * @returns HTML with fetched data
  */
 function Users({ user }) {
-    const href = `/usuario/modificar/${user.objectId}`;
+    // const href = `/usuario/modificar/${user.objectId}`;
+    const [show, setShow] = useState(false);
+    const handleCloseMod = () => setShow(false);
+    const handleShowMod = () => setShow(true);
+
     return (
-        <tr>
-            <th>
-                <div>{user.username}</div>
-                <div className="sub-text2">Nombre de usuario</div>
-            </th>
-            <th>
-                {isAdmin(user.is_admin)}
-                <div className="sub-text1">Rol</div>
-            </th>
-            <th>
-                <a href={href}>
-                    <ion-icon size="large" name="create-outline" />
-                </a>
-            </th>
-        </tr>
+        <>
+            <tr>
+                <th>
+                    <div>{user.username}</div>
+                    <div className="sub-text2">Nombre de usuario</div>
+                </th>
+                <th>
+                    {isAdmin(user.is_admin)}
+                    <div className="sub-text1">Rol</div>
+                </th>
+                <th>
+                    <button type="button" onClick={handleShowMod}>
+                        <ion-icon size="large" name="create-outline" />
+                    </button>
+                </th>
+            </tr>
+
+            <Modal show={show} onHide={handleCloseMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modificar</Modal.Title>
+                </Modal.Header>
+                {ModifyUser(user.objectId, user.username, getRole(user.is_admin))}
+            </Modal>
+        </>
+
     );
 }
 Users.propTypes = {

@@ -38,7 +38,7 @@ exports.getAllUsersController = async function (request, response) {
    */
 exports.modifyUserController = async function (request, response) {
     try {
-        const user = modifyUser(request.body.username, request.body.email, request.body.is_admin, request.body.objectId);
+        const user = modifyUser(request.body.username, request.body.is_admin, request.body.objectId);
         await user.save();
     } catch (error) {
         console.error(error.message);

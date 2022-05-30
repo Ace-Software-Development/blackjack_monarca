@@ -43,12 +43,19 @@ class IncomeDisk {
    * @description Query to get all existing Income disks
    * @returns Parse object with name, number and the Update date of the disks in table "IncomeDisks"
    */
-    static modifyUser(number, id) {
-        let disk = new Parse.Object('IncomeDisk');
-        disk.set("objectId", id)
-        disk.set("number", parseInt(number))
-        disk.save()
-        return disk;
+    static modifyUser(username, is_admin, id) {
+        const user = new Parse.Object('_User');
+        user.set('objectId', id);
+        user.set('username', username);
+
+        if (is_admin === 'true') {
+            user.set('is_admin', true);
+        } else {
+            user.set('is_admin', false);
+        }
+
+
+        return user;
     }
 }
 module.exports = IncomeDisk;
