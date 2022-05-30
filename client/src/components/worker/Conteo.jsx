@@ -173,7 +173,7 @@ function Conteo() {
    */
     function disksList() {
         return disks.map((disk) => (
-            <Disks disk={disk} key={disk.objectID} />
+            <Disks disk={disk} key={disk.objectId} />
         ));
     }
 
@@ -184,7 +184,7 @@ function Conteo() {
    */
     function incomeDisksList() {
         return incomeDisks.slice(0).reverse().map((disk) => (
-            <IncomeDisks disk={disk} key={disk.name} />
+            <IncomeDisks disk={disk} key={disk.objectId} />
         ));
     }
 
