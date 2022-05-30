@@ -1,3 +1,4 @@
+// CU 1 Ingresar a proceso
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Card from './Card';
