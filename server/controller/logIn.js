@@ -1,4 +1,4 @@
-const { getRole } = require('../db_abs/role');
+const { getPermission } = require('../db_abs/role');
 
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
@@ -22,9 +22,26 @@ exports.validateLogin = async function (request, response) {
         }).catch(function (error) {
             response.status(403).send();
         });
+}
 
-
-
+/**
+   * getPermissionController
+   * @description Receives the session token of current user as a get 
+   * @param request: Session token
+   * @param response: True if the token is valid and false if invalid
+   */
+exports.getPermissionController = async function (request, response) {
+    const sessionToken = request.params.session;
+    try {
+        const result = await getPermission(sessionToken);
+        
+        if (result === undefined) {
+            response.status(200).send({ status: "success", data: false });
+        }
+        response.status(200).send({status:"success", data: true});
+    } catch (error) {
+        response.status(403).send(error);
+    }
 }
 
 

@@ -27,13 +27,13 @@ function Login() {
             body: JSON.stringify(credentials),
         });
 
-        console.log(response);
-
         const data = await response.json();
         console.log(data.is_admin);
         setRes(response);
         console.log(res);
         console.log('user logged in: ', response);
+        Cookies.set('sessionToken', data.sessionToken);
+        Cookies.set('is_admin', data.is_admin);
         if (response.status === 500) {
             //  window.alert('Lo sentimos, en este momento no es posible procesar tu solicitud.');
         } else if (response.status === 403) {
@@ -43,8 +43,6 @@ function Login() {
         } else {
             navigate('/inicio');
         }
-        Cookies.set('sessionToken', data.sessionToken);
-        Cookies.set('is_admin', data.is_admin);
     }
 
     /**

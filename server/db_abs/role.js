@@ -8,6 +8,18 @@ module.exports = class role{
         this.username = username;
     }
 
+    /**
+   * getPermission
+   * @description Finds the first element in the table Session that has the session token
+   * @param sessionToken: Session token of current user
+   */
+    static getPermission(sessionToken){
+        console.log(sessionToken);
+        var sq = new Parse.Query('_Session')
+        sq.equalTo('sessionToken', sessionToken);  
+        return sq.first({ useMasterKey: true });
+    }
+
     static getUser(){
         var user = new Parse.Query("_User");
     }
