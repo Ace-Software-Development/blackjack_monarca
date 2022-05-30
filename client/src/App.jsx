@@ -18,6 +18,8 @@ import ModifyQuantity from './components/worker/ModifyQuantity';
 import Confirm from './components/worker/Confirm';
 import Incidente from './components/worker/Incident';
 import ConfirmPart from './components/worker/ConfirmPart';
+import ProductInventory from './components/worker/productInventory';
+import CategoryInventory from './components/worker/CategoryInventory';
 
 function App() {
     return (
@@ -37,6 +39,8 @@ function App() {
                 <Route exact path="/modelo/:process/:nextProcess/:worker/:part/:category" element={<ModelNumber />} />
                 <Route exact path="/cantidad/:process/:nextProcess/:worker/:part/:category/:model" element={<Quantity />} />
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
+                <Route exact path="/empacado/inventario" element={<ProductInventory />} />
+                <Route exact path="/empacado/registrar/" element={<CategoryInventory />} />
             </Routes>
         </BrowserRouter>
     );
