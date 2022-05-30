@@ -19,7 +19,7 @@ import Confirm from './components/worker/Confirm';
 import Incidente from './components/worker/Incident';
 import ConfirmPart from './components/worker/ConfirmPart';
 import User from './components/admin/User';
-import CreateUser from './components/admin/CreateUser';
+import Worker from './components/admin/Worker';
 
 function App() {
     return (
@@ -40,7 +40,7 @@ function App() {
                 <Route exact path="/cantidad/:process/:nextProcess/:worker/:part/:category/:model" element={<Quantity />} />
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
                 <Route exact path="/usuarios" element={<User />} />
-                <Route exact path="/usuarios/crear" element={<CreateUser />} />
+                <Route exact path="/trabajadores" element={<Worker />} />
             </Routes>
         </BrowserRouter>
     );

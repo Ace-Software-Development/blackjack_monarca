@@ -59,13 +59,13 @@ function ModifyUser(userId, userName, userRol) {
             <form onSubmit={onSubmit}>
                 <Modal.Body>
                     <div className="row">
-                        <div>Modificar usuario</div>
+                        <div>Nombre de usuario</div>
                         <input type="text" id="username" name="username" className="col" placeholder="Usuario" value={form.username} onChange={(e) => updateForm({ username: e.target.value })} required />
                     </div>
                     <div className="row">
                         <div>Elige el rol</div>
                         <select type="text" id="is_admin" name="is_admin" className="col" placeholder="Rol" value={form.is_admin} onChange={(e) => updateForm({ is_admin: e.target.value })} required>
-                            <option value="" disabled selected>Selecciona el rol</option>
+                            <option value="" disabled>Selecciona el rol</option>
                             <option value="true">Administrador</option>
                             <option value="false">Trabajador</option>
                         </select>
