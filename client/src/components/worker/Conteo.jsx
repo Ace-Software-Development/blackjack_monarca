@@ -1,3 +1,4 @@
+// CU 2 Registrar entrada de discos
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
