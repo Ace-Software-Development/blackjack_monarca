@@ -1,4 +1,5 @@
 // CU 1 Ingresar a proceso
+// CU 11 LogOut
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Card from './Card';

@@ -1,3 +1,5 @@
+// CU 4 Registrar entrega de piezas a otro proceso
+// CU 5 Registrar producto dañado
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import React, { useEffect, useState } from 'react';

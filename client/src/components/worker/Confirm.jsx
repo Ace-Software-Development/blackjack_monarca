@@ -1,3 +1,4 @@
+// CU 7 Confirmar piezas recibidas en el proceso
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';

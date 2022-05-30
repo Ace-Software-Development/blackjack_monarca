@@ -1,3 +1,5 @@
+// CU 4 Registrar entrega de piezas a otro proceso
+// CU 5 Registrar producto dañado
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
