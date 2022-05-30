@@ -44,7 +44,7 @@ function Inicio() {
     }
     return (
         <div>
-            <div className="logo-monarca">
+            <div className="logo-monarca col-6">
                 <img src="./logo.svg" alt="logo monarca" />
             </div>
             <div className="container position-absolute top-50 start-50 translate-middle">
@@ -81,12 +81,12 @@ function Inicio() {
                             {Card('cube', 'Empaquetado')}
                         </a>
                     </div>
-                    <div className="row">
-                        <button className="mt-5 col-2 text-align-left" type="button" onClick={() => logout()}>
-                            <ion-icon name="exit-outline" size="large" />
-                            <h5>Cerrar sesión</h5>
-                        </button>
-                    </div>
+                </div>
+                <div>
+                    <button className="mt-5 col-2 text-align-right cardName btn text-center text-center card-shadow" type="button" onClick={() => logout()}>
+                        <ion-icon name="exit-outline" size="large" />
+                        <h5>Cerrar sesión</h5>
+                    </button>
                 </div>
             </div>
         </div>
