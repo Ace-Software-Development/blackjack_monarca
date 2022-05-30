@@ -6,7 +6,6 @@ import Header from './Header';
 
 function Classify() {
     const params = useParams();
-    const workersOption = [];
     const [completed, setCompleted] = useState(0);
     const [second, setSecond] = useState(0);
     const [scrap, setScrap] = useState(0);
@@ -64,18 +63,6 @@ function Classify() {
         setWorkers(rWorker.data);
     }
 
-    /**
-   * workersList
-   * @description Creates a json array with workers for the select component
-   * @returns Array with label and value of workers
-   */
-    function workersList() {
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i < workers.length; i++) {
-            workersOption[i] = { label: workers[i].nick_name, value: workers[i].objectId };
-        }
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if (completed + second + scrap === number) {
@@ -89,7 +76,6 @@ function Classify() {
         getProduct();
         getWorkers();
     }, []);
-    workersList();
 
     function getCompleted(value) {
         setCompleted(parseInt(value, 10));
@@ -122,8 +108,6 @@ function Classify() {
                             </button>
                         </div>
                         <p>
-                            {worker.workerName}
-                            {' - '}
                             {category}
                             {' - '}
                             {`${model} ${aluminium}`}
@@ -237,7 +221,10 @@ function Classify() {
                     </Row>
                     <Form.Select
                       className="mt-3"
-                      onChange={(e) => console.log(e.target.value)}
+                      onChange={(e) => setWorker({
+                          workerName: e.target.selectedOptions[0].label,
+                          workerId: e.target.selectedOptions[0].value,
+                        })}
                     >
                         {workers.map(({ nick_name: nickName, objectId }) => (
                             <option value={objectId}>
