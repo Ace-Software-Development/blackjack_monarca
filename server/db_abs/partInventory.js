@@ -16,10 +16,10 @@ class PartInventory
    * @param id_process: Number of disks registered
    * @param id_product: Id of the disks registered
    * @param number: Id of the disks registered
-   * @param is_second: stat of part
+   * @param is_incident: stat of part
    * @returns Parse object with number and id_disk
    */
-     static registerPart(id_part, id_worker, id_process, number, id_product, is_second){
+     static registerPart(id_part, id_worker, id_process, number, id_product, is_incident){
 
         var Part = Parse.Object.extend("Part");
         var pointerToPart = new Part();
@@ -39,7 +39,7 @@ class PartInventory
         part.set('id_process', id_process);
         part.set('number', parseInt(number));
         part.set('id_product', pointerToProduct);
-        part.set('is_second', is_second);
+        part.set('is_incident', is_incident);
         part.set('status', 'pending');
         return part;
     }
@@ -48,13 +48,13 @@ class PartInventory
    * getAllRegisters
    * @description Get al registers
    * @param id_process: to which process it belongs
-   * @param is_second: stat of part
+   * @param is_incident: stat of part
    * @returns Parse object with number and id_disk
    */
-    static getAllRegisters(id_process, is_second, status){
+    static getAllRegisters(id_process, is_incident, status){
         const query = new Parse.Query("PartInventory");
 
-        query.equalTo("is_second", is_second);
+        query.equalTo("is_incident", is_incident);
         query.equalTo("status", status);
         query.equalTo("id_process", id_process);
 
@@ -69,13 +69,13 @@ class PartInventory
      /**
    * getAllIncidentRegisters
    * @description Get al registers
-   * @param is_second: stat of part
+   * @param is_incident: stat of part
    * @returns Parse object with number and id_disk
    */
-      static getAllIncidentRegisters(is_second, status){
+      static getAllIncidentRegisters(is_incident, status){
         const query = new Parse.Query("PartInventory");
 
-        query.equalTo("is_second", is_second);
+        query.equalTo("is_incident", is_incident);
         query.equalTo("status", status);
 
         query.include("id_worker");
