@@ -67,7 +67,7 @@ Products.propTypes = {
     product: PropTypes.string.isRequired,
 };
 
-function ModelInventory() {
+function ModelNumber() {
     const params = useParams();
     const navigate = useNavigate();
 
@@ -75,7 +75,9 @@ function ModelInventory() {
 
     const [products, setProducts] = useState([]);
     const categoriesOption = [];
+
     const [categories, setCategories] = useState([]);
+
     const [categoryName, setCategory] = useState(0);
 
     /**
@@ -164,13 +166,13 @@ function ModelInventory() {
    */
     function onChangeCategory(category) {
         setContext('');
-        navigate(`/empacado/registrar/${category.value}`);
+        navigate(`/modelo/${category.value}`);
         window.location.reload();
     }
 
     return (
         <div className="row d-flex justify-content-center">
-            <Header processName="Empacado" />
+            <Header processName="Conteo" />
             <div className="card-shadow bg-white col-10 p-4">
                 <div className="row">
                     <div className="col">
@@ -182,10 +184,6 @@ function ModelInventory() {
                                 Siguiente
                             </a>
                         </div>
-                        <p>
-                            {' - '}
-                            {categoryName.name}
-                        </p>
                     </div>
                 </div>
                 <div className="row d-flex justify-content-center">
@@ -202,4 +200,4 @@ function ModelInventory() {
     );
 }
 
-export default ModelInventory;
+export default ModelNumber;
