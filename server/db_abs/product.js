@@ -6,27 +6,12 @@ class Product {
         /*TODO make all the field*/
     }
 
-    modifyProductInventoryController = async function (request, response, id, with_lid, without_lid) {
-        
-        try{
-            const Product = new Parse.Object(Constants.Product);
-            Product.set('objectId', id);
-    
-            const model = new Parse.Query("Product");
-            model.equalTo('objectId', id);
-    
-            let result = await model.first();
-    
-            result.set("with_lid", result.get("with_lid") + pareInt(with_lid));
-            result.set("withOut_lid", result.get("withOut_lid") + pareInt(without_lid));
-    
-            await result.save();
-            
-            response.status(200).send({ status: "success", data: result });
-        } catch {
-            response.status(500).send({status:"can't save"})
-        }
-    }
+    /**
+* getAllModels
+* @description Query to get all existing models
+* @param categoryId Id of category of model
+* @returns Parse object with name and Id of the parts in table "Products" with category category
+*/
 
     static getAllModels(categoryId) {
         var Category = Parse.Object.extend("Category");
@@ -38,6 +23,13 @@ class Product {
         return models.find();
     }
 
+
+    /**
+* getModelById
+* @description Query to get all existing models
+* @param id Id of specific model
+* @returns Parse object of the models in table "Product" 
+*/
     static getModelById(id) {
         const model = new Parse.Query("Product");
         model.select("objectId", "model", "aluminium");
@@ -45,10 +37,17 @@ class Product {
         return model.first();
     }
 
+    /**
+* getAllProducts
+* @description Query to get all existing products
+* @returns Parse object of the products in table "Products" 
+*/
     static getAllProducts() {
         const products = new Parse.Query("Product");
 
         products.include("id_category");
+
+        products.ascending("id_category")
 
         return products.find();
     }

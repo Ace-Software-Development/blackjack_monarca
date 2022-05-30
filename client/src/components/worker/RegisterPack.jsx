@@ -166,7 +166,7 @@ function Quantity() {
         category: selectedCategory,
         model: selectedModel,
         numberWithLid: '',
-        numberWithOutLid: 0,
+        numberWithOutLid: '',
     });
 
     /**
@@ -181,7 +181,7 @@ function Quantity() {
 
     /**
    * onSubmit
-   * @description Posts incoming disk through a fetch to the server
+   * @description Posts package product through a fetch to the server
    * @param e: Context
    */
     async function onSubmit(e) {
@@ -200,8 +200,8 @@ function Quantity() {
         setForm({
             category: selectedCategory,
             model: selectedModel,
-            numberWithLid: '',
-            numberWithOutLid: '',
+            numberWithLid: 0,
+            numberWithOutLid: 0,
         });
 
         navigate('/empacado/inventario');
@@ -221,7 +221,7 @@ function Quantity() {
     }
 
     /**
-   * sum
+   * res
    * @description Substract the number of pieces registered by the user
    * @param input: Where to decrement the value. Completed pieces or second pieces.
    */
@@ -236,7 +236,7 @@ function Quantity() {
     /**
    * onChangeCategory
    * @description Changes the saved value of the selected category
-   * @param worker: Id of the most resent selected category
+   * @param category: Id of the most resent selected category
    */
     function onChangeCategory(category) {
         navigate(`/empacado/registrar/${category.value}/${-1}`);
@@ -246,7 +246,7 @@ function Quantity() {
     /**
    * onChangeModel
    * @description Changes the saved value of the selected model
-   * @param worker: Id of the most resent selected model
+   * @param model: Id of the most resent selected model
    */
     function onChangeModel(model) {
         navigate(`/empacado/registrar/${selectedCategory}/${model.value}`);
@@ -281,10 +281,10 @@ function Quantity() {
                                         <h3 className="text-center">Cantidad de productos a entregar</h3>
                                         <ul className="nav nav-pills nav-fill mb-3 tab-select" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
-                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Completados</button>
+                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Con tapa</button>
                                             </li>
                                             <li className="nav-item" role="presentation">
-                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Segunda</button>
+                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Sin tapa</button>
                                             </li>
                                         </ul>
                                         <div className="tab-content" id="pills-tabContent">

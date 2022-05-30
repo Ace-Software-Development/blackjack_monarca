@@ -4,9 +4,9 @@ import './styles/conteo.css';
 import PropTypes from 'prop-types';
 
 /**
- * IncomeDisk
- * @param {disk} show all Income Disk data
- * @description Shows the income disk information on the page
+ * Products
+ * @param {product} show all product data
+ * @description Shows the product information on the page
  * @returns HTML with fetched data
  */
 function Products({ product }) {
@@ -15,7 +15,7 @@ function Products({ product }) {
         <tr>
             <th>
                 <div>{product.id_category.name}</div>
-                <div className="sub-text2">Categoría</div>
+                <div className="sub-text1">Categoría</div>
             </th>
             <th>
                 <div>{product.model}</div>
@@ -34,6 +34,10 @@ function Products({ product }) {
                 <div className="sub-text1">Sin tapa</div>
             </th>
             <th>
+                <div>{product.withOut_lid + product.with_lid}</div>
+                <div className="sub-text1">Total</div>
+            </th>
+            <th>
                 <a href={href}>
                     <button type="button">
                         <ion-icon size="large" name="create-outline" />
@@ -49,8 +53,8 @@ Products.propTypes = {
 };
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * productInventory
+   * @description Set of functions to display Inventario de productos
    * @returns HTML with fetched data
    */
 function productInventory() {
@@ -73,9 +77,9 @@ function productInventory() {
     }, []);
 
     /**
-   * disksList
-   * @description Maps all disks in the interface
-   * @returns Component with name and id of the disk
+   * productsList
+   * @description Maps all products in the interface
+   * @returns Component with name and id of the product
    */
     function productsList() {
         return products.slice(0).reverse().map((product) => (
@@ -108,6 +112,7 @@ function productInventory() {
                                             <th>Aluminio</th>
                                             <th>Con tapa</th>
                                             <th>Sin tapa</th>
+                                            <th>Total</th>
                                             <th> </th>
                                         </tr>
                                     </thead>
