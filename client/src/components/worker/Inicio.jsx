@@ -1,3 +1,4 @@
+// CU 1 Ingresar a proceso
 import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.css';
 
