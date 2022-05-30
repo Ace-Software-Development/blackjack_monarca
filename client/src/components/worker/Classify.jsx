@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+// import { useNavigate } from 'react-router';
 import Header from './Header';
 
 function Classify() {
@@ -20,6 +21,16 @@ function Classify() {
     const [aluminium, setAluminium] = useState(0);
     const [idProduct, setIdProduct] = useState(0);
     const [idPart, setIdPart] = useState(0);
+    const [info, setInfo] = useState({
+        id_worker: '',
+        completedNumber: 0,
+        secondNumber: 0,
+        scrapNumber: 0,
+        id_part: '',
+        id_product: '',
+        id_process: '',
+    });
+    const [process, setProcess] = useState(0);
 
     /**
      * getProducts
@@ -47,6 +58,7 @@ function Classify() {
         setAluminium(regis.data.id_product.aluminium);
         setIdProduct(regis.data.id_product.objectId);
         setIdPart(regis.data.id_part.objectId);
+        setProcess(regis.data.id_process);
     }
 
     const [workers, setWorkers] = useState([]);
@@ -69,11 +81,13 @@ function Classify() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         if (completed + second + scrap === number) {
             if (worker.workerName === '' || worker.workerId === '') {
                 alert('Debes registrar quien realizo la reparación');
             } else {
-                alert(`${worker.workerName} ${worker.workerId} ${completed} ${second} ${scrap} ${idProduct} ${idPart}`);
+                const newPart = { ...info };
+                console.log(newPart);
             }
         } else {
             alert(`Recibiste ${number} ${category}s, debes registrar todas!`);
@@ -96,6 +110,18 @@ function Classify() {
     function getScrap(value) {
         setScrap(parseInt(value, 10));
     }
+
+    useEffect(() => {
+        setInfo({
+            id_worker: worker.workerId,
+            completedNumber: completed,
+            secondNumber: second,
+            scrapNumber: scrap,
+            id_part: idPart,
+            id_product: idProduct,
+            id_process: process,
+        });
+    }, [completed, second, scrap, worker]);
 
     return (
         <div className="row d-flex justify-content-center">
