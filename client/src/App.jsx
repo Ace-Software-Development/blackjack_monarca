@@ -21,6 +21,7 @@ import ConfirmPart from './components/worker/ConfirmPart';
 import ProductInventory from './components/worker/productInventory';
 import CategoryInventory from './components/worker/CategoryInventory';
 import ModelInventory from './components/worker/ModelInventory';
+import RegisterPack from './components/worker/RegisterPack';
 
 function App() {
     return (
@@ -42,7 +43,9 @@ function App() {
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
                 <Route exact path="/empacado/inventario" element={<ProductInventory />} />
                 <Route exact path="/empacado/registrar/" element={<CategoryInventory />} />
-                <Route exact path="/empacado/registrar/:id" element={<ModelInventory />} />
+                <Route exact path="/empacado/registrar/:category" element={<ModelInventory />} />
+                <Route exact path="/empacado/registrar/:category/:model" element={<RegisterPack />} />
+
             </Routes>
         </BrowserRouter>
     );

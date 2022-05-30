@@ -20,11 +20,11 @@ function setContext(id) {
     const button = document.getElementById('buttonNext');
     if (id) {
         selectedModel = id;
-        url = `/cantidad/${selectedCategory}/${selectedModel}`;
+        url = `/empacado/registrar/${selectedCategory}/${selectedModel}`;
         nextBtn = ButtonNext(url);
         button.hidden = false;
     } else {
-        url = `/cantidad/${selectedCategory}/${selectedModel}`;
+        url = `/empacado/registrar/${selectedCategory}/${selectedModel}`;
         if (nextBtn) {
             button.href = url;
         }
@@ -67,7 +67,7 @@ Products.propTypes = {
     product: PropTypes.string.isRequired,
 };
 
-function ModelNumber() {
+function ModelInventory() {
     const params = useParams();
     const navigate = useNavigate();
 
@@ -152,9 +152,9 @@ function ModelNumber() {
     }
 
     useEffect(() => {
+        getCategory();
         getCategories();
         getModels();
-        getCategory();
     }, [nextBtn]);
 
     categoriesList();
@@ -166,7 +166,7 @@ function ModelNumber() {
    */
     function onChangeCategory(category) {
         setContext('');
-        navigate(`/modelo/${category.value}`);
+        navigate(`/empacado/registrar/${category.value}`);
         window.location.reload();
     }
 
@@ -183,6 +183,9 @@ function ModelNumber() {
                             <a type="button" className="col-2 text-center buttonNext cardNext" id="buttonNext" href={url} hidden>
                                 Siguiente
                             </a>
+                            <p>
+                                {categoryName.name}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -200,4 +203,4 @@ function ModelNumber() {
     );
 }
 
-export default ModelNumber;
+export default ModelInventory;

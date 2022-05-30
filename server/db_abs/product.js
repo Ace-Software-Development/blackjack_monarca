@@ -6,6 +6,28 @@ class Product {
         /*TODO make all the field*/
     }
 
+    modifyProductInventoryController = async function (request, response, id, with_lid, without_lid) {
+        
+        try{
+            const Product = new Parse.Object(Constants.Product);
+            Product.set('objectId', id);
+    
+            const model = new Parse.Query("Product");
+            model.equalTo('objectId', id);
+    
+            let result = await model.first();
+    
+            result.set("with_lid", result.get("with_lid") + pareInt(with_lid));
+            result.set("withOut_lid", result.get("withOut_lid") + pareInt(without_lid));
+    
+            await result.save();
+            
+            response.status(200).send({ status: "success", data: result });
+        } catch {
+            response.status(500).send({status:"can't save"})
+        }
+    }
+
     static getAllModels(categoryId) {
         var Category = Parse.Object.extend("Category");
         var pointerToCategory = new Category();
