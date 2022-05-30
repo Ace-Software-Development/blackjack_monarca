@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
@@ -106,6 +107,12 @@ function Login() {
                     </div>
                 </div>
             </section>
+=======
+function Login() {
+    return (
+        <div>
+            hola
+>>>>>>> develop
         </div>
     );
 }

@@ -1,13 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
-import Cookies from 'js-cookie';
 import Header from './Header';
 
 let selectedRegister = '';
-let process = '';
+const process = 'Rechazado';
 
 /**
    * setContext
@@ -17,13 +15,13 @@ let process = '';
 function setContext(id) {
     selectedRegister = id;
     const navigate = useNavigate();
-    navigate(`/confirmar/${process}/${selectedRegister}`);
+    navigate(`/incidentes/${process}/${selectedRegister}`);
 }
 
 export function CardPart(part, category, model, aluminium, number, date, id) {
     return (
         <div className="text-center my-4">
-            <a href={`/confirmar/${id}`}>
+            <a href={id}>
                 <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
                     <div>
                         <div>
@@ -58,10 +56,7 @@ Parts.propTypes = {
     part: PropTypes.string.isRequired,
 };
 
-function Confirm() {
-    const params = useParams();
-    process = params.process;
-
+function Incidente() {
     const [parts, setParts] = useState([]);
 
     /**
@@ -69,7 +64,7 @@ function Confirm() {
      * @description Fetches existing parts from the database through the server
      */
     async function getParts() {
-        const response = await fetch(`http://localhost:8888/confirmar/get/${process}`);
+        const response = await fetch('http://localhost:8888/confirmar/incident/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -94,35 +89,14 @@ function Confirm() {
         ));
     }
 
-    const session = Cookies.get('sessionToken');
-    const [permission, setPermission] = useState([]);
-    /**
-     * getPermission
-     * @description Verifies that the user session token is valid
-     */
-    async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.customAlert(message);
-            return;
-        }
-
-        const perm = await response.json();
-        setPermission(perm.data);
-    }
-    useEffect(() => {
-        getPermission();
-    }, []);
-
-    if (!permission) {
-        return ('No tienes permisos');
-    }
     return (
         <div className="row w-100 justify-content-center align-self-stretch">
             <Header processName={process} />
+            <center>
+                <h3>Incidentes</h3>
+            </center>
             {partsList()}
         </div>
     );
 }
-export default Confirm;
+export default Incidente;
