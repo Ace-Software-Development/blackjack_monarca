@@ -1,34 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import ButtonNext from './ButtonNext';
 import Header from './Header';
 
-let selectedCategory = '';
-let nextBtn = '';
-let url = '';
-
-/**
-   * setContext
-   * @description Saves selected category in a variable
-   * @param id: id of the category
-   */
-function setContext(id) {
-    console.log(id);
-    selectedCategory = id;
-
-    url = `/empacado/registrar/${selectedCategory}`;
-
-    nextBtn = ButtonNext(url);
-
-    console.log(nextBtn);
-}
-
 export function CardCategory(name, id) {
+    const url = `/empacado/registrar/${id}`;
     return (
         <div className="text-center my-4">
-            <a href="#">
-                <button type="button" className="cardName btn text-center w-100 py-4" onClick={() => setContext(id)}>
+            <a href={url}>
+                <button type="button" className="cardName btn text-center w-100 py-4">
                     {name}
                 </button>
             </a>
@@ -89,7 +69,6 @@ function CategoryInventory() {
             <Header processName="Empacado" />
             <h3 className="text-center">Elige una categoría</h3>
             {categoryList()}
-            {nextBtn}
         </div>
     );
 }

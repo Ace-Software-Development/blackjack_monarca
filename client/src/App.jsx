@@ -20,6 +20,7 @@ import Incidente from './components/worker/Incident';
 import ConfirmPart from './components/worker/ConfirmPart';
 import ProductInventory from './components/worker/productInventory';
 import CategoryInventory from './components/worker/CategoryInventory';
+import ModelInventory from './components/worker/ModelInventory';
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
                 <Route exact path="/empacado/inventario" element={<ProductInventory />} />
                 <Route exact path="/empacado/registrar/" element={<CategoryInventory />} />
+                <Route exact path="/empacado/registrar/:id" element={<ModelInventory />} />
             </Routes>
         </BrowserRouter>
     );
