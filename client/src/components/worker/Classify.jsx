@@ -18,6 +18,8 @@ function Classify() {
     const [category, setCategory] = useState(0);
     const [model, setModel] = useState(0);
     const [aluminium, setAluminium] = useState(0);
+    const [idProduct, setIdProduct] = useState(0);
+    const [idPart, setIdPart] = useState(0);
 
     /**
      * getProducts
@@ -35,14 +37,16 @@ function Classify() {
 
         const regis = await response.json();
         setWorker({
-            workerName: regis.data.id_worker.nick_name,
-            workerId: regis.data.id_worker.objectId,
+            workerName: '',
+            workerId: '',
         });
         setNumber(regis.data.number);
         setPart(regis.data.id_part.name);
         setCategory(regis.data.id_product.id_category.name);
         setModel(regis.data.id_product.model);
         setAluminium(regis.data.id_product.aluminium);
+        setIdProduct(regis.data.id_product.objectId);
+        setIdPart(regis.data.id_part.objectId);
     }
 
     const [workers, setWorkers] = useState([]);
@@ -66,7 +70,11 @@ function Classify() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (completed + second + scrap === number) {
-            alert(`${worker.workerName} ${worker.workerId} ${completed} ${second} ${scrap}`);
+            if (worker.workerName === '' || worker.workerId === '') {
+                alert('Debes registrar quien realizo la reparación');
+            } else {
+                alert(`${worker.workerName} ${worker.workerId} ${completed} ${second} ${scrap} ${idProduct} ${idPart}`);
+            }
         } else {
             alert(`Recibiste ${number} ${category}s, debes registrar todas!`);
         }
@@ -226,6 +234,7 @@ function Classify() {
                           workerId: e.target.selectedOptions[0].value,
                         })}
                     >
+                        <option>Trabajador encargado de la reparación</option>
                         {workers.map(({ nick_name: nickName, objectId }) => (
                             <option value={objectId}>
                                 {nickName}
