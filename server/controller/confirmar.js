@@ -24,7 +24,7 @@ exports.getConfirmarIncidenteController = async function (request, response) {
 }
 
 exports.getConfirmarIncidenteProductController = async function (request, response) {
-   const id = 'rNEMhMPtfL';
+   const id = request.params.id_register;
    const registers = await getIncidentRegisters(true, 'pending', id);
    response.status(200).send({ status: "success", data: registers });
 }
