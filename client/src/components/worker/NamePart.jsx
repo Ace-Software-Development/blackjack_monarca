@@ -46,7 +46,7 @@ function setContext(id, type) {
 export function CardName(name, id, type) {
     return (
         <a href="#">
-            <button type="button" id={id} className="cardName card-shadow btn text-center w-100 py-4 mt-4 mb-5" onClick={() => setContext(id, type)}>
+            <button type="button" id={id} className="cardName card-shadow btn text-center w-100 h-75 py-4 my-3" onClick={() => setContext(id, type)}>
                 {name}
             </button>
         </a>
@@ -154,19 +154,26 @@ function NamePart() {
     }
 
     return (
-        <div>
-            <Header processName={process} />
-            <div className="d-flex row h-100 w-100">
-                <div className="col-6 px-5">
-                    <h3 className="text-center">Elige un trabajador</h3>
-                    {workersList()}
-
+        <div className="container-fluid d-flex flex-column">
+            <div className="row">
+                <Header processName={process} />
+            </div>
+            <div className="row flex-grow-1">
+                <div className="d-flex row w-100">
+                    <div className="col-6 px-5 workers-list">
+                        <h3 className="text-center">Elige un trabajador</h3>
+                        <div className="d-flex flex-column">
+                            {workersList()}
+                        </div>
+                    </div>
+                    <div className="col-6 px-5 parts-list">
+                        <h3 className="text-center">Elige una pieza</h3>
+                        <div className="d-flex flex-column">
+                            {partsList()}
+                        </div>
+                    </div>
+                    {nextBtn}
                 </div>
-                <div className="col-6 px-5">
-                    <h3 className="text-center">Elige una pieza</h3>
-                    {partsList()}
-                </div>
-                {nextBtn}
             </div>
         </div>
     );

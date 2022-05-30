@@ -83,7 +83,7 @@ div > a:visited {
 }
 
 .header {
-	margin-top: 15px;
+	padding-top: 15px;
 }
 
 .table-container {
@@ -137,7 +137,7 @@ ion-icon {
 }
 
 .cardName:focus {
-	background-color: #FF800A;
+	background-color: #F69223;
 	color: white;
 }
 
@@ -254,4 +254,50 @@ ion-icon {
 
 .buttonNext:hover {
   	color: white;
+}
+
+.workers-list {
+	background:#FFFFFF;
+	display: flex;
+	flex-direction: column;
+}
+
+.workers-list div {
+	flex-grow: 1;
+}
+
+.workers-list {
+	font-size:10vw !important;
+}
+
+.workers-list .cardName {
+	box-shadow: none;
+}
+
+.workers-list .cardName:focus {
+	box-shadow: 0px 3px 5px rgba(42, 80, 118, 0.25);
+}
+
+.parts-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.parts-list div {
+	flex-grow: 1;
+}
+
+.parts-list .cardName {
+	background-color: white;
+	box-shadow: 0px 3px 5px rgba(42, 80, 118, 0.25);
+}
+
+.parts-list .cardName:focus {
+	background-color: #F69223;
+	box-shadow: none;
+}
+
+.parts-list .cardName:hover {
+	background-color: #F69223;
+	box-shadow: none;
 }
