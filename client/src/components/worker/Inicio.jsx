@@ -4,6 +4,19 @@ import { useEffect, useState } from 'react';
 import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.css';
 
+/**
+ * logout
+ * @descriptions destroy session and redirects to the login
+ */
+function logout() {
+    Cookies.remove('sessionToken');
+    Cookies.remove('is_admin');
+    Cookies.remove('session.sig');
+    Cookies.remove('session');
+    localStorage.clear();
+    window.location.href = '/';
+}
+
 function Inicio() {
     const session = Cookies.get('sessionToken');
     const [permission, setPermission] = useState([]);
@@ -67,6 +80,12 @@ function Inicio() {
                         <a href="/empacado">
                             {Card('cube', 'Empaquetado')}
                         </a>
+                    </div>
+                    <div className="row">
+                        <button className="mt-5 col-2 text-align-left" type="button" onClick={() => logout()}>
+                            <ion-icon name="exit-outline" size="large" />
+                            <h5>Cerrar sesión</h5>
+                        </button>
                     </div>
                 </div>
             </div>
