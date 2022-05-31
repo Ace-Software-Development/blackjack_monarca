@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
  * @returns HTML with fetched data
  */
 function Products({ product }) {
-    const href = `/empacado/modificar/${product.objectId}/${product.id_category.name}`;
+    const href = `/empacado/modificar/${product.objectId}`;
     return (
         <tr>
             <th>
