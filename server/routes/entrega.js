@@ -11,5 +11,6 @@ router.get('/categoria/get/:id', entregaController.getCategoryById);
 router.get('/modelos/get/:categoryId', entregaController.getAllModelsController);
 router.get('/modelo/get/:id', entregaController.getModelByIdController);
 router.post('/post', entregaController.postPartController);
+router.post('/incidente/post', entregaController.postIncidenteController);
 
 module.exports = router;

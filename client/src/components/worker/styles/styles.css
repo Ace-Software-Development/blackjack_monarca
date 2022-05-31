@@ -264,6 +264,14 @@ ion-icon {
 	color: white;
 }
 
+.red-text {
+	color: #dc2121
+}
+
+.green-text {
+	color: #0c950a
+}
+
 .btn-nxt {
 	transition-duration: 0.4s;
 	border-radius: 10px;
