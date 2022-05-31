@@ -1,6 +1,6 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { getAllProducts, modifyProductInventory } = require('../db_abs/product');
+const { getAllProducts, modifyProductInventory, getProductById } = require('../db_abs/product');
 
 /**
    * postProductInventoryController
@@ -42,10 +42,23 @@ exports.getAllProductsController = async function (request, response) {
    * @param response: status of the get and values of the query
    */
 exports.modifyProductInventoryController = async function (request, response) {
-   const products = await modifyProductInventory();
-   response.status(200).send({ status: "success", data: products });
+   try {
+      const products = modifyProductInventory(request.body.with_lid, request.body.withOut_lid, request.body.objectId);
+      await products.save();
+      response.status(200).send({ status: "success", data: products });
+   } catch (error) {
+      console.error(error.message);
+      return (response.status(500).send({ status: "can't save" }));
+   }
 }
 
-
-
-
+/**
+   * getProductById
+   * @description Gets the product by the id
+   * @param response: status of the get and values of the query
+   */
+exports.getProductByIdController = async function (request, response) {
+   const id = request.params.id;
+   const products = await getProductById(id);
+   response.status(200).send({ status: "success", data: products });
+}

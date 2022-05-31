@@ -23,6 +23,7 @@ import ProductInventory from './components/worker/productInventory';
 import CategoryInventory from './components/worker/CategoryInventory';
 import ModelInventory from './components/worker/ModelInventory';
 import RegisterPack from './components/worker/RegisterPack';
+import ModifyPackStatus from './components/worker/ModifyPackStatus';
 
 function App() {
     return (
@@ -53,6 +54,7 @@ function App() {
                 <Route exact path="/empacado/registrar/" element={<CategoryInventory />} />
                 <Route exact path="/empacado/registrar/:category" element={<ModelInventory />} />
                 <Route exact path="/empacado/registrar/:category/:model" element={<RegisterPack />} />
+                <Route exact path="/empacado/modificar/:model" element={<ModifyPackStatus />} />
 
             </Routes>
         </BrowserRouter>

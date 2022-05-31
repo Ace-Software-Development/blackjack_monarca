@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react';
 import './styles/styles.css';
 import PropTypes from 'prop-types';
+import Header from './Header';
 
 /**
  * Products
@@ -10,7 +11,7 @@ import PropTypes from 'prop-types';
  * @returns HTML with fetched data
  */
 function Products({ product }) {
-    const href = `/empacado/modificar/${product.objectId}/${product.id_category.name}`;
+    const href = `/empacado/modificar/${product.objectId}`;
     return (
         <tr>
             <th>
@@ -89,15 +90,14 @@ function productInventory() {
 
     return (
         <div>
+            <Header processName="Inventario empacados" />
             <div className="row d-flex justify-content-center">
                 <div className="col-10 mt-4">
                     <div className="card conteo-card">
                         <div className="card-body">
                             <div>
                                 <div className="row justify-content-between">
-                                    <div className="col-2">
-                                        Empacados
-                                    </div>
+                                    <div className="col-2" />
                                     <a href="/empacado/registrar" className="col-2">
                                         <button type="button" className="btn-nxt">
                                             Registrar empacado
