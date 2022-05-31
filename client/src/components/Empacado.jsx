@@ -1,6 +1,6 @@
-import Card from './Card';
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function Empacado() {
