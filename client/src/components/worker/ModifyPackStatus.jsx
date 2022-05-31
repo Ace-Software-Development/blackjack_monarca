@@ -89,7 +89,7 @@ function ModifyPackStatus() {
 
     return (
         <div>
-            <Header processName="Confirmar pieza recibida" />
+            <Header processName="Modificar estado de los productos empacados" />
             <form onSubmit={onSubmit}>
                 <div className="form-group row d-flex justify-content-center text-center">
                     <div className="col-10 mt-4">
