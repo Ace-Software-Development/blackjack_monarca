@@ -65,7 +65,7 @@ app.use('/confirmar', confirmar);
 
 app.use(express.static(
 	path.join(__dirname,
-							"...client/build")));
+							"../client/build")));
 //API aquí
 app.get("*", (req, res) => {
 	res.sendFile(
