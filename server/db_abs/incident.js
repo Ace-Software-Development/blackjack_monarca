@@ -42,6 +42,11 @@ class Incident
         return newRegist;
     }
 
+    /**
+    * modifyIncident
+    * @description Register new partInventory
+    * @param id_incident: Id of the incident
+    */
     static modifyIncident(id_incident){
         const modRegist = new Parse.Object(Constants.PartInventory);
         modRegist.set('objectId', id_incident);

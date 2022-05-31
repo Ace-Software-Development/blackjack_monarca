@@ -9,8 +9,6 @@ const { getCategoryById } = require('../db_abs/categories');
 const { getWorkerById } = require('../db_abs/worker');
 const { getModelById } = require('../db_abs/product');
 const { registerCompleted } = require('../db_abs/incident');
-const { registerSecond } = require('../db_abs/incident');
-const { registerScrap } = require('../db_abs/incident');
 const { modifyIncident } = require('../db_abs/incident');
 
 /**

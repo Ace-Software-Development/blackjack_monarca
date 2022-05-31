@@ -84,6 +84,10 @@ function Classify() {
         setWorkers(rWorker.data);
     }
 
+    /**
+     * handleSubmit
+     * @description OnSubmit send the info to the database
+     */
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -112,14 +116,28 @@ function Classify() {
         getWorkers();
     }, []);
 
+    /**
+     * getCompleted
+     * @description get completed parts to int
+     * @param value number of completeds as string
+     */
     function getCompleted(value) {
         setCompleted(parseInt(value, 10));
     }
 
+    /**
+     * getSecond
+     * @description get second parts to int
+     * @param value number of seconds as string
+     */
     function getSecond(value) {
         setSecond(parseInt(value, 10));
     }
-
+    /**
+     * getScrap
+     * @description get scrap parts to int
+     * @param value number of scrap as string
+     */
     function getScrap(value) {
         setScrap(parseInt(value, 10));
     }
@@ -137,6 +155,10 @@ function Classify() {
         });
     }, [completed, second, scrap, worker]);
 
+    /**
+     * total
+     * @description change color of text depending if the sum equals the total number
+     */
     function total() {
         if (completed + second + scrap > number || completed + second + scrap < number) {
             return (
