@@ -23,6 +23,7 @@ import ProductInventory from './components/worker/productInventory';
 import CategoryInventory from './components/worker/CategoryInventory';
 import ModelInventory from './components/worker/ModelInventory';
 import RegisterPack from './components/worker/RegisterPack';
+import Orders from './components/worker/Orders';
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/inicio" element={<Inicio />} />
                 <Route exact path="/empacado" element={<Empacado />} />
+                <Route exact path="/empacado/pedidos" element={<Orders />} />
                 <Route exact path="/conteo" element={<Conteo />} />
                 <Route exact path="/conteo/modificar/:id/:name" element={<ModifyQuantity />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
