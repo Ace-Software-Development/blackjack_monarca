@@ -7,6 +7,7 @@ const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
 const entradaDiscos = require('./routes/visualizarEntradaDiscos');
 const confirmar = require('./routes/confirmar');
+const path = require('path');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -62,6 +63,15 @@ app.use('/discos', discos);
 app.use('/entradaDiscos', entradaDiscos);
 app.use('/confirmar', confirmar);
 
-  
+app.use(express.static(
+	path.join(__dirname,
+							"...client/build")));
+//API aquí
+app.get("*", (req, res) => {
+	res.sendFile(
+			path.join(__dirname,
+						"../client/build/index.html")
+	);
+});
 
 app.listen(8888);

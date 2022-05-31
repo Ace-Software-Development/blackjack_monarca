@@ -2,24 +2,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
-import React, { useEffect, useState, Alert } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import Header from './Header';
-
-/**
- * internetConnection
- * @description checks if the website have internet
- */
-function internetConnection() {
-    window.ononline = () => {
-        console.log('Conectado a internet');
-    };
-    window.onoffline = () => {
-        window.customAlert('No tienes conexión a internet');
-            <Alert severity="warning">No tienes conexión a internet</Alert>;
-    };
-}
 
 /**
    * Disks
@@ -112,7 +98,6 @@ function Conteo() {
     useEffect(() => {
         getDisks();
         getAllIncomeDisks();
-        internetConnection();
     });
 
     const navigate = useNavigate();
