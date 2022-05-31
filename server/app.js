@@ -6,6 +6,8 @@ const roles = require('./routes/role');
 const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
 const entradaDiscos = require('./routes/visualizarEntradaDiscos');
+const iniciarSesion = require('./routes/iniciarSesion');
+
 const confirmar = require('./routes/confirmar');
 const path = require('path');
 
@@ -61,6 +63,7 @@ app.use('/role', roles);
 app.use('/entrega', entrega);
 app.use('/discos', discos);
 app.use('/entradaDiscos', entradaDiscos);
+app.use('/login', iniciarSesion);
 app.use('/confirmar', confirmar);
 
 app.use(express.static(
