@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react';
-import './styles/conteo.css';
+import './styles/styles.css';
 import PropTypes from 'prop-types';
 
 /**
@@ -99,7 +99,7 @@ function productInventory() {
                                         Empacados
                                     </div>
                                     <a href="/empacado/registrar" className="col-2">
-                                        <button type="button" variant="primary" className="btn-add">
+                                        <button type="button" className="btn-nxt">
                                             Registrar empacado
                                         </button>
                                     </a>

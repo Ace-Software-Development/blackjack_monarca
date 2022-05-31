@@ -165,8 +165,8 @@ function Quantity() {
     const [form, setForm] = useState({
         category: selectedCategory,
         model: selectedModel,
-        numberWithLid: '',
-        numberWithOutLid: '',
+        numberWithLid: 0,
+        numberWithOutLid: 0,
     });
 
     /**
