@@ -1,4 +1,5 @@
 // CU 2 Registrar entrada de discos
+// CU 6 Modificar entrada de discos
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
@@ -6,6 +7,7 @@ import './styles/conteo.css';
 import React, { useEffect, useState, Alert } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import Header from './Header';
 
 /**
@@ -173,7 +175,7 @@ function Conteo() {
    */
     function disksList() {
         return disks.map((disk) => (
-            <Disks disk={disk} key={disk.objectID} />
+            <Disks disk={disk} key={disk.objectId} />
         ));
     }
 
@@ -184,10 +186,34 @@ function Conteo() {
    */
     function incomeDisksList() {
         return incomeDisks.slice(0).reverse().map((disk) => (
-            <IncomeDisks disk={disk} key={disk.name} />
+            <IncomeDisks disk={disk} key={disk.objectId} />
         ));
     }
 
+    const session = Cookies.get('sessionToken');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, []);
+
+    if (!permission) {
+        return ('No tienes permisos');
+    }
     return (
         <container>
             <Header processName="Conteo" />

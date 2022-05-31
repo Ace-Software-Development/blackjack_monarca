@@ -1,6 +1,16 @@
+import Cookies from 'js-cookie';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/sidebar.css';
 import TabSidebar from './Tab';
+
+function logout() {
+    Cookies.remove('sessionToken');
+    Cookies.remove('is_admin');
+    Cookies.remove('session.sig');
+    Cookies.remove('session');
+    localStorage.clear();
+    window.location.href = '/';
+}
 
 function Sidebar() {
     return (
@@ -27,15 +37,12 @@ function Sidebar() {
                     </div>
                     Manual
                 </a>
-                <a
-                  className="nav-link"
-                  href="https://getbootstrap.com/docs/5.1/examples/sidebars/#"
-                >
+                <button type="button" onClick={() => logout()}>
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name="log-out-outline" />
                     </div>
                     Cerrar sesión
-                </a>
+                </button>
             </div>
         </div>
     );
