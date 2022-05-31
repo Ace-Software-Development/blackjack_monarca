@@ -1,39 +1,14 @@
-// CU 4 Registrar entrega de piezas a otro proceso
-// CU 5 Registrar producto dañado
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
-import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ButtonNext from './ButtonNext';
 import Header from './Header';
 
-let selectedCategory = '';
-let selectedWorker = '';
-let selectedPart = '';
-let nextProcess = '';
-let nextBtn;
-let url = '';
-let process = '';
-
-/**
-   * setContext
-   * @description Saves selected category in a variable
-   * @param id: id of the category
-   */
-function setContext(id) {
-    selectedCategory = id;
-
-    url = `/modelo/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}`;
-
-    nextBtn = ButtonNext(url);
-}
-
 export function CardCategory(name, id) {
+    const url = `/empacado/registrar/${id}`;
     return (
         <div className="text-center my-4">
-            <a href="#">
-                <button type="button" className="cardName btn text-center w-100 py-4" onClick={() => setContext(id)}>
+            <a href={url}>
+                <button type="button" className="cardName btn text-center w-100 py-4">
                     {name}
                 </button>
             </a>
@@ -56,39 +31,8 @@ Categories.propTypes = {
     category: PropTypes.string.isRequired,
 };
 
-function Category() {
-    const params = useParams();
-    process = params.process;
-    selectedWorker = params.worker;
-    selectedPart = params.part;
-    nextProcess = params.nextProcess;
-
+function CategoryInventory() {
     const [categories, setCategories] = useState([]);
-
-    const session = Cookies.get('sessionToken');
-    const [permission, setPermission] = useState([]);
-    /**
-     * getPermission
-     * @description Verifies that the user session token is valid
-     */
-    async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.customAlert(message);
-            return;
-        }
-
-        const perm = await response.json();
-        setPermission(perm.data);
-    }
-    useEffect(() => {
-        getPermission();
-    }, []);
-
-    if (!permission) {
-        return ('No tienes permisos');
-    }
 
     /**
      * getCategories
@@ -122,11 +66,10 @@ function Category() {
 
     return (
         <div className="row w-100 justify-content-center align-self-stretch">
-            <Header processName={process} />
+            <Header processName="Empacado" />
             <h3 className="text-center">Elige una categoría</h3>
             {categoryList()}
-            {nextBtn}
         </div>
     );
 }
-export default Category;
+export default CategoryInventory;

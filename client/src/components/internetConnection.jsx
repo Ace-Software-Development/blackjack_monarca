@@ -7,7 +7,7 @@ function internetConnection() {
         console.log('Conectado a internet');
     };
     window.onoffline = () => {
-        window.alert('No tienes conexión a internet');
+        window.costumAlert('No tienes conexión a internet');
     };
 }
 export default internetConnection();

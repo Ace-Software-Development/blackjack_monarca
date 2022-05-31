@@ -1,3 +1,4 @@
+// CU 3 Consultar piezas recibidas en el proceso
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import React, { useEffect, useState } from 'react';

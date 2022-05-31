@@ -1,22 +1,15 @@
-// CU 4 Registrar entrega de piezas a otro proceso
-// CU 5 Registrar producto dañado
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useParams, useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import ButtonNext from './ButtonNext';
 import Header from './Header';
 
 let selectedModel = '';
 let selectedCategory = '';
-let selectedWorker = '';
-let selectedPart = '';
-let nextProcess = '';
 let nextBtn = '';
 let url = '';
-let process = '';
 
 /**
      * setContext
@@ -27,11 +20,11 @@ function setContext(id) {
     const button = document.getElementById('buttonNext');
     if (id) {
         selectedModel = id;
-        url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
+        url = `/empacado/registrar/${selectedCategory}/${selectedModel}`;
         nextBtn = ButtonNext(url);
         button.hidden = false;
     } else {
-        url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
+        url = `/empacado/registrar/${selectedCategory}/${selectedModel}`;
         if (nextBtn) {
             button.href = url;
         }
@@ -74,37 +67,18 @@ Products.propTypes = {
     product: PropTypes.string.isRequired,
 };
 
-function ModelNumber() {
+function ModelInventory() {
     const params = useParams();
     const navigate = useNavigate();
 
-    process = params.process;
     selectedCategory = params.category;
-    selectedWorker = params.worker;
-    selectedPart = params.part;
-    nextProcess = params.nextProcess;
 
     const [products, setProducts] = useState([]);
-    const workersOption = [];
     const categoriesOption = [];
 
-    const [workers, setWorkers] = useState([]);
     const [categories, setCategories] = useState([]);
 
     const [categoryName, setCategory] = useState(0);
-    const [workerName, setWorker] = useState(0);
-
-    /**
-     * workersList
-     * @description Creates a json array with workers for the select component
-     * @returns Array with label and value of workers
-     */
-    function workersList() {
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i < workers.length; i++) {
-            workersOption[i] = { label: workers[i].nick_name, value: workers[i].objectId };
-        }
-    }
 
     /**
     * categoriesList
@@ -116,22 +90,6 @@ function ModelNumber() {
         for (let i = 0; i < categories.length; i++) {
             categoriesOption[i] = { label: categories[i].name, value: categories[i].objectId };
         }
-    }
-
-    /**
-         * getWorkers
-         * @description Fetches existing workers from the database through the server
-         */
-    async function getWorkers() {
-        const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${process}`);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.customAlert(message);
-            return;
-        }
-
-        const worker = await response.json();
-        setWorkers(worker.data);
     }
 
     /**
@@ -167,22 +125,6 @@ function ModelNumber() {
     }
 
     /**
-     * getWorker
-     * @description Fetches category from the database through the server
-     */
-    async function getWorker() {
-        const response = await fetch(`http://localhost:8888/entrega/trabajador/get/${selectedWorker}`);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.customAlert(message);
-            return;
-        }
-
-        const worker = await response.json();
-        setWorker(worker.data);
-    }
-
-    /**
      * getModels
      * @description Fetches existing products from the database through the server
      */
@@ -210,26 +152,12 @@ function ModelNumber() {
     }
 
     useEffect(() => {
-        getWorkers();
+        getCategory();
         getCategories();
         getModels();
-        getWorker();
-        getCategory();
     }, [nextBtn]);
 
-    workersList();
     categoriesList();
-
-    /**
-   * onChangeWorker
-   * @description Change the url with a new id worker
-   * @param worker: the new worker
-   */
-    function onChangeWorker(worker) {
-        setContext('');
-        navigate(`/modelo/${process}/${nextProcess}/${worker.value}/${selectedPart}/${selectedCategory}`);
-        window.location.reload();
-    }
 
     /**
    * onChangeCategory
@@ -238,37 +166,13 @@ function ModelNumber() {
    */
     function onChangeCategory(category) {
         setContext('');
-        navigate(`/modelo/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${category.value}`);
+        navigate(`/empacado/registrar/${category.value}`);
         window.location.reload();
     }
 
-    const session = Cookies.get('sessionToken');
-    const [permission, setPermission] = useState([]);
-    /**
-     * getPermission
-     * @description Verifies that the user session token is valid
-     */
-    async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.customAlert(message);
-            return;
-        }
-
-        const perm = await response.json();
-        setPermission(perm.data);
-    }
-    useEffect(() => {
-        getPermission();
-    }, []);
-
-    if (!permission) {
-        return ('No tienes permisos');
-    }
     return (
         <div className="row d-flex justify-content-center">
-            <Header processName={process} />
+            <Header processName="Conteo" />
             <div className="card-shadow bg-white col-10 p-4">
                 <div className="row">
                     <div className="col">
@@ -279,12 +183,10 @@ function ModelNumber() {
                             <a type="button" className="col-2 text-center buttonNext cardNext" id="buttonNext" href={url} hidden>
                                 Siguiente
                             </a>
+                            <p>
+                                {categoryName.name}
+                            </p>
                         </div>
-                        <p>
-                            {workerName.nick_name}
-                            {' - '}
-                            {categoryName.name}
-                        </p>
                     </div>
                 </div>
                 <div className="row d-flex justify-content-center">
@@ -292,9 +194,6 @@ function ModelNumber() {
                     {productsList()}
                 </div>
                 <div className="row">
-                    <div className="col-6">
-                        <Select value={{ label: workerName.nick_name, value: workerName.objectId }} options={workersOption} className="form-control form-select-lg" id="id_worker" name="id_worker" onChange={(e) => onChangeWorker(e)} />
-                    </div>
                     <div className="col-6">
                         <Select value={{ label: categoryName.name, value: categoryName.objectId }} options={categoriesOption} className="form-control form-select-lg" id="id_category" name="id_category" onChange={(e) => onChangeCategory(e)} />
                     </div>
@@ -304,4 +203,4 @@ function ModelNumber() {
     );
 }
 
-export default ModelNumber;
+export default ModelInventory;
