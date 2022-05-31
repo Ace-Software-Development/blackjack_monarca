@@ -1,3 +1,4 @@
+// CU 14 Consultar pedido
 class ProductOrder
 {
     constructor(catName, modName, number)
@@ -8,12 +9,12 @@ class ProductOrder
     }
 
     /**
-   * registerIncomingDisk
-   * @description Register new incoming disk
+   * registerProductOrder
+   * @description Register new product order
    * @param number: Number of products registered
    * @param catName: Name of the category registered
    * @param modName: Name of the model registered
-   * @returns Parse object with number and id_disk
+   * @returns Parse object
    */
     static registerProductOrder(catName, modName, number)
     {
@@ -24,11 +25,26 @@ class ProductOrder
         return productOrder;
     }
 
-    static getProductOrderById()
+    /**
+   * getProductOrderById
+   * @description Get a product order with its id
+   * @param objectId: id of the product order
+   * @returns Json with order, product and category info
+   */
+    static getProductOrderById(objectId)
     {
+        console.log(objectId);
         const productOrder = new Parse.Query("ProductOrder");
-        productOrder.select("objectId", "category_name", "model_name", "number", "orderId");
-        productOrder.equalTo("orderId", "auxOrderId");
+
+        var Order = Parse.Object.extend("Order");
+        var pointerToOrder = new Order();
+        pointerToOrder.id = objectId;
+
+        productOrder.equalTo("orderId", pointerToOrder);
+        productOrder.include("id_product");
+        productOrder.include("id_product.id_category");
+
+
         return productOrder.find();
     }
 

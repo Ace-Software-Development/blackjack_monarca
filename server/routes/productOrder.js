@@ -5,6 +5,6 @@ const path = require('path');
 const productOrderController = require('../controller/productOrder');
 
 router.post('/post', productOrderController.postProductOrderController);
-router.get('/get', productOrderController.getProductOrderController);
+router.get('/get/:id', productOrderController.getProductOrderController);
 
 module.exports = router;

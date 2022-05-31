@@ -24,6 +24,7 @@ exports.postProductOrderController = async function (request, response){
    * @description Get all products from an order in database
    */
  exports.getProductOrderController = async function (request, response){
-    const products = await getProductOrderById();
+    const id = request.params.id;
+    const products = await getProductOrderById(id);
     response.status(200).send({status:"success", data:products});
 }
