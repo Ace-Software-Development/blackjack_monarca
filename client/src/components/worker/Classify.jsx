@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Row, Col, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router';
 import Header from './Header';
+import './styles/styles.css';
 
 function Classify() {
     const params = useParams();
+    const navigate = useNavigate();
     const [completed, setCompleted] = useState(0);
     const [second, setSecond] = useState(0);
     const [scrap, setScrap] = useState(0);
@@ -29,8 +31,10 @@ function Classify() {
         id_part: '',
         id_product: '',
         id_process: '',
+        id_incident: '',
     });
     const [process, setProcess] = useState(0);
+    const [idIncident, setIdIncident] = useState(0);
 
     /**
      * getProducts
@@ -59,6 +63,7 @@ function Classify() {
         setIdProduct(regis.data.id_product.objectId);
         setIdPart(regis.data.id_part.objectId);
         setProcess(regis.data.id_process);
+        setIdIncident(params.id);
     }
 
     const [workers, setWorkers] = useState([]);
@@ -79,7 +84,7 @@ function Classify() {
         setWorkers(rWorker.data);
     }
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
 
         if (completed + second + scrap === number) {
@@ -88,11 +93,19 @@ function Classify() {
             } else {
                 const newPart = { ...info };
                 console.log(newPart);
+                await fetch('http://localhost:8888/entrega/incidente/post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newPart),
+                });
+                navigate('/rechazado/incidente');
             }
         } else {
             alert(`Recibiste ${number} ${category}s, debes registrar todas!`);
         }
-    };
+    }
 
     useEffect(() => {
         getProduct();
@@ -120,14 +133,30 @@ function Classify() {
             id_part: idPart,
             id_product: idProduct,
             id_process: process,
+            id_incident: idIncident,
         });
     }, [completed, second, scrap, worker]);
+
+    function total() {
+        if (completed + second + scrap > number || completed + second + scrap < number) {
+            return (
+                <div className="col-12 text-center">
+                    <h3 className="red-text">{ completed + second + scrap }</h3>
+                </div>
+            );
+        }
+        return (
+            <div className="col-12 text-center">
+                <h3 className="green-text">{ completed + second + scrap }</h3>
+            </div>
+        );
+    }
 
     return (
         <div className="row d-flex justify-content-center">
             <Header processName="Incidente" />
             <div className="col-10">
-                <Form className="card-shadow bg-white" onSubmit={handleSubmit}>
+                <Form className="card-shadow bg-white" onSubmit={(e) => handleSubmit(e)}>
                     <div className="row">
                         <div className="col-9">
                             <h5>Resumen</h5>
@@ -152,6 +181,7 @@ function Classify() {
                         </p>
                     </div>
                     <h3 className="text-center">Cantidad de productos a entregar</h3>
+                    {total()}
                     <Row className="quantity-input">
                         <Col className="mx-1">
                             <Row>Primera</Row>

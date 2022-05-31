@@ -255,3 +255,11 @@ ion-icon {
 .buttonNext:hover {
   	color: white;
 }
+
+.red-text {
+	color: #dc2121
+}
+
+.green-text {
+	color: #0c950a
+}
