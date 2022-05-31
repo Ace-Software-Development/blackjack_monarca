@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.css';
+import Header from './worker/Header';
 
 function Empacado() {
     const session = Cookies.get('sessionToken');
@@ -31,8 +32,7 @@ function Empacado() {
     return (
         <container>
             <div>
-                <ion-icon name="home" />
-                <h2 align="center">Rechazado</h2>
+                <Header processName="Empacado" />
             </div>
             <div className="container position-absolute top-50 start-50 translate-middle">
                 <div className="row">
