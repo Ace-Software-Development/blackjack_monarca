@@ -54,6 +54,17 @@ h1{
 	font-size: 25px;
 	font-weight: bold;
 }
+
+.btn-order{
+    background: #F69223;
+	color:#F4F5F4;
+	border-width: 0px;
+	border-radius: 5px;
+	height: 50px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
 .btn-cancel{
 	background: #F5F5F5;
 	color: hsl(221, 15%, 32%);
