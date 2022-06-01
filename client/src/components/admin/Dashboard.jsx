@@ -1,4 +1,3 @@
-// CU 11 LogOut
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';

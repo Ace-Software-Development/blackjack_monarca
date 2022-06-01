@@ -1,3 +1,4 @@
+// CU 11 LogOut
 import Cookies from 'js-cookie';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/sidebar.css';
@@ -15,7 +16,7 @@ function logout() {
 function Sidebar() {
     return (
         <div className="sidebar d-flex flex-column flex-shrink-0 p-4">
-            <img src="logo.svg" alt="Aluminios Monarca logo" />
+            <img src="../logo.svg" alt="Aluminios Monarca logo" />
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 {TabSidebar('active', 'Dashboard', 'apps')}
