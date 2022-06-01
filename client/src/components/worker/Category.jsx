@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ButtonNext from './ButtonNext';
 import Header from './Header';
+import Environment from '../Environment';
 
 let selectedCategory = '';
 let selectedWorker = '';
@@ -72,7 +73,7 @@ function Category() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -95,7 +96,7 @@ function Category() {
      * @description Fetches existing categories from the database through the server
      */
     async function getCategories() {
-        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        const response = await fetch(`${Environment()}/entrega/categorias/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

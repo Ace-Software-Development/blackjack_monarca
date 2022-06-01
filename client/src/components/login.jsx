@@ -2,6 +2,7 @@
 import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
+import Environment from './Environment';
 
 function Login() {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Login() {
         e.preventDefault();
         console.log('iniciando sesión');
         const credentials = { ...form };
-        const response = await fetch('http://localhost:8888/login/post', {
+        const response = await fetch(`${Environment()}/login/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

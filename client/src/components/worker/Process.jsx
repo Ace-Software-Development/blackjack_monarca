@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import Card from './Card';
 import Header from './Header';
+import Environment from '../Environment';
 
 /**
    * Process
@@ -16,7 +17,7 @@ function Process() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -51,12 +52,12 @@ function Process() {
                         </div>
                         <div className="col">
                             <a href={hrefConfirm}>
-                                {Card('home', 'Recibir')}
+                                {Card('mail-unread', 'Recibir')}
                             </a>
                         </div>
                         <div className="col">
                             <a href={hrefEntrega}>
-                                {Card('home', 'Entregar')}
+                                {Card('send', 'Entregar')}
                             </a>
                         </div>
                     </div>
@@ -71,12 +72,12 @@ function Process() {
                 <div className="row mt-5 pt-5">
                     <div className="col">
                         <a href={hrefConfirm}>
-                            {Card('home', 'Recibir')}
+                            {Card('mail-unread', 'Recibir')}
                         </a>
                     </div>
                     <div className="col">
                         <a href={hrefEntrega}>
-                            {Card('home', 'Entregar')}
+                            {Card('send', 'Entregar')}
                         </a>
                     </div>
                 </div>

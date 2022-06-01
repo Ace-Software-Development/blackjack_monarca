@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.css';
+import Environment from '../Environment';
 
 /**
  * logout
@@ -26,7 +27,7 @@ function Inicio() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

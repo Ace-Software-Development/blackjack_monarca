@@ -8,6 +8,7 @@ import Select from 'react-select';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import Header from './Header';
+import Environment from '../Environment';
 
 let selectedModel = '';
 let selectedCategory = '';
@@ -105,7 +106,7 @@ function Quantity() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -164,7 +165,7 @@ function Quantity() {
      * @description Fetches existing workers from the database through the server
      */
     async function getWorkers() {
-        const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${selectedProcess}`);
+        const response = await fetch(`${Environment()}/entrega/trabajadores/get/${selectedProcess}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -180,7 +181,7 @@ function Quantity() {
      * @description Fetches existing categories from the database through the server
      */
     async function getCategories() {
-        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        const response = await fetch(`${Environment()}/entrega/categorias/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -196,7 +197,7 @@ function Quantity() {
      * @description Fetches existing products from the database through the server
      */
     async function getModels() {
-        const response = await fetch(`http://localhost:8888/entrega/modelos/get/${selectedCategory}`);
+        const response = await fetch(`${Environment()}/entrega/modelos/get/${selectedCategory}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -212,7 +213,7 @@ function Quantity() {
      * @description Fetches category from the database through the server
      */
     async function getCategory() {
-        const response = await fetch(`http://localhost:8888/entrega/categoria/get/${selectedCategory}`);
+        const response = await fetch(`${Environment()}/entrega/categoria/get/${selectedCategory}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -228,7 +229,7 @@ function Quantity() {
      * @description Fetches category from the database through the server
      */
     async function getWorker() {
-        const response = await fetch(`http://localhost:8888/entrega/trabajador/get/${selectedWorker}`);
+        const response = await fetch(`${Environment()}/entrega/trabajador/get/${selectedWorker}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -245,7 +246,7 @@ function Quantity() {
      */
     async function getModel() {
         if (selectedModel !== '-1') {
-            const response = await fetch(`http://localhost:8888/entrega/modelo/get/${selectedModel}`);
+            const response = await fetch(`${Environment()}/entrega/modelo/get/${selectedModel}`);
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
                 window.customAlert(message);
@@ -300,7 +301,7 @@ function Quantity() {
 
         const newPart = { ...form };
 
-        await fetch('http://localhost:8888/entrega/post', {
+        await fetch(`${Environment()}/entrega/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

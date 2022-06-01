@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
 // import { CardAdmin, SideCards } from './CardsAdmin';
 
 let process = '';
@@ -19,7 +20,7 @@ function Dashboard() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import Header from './Header';
+import Environment from '../Environment';
 
 /**
  * internetConnection
@@ -85,7 +86,7 @@ function Conteo() {
     const [incomeDisks, setIncomeDisks] = useState([]);
 
     async function getAllIncomeDisks() {
-        const response = await fetch('http://localhost:8888/entradaDiscos/get');
+        const response = await fetch(`${Environment()}/entradaDiscos/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -101,7 +102,7 @@ function Conteo() {
      * @description Fetches existing disks from the database through the server
      */
     async function getDisks() {
-        const response = await fetch('http://localhost:8888/discos/get');
+        const response = await fetch(`${Environment()}/discos/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -145,7 +146,7 @@ function Conteo() {
 
         const newDisk = { ...form };
 
-        await fetch('http://localhost:8888/discos/post', {
+        await fetch(`${Environment()}/discos/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -197,7 +198,7 @@ function Conteo() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

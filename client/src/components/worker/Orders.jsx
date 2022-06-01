@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import orderCard from '../orderCard';
 import Header from './Header';
+import Environment from '../Environment';
 
 /**
  * OrderElement
@@ -34,7 +35,7 @@ function Orders() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -57,7 +58,7 @@ function Orders() {
      * @description Fetches existing orders from the database through the server
      */
     async function getOrders() {
-        const response = await fetch('http://localhost:8888/empacado/ordenes/get');
+        const response = await fetch(`${Environment()}/empacado/ordenes/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
