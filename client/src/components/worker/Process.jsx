@@ -51,11 +51,6 @@ function Process() {
                             </a>
                         </div>
                         <div className="col">
-                            <a href={hrefConfirm}>
-                                {Card('mail-unread', 'Recibir')}
-                            </a>
-                        </div>
-                        <div className="col">
                             <a href={hrefEntrega}>
                                 {Card('send', 'Entregar')}
                             </a>

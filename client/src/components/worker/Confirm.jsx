@@ -81,6 +81,7 @@ function Confirm() {
         const part = await response.json();
         setParts(part.data);
     }
+
     useEffect(() => {
         getParts();
     }, []);
