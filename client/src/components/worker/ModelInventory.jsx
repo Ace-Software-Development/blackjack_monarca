@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -68,6 +69,29 @@ Products.propTypes = {
 };
 
 function ModelInventory() {
+    const session = Cookies.get('sessionToken');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, []);
+    if (!permission) {
+        return ('No tienes permisos');
+    }
     const params = useParams();
     const navigate = useNavigate();
 

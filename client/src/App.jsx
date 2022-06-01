@@ -24,6 +24,7 @@ import CategoryInventory from './components/worker/CategoryInventory';
 import ModelInventory from './components/worker/ModelInventory';
 import RegisterPack from './components/worker/RegisterPack';
 import ModifyPackStatus from './components/worker/ModifyPackStatus';
+import DashboardProcess from './components/admin/DashboardProcess';
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                 <Route exact path="/conteo" element={<Conteo />} />
                 <Route exact path="/conteo/modificar/:id/:name" element={<ModifyQuantity />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
+                <Route exact path="/dashboard/:process" element={<DashboardProcess />} />
                 <Route exact path="/proceso/:process" element={<Process />} />
                 <Route excat path="/parte" element={<NamePart />} />
                 <Route excat path="/categoria" element={<Category />} />

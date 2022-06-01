@@ -1,6 +1,7 @@
 // CU 3 Consultar piezas recibidas en el proceso
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
+import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import '../admin/styles/dashboard.css';
@@ -10,6 +11,30 @@ import Header from './Header';
 let idPartInventory = '';
 
 function ConfirmPart() {
+    const session = Cookies.get('sessionToken');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, []);
+    if (!permission) {
+        return ('No tienes permisos');
+    }
+
     const navigate = useNavigate();
     const params = useParams();
     idPartInventory = params.idPartInventory;
