@@ -47,7 +47,7 @@ function Dashboard() {
                 <div className="content d-flex px-4 pt-3 h-100">
                     <div className="row">
                         <div className="col">
-                            <h1 className="my-2">Admin</h1>
+                            <h1 className="my-2">Dashboard</h1>
                             <h3 className="my-2">{process}</h3>
                         </div>
                     </div>
