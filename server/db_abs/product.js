@@ -23,33 +23,55 @@ class Product {
         return models.find();
     }
 
-
     /**
-* getModelById
-* @description Query to get all existing models
-* @param id Id of specific model
-* @returns Parse object of the models in table "Product" 
-*/
+    * getModelById
+    * @description Query to get all existing models
+    * @param id Id of specific model
+    * @returns Parse object of the models in table "Product" 
+    */
     static getModelById(id) {
         const model = new Parse.Query("Product");
-        model.select("objectId", "model", "aluminium");
         model.equalTo("objectId", id);
+        model.include("id_category");
         return model.first();
     }
 
     /**
-* getAllProducts
-* @description Query to get all existing products
-* @returns Parse object of the products in table "Products" 
-*/
+   * getAllProducts
+   * @description Query to get all existing products
+   * @returns Parse object of the products in table "Products" 
+   */
     static getAllProducts() {
         const products = new Parse.Query("Product");
-
         products.include("id_category");
-
         products.ascending("id_category")
-
         return products.find();
+    }
+
+    /**
+       * modifyProductInventory
+       * @description Query to modify the state and quantity of a product
+       * @returns Parse object with the new data of the product
+       */
+    static modifyProductInventory(with_lid, withOut_lid, id) {
+        let product = new Parse.Object('Product');
+        product.set('objectId', id);
+        product.set('with_lid', parseInt(with_lid));
+        product.set('withOut_lid', parseInt(withOut_lid));
+        return product;
+    }
+
+    /**
+    * getProductById
+    * @description Query to get the product by the id
+    * @param id Id of specific mproduct
+    * @returns Parse object of the product
+    */
+    static getProductById(id) {
+        const product = new Parse.Query("Product");
+        product.equalTo("objectId", id);
+        product.include("id_category");
+        return product.first();
     }
 
     static getEmpty() {
