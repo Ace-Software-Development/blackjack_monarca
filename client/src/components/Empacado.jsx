@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import Card from './Card';
 import Header from './worker/Header';
 import 'bootstrap/dist/css/bootstrap.css';
-import Header from './worker/Header';
 
 function Empacado() {
     const session = Cookies.get('sessionToken');
