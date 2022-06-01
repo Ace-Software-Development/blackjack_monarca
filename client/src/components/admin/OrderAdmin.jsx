@@ -20,15 +20,15 @@ function Required(req, inv) {
     const dif = req - inv;
     if (dif <= 0) {
         return (
-            <th className="green-text">
-                <div>0</div>
+            <th>
+                <div className="green-text">0</div>
                 <div className="sub-text1">piezas</div>
             </th>
         );
     }
     return (
-        <th className="red-text">
-            <div>{dif}</div>
+        <th>
+            <div className="red-text">{dif}</div>
             <div className="sub-text1">piezas</div>
         </th>
     );
