@@ -1,3 +1,5 @@
+// CU 4 Registrar entrega de piezas a otro proceso
+// CU 5 Registrar producto dañado
 function QuantityInput() {
     function sum() {
         document.getElementById('quantityInput').stepUp();

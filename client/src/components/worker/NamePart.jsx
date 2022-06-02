@@ -1,3 +1,5 @@
+// CU 4 Registrar entrega de piezas a otro proceso
+// CU 5 Registrar producto dañado
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 // eslint-disable-next-line no-trailing-spaces
@@ -5,6 +7,7 @@ import {
     useEffect, useState, React,
 } from 'react';
 import { useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Header from './Header';
 import ButtonNext from './ButtonNext';
 import './styles/styles.css';
@@ -153,6 +156,30 @@ function NamePart() {
         ));
     }
 
+    const session = Cookies.get('sessionToken');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, []);
+
+    if (!permission) {
+        return ('No tienes permisos');
+    }
     return (
         <div className="container-fluid d-flex flex-column">
             <div className="row">
