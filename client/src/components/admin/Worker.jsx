@@ -5,6 +5,7 @@ import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import CreateWorker from './CreateWorker';
 import ModifyWorker from './ModifyWorker';
+import DeleteWorker from './DeleteWorker';
 
 /**
  * IncomeDisk
@@ -16,6 +17,10 @@ function Workers({ worker }) {
     const [show, setShow] = useState(false);
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
+
+    const [showD, setShowD] = useState(false);
+    const handleCloseDMod = () => setShowD(false);
+    const handleShowDMod = () => setShowD(true);
 
     return (
         <>
@@ -37,6 +42,11 @@ function Workers({ worker }) {
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
+                <th>
+                    <button type="button" onClick={handleShowDMod}>
+                        <ion-icon size="large" name="trash-outline" />
+                    </button>
+                </th>
             </tr>
 
             <Modal show={show} onHide={handleCloseMod}>
@@ -44,6 +54,13 @@ function Workers({ worker }) {
                     <Modal.Title>Modificar</Modal.Title>
                 </Modal.Header>
                 {ModifyWorker(worker.objectId, worker.name, worker.nick_name, worker.id_process)}
+            </Modal>
+
+            <Modal show={showD} onHide={handleCloseDMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                {DeleteWorker(worker.objectId, worker.name, worker.nick_name)}
             </Modal>
         </>
 
@@ -113,6 +130,7 @@ function Worker() {
                                             <th>Nombre</th>
                                             <th>Apodo</th>
                                             <th>Proceso</th>
+                                            <th> </th>
                                             <th> </th>
                                         </tr>
                                     </thead>

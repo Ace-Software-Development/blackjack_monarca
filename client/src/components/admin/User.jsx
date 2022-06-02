@@ -5,6 +5,7 @@ import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import CreateUser from './CreateUser';
 import ModifyUser from './ModifyUser';
+//  import DeleteUser from './DeleteUser';
 
 function isAdmin(role) {
     if (role) {
@@ -40,6 +41,10 @@ function Users({ user }) {
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
 
+    // const [showD, setShowD] = useState(false);
+    // const handleCloseDMod = () => setShowD(false);
+    // const handleShowDMod = () => setShowD(true);
+
     return (
         <>
             <tr>
@@ -56,6 +61,11 @@ function Users({ user }) {
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
+                {/* <th>
+                    <button type="button" onClick={handleShowDMod}>
+                        <ion-icon size="large" name="trash-outline" />
+                    </button>
+                </th> */}
             </tr>
 
             <Modal show={show} onHide={handleCloseMod}>
@@ -64,6 +74,13 @@ function Users({ user }) {
                 </Modal.Header>
                 {ModifyUser(user.objectId, user.username, getRole(user.is_admin))}
             </Modal>
+
+            {/* <Modal show={showD} onHide={handleCloseDMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                {DeleteUser(user.objectId, user.username)}
+            </Modal> */}
         </>
 
     );

@@ -1,7 +1,7 @@
 const Constants = require('../constants');
 
 
-class IncomeDisk {
+class User {
 
     /**
    * registerIncomingDisk
@@ -57,5 +57,20 @@ class IncomeDisk {
 
         return user;
     }
+
+    /**
+* registerIncomingDisk
+* @description Register new incoming disk
+* @param number: Number of disks registered
+* @param id_disk: Id of the disks registered
+* @returns Parse object with number and id_disk
+*/
+    static deleteUser(id) {
+        const user = new Parse.Object("_User");
+        user.set('objectId', id);
+        user.destroy(null, { useMasterKey: true });
+
+        return user;
+    }
 }
-module.exports = IncomeDisk;
+module.exports = User;

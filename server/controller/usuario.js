@@ -1,6 +1,6 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { registerUser, getAllUsers, modifyUser } = require('../db_abs/user');
+const { registerUser, getAllUsers, modifyUser, deleteUser } = require('../db_abs/user');
 
 /**
    * postIncomingDiskController
@@ -39,7 +39,7 @@ exports.getAllUsersController = async function (request, response) {
 exports.modifyUserController = async function (request, response) {
     try {
         const user = modifyUser(request.body.username, request.body.is_admin, request.body.objectId);
-        await user.save();
+        await user.save(null, { useMasterKey: true });
     } catch (error) {
         console.error(error.message);
         return (response.status(500).send({ status: "can't save" }));
@@ -47,5 +47,19 @@ exports.modifyUserController = async function (request, response) {
     response.status(200).send({ status: "success" });
 }
 
-
-
+/**
+   * modifyIncomingDiskController
+   * @description Modify incoming disk registered
+   * @param request: values modified by user
+   * @param response: status of the post
+   */
+exports.deleteUserController = async function (request, response) {
+    try {
+        const user = deleteUser(request.body.objectId);
+        await user.save(null, { useMasterKey: true });
+    } catch (error) {
+        console.error(error.message);
+        return (response.status(500).send({ status: "can't save" }));
+    }
+    response.status(200).send({ status: "success" });
+}

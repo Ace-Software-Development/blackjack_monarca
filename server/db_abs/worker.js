@@ -62,6 +62,21 @@ class Worker {
     }
 
     /**
+* registerIncomingDisk
+* @description Register new incoming disk
+* @param number: Number of disks registered
+* @param id_disk: Id of the disks registered
+* @returns Parse object with number and id_disk
+*/
+    static deleteWorker(id) {
+        const worker = new Parse.Object(Constants.Worker);
+        worker.set('objectId', id);
+        worker.destroy();
+
+        return worker;
+    }
+
+    /**
   * getWorkerById
   * @description Query to get a worker by id
   * @returns Parse object with name and Id of the parts in table "Workers"

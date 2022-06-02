@@ -1,6 +1,6 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { registerWorker, getAllWorkersWOP, modifyWorker } = require('../db_abs/worker');
+const { registerWorker, getAllWorkersWOP, modifyWorker, deleteWorker } = require('../db_abs/worker');
 
 /**
    * postIncomingDiskController
@@ -46,6 +46,18 @@ exports.modifyWorkerController = async function (request, response) {
     }
     response.status(200).send({ status: "success" });
 }
+
+exports.deleteWorkerController = async function (request, response) {
+    try {
+        const worker = deleteWorker(request.body.objectId);
+        await worker.save();
+    } catch (error) {
+        console.error(error.message);
+        return (response.status(500).send({ status: "can't save" }));
+    }
+    response.status(200).send({ status: "success" });
+}
+
 
 
 

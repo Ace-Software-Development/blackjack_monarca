@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
@@ -10,8 +9,6 @@ import { Modal, Button } from 'react-bootstrap';
    * @returns HTML with fetched data
    */
 function ModifyWorker(woekerId, workerName, workerNick, workerProcess) {
-    const navigate = useNavigate();
-
     const [form, setForm] = useState({
         objectId: woekerId,
         name: workerName,
@@ -53,7 +50,7 @@ function ModifyWorker(woekerId, workerName, workerNick, workerProcess) {
             nick_name: '',
             id_process: '',
         });
-        navigate('/trabajadores');
+        window.location.reload();
     }
 
     return (
@@ -85,7 +82,7 @@ function ModifyWorker(woekerId, workerName, workerNick, workerProcess) {
                     <Button variant="secondary" onClick={() => window.location.reload()}>
                         Cerrar
                     </Button>
-                    <button type="submit" className="col" onClick={() => window.location.reload()}>Realizar modificación</button>
+                    <button type="submit" className="col">Modificar</button>
                 </Modal.Footer>
             </form>
         </div>
