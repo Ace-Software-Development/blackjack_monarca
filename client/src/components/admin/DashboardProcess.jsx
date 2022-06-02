@@ -1,9 +1,10 @@
-import { DateRangePicker } from 'react-date-range';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+import 'bootstrap-daterangepicker/daterangepicker.css';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import './styles/dashboard.css';
@@ -68,15 +69,13 @@ function Dashboard() {
         );
     }
 
-    // const day = new Date();
-    // const wDay = day.getDay();
     const [merma, setMerma] = useState([]);
     /**
      * getMerma
      * @description Get scrap from a process
      * */
     async function getMerma() {
-        console.log(process);
+        // console.log(process);
         const response = await fetch(`http://localhost:8888/merma/${process}/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
@@ -85,7 +84,7 @@ function Dashboard() {
         }
 
         const mermaList = await response.json();
-        console.log(mermaList);
+        // console.log(mermaList);
         setMerma(mermaList.data);
     }
 
@@ -94,33 +93,13 @@ function Dashboard() {
             acum += merma[i].number;
         }
     }
-    // const [dateMerma, setDateMerma] = useState([]);
-    // const [startDate, setStartDate] = useState(new Date());
-    // const [endDate, setEndDate] = useState(new Date());
-    /**
-     * getMerma
-     * @description Get scrap from a process
-     * */
-    // async function getAllMerma() {
-    //     console.log(process);
-    //     const response = await fetch(`http://localhost:8888/merma/${startDay}/${endDay}/get`);
-    //     if (!response.ok) {
-    //         const message = `An error occurred: ${response.statusText}`;
-    //         window.customAlert(message);
-    //         return;
-    //     }
 
-    //     const mermaList = await response.json();
-    //     console.log(mermaList);
-    //     setDateMerma(mermaList.data);
-    // }
     useEffect(() => {
         getMerma();
-        // getAllMerma();
     }, []);
 
     useEffect(() => {
-        console.log(merma);
+        // console.log(merma);
     }, merma);
 
     sumaMerma();
@@ -360,11 +339,81 @@ function Dashboard() {
         },
     };
 
-    const selectionRange = {
-        startDate: new Date(),
-        endDate: new Date(),
-        key: 'selection',
-    };
+    const [dateForm, setDate] = useState({
+        startDate: 0,
+        endDate: 0,
+    });
+
+    /**
+     * setDateForm
+     * @description Set selected days
+     * */
+    function setDateForm(e, p) {
+        setDate({
+            startDate: p.startDate.valueOf(),
+            endDate: p.endDate.valueOf(),
+        });
+    }
+
+    const [mermaProcesos, setMermaProcesos] = useState([]);
+    /**
+     * getMermaDias
+     * @description Get scrap from all process during specific days
+     * */
+    async function getMermaDias() {
+        const response = await fetch(`http://localhost:8888/merma/${dateForm.startDate}/${dateForm.endDate}/get`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const mermaList = await response.json();
+        setMermaProcesos(mermaList.data);
+    }
+
+    const [mermaProcesosLista, setMermaProcesoLista] = useState({
+        rechazado: 0,
+        esmerilado: 0,
+        pulido: 0,
+        remachado: 0,
+    });
+
+    function sumaMermaPorArea() {
+        let rechazadoAcum = 0;
+        let esmeriladoAcum = 0;
+        let pulidoAcum = 0;
+        let remachadoAcum = 0;
+        for (let i = 0; i < mermaProcesos.length; i += 1) {
+            if (mermaProcesos[i].id_process === 'Rechazado') {
+                rechazadoAcum += mermaProcesos[i].number;
+            } else if (mermaProcesos[i].id_process === 'Esmerilado') {
+                esmeriladoAcum += mermaProcesos[i].number;
+            } else if (mermaProcesos[i].id_process === 'Pulido') {
+                pulidoAcum += mermaProcesos[i].number;
+            } else if (mermaProcesos[i].id_process === 'Remachado') {
+                remachadoAcum += mermaProcesos[i].number;
+            }
+        }
+        setMermaProcesoLista({
+            rechazado: rechazadoAcum,
+            esmerilado: esmeriladoAcum,
+            pulido: pulidoAcum,
+            remachado: remachadoAcum,
+        });
+    }
+
+    useEffect(() => {
+        getMermaDias();
+    }, [dateForm]);
+
+    useEffect(() => {
+        sumaMermaPorArea();
+    }, [mermaProcesos]);
+
+    useEffect(() => {
+        console.log(mermaProcesosLista);
+    }, [mermaProcesosLista]);
 
     return (
         <div className="container-fluid">
@@ -377,23 +426,15 @@ function Dashboard() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col xs={3}>
                         <DateRangePicker
-                          ranges={[selectionRange]}
-                        />
-                    </Col>
-                    <Col>
-                        <div
-                          id="reportrange"
+                          onApply={(e, p) => setDateForm(e, p)}
                         >
-                            <i className="fa fa-calendar" />
-                            &nbsp;
-                            <span />
-                            <i className="fa fa-caret-down" />
-                        </div>
+                            <input />
+                        </DateRangePicker>
                     </Col>
                 </Row>
-                <Row>
+                <Row mt={4}>
                     <Col xs={9}>
                         <HighchartsReact highcharts={Highcharts} options={options} />
                     </Col>

@@ -1,3 +1,4 @@
+const moment = require('moment');
 class Merma
 {
     /**
@@ -24,8 +25,10 @@ class Merma
         parts.equalTo("status", "scrap");
         parts.greaterThanOrEqualTo('updatedAt', startDay);
         parts.lessThanOrEqualTo('updatedAt', endDay);
+        console.log("getMermaDate");
+        console.log("start date: ", startDay);
         return parts.find();
-    }
+    } 
 }
 
 module.exports = Merma;
