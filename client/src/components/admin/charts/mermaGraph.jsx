@@ -1,6 +1,6 @@
 // Create the chart
 // export default Highcharts.chart('container', {
-    export default chart('container', {
+export default chart('container', {
     chart: {
         type: 'column',
     },
