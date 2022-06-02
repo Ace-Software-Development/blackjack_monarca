@@ -67,7 +67,7 @@ div>a:visited {
 }
 
 .home-card ion-icon {
-	font-size: 10em;
+	font-size: 80px;
 	color: rgba(245, 143, 61, 1);
 	--ionicon-stroke-width: 25px;
 }
