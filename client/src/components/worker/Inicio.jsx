@@ -2,6 +2,7 @@
 // CU 11 LogOut
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
+import { Row, Col } from 'react-bootstrap';
 import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.css';
 import Environment from '../Environment';
@@ -50,40 +51,38 @@ function Inicio() {
                 <img src="./logo.svg" alt="logo monarca" />
             </div>
             <div className="container position-absolute top-50 start-50 translate-middle">
-                <div className="row">
-                    <div id="Conteo" className="col">
+                <Row>
+                    <Col xs={12} s={12} md={6} lg={4}>
                         <a href="/conteo">
                             {Card('calculator', 'Conteo')}
                         </a>
-                    </div>
-                    <div id="Rechazado" className="col">
+                    </Col>
+                    <Col xs={12} s={12} md={6} lg={4}>
                         <a href="/proceso/Conteo/Rechazado/Esmerilado">
                             {Card('hammer', 'Rechazado')}
                         </a>
-                    </div>
-                    <div id="Esmerilado" className="col">
+                    </Col>
+                    <Col xs={12} s={12} md={6} lg={4}>
                         <a href="/proceso/Rechazado/Esmerilado/Pulido">
                             {Card('brush', 'Esmerilado')}
                         </a>
-                    </div>
-                </div>
-                <div className="row">
-                    <div id="Pulido" className="col">
+                    </Col>
+                    <Col xs={12} s={12} md={6} lg={4}>
                         <a href="/proceso/Esmerilado/Pulido/Remachado">
                             {Card('water', 'Pulido')}
                         </a>
-                    </div>
-                    <div id="Remachado" className="col">
+                    </Col>
+                    <Col xs={12} s={12} md={6} lg={4}>
                         <a href="/proceso/Pulido/Remachado/Empaquetado">
                             {Card('color-fill', 'Remachado')}
                         </a>
-                    </div>
-                    <div id="Empaquetado" className="col">
+                    </Col>
+                    <Col xs={12} s={12} md={6} lg={4}>
                         <a href="/empacado">
                             {Card('cube', 'Empaquetado')}
                         </a>
-                    </div>
-                </div>
+                    </Col>
+                </Row>
                 <div>
                     <button className="mt-5 col-2 text-align-right cardName btn text-center text-center card-shadow" type="button" onClick={() => logout()}>
                         <ion-icon name="exit-outline" size="large" />
