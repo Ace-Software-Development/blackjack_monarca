@@ -22,8 +22,8 @@ class Merma
       static getMermaDate(startDay, endDay){
         const parts = new Parse.Query("PartInventory");
         parts.equalTo("status", "scrap");
-        parts.greaterThan('updatedAt', startDay);
-        parts.lessThan('updatedAt', endDay);
+        parts.greaterThanOrEqualTo('updatedAt', startDay);
+        parts.lessThanOrEqualTo('updatedAt', endDay);
         return parts.find();
     }
 }

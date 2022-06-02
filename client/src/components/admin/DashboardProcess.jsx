@@ -22,9 +22,6 @@ HighchartsExporting(Highcharts);
 HighchartsExportData(Highcharts);
 HighchartsData(Highcharts);
 
-// import Highcharts from './charts/mermaGraph';
-// import { CardAdmin, SideCards } from './CardsAdmin';
-
 let process = '';
 
 function Dashboard() {
@@ -92,16 +89,14 @@ function Dashboard() {
         setMerma(mermaList.data);
     }
 
-    // const [dateMerma, setDateMerma] = useState([]);
-    // const [startDate, setStartDate] = useState(new Date());
-    // const [endDate, setEndDate] = useState(new Date());
-
     function sumaMerma() {
         for (let i = 0; i < merma.length; i += 1) {
             acum += merma[i].number;
         }
     }
-
+    // const [dateMerma, setDateMerma] = useState([]);
+    // const [startDate, setStartDate] = useState(new Date());
+    // const [endDate, setEndDate] = useState(new Date());
     /**
      * getMerma
      * @description Get scrap from a process
