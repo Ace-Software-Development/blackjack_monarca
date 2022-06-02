@@ -20,6 +20,16 @@ import Incidente from './components/worker/Incident';
 import ConfirmPart from './components/worker/ConfirmPart';
 import User from './components/admin/User';
 import Worker from './components/admin/Worker';
+import Classify from './components/worker/Classify';
+import ProductInventory from './components/worker/productInventory';
+import CategoryInventory from './components/worker/CategoryInventory';
+import ModelInventory from './components/worker/ModelInventory';
+import RegisterPack from './components/worker/RegisterPack';
+import Orders from './components/worker/Orders';
+import Order from './components/worker/Order';
+import ModifyPackStatus from './components/worker/ModifyPackStatus';
+import DashboardProcess from './components/admin/DashboardProcess';
+import OrderAdmin from './components/admin/OrderAdmin';
 
 function App() {
     return (
@@ -28,9 +38,19 @@ function App() {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/inicio" element={<Inicio />} />
                 <Route exact path="/empacado" element={<Empacado />} />
+                <Route exact path="/empacado/pedidos" element={<Orders />} />
+                <Route exact path="/empacado/pedidos/:orderId" element={<Order />} />
                 <Route exact path="/conteo" element={<Conteo />} />
                 <Route exact path="/conteo/modificar/:id/:name" element={<ModifyQuantity />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
+                <Route exact path="/dashboard/:process" element={<DashboardProcess />} />
+                <Route exact path="/dashboard/pedidos/:orderId" element={<OrderAdmin />} />
+                <Route exact path="/proceso/:process" element={<Process />} />
+                <Route excat path="/parte" element={<NamePart />} />
+                <Route excat path="/categoria" element={<Category />} />
+                <Route exact path="/modelo" element={<ModelNumber />} />
+                <Route exact path="/cantidad" element={<Quantity />} />
+                <Route exact path="/" element={<Login />} />
                 <Route exact path="/proceso/:prevProcess/:process/:nextProcess" element={<Process />} />
                 <Route exact path="/confirmar/:process/:prevProcess" element={<Confirm />} />
                 <Route exact path="/confirmar/:idPartInventory" element={<ConfirmPart />} />
@@ -41,6 +61,13 @@ function App() {
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
                 <Route exact path="/usuarios" element={<User />} />
                 <Route exact path="/trabajadores" element={<Worker />} />
+                <Route exact path="/rechazado/:id" element={<Classify />} />
+                <Route exact path="/empacado/inventario" element={<ProductInventory />} />
+                <Route exact path="/empacado/registrar/" element={<CategoryInventory />} />
+                <Route exact path="/empacado/registrar/:category" element={<ModelInventory />} />
+                <Route exact path="/empacado/registrar/:category/:model" element={<RegisterPack />} />
+                <Route exact path="/empacado/modificar/:model" element={<ModifyPackStatus />} />
+
             </Routes>
         </BrowserRouter>
     );

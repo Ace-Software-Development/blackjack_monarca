@@ -6,9 +6,17 @@ const roles = require('./routes/role');
 const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
 const entradaDiscos = require('./routes/visualizarEntradaDiscos');
+const iniciarSesion = require('./routes/iniciarSesion');
+
 const confirmar = require('./routes/confirmar');
+<<<<<<< HEAD
 const usuario = require('./routes/usuario');
 const trabajador = require('./routes/trabajador');
+=======
+const producto = require('./routes/producto');
+const productOrder = require('./routes/productOrder');
+const dashboard = require('./routes/dashboard');
+>>>>>>> develop
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -62,8 +70,12 @@ app.use('/role', roles);
 app.use('/entrega', entrega);
 app.use('/discos', discos);
 app.use('/entradaDiscos', entradaDiscos);
+app.use('/login', iniciarSesion);
 app.use('/confirmar', confirmar);
 app.use('/usuario', usuario);
 app.use('/trabajador', trabajador);
+app.use('/producto', producto);
+app.use('/productOrder', productOrder);
+app.use('/empacado', dashboard)
 
 app.listen(8888);

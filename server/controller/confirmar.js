@@ -1,6 +1,6 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { getAllRegisters, getOneRegister, postRegister, getAllIncidentRegisters } = require('../db_abs/partInventory');
+const { getAllRegisters, getOneRegister, postRegister, getAllIncidentRegisters, getIncidentRegisters } = require('../db_abs/partInventory');
 
 /**
    * getConfirmarController
@@ -20,6 +20,12 @@ exports.getConfirmarController = async function (request, response) {
    */
 exports.getConfirmarIncidenteController = async function (request, response) {
    const registers = await getAllIncidentRegisters(true, 'pending');
+   response.status(200).send({ status: "success", data: registers });
+}
+
+exports.getConfirmarIncidenteProductController = async function (request, response) {
+   const id = request.params.id_register;
+   const registers = await getIncidentRegisters(true, 'pending', id);
    response.status(200).send({ status: "success", data: registers });
 }
 
