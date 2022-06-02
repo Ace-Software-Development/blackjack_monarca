@@ -4,7 +4,11 @@ import { useParams } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 import Sidebar from './Sidebar';
+
+// import Highcharts from './charts/mermaGraph';
 // import { CardAdmin, SideCards } from './CardsAdmin';
 
 let process = '';
@@ -87,6 +91,52 @@ function Dashboard() {
 
     sumaMerma();
 
+    const options = {
+        title: {
+            text: 'My chart',
+        },
+        xAxis: {
+            categories: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+        },
+        series: [
+            {
+                type: 'column',
+                name: 'Merma',
+                id: 'Merma',
+                data: [
+                    [
+                        'Lunes',
+                        67,
+                    ],
+                    [
+                        'Martes',
+                        23,
+                    ],
+                    [
+                        'Miércoles',
+                        59,
+                    ],
+                    [
+                        'Jueves',
+                        13,
+                    ],
+                    [
+                        'Viernes',
+                        91,
+                    ],
+                    [
+                        'Sabado',
+                        48,
+                    ],
+                    [
+                        'Domingo',
+                        15,
+                    ],
+                ],
+            },
+        ],
+    };
+
     return (
         <div className="container-fluid">
             <Sidebar />
@@ -99,7 +149,10 @@ function Dashboard() {
                 </Row>
                 <Row>
                     <Col xs={9}>
-                        {cardMermaNum()}
+                        <HighchartsReact
+                          highcharts={Highcharts}
+                          options={options}
+                        />
                     </Col>
                     <Col xs={3}>
                         {cardMermaNum()}
