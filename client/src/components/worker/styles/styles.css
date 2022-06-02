@@ -22,11 +22,11 @@ h1 {
 }
 
 .home-card {
-	width: 300px;
-	height: 205px;
+	height: 90%;
 	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
 	border-radius: 21px;
 	margin-top: 30px;
+	margin: 10px;
 }
 
 div>a {
@@ -46,11 +46,11 @@ div>a:visited {
 	font-style: bold;
 }
 
-.home-card>.card-title {
-	font-family: 'Poppins';
+.home-card .card-title {
+	margin-top: 8px;
 	font-style: bold;
-	font-weight: 600;
-	font-size: 100px;
+	font-weight: 400;
+	font-size: 2em;
 	line-height: 143%;
 	/* or 57px */
 
@@ -67,7 +67,7 @@ div>a:visited {
 }
 
 .home-card ion-icon {
-	font-size: 64px;
+	font-size: 80px;
 	color: rgba(245, 143, 61, 1);
 	--ionicon-stroke-width: 25px;
 }

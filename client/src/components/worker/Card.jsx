@@ -5,8 +5,8 @@ function Card(cardIcon, title) {
                 <div>
                     <ion-icon className="card-icon align-middle" name={`${cardIcon}-outline`} />
                 </div>
-                <div>
-                    <p className="card-title align-middle">{title}</p>
+                <div className="card-title align-middle">
+                    {title}
                 </div>
             </div>
         </div>

@@ -1,20 +1,23 @@
+import { Col, Container, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import PropTypes from 'prop-types';
 
 function Header({ processName }) {
     return (
-        <div>
-            <div className="row header">
-                <div className="col">
-                    <a href="/inicio" className="header-icon">
+        <Container className="d-flex">
+            <Row className="w-100 mt-2">
+                <Col xs={3} s={4} md={4} lg={5} className="d-flex align-items-start flex-column">
+                    <a href="/inicio">
                         <ion-icon name="home-outline" size="large" />
                     </a>
-                </div>
-            </div>
-            <div className="col text-center">
-                <h1>{processName}</h1>
-            </div>
-        </div>
+                </Col>
+                <Col className="justify-content-center">
+                    <div className="justify-content-center">
+                        <h1>{processName}</h1>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 Header.propTypes = {

@@ -2,7 +2,7 @@
 // CU 11 LogOut
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -45,51 +45,53 @@ function Inicio() {
         return ('No tienes permisos');
     }
     return (
-        <div>
-            <div className="logo-monarca col-6">
-                <img src="./logo.svg" alt="logo monarca" />
-            </div>
-            <div className="container position-absolute top-50 start-50 translate-middle">
-                <Row>
-                    <Col xs={12} s={12} md={6} lg={4}>
-                        <a href="/conteo">
-                            {Card('calculator', 'Conteo')}
-                        </a>
-                    </Col>
-                    <Col xs={12} s={12} md={6} lg={4}>
-                        <a href="/proceso/Conteo/Rechazado/Esmerilado">
-                            {Card('hammer', 'Rechazado')}
-                        </a>
-                    </Col>
-                    <Col xs={12} s={12} md={6} lg={4}>
-                        <a href="/proceso/Rechazado/Esmerilado/Pulido">
-                            {Card('brush', 'Esmerilado')}
-                        </a>
-                    </Col>
-                    <Col xs={12} s={12} md={6} lg={4}>
-                        <a href="/proceso/Esmerilado/Pulido/Remachado">
-                            {Card('water', 'Pulido')}
-                        </a>
-                    </Col>
-                    <Col xs={12} s={12} md={6} lg={4}>
-                        <a href="/proceso/Pulido/Remachado/Empaquetado">
-                            {Card('color-fill', 'Remachado')}
-                        </a>
-                    </Col>
-                    <Col xs={12} s={12} md={6} lg={4}>
-                        <a href="/empacado">
-                            {Card('cube', 'Empaquetado')}
-                        </a>
-                    </Col>
-                </Row>
-                <div>
-                    <button className="mt-5 col-2 text-align-right cardName btn text-center text-center card-shadow" type="button" onClick={() => logout()}>
-                        <ion-icon name="exit-outline" size="large" />
-                        <h5>Cerrar sesión</h5>
+        <Container className="h-100 d-flex flex-column">
+            <Row className="mt-2">
+                <Col xs={7} className="d-flex">
+                    <img className="align-self-center" src="./logo.svg" alt="logo monarca" />
+                </Col>
+                <Col xs={5} className="text-end">
+                    <button className="text-align-right btn text-right align-items-end" type="button" onClick={() => logout()}>
+                        <div className="d-flex">
+                            <ion-icon Classname="mr-auto p-2" name="exit-outline" size="large" />
+                            <h5 className="ml-auto p-2 mb-0">Cerrar sesión</h5>
+                        </div>
                     </button>
-                </div>
-            </div>
-        </div>
+                </Col>
+            </Row>
+            <Row className="text-center justify-content-center flex-grow-1">
+                <Col xs={12} s={12} md={6} lg={4} className="text-center justify-content-center">
+                    <a href="/conteo">
+                        {Card('calculator', 'Conteo')}
+                    </a>
+                </Col>
+                <Col xs={12} s={12} md={6} lg={4}>
+                    <a href="/proceso/Conteo/Rechazado/Esmerilado">
+                        {Card('hammer', 'Rechazado')}
+                    </a>
+                </Col>
+                <Col xs={12} s={12} md={6} lg={4}>
+                    <a href="/proceso/Rechazado/Esmerilado/Pulido">
+                        {Card('brush', 'Esmerilado')}
+                    </a>
+                </Col>
+                <Col xs={12} s={12} md={6} lg={4}>
+                    <a href="/proceso/Esmerilado/Pulido/Remachado">
+                        {Card('water', 'Pulido')}
+                    </a>
+                </Col>
+                <Col xs={12} s={12} md={6} lg={4}>
+                    <a href="/proceso/Pulido/Remachado/Empaquetado">
+                        {Card('color-fill', 'Remachado')}
+                    </a>
+                </Col>
+                <Col xs={12} s={12} md={6} lg={4}>
+                    <a href="/empacado">
+                        {Card('cube', 'Empaquetado')}
+                    </a>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
