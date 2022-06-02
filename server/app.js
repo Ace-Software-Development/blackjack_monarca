@@ -9,14 +9,11 @@ const entradaDiscos = require('./routes/visualizarEntradaDiscos');
 const iniciarSesion = require('./routes/iniciarSesion');
 
 const confirmar = require('./routes/confirmar');
-<<<<<<< HEAD
 const usuario = require('./routes/usuario');
 const trabajador = require('./routes/trabajador');
-=======
 const producto = require('./routes/producto');
 const productOrder = require('./routes/productOrder');
 const dashboard = require('./routes/dashboard');
->>>>>>> develop
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
