@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 import Header from './Header';
+import Environment from '../Environment';
 
 let selectedRegister = '';
 const process = 'Rechazado';
@@ -66,7 +67,7 @@ function Incidente() {
      * @description Fetches existing parts from the database through the server
      */
     async function getParts() {
-        const response = await fetch('http://localhost:8888/confirmar/incident/get');
+        const response = await fetch(`${Environment()}/confirmar/incident/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -98,7 +99,7 @@ function Incidente() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

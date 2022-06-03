@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import { Col, Container, Row } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import Header from './Header';
+import Environment from '../Environment';
 
 let selectedRegister = '';
 let process = '';
@@ -62,7 +63,7 @@ function Confirm() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -89,7 +90,7 @@ function Confirm() {
      * @description Fetches existing parts from the database through the server
      */
     async function getParts() {
-        const response = await fetch(`http://localhost:8888/confirmar/get/${process}`);
+        const response = await fetch(`${Environment()}/confirmar/get/${process}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -99,6 +100,7 @@ function Confirm() {
         const part = await response.json();
         setParts(part.data);
     }
+
     useEffect(() => {
         getParts();
     }, []);

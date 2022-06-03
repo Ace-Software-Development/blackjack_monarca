@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
 import Header from './Header';
+import Environment from '../Environment';
 
 let idPartInventory = '';
 
@@ -18,7 +19,7 @@ function ConfirmPart() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -54,7 +55,7 @@ function ConfirmPart() {
      * @description Fetches existing registers from the database through the server
      */
     async function getRegister() {
-        const response = await fetch(`http://localhost:8888/confirmar/getOne/${idPartInventory}`);
+        const response = await fetch(`${Environment()}/confirmar/getOne/${idPartInventory}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -93,7 +94,7 @@ function ConfirmPart() {
 
         const inventory = { ...form };
 
-        await fetch('http://localhost:8888/confirmar/post', {
+        await fetch(`${Environment()}/confirmar/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -9,7 +9,11 @@ import Cookies from 'js-cookie';
 import Header from './Header';
 import ButtonNext from './ButtonNext';
 import './styles/styles.css';
+<<<<<<< HEAD
 import SelectCard from './SelectCard';
+=======
+import Environment from '../Environment';
+>>>>>>> develop
 
 let selectedWorker = '';
 let selectedPart = '';
@@ -76,7 +80,7 @@ function NamePart() {
          * @description Fetches existing parts from the database through the server
          */
     async function getParts() {
-        const response = await fetch('http://localhost:8888/entrega/partes/get');
+        const response = await fetch(`${Environment()}/entrega/partes/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -92,7 +96,7 @@ function NamePart() {
      * @description Fetches existing workers from the database through the server
      */
     async function getWorkers() {
-        const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${process}`);
+        const response = await fetch(`${Environment()}/entrega/trabajadores/get/${process}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -108,6 +112,55 @@ function NamePart() {
         getWorkers();
     }, []);
 
+<<<<<<< HEAD
+=======
+    /**
+   * partsList
+   * @description Maps all parts in the interface
+   * @returns Component with name and id of the parts
+   */
+    function partsList() {
+        return parts.map((part) => (
+            <Parts part={part} key={part.objectId} />
+        ));
+    }
+
+    /**
+   * workerList
+   * @description Maps all workers in the interface
+   * @returns Component with name and id of the worker
+   */
+    function workersList() {
+        return workers.map((worker) => (
+            <Workers worker={worker} key={worker.objectId} />
+        ));
+    }
+
+    const session = Cookies.get('sessionToken');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, []);
+
+    if (!permission) {
+        return ('No tienes permisos');
+    }
+>>>>>>> develop
     return (
         <Container className="container-fluid d-flex flex-column">
             <Row>
