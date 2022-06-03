@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * CreateUser
+   * @description Set of functions to display modal of Create User
    * @returns HTML with fetched data
    */
 function CreateUser() {

@@ -3,8 +3,8 @@ Parse.serverURL = process.env.SERVER_URL;
 const { registerUser, getAllUsers, modifyUser, deleteUser } = require('../db_abs/user');
 
 /**
-   * postIncomingDiskController
-   * @description Post new incoming disk registered
+   * postUserController
+   * @description Post new user
    * @param request: values registered by user
    * @param response: status of the post
    */
@@ -21,8 +21,8 @@ exports.postUserController = async function (request, response) {
 }
 
 /**
-   * getAllDisksController
-   * @description Get all existing disks from table "Disks"
+   * getAllUsersController
+   * @description Get all existing users from table "Users"
    * @param response: status of the get and values of the query
    */
 exports.getAllUsersController = async function (request, response) {
@@ -31,8 +31,8 @@ exports.getAllUsersController = async function (request, response) {
 }
 
 /**
-   * modifyIncomingDiskController
-   * @description Modify incoming disk registered
+   * modifyUserController
+   * @description Modify user registered
    * @param request: values modified by user
    * @param response: status of the post
    */
@@ -48,8 +48,8 @@ exports.modifyUserController = async function (request, response) {
 }
 
 /**
-   * modifyIncomingDiskController
-   * @description Modify incoming disk registered
+   * deleteUserController
+   * @description Delete user registered
    * @param request: values modified by user
    * @param response: status of the post
    */

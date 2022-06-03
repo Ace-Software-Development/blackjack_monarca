@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * CreateWorker
+   * @description Set of functions to display modal of Create Worker
    * @returns HTML with fetched data
    */
 function CreateWorker() {

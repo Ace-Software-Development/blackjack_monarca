@@ -9,9 +9,9 @@ import DeleteWorker from './DeleteWorker';
 import Sidebar from './Sidebar';
 
 /**
- * IncomeDisk
- * @param {disk} show all Income Disk data
- * @description Shows the income disk information on the page
+ * Workers
+ * @param {worker} show all Worker data
+ * @description Shows the worker information on the page
  * @returns HTML with fetched data
  */
 function Workers({ worker }) {
@@ -72,8 +72,8 @@ Workers.propTypes = {
 };
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * Worker
+   * @description Set of functions to display Trabajador
    * @returns HTML with fetched data
    */
 function Worker() {
@@ -100,9 +100,9 @@ function Worker() {
     }, []);
 
     /**
-   * disksList
-   * @description Maps all disks in the interface
-   * @returns Component with name and id of the disk
+   * workersList
+   * @description Maps all workers in the interface
+   * @returns Component with name and id of the worker
    */
     function workersList() {
         return workers.slice(0).reverse().map((worker) => (

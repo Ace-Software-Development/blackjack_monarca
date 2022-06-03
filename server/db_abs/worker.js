@@ -15,6 +15,7 @@ class Worker {
         const workers = new Parse.Query(Constants.Worker);
         workers.select("objectId", "nick_name");
         workers.equalTo("id_process", process);
+        workers.equalTo("delete", false);
         return workers.find();
     }
 
@@ -25,30 +26,34 @@ class Worker {
 */
     static getAllWorkersWOP() {
         const workers = new Parse.Query(Constants.Worker);
+        workers.equalTo("delete", false);
         return workers.find();
     }
 
     /**
-* registerIncomingDisk
-* @description Register new incoming disk
-* @param number: Number of disks registered
-* @param id_disk: Id of the disks registered
-* @returns Parse object with number and id_disk
+* registerWorker
+* @description Register new worker
+* @param name: Name of worjer
+* @param nick_name: nick of worker
+* @param id_process: Id of the disks registered
+* @returns Parse object
 */
     static registerWorker(name, nick_name, id_process) {
         const worker = new Parse.Object(Constants.Worker);
         worker.set('name', name);
         worker.set('nick_name', nick_name);
         worker.set('id_process', id_process);
+        worker.set("delete", false);
 
         return worker;
     }
 
     /**
 * registerIncomingDisk
-* @description Register new incoming disk
-* @param number: Number of disks registered
-* @param id_disk: Id of the disks registered
+* @description Modify worker
+* @param name: Name of worker
+* @param nick_name: nick of worker
+* @param id_process: Id of the disks registered
 * @returns Parse object with number and id_disk
 */
     static modifyWorker(name, nick_name, id_process, id) {
@@ -62,17 +67,15 @@ class Worker {
     }
 
     /**
-* registerIncomingDisk
-* @description Register new incoming disk
-* @param number: Number of disks registered
-* @param id_disk: Id of the disks registered
-* @returns Parse object with number and id_disk
+* deleteWorker
+* @description Delete worker
+* @param id: Id of the worker
+* @returns Parse object
 */
     static deleteWorker(id) {
         const worker = new Parse.Object(Constants.Worker);
         worker.set('objectId', id);
-        worker.destroy();
-
+        worker.set("delete", true);
         return worker;
     }
 

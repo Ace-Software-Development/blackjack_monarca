@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * ModifyCategory
+   * @description Set of functions to display modal of Modify Category
    * @returns HTML with fetched data
    */
-function ModifyWorker(catId, catName) {
+function ModifyCategory(catId, catName) {
     const [form, setForm] = useState({
         objectId: catId,
         name: catName,
@@ -70,4 +70,4 @@ function ModifyWorker(catId, catName) {
     );
 }
 
-export default ModifyWorker;
+export default ModifyCategory;

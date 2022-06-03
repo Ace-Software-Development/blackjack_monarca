@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * DeleteWorker
+   * @description Set of functions to display modal of Delete Worker
    * @returns HTML with fetched data
    */
 function DeleteWorker(workerId, workerName, workerNick) {

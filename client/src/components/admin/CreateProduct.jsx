@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * CreateProduct
+   * @description Set of functions to display modal of Create Product
    * @returns HTML with fetched data
    */
-function ModifyProduct() {
+function CreateProduct() {
     const [form, setForm] = useState({
         category: '',
         model: '',
@@ -122,4 +122,4 @@ function ModifyProduct() {
     );
 }
 
-export default ModifyProduct;
+export default CreateProduct;

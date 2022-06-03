@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * ModifyProduct
+   * @description Set of functions to display modal of Modify Product
    * @returns HTML with fetched data
    */
 function ModifyProduct(productId, categoryId, modelNumber, aluminiumModel, keyProduct) {

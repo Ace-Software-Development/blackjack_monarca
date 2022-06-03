@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * ModifyUser
+   * @description Set of functions to display modal of Modify User
    * @returns HTML with fetched data
    */
 function ModifyUser(userId, userName, userRol) {

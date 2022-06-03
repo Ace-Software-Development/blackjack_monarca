@@ -44,14 +44,18 @@ class Product {
     static getAllProducts() {
         const products = new Parse.Query("Product");
         products.include("id_category");
-        products.ascending("id_category")
+        products.equalTo('delete', false);
+        products.ascending("id_category");
         return products.find();
     }
 
     /**
        * modifyProductInventory
        * @description Query to modify the state and quantity of a product
-       * @returns Parse object with the new data of the product
+       * @param with_lid: number with lid
+       * @param withOut_lid: number with Out lid
+       * @param id: id of product
+       * @returns Parse object
        */
     static modifyProductInventory(with_lid, withOut_lid, id) {
         let product = new Parse.Object('Product');
@@ -62,9 +66,9 @@ class Product {
     }
 
     /**
-   * modifyProductInventory
-   * @description Query to modify the state and quantity of a product
-   * @returns Parse object with the new data of the product
+   * postProduct
+   * @description Query to create a new product
+   * @returns Parse object
    */
     static postProduct(category, model, aluminium, key) {
         var Category = Parse.Object.extend("Category");
@@ -77,20 +81,24 @@ class Product {
         product.set('model', model);
         product.set('aluminium', aluminium);
         product.set('key', key);
+        product.set('delete', false);
 
         return product;
     }
 
     /**
-   * modifyProductInventory
+   * modifyProduct
    * @description Query to modify the state and quantity of a product
+    * @param model: model
+    * @param aluminium: aluminium of product
+    * @param key: key of product
+    * @param id: id of product
    * @returns Parse object with the new data of the product
    */
     static modifyProduct(id, category, model, aluminium, key) {
         var Category = Parse.Object.extend("Category");
         var pointerToCategory = new Category();
         pointerToCategory.id = category;
-        console.log("categoria", category);
 
         let product = new Parse.Object('Product');
         product.set('objectId', id);
@@ -103,17 +111,15 @@ class Product {
     }
 
     /**
-* registerIncomingDisk
-* @description Register new incoming disk
-* @param number: Number of disks registered
-* @param id_disk: Id of the disks registered
-* @returns Parse object with number and id_disk
+* deleteProduct
+* @description Delete product
+* @param id: id of product
+* @returns Parse object
 */
     static deleteProduct(id) {
         const product = new Parse.Object("Product");
         product.set('objectId', id);
-        product.destroy();
-
+        product.set("delete", true);
         return product;
     }
 

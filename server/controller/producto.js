@@ -54,8 +54,8 @@ exports.modifyProductInventoryController = async function (request, response) {
    }
 }
 /**
-   * modifyProductInventoryController
-   * @description Modify quantity packaged products from table "Products"
+   * postProductController
+   * @description Creatre new product
    * @param response: status of the get and values of the query
    */
 exports.postProductController = async function (request, response) {
@@ -86,8 +86,8 @@ exports.modifyProductController = async function (request, response) {
 }
 
 /**
-   * modifyProductController
-   * @description Modify quantity packaged products from table "Products"
+   * deleteProductController
+   * @description Delete product
    * @param response: status of the get and values of the query
    */
 exports.deleteProductController = async function (request, response) {
@@ -102,7 +102,7 @@ exports.deleteProductController = async function (request, response) {
 }
 
 /**
-   * getProductById
+   * getProductByIdController
    * @description Gets the product by the id
    * @param response: status of the get and values of the query
    */

@@ -3,8 +3,8 @@ Parse.serverURL = process.env.SERVER_URL;
 const { registerWorker, getAllWorkersWOP, modifyWorker, deleteWorker } = require('../db_abs/worker');
 
 /**
-   * postIncomingDiskController
-   * @description Post new incoming disk registered
+   * postWorkerController
+   * @description Post new worker registered
    * @param request: values registered by user
    * @param response: status of the post
    */
@@ -21,8 +21,8 @@ exports.postWorkerController = async function (request, response) {
 }
 
 /**
-   * getAllDisksController
-   * @description Get all existing disks from table "Disks"
+   * getAllWorkersWOPController
+   * @description Get all existing workers from table "Workers"
    * @param response: status of the get and values of the query
    */
 exports.getAllWorkersWOPController = async function (request, response) {
@@ -31,8 +31,8 @@ exports.getAllWorkersWOPController = async function (request, response) {
 }
 
 /**
-   * modifyIncomingDiskController
-   * @description Modify incoming disk registered
+   * modifyWorkerController
+   * @description Modify incoming worker registered
    * @param request: values modified by user
    * @param response: status of the post
    */
@@ -47,6 +47,12 @@ exports.modifyWorkerController = async function (request, response) {
     response.status(200).send({ status: "success" });
 }
 
+/**
+   * deleteWorkerController
+   * @description Delete worker registered
+   * @param request: values modified by user
+   * @param response: status of the post
+   */
 exports.deleteWorkerController = async function (request, response) {
     try {
         const worker = deleteWorker(request.body.objectId);

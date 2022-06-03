@@ -4,25 +4,25 @@ class Category {
         /*TODO make all the field*/
     }
     /**
-* registerIncomingDisk
-* @description Register new incoming disk
-* @param number: Number of disks registered
-* @param id_disk: Id of the disks registered
-* @returns Parse object with number and id_disk
+* registerCategory
+* @description Register new category
+* @param name: Name of category registered
+* @returns Parse object
 */
     static registerCategory(name) {
         const category = new Parse.Object("Category");
         category.set('name', name);
+        category.set("delete", false);
 
         return category;
     }
 
     /**
-* registerIncomingDisk
-* @description Register new incoming disk
-* @param number: Number of disks registered
-* @param id_disk: Id of the disks registered
-* @returns Parse object with number and id_disk
+* modifyCategory
+* @description Modify category
+* @param name: name of category
+* @param id: Id of category
+* @returns Parse object
 */
     static modifyCategory(name, id) {
         console.log("cos que no sirve");
@@ -34,16 +34,15 @@ class Category {
     }
 
     /**
-* registerIncomingDisk
-* @description Register new incoming disk
-* @param number: Number of disks registered
-* @param id_disk: Id of the disks registered
-* @returns Parse object with number and id_disk
+* deleteCategory
+* @description Delete a category
+* @param id: id of category
+* @returns Parse object
 */
     static deleteCategory(id) {
         const category = new Parse.Object("Category");
         category.set('objectId', id);
-        category.destroy();
+        category.set("delete", true);
 
         return category;
     }

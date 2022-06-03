@@ -3,8 +3,8 @@ Parse.serverURL = process.env.SERVER_URL;
 const { registerCategory, modifyCategory, deleteCategory } = require('../db_abs/category');
 
 /**
-   * postIncomingDiskController
-   * @description Post new incoming disk registered
+   * postCategoryController
+   * @description Post new category
    * @param request: values registered by user
    * @param response: status of the post
    */
@@ -21,8 +21,8 @@ exports.postCategoryController = async function (request, response) {
 }
 
 /**
-   * modifyIncomingDiskController
-   * @description Modify incoming disk registered
+   * modifyCategoryController
+   * @description Modify category registered
    * @param request: values modified by user
    * @param response: status of the post
    */
@@ -37,6 +37,12 @@ exports.modifyCategoryController = async function (request, response) {
     response.status(200).send({ status: "success" });
 }
 
+/**
+   * deleteCategoryController
+   * @description Delte category registered
+   * @param request: values object id
+   * @param response: status of the post
+   */
 exports.deleteCategoryController = async function (request, response) {
     try {
         const category = deleteCategory(request.body.objectId);

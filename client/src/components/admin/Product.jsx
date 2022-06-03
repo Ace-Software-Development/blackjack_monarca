@@ -9,9 +9,9 @@ import DeleteProduct from './DeleteProduct';
 import Sidebar from './Sidebar';
 
 /**
- * IncomeDisk
- * @param {disk} show all Income Disk data
- * @description Shows the income disk information on the page
+ * Products
+ * @param {product} show all Product data
+ * @description Shows the product information on the page
  * @returns HTML with fetched data
  */
 function Products({ product }) {
@@ -87,8 +87,8 @@ Products.propTypes = {
 };
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * Product
+   * @description Set of functions to display Product
    * @returns HTML with fetched data
    */
 function Product() {

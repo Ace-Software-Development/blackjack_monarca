@@ -7,8 +7,12 @@ import CreateUser from './CreateUser';
 import ModifyUser from './ModifyUser';
 import Sidebar from './Sidebar';
 
-//  import DeleteUser from './DeleteUser';
-
+/**
+   * isAdmin
+   * @description Function to display the rol
+   * @param role the user rol
+   * @returns HTML with fetched data
+   */
 function isAdmin(role) {
     if (role) {
         return (
@@ -19,6 +23,13 @@ function isAdmin(role) {
         <div>Trabajador</div>
     );
 }
+
+/**
+   * getRole
+   * @description Function to obtaint the role
+   * @param role the user rol
+   * @returns HTML with fetched data
+   */
 
 function getRole(role) {
     if (role) {
@@ -32,20 +43,15 @@ function getRole(role) {
 }
 
 /**
- * IncomeDisk
- * @param {disk} show all Income Disk data
- * @description Shows the income disk information on the page
+ * Users
+ * @param {user} show all Users data
+ * @description Shows the user information on the page
  * @returns HTML with fetched data
  */
 function Users({ user }) {
-    // const href = `/usuario/modificar/${user.objectId}`;
     const [show, setShow] = useState(false);
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
-
-    // const [showD, setShowD] = useState(false);
-    // const handleCloseDMod = () => setShowD(false);
-    // const handleShowDMod = () => setShowD(true);
 
     return (
         <>
@@ -63,11 +69,6 @@ function Users({ user }) {
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
-                {/* <th>
-                    <button type="button" onClick={handleShowDMod}>
-                        <ion-icon size="large" name="trash-outline" />
-                    </button>
-                </th> */}
             </tr>
 
             <Modal show={show} onHide={handleCloseMod}>
@@ -76,13 +77,6 @@ function Users({ user }) {
                 </Modal.Header>
                 {ModifyUser(user.objectId, user.username, getRole(user.is_admin))}
             </Modal>
-
-            {/* <Modal show={showD} onHide={handleCloseDMod}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Eliminar</Modal.Title>
-                </Modal.Header>
-                {DeleteUser(user.objectId, user.username)}
-            </Modal> */}
         </>
 
     );
@@ -92,8 +86,8 @@ Users.propTypes = {
 };
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * User
+   * @description Set of functions to display Usuarios
    * @returns HTML with fetched data
    */
 function User() {
@@ -120,9 +114,9 @@ function User() {
     }, []);
 
     /**
-   * disksList
-   * @description Maps all disks in the interface
-   * @returns Component with name and id of the disk
+   * usersList
+   * @description Maps all users in the interface
+   * @returns Component with name and id of the user
    */
     function usersList() {
         return users.slice(0).reverse().map((user) => (

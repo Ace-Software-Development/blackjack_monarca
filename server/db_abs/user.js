@@ -4,11 +4,13 @@ const Constants = require('../constants');
 class User {
 
     /**
-   * registerIncomingDisk
+   * registerUser
    * @description Register new incoming disk
-   * @param number: Number of disks registered
-   * @param id_disk: Id of the disks registered
-   * @returns Parse object with number and id_disk
+   * @param username: username of new user
+   * @param email: email of of new user
+   * @param password: pass of new user
+   * @param is_admin: rol of new user
+   * @returns Parse 
    */
     static registerUser(username, email, password, is_admin) {
         const user = new Parse.Object('_User');
@@ -29,9 +31,9 @@ class User {
 
 
     /**
-   * getAllDisks
-   * @description Query to get all existing Income disks
-   * @returns Parse object with name, number and the Update date of the disks in table "IncomeDisks"
+   * getAllUsers
+   * @description Query to get all existing users
+   * @returns Parse object
    */
     static getAllUsers() {
         const users = new Parse.Query('_User');
@@ -39,9 +41,12 @@ class User {
     }
 
     /**
-   * modifyIncomingDisk
-   * @description Query to get all existing Income disks
-   * @returns Parse object with name, number and the Update date of the disks in table "IncomeDisks"
+   * registerUser
+   * @description Register new incoming disk
+   * @param username: username of user
+   * @param id: id of user
+   * @param is_admin: rol of user
+   * @returns Parse 
    */
     static modifyUser(username, is_admin, id) {
         const user = new Parse.Object('_User');
@@ -59,11 +64,10 @@ class User {
     }
 
     /**
-* registerIncomingDisk
-* @description Register new incoming disk
-* @param number: Number of disks registered
-* @param id_disk: Id of the disks registered
-* @returns Parse object with number and id_disk
+* deleteUser
+* @description Delete user
+* @param id: id of user
+* @returns Parse object
 */
     static deleteUser(id) {
         const user = new Parse.Object("_User");

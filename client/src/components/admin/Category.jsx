@@ -9,9 +9,10 @@ import DeleteCategory from './DeleteCategory';
 import Sidebar from './Sidebar';
 
 /**
- * IncomeDisk
- * @param {disk} show all Income Disk data
- * @description Shows the income disk information on the page
+ * Categories
+ * @param {category} all categories
+ * @description Shows the categories information on the page and buttons for
+ * modals to create, modify and delete
  * @returns HTML with fetched data
  */
 function Categories({ category }) {
@@ -64,8 +65,8 @@ Categories.propTypes = {
 };
 
 /**
-   * Conteo
-   * @description Set of functions to display Conteo
+   * Category
+   * @description Set of functions to display Categorias
    * @returns HTML with fetched data
    */
 function Category() {
@@ -92,9 +93,9 @@ function Category() {
     }, []);
 
     /**
-   * disksList
-   * @description Maps all disks in the interface
-   * @returns Component with name and id of the disk
+   * categoriesList
+   * @description Maps all categories in the interface
+   * @returns Component with name and id of the category
    */
     function categoriesList() {
         return categories.slice(0).reverse().map((category) => (
