@@ -20,6 +20,7 @@ import Incidente from './components/worker/Incident';
 import ConfirmPart from './components/worker/ConfirmPart';
 import User from './components/admin/User';
 import Worker from './components/admin/Worker';
+import Buyer from './components/admin/Buyer';
 import Classify from './components/worker/Classify';
 import ProductInventory from './components/worker/productInventory';
 import CategoryInventory from './components/worker/CategoryInventory';
@@ -65,6 +66,7 @@ function App() {
                 <Route exact path="/trabajadores" element={<Worker />} />
                 <Route exact path="/productos" element={<Product />} />
                 <Route exact path="/categorias" element={<Category />} />
+                <Route exact path="/compradores" element={<Buyer />} />
                 <Route exact path="/rechazado/:id" element={<Classify />} />
                 <Route exact path="/empacado/inventario" element={<ProductInventory />} />
                 <Route exact path="/empacado/registrar/" element={<CategoryInventory />} />
