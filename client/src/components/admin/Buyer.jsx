@@ -3,9 +3,9 @@ import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import CreateWorker from './CreateWorker';
-import ModifyWorker from './ModifyWorker';
-import DeleteWorker from './DeleteWorker';
+import CreateBuyer from './CreateBuyer';
+import ModifyBuyer from './ModifyBuyer';
+import DeleteBuyer from './DeleteBuyer';
 import Sidebar from './Sidebar';
 
 /**
@@ -58,14 +58,14 @@ function Buyers({ buyer }) {
                 <Modal.Header closeButton>
                     <Modal.Title>Modificar</Modal.Title>
                 </Modal.Header>
-                {ModifyWorker(buyer.objectId, buyer.name, buyer.nick_name, buyer.id_process)}
+                {ModifyBuyer(buyer.objectId, buyer.name, buyer.phone, buyer.city, buyer.mail)}
             </Modal>
 
             <Modal show={showD} onHide={handleCloseDMod}>
                 <Modal.Header closeButton>
                     <Modal.Title>Eliminar</Modal.Title>
                 </Modal.Header>
-                {DeleteWorker(buyer.objectId, buyer.name, buyer.nick_name)}
+                {DeleteBuyer(buyer.objectId, buyer.name)}
             </Modal>
         </>
 
@@ -125,7 +125,7 @@ function Buyer() {
                                 <div>
                                     <div className="row justify-content-between">
                                         <div className="col-3">
-                                            Trabajadores
+                                            Compradores
                                         </div>
                                         <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
                                             Agregar
@@ -157,7 +157,7 @@ function Buyer() {
                 <Modal.Header closeButton>
                     <Modal.Title>Crear trabajador</Modal.Title>
                 </Modal.Header>
-                <CreateWorker />
+                <CreateBuyer />
             </Modal>
         </div>
     );
