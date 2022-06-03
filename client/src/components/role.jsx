@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
+import Environment from './Environment';
 
 function ListElement(props) {
     const { record } = props;
@@ -21,7 +22,7 @@ export default function Roles() {
     // Fetches roles from database
     useEffect(() => {
         async function getRoles() {
-            const response = await fetch('http://localhost:8888/role');
+            const response = await fetch(`${Environment()}/role`);
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
                 window.alert(message);

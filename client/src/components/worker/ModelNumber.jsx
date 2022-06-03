@@ -8,6 +8,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import ButtonNext from './ButtonNext';
 import Header from './Header';
+import Environment from '../Environment';
 
 let selectedModel = '';
 let selectedCategory = '';
@@ -123,7 +124,7 @@ function ModelNumber() {
          * @description Fetches existing workers from the database through the server
          */
     async function getWorkers() {
-        const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${process}`);
+        const response = await fetch(`${Environment()}/entrega/trabajadores/get/${process}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -139,7 +140,7 @@ function ModelNumber() {
      * @description Fetches existing categories from the database through the server
      */
     async function getCategories() {
-        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        const response = await fetch(`${Environment()}/entrega/categorias/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -155,7 +156,7 @@ function ModelNumber() {
      * @description Fetches category from the database through the server
      */
     async function getCategory() {
-        const response = await fetch(`http://localhost:8888/entrega/categoria/get/${selectedCategory}`);
+        const response = await fetch(`${Environment()}/entrega/categoria/get/${selectedCategory}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -171,7 +172,7 @@ function ModelNumber() {
      * @description Fetches category from the database through the server
      */
     async function getWorker() {
-        const response = await fetch(`http://localhost:8888/entrega/trabajador/get/${selectedWorker}`);
+        const response = await fetch(`${Environment()}/entrega/trabajador/get/${selectedWorker}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -187,7 +188,7 @@ function ModelNumber() {
      * @description Fetches existing products from the database through the server
      */
     async function getModels() {
-        const response = await fetch(`http://localhost:8888/entrega/modelos/get/${selectedCategory}`);
+        const response = await fetch(`${Environment()}/entrega/modelos/get/${selectedCategory}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -249,7 +250,7 @@ function ModelNumber() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

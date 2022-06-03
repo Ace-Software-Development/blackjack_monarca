@@ -4,25 +4,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
-import React, { useEffect, useState, Alert } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import Header from './Header';
-
-/**
- * internetConnection
- * @description checks if the website have internet
- */
-function internetConnection() {
-    window.ononline = () => {
-        console.log('Conectado a internet');
-    };
-    window.onoffline = () => {
-        window.customAlert('No tienes conexión a internet');
-            <Alert severity="warning">No tienes conexión a internet</Alert>;
-    };
-}
+import Environment from '../Environment';
 
 /**
    * Disks
@@ -85,7 +72,7 @@ function Conteo() {
     const [incomeDisks, setIncomeDisks] = useState([]);
 
     async function getAllIncomeDisks() {
-        const response = await fetch('http://localhost:8888/entradaDiscos/get');
+        const response = await fetch(`${Environment()}/entradaDiscos/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -101,7 +88,7 @@ function Conteo() {
      * @description Fetches existing disks from the database through the server
      */
     async function getDisks() {
-        const response = await fetch('http://localhost:8888/discos/get');
+        const response = await fetch(`${Environment()}/discos/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -115,7 +102,6 @@ function Conteo() {
     useEffect(() => {
         getDisks();
         getAllIncomeDisks();
-        internetConnection();
     });
 
     const navigate = useNavigate();
@@ -145,7 +131,7 @@ function Conteo() {
 
         const newDisk = { ...form };
 
-        await fetch('http://localhost:8888/discos/post', {
+        await fetch(`${Environment()}/discos/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -197,7 +183,7 @@ function Conteo() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

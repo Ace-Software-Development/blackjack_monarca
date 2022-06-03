@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import Card from './Card';
 import Header from './worker/Header';
 import 'bootstrap/dist/css/bootstrap.css';
+import Environment from './Environment';
 
 function Empacado() {
     const session = Cookies.get('sessionToken');
@@ -12,7 +13,7 @@ function Empacado() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -38,17 +39,17 @@ function Empacado() {
                 <div className="row">
                     <div id="Conteo" className="col">
                         <a href="/empacado/pedidos">
-                            {Card('calculator', 'Pedidos')}
+                            {Card('notifications', 'Pedidos')}
                         </a>
                     </div>
                     <div id="Conteo" className="col">
                         <a href="/empacado/confirmar">
-                            {Card('calculator', 'Confirmar')}
+                            {Card('checkbox', 'Confirmar')}
                         </a>
                     </div>
                     <div id="Conteo" className="col">
                         <a href="/empacado/inventario">
-                            {Card('calculator', 'Inventario')}
+                            {Card('bar-chart', 'Inventario')}
                         </a>
                     </div>
                 </div>

@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 import Header from './Header';
 import ButtonNext from './ButtonNext';
 import './styles/styles.css';
+import Environment from '../Environment';
 
 let selectedWorker = '';
 let selectedPart = '';
@@ -102,7 +103,7 @@ function NamePart() {
          * @description Fetches existing parts from the database through the server
          */
     async function getParts() {
-        const response = await fetch('http://localhost:8888/entrega/partes/get');
+        const response = await fetch(`${Environment()}/entrega/partes/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -118,7 +119,7 @@ function NamePart() {
      * @description Fetches existing workers from the database through the server
      */
     async function getWorkers() {
-        const response = await fetch(`http://localhost:8888/entrega/trabajadores/get/${process}`);
+        const response = await fetch(`${Environment()}/entrega/trabajadores/get/${process}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -163,7 +164,7 @@ function NamePart() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

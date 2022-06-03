@@ -6,6 +6,7 @@ import { Row, Col, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import './styles/styles.css';
+import Environment from '../Environment';
 
 function Classify() {
     const session = Cookies.get('sessionToken');
@@ -15,7 +16,7 @@ function Classify() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -66,7 +67,7 @@ function Classify() {
      */
     async function getProduct() {
         const response = await fetch(
-            `http://localhost:8888/confirmar/incident/${params.id}/get`,
+            `${Environment()}/confirmar/incident/${params.id}/get`,
         );
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
@@ -97,7 +98,7 @@ function Classify() {
      * @description Fetches existing workers from the database through the server
      */
     async function getWorkers() {
-        const response = await fetch('http://localhost:8888/entrega/trabajadores/get/Rechazado');
+        const response = await fetch(`${Environment()}/entrega/trabajadores/get/Rechazado`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -117,11 +118,11 @@ function Classify() {
 
         if (completed + second + scrap === number) {
             if (worker.workerName === '' || worker.workerId === '') {
-                alert('Debes registrar quien realizo la reparación');
+                window.costumAlert('Debes registrar quien realizo la reparación');
             } else {
                 const newPart = { ...info };
                 console.log(newPart);
-                await fetch('http://localhost:8888/entrega/incidente/post', {
+                await fetch(`${Environment()}/entrega/incidente/post`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -131,7 +132,7 @@ function Classify() {
                 navigate('/rechazado/incidente');
             }
         } else {
-            alert(`Recibiste ${number} ${category}s, debes registrar todas!`);
+            window.costumAlert(`Recibiste ${number} ${category}s, debes registrar todas!`);
         }
     }
 
