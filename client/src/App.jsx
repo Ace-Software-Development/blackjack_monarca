@@ -30,6 +30,8 @@ import Order from './components/worker/Order';
 import ModifyPackStatus from './components/worker/ModifyPackStatus';
 import DashboardProcess from './components/admin/DashboardProcess';
 import OrderAdmin from './components/admin/OrderAdmin';
+import Product from './components/admin/Product';
+import CategoryList from './components/admin/Category';
 
 function App() {
     return (
@@ -47,7 +49,7 @@ function App() {
                 <Route exact path="/dashboard/pedidos/:orderId" element={<OrderAdmin />} />
                 <Route exact path="/proceso/:process" element={<Process />} />
                 <Route excat path="/parte" element={<NamePart />} />
-                <Route excat path="/categoria" element={<Category />} />
+                <Route excat path="/categoria" element={<CategoryList />} />
                 <Route exact path="/modelo" element={<ModelNumber />} />
                 <Route exact path="/cantidad" element={<Quantity />} />
                 <Route exact path="/" element={<Login />} />
@@ -61,6 +63,8 @@ function App() {
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
                 <Route exact path="/usuarios" element={<User />} />
                 <Route exact path="/trabajadores" element={<Worker />} />
+                <Route exact path="/productos" element={<Product />} />
+                <Route exact path="/categorias" element={<Category />} />
                 <Route exact path="/rechazado/:id" element={<Classify />} />
                 <Route exact path="/empacado/inventario" element={<ProductInventory />} />
                 <Route exact path="/empacado/registrar/" element={<CategoryInventory />} />

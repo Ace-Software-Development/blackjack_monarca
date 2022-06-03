@@ -1,6 +1,6 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { getAllProducts, modifyProductInventory, getProductById } = require('../db_abs/product');
+const { getAllProducts, modifyProductInventory, getProductById, modifyProduct, postProduct, deleteProduct } = require('../db_abs/product');
 
 /**
    * postProductInventoryController
@@ -26,6 +26,8 @@ exports.postProductInventoryController = async function (request, response) {
 }
 
 
+
+
 /**
    * getAllProductsController
    * @description Get all existing products from table "Products"
@@ -44,6 +46,53 @@ exports.getAllProductsController = async function (request, response) {
 exports.modifyProductInventoryController = async function (request, response) {
    try {
       const products = modifyProductInventory(request.body.with_lid, request.body.withOut_lid, request.body.objectId);
+      await products.save();
+      response.status(200).send({ status: "success", data: products });
+   } catch (error) {
+      console.error(error.message);
+      return (response.status(500).send({ status: "can't save" }));
+   }
+}
+/**
+   * modifyProductInventoryController
+   * @description Modify quantity packaged products from table "Products"
+   * @param response: status of the get and values of the query
+   */
+exports.postProductController = async function (request, response) {
+   try {
+      const product = postProduct(request.body.category, request.body.model, request.body.aluminium, request.body.keyP);
+      await product.save();
+   } catch (error) {
+      console.error(error.message);
+      return (response.status(500).send({ status: "can't save" }));
+   }
+   response.status(200).send({ status: "success" });
+}
+
+/**
+   * modifyProductController
+   * @description Modify quantity packaged products from table "Products"
+   * @param response: status of the get and values of the query
+   */
+exports.modifyProductController = async function (request, response) {
+   try {
+      const products = modifyProduct(request.body.objectId, request.body.category, request.body.model, request.body.aluminium, request.body.keyP);
+      await products.save();
+      response.status(200).send({ status: "success", data: products });
+   } catch (error) {
+      console.error(error.message);
+      return (response.status(500).send({ status: "can't save" }));
+   }
+}
+
+/**
+   * modifyProductController
+   * @description Modify quantity packaged products from table "Products"
+   * @param response: status of the get and values of the query
+   */
+exports.deleteProductController = async function (request, response) {
+   try {
+      const products = deleteProduct(request.body.objectId);
       await products.save();
       response.status(200).send({ status: "success", data: products });
    } catch (error) {

@@ -14,6 +14,7 @@ const trabajador = require('./routes/trabajador');
 const producto = require('./routes/producto');
 const productOrder = require('./routes/productOrder');
 const dashboard = require('./routes/dashboard');
+const categoria = require('./routes/categoria');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -73,6 +74,8 @@ app.use('/usuario', usuario);
 app.use('/trabajador', trabajador);
 app.use('/producto', producto);
 app.use('/productOrder', productOrder);
-app.use('/empacado', dashboard)
+app.use('/empacado', dashboard);
+app.use('/categoria', categoria);
+
 
 app.listen(8888);

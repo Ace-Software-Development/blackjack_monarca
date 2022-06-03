@@ -3,33 +3,10 @@ import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import CreateUser from './CreateUser';
-import ModifyUser from './ModifyUser';
+import CreateProduct from './CreateProduct';
+import ModifyProduct from './ModifyProduct';
+import DeleteProduct from './DeleteProduct';
 import Sidebar from './Sidebar';
-
-//  import DeleteUser from './DeleteUser';
-
-function isAdmin(role) {
-    if (role) {
-        return (
-            <div>Admin</div>
-        );
-    }
-    return (
-        <div>Trabajador</div>
-    );
-}
-
-function getRole(role) {
-    if (role) {
-        return (
-            'true'
-        );
-    }
-    return (
-        'false'
-    );
-}
 
 /**
  * IncomeDisk
@@ -37,58 +14,76 @@ function getRole(role) {
  * @description Shows the income disk information on the page
  * @returns HTML with fetched data
  */
-function Users({ user }) {
-    // const href = `/usuario/modificar/${user.objectId}`;
+function Products({ product }) {
     const [show, setShow] = useState(false);
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
 
-    // const [showD, setShowD] = useState(false);
-    // const handleCloseDMod = () => setShowD(false);
-    // const handleShowDMod = () => setShowD(true);
+    const [showD, setShowD] = useState(false);
+    const handleCloseDMod = () => setShowD(false);
+    const handleShowDMod = () => setShowD(true);
 
     return (
         <>
             <tr>
                 <th>
-                    <div>{user.username}</div>
-                    <div className="sub-text2">Nombre de usuario</div>
+                    <div>{product.id_category.name}</div>
+                    <div className="sub-text1">Categoría</div>
                 </th>
                 <th>
-                    {isAdmin(user.is_admin)}
-                    <div className="sub-text1">Rol</div>
+                    <div>{product.model}</div>
+                    <div className="sub-text1">Modelo</div>
+                </th>
+                <th>
+                    <div>{product.aluminium}</div>
+                    <div className="sub-text1">Aluminio</div>
+                </th>
+                <th>
+                    <div>{product.key}</div>
+                    <div className="sub-text1">key</div>
                 </th>
                 <th>
                     <button type="button" onClick={handleShowMod}>
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
-                {/* <th>
+                <th>
                     <button type="button" onClick={handleShowDMod}>
                         <ion-icon size="large" name="trash-outline" />
                     </button>
-                </th> */}
+                </th>
             </tr>
 
             <Modal show={show} onHide={handleCloseMod}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modificar</Modal.Title>
                 </Modal.Header>
-                {ModifyUser(user.objectId, user.username, getRole(user.is_admin))}
+                {ModifyProduct(
+                    product.objectId,
+                    product.id_category.objectId,
+                    product.model,
+                    product.aluminium,
+                    product.key,
+                )}
             </Modal>
 
-            {/* <Modal show={showD} onHide={handleCloseDMod}>
+            <Modal show={showD} onHide={handleCloseDMod}>
                 <Modal.Header closeButton>
                     <Modal.Title>Eliminar</Modal.Title>
                 </Modal.Header>
-                {DeleteUser(user.objectId, user.username)}
-            </Modal> */}
+                {DeleteProduct(
+                    product.objectId,
+                    product.id_category.name,
+                    product.model,
+                    product.aluminium,
+                )}
+            </Modal>
         </>
 
     );
 }
-Users.propTypes = {
-    user: PropTypes.string.isRequired,
+Products.propTypes = {
+    product: PropTypes.string.isRequired,
 };
 
 /**
@@ -96,67 +91,71 @@ Users.propTypes = {
    * @description Set of functions to display Conteo
    * @returns HTML with fetched data
    */
-function User() {
-    const [users, setUsers] = useState([]);
+function Product() {
     const [show, setShow] = useState(false);
 
     const handleCloseCreate = () => setShow(false);
     const handleShowCreate = () => setShow(true);
 
-    async function getAllUsers() {
-        const response = await fetch('http://localhost:8888/usuario/get');
+    const [products, setProducts] = useState([]);
+
+    async function getAllProducts() {
+        const response = await fetch('http://localhost:8888/producto/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
             return;
         }
 
-        const user = await response.json();
-        setUsers(user.data);
+        const product = await response.json();
+        setProducts(product.data);
     }
 
     useEffect(() => {
-        getAllUsers();
+        getAllProducts();
     }, []);
 
     /**
-   * disksList
-   * @description Maps all disks in the interface
-   * @returns Component with name and id of the disk
+   * productsList
+   * @description Maps all products in the interface
+   * @returns Component with name and id of the product
    */
-    function usersList() {
-        return users.slice(0).reverse().map((user) => (
-            <Users user={user} key={user.username} />
+    function productsList() {
+        return products.slice(0).reverse().map((product) => (
+            <Products product={product} key={product.objectId} />
         ));
     }
 
     return (
         <div className="container-fluid">
             <Sidebar />
-            <div className="content d-flex px-4 pt-3 h-100">
-                <div className="row d-flex justify-content-center">
+            <div>
+                <div className="content d-flex px-4 pt-3 h-100">
                     <div className="col-10 mt-4">
                         <div className="card conteo-card">
                             <div className="card-body">
                                 <div>
                                     <div className="row justify-content-between">
-                                        <div className="col-2">
-                                            Usuarios
+                                        <div className="col-3">
+                                            Productos
                                         </div>
                                         <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
-                                            Agregar usuario
+                                            Agregar
                                         </button>
                                     </div>
                                     <table className="table table-striped" style={{ marginTop: 20 }}>
                                         <thead>
                                             <tr>
-                                                <th>Usuario</th>
-                                                <th>Rol</th>
+                                                <th>Categoría</th>
+                                                <th>Modelo</th>
+                                                <th>Aluminio</th>
+                                                <th>Key</th>
+                                                <th> </th>
                                                 <th> </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {usersList()}
+                                            {productsList()}
                                         </tbody>
                                     </table>
                                 </div>
@@ -168,12 +167,12 @@ function User() {
 
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear usuario</Modal.Title>
+                    <Modal.Title>Crear trabajador</Modal.Title>
                 </Modal.Header>
-                <CreateUser />
+                <CreateProduct />
             </Modal>
         </div>
     );
 }
 
-export default User;
+export default Product;

@@ -62,6 +62,62 @@ class Product {
     }
 
     /**
+   * modifyProductInventory
+   * @description Query to modify the state and quantity of a product
+   * @returns Parse object with the new data of the product
+   */
+    static postProduct(category, model, aluminium, key) {
+        var Category = Parse.Object.extend("Category");
+        var pointerToCategory = new Category();
+        pointerToCategory.id = category;
+        console.log("categoria", category);
+
+        let product = new Parse.Object('Product');
+        product.set('id_category', pointerToCategory);
+        product.set('model', model);
+        product.set('aluminium', aluminium);
+        product.set('key', key);
+
+        return product;
+    }
+
+    /**
+   * modifyProductInventory
+   * @description Query to modify the state and quantity of a product
+   * @returns Parse object with the new data of the product
+   */
+    static modifyProduct(id, category, model, aluminium, key) {
+        var Category = Parse.Object.extend("Category");
+        var pointerToCategory = new Category();
+        pointerToCategory.id = category;
+        console.log("categoria", category);
+
+        let product = new Parse.Object('Product');
+        product.set('objectId', id);
+        product.set('id_category', pointerToCategory);
+        product.set('model', model);
+        product.set('aluminium', aluminium);
+        product.set('key', key);
+
+        return product;
+    }
+
+    /**
+* registerIncomingDisk
+* @description Register new incoming disk
+* @param number: Number of disks registered
+* @param id_disk: Id of the disks registered
+* @returns Parse object with number and id_disk
+*/
+    static deleteProduct(id) {
+        const product = new Parse.Object("Product");
+        product.set('objectId', id);
+        product.destroy();
+
+        return product;
+    }
+
+    /**
     * getProductById
     * @description Query to get the product by the id
     * @param id Id of specific mproduct

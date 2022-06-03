@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import CreateWorker from './CreateWorker';
 import ModifyWorker from './ModifyWorker';
 import DeleteWorker from './DeleteWorker';
+import Sidebar from './Sidebar';
 
 /**
  * IncomeDisk
@@ -110,34 +111,37 @@ function Worker() {
     }
 
     return (
-        <div>
-            <div className="row d-flex justify-content-center">
-                <div className="col-10 mt-4">
-                    <div className="card conteo-card">
-                        <div className="card-body">
-                            <div>
-                                <div className="row justify-content-between">
-                                    <div className="col-2">
-                                        Trabajadores
+        <div className="container-fluid">
+            <Sidebar />
+            <div>
+                <div className="content d-flex px-4 pt-3 h-100">
+                    <div className="col-10 mt-4">
+                        <div className="card conteo-card">
+                            <div className="card-body">
+                                <div>
+                                    <div className="row justify-content-between">
+                                        <div className="col-3">
+                                            Trabajadores
+                                        </div>
+                                        <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
+                                            Agregar
+                                        </button>
                                     </div>
-                                    <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
-                                        Agregar
-                                    </button>
+                                    <table className="table table-striped" style={{ marginTop: 20 }}>
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Apodo</th>
+                                                <th>Proceso</th>
+                                                <th> </th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {workersList()}
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <table className="table table-striped" style={{ marginTop: 20 }}>
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apodo</th>
-                                            <th>Proceso</th>
-                                            <th> </th>
-                                            <th> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {workersList()}
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
