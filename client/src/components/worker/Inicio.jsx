@@ -2,7 +2,7 @@
 // CU 11 LogOut
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.css';
 import Environment from '../Environment';
