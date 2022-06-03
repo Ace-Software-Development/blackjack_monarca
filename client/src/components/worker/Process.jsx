@@ -1,8 +1,11 @@
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import Card from './Card';
+import Card2 from './Card2';
 import Header from './Header';
+import Environment from '../Environment';
 
 /**
    * Process
@@ -16,7 +19,7 @@ function Process() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -40,48 +43,48 @@ function Process() {
     const hrefIncident = '/rechazado/incidente';
     if (process === 'Rechazado') {
         return (
-            <div>
+            <Container className="h-100 d-flex flex-column">
                 <Header processName={process} />
-                <div className="d-flex flex-column align-items-center">
-                    <div className="row mt-5 pt-5">
-                        <div className="col">
+                <Container className="flex-grow-1 d-flex flex-column">
+                    <Row className="flex-grow-1">
+                        <Col md={6}>
+                            <a href={hrefConfirm}>
+                                {Card('mail-unread', 'Recibir')}
+                            </a>
+                        </Col>
+                        <Col md={6}>
+                            <a href={hrefEntrega}>
+                                {Card('send', 'Entregar')}
+                            </a>
+                        </Col>
+                        <Col>
                             <a href={hrefIncident}>
                                 {Card('trash-bin', 'Incidentes')}
                             </a>
-                        </div>
-                        <div className="col">
-                            <a href={hrefConfirm}>
-                                {Card('home', 'Recibir')}
-                            </a>
-                        </div>
-                        <div className="col">
-                            <a href={hrefEntrega}>
-                                {Card('home', 'Entregar')}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
         );
     }
     return (
-        <div>
+        <Container className="h-100 d-flex flex-column">
             <Header processName={process} />
-            <div className="d-flex flex-column align-items-center">
-                <div className="row mt-5 pt-5">
-                    <div className="col">
+            <Container className="flex-grow-1 d-flex flex-column">
+                <Row className="mt-5 mb-5 flex-grow-1">
+                    <Col md={6}>
                         <a href={hrefConfirm}>
-                            {Card('home', 'Recibir')}
+                            {Card2('mail-unread', 'Recibir')}
                         </a>
-                    </div>
-                    <div className="col">
+                    </Col>
+                    <Col md={6}>
                         <a href={hrefEntrega}>
-                            {Card('home', 'Entregar')}
+                            {Card2('send', 'Entregar')}
                         </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </Container>
     );
 }
 

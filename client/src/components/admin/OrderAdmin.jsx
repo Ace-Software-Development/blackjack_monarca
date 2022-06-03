@@ -3,12 +3,37 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
-import '../admin/styles/dashboard.css';
-import './styles/conteo.css';
+import './styles/dashboard.css';
+import '../worker/styles/conteo.css';
+import '../worker/styles/styles.css';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from './Header';
-import Environment from '../Environment';
+import Sidebar from './Sidebar';
+
+/**
+ * Required
+ * @description Consult how many are needed to complete the order
+ * @param req parts required
+ * @param inv parts in inventory
+ */
+function Required(req, inv) {
+    const dif = req - inv;
+    if (dif <= 0) {
+        return (
+            <th>
+                <div className="green-text">0</div>
+                <div className="sub-text1">piezas</div>
+            </th>
+        );
+    }
+    return (
+        <th>
+            <div className="red-text">{dif}</div>
+            <div className="sub-text1">piezas</div>
+        </th>
+    );
+}
+
 /**
  * Products
  * @param product: product to be desplayed
@@ -26,6 +51,11 @@ function Products({ product }) {
                 <div>{product.number}</div>
                 <div className="sub-text1">piezas</div>
             </th>
+            <th>
+                <div>{`${product.id_product.with_lid}`}</div>
+                <div className="sub-text1">piezas</div>
+            </th>
+            {Required(product.number, product.id_product.with_lid)}
         </tr>
     );
 }
@@ -38,7 +68,7 @@ Products.propTypes = {
    * @description Set of functions to display Order
    * @returns HTML with fetched data
    */
-function Order() {
+function OrderAdmin() {
     const [products, setProducts] = useState([]);
     const { orderId } = useParams();
     const [order, setOrder] = useState('');
@@ -46,7 +76,7 @@ function Order() {
     const [buyerCity, setBuyerCity] = useState('');
 
     async function getAllProducts() {
-        const response = await fetch(`${Environment()}/productOrder/get/${orderId}`);
+        const response = await fetch(`http://localhost:8888/productOrder/get/${orderId}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -63,7 +93,7 @@ function Order() {
    * @returns Component with name and id of the order
    */
     async function getOrder() {
-        const response = await fetch(`${Environment()}/empacado/ordenes/getOne/${orderId}`);
+        const response = await fetch(`http://localhost:8888/empacado/ordenes/getOne/${orderId}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -94,7 +124,7 @@ function Order() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
+        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -114,28 +144,33 @@ function Order() {
         return ('No tienes permisos');
     }
     return (
-        <div>
-            <Header processName={order} />
-            <div className="row d-flex justify-content-center">
-                <div className="col-10 mt-4">
-                    <div className="card conteo-card">
+        <div className="container-fluid">
+            <Sidebar />
+            <div className="content d-flex px-4 pt-3 h-100">
+                <h1>{order}</h1>
+                <div className="row">
+                    <div className="col-10 mt-1 card conteo-card">
                         <div className="card-body">
-                            <div>
-                                <p>{`${buyerName} - ${buyerCity}`}</p>
-                                <table className="table table-striped" style={{ marginTop: 20 }}>
-                                    <thead>
-                                        <tr>
-                                            <th>Producto</th>
-                                            <th>Cantidad</th>
-                                            <th> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {ProductList()}
-                                    </tbody>
-                                </table>
-                            </div>
+                            <p>{`${buyerName} - ${buyerCity}`}</p>
+                            <table className="table table-striped" style={{ marginTop: 20 }}>
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Inventario</th>
+                                        <th>Faltantes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {ProductList()}
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
+                </div>
+                <div className="row mt-5">
+                    <div className="col d-flex justify-content-center form group">
+                        <button placeholder="Cantidad" className="btn-order" type="submit">Completar pedido</button>
                     </div>
                 </div>
             </div>
@@ -143,4 +178,4 @@ function Order() {
     );
 }
 
-export default Order;
+export default OrderAdmin;

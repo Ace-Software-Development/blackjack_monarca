@@ -1,13 +1,12 @@
 function ButtonNext(url) {
     return (
-        <div className="row d-flex justify-content-center mt-3">
+        <div className="d-flex justify-content-center mb-4">
             <div className="col-2 text-center cardNext">
-                <a type="button" className="buttonNext mt-2 mb-2" id="buttonNext" href={url}>
+                <a type="button" className="buttonNext my-3" id="buttonNext" href={url}>
                     Siguiente
                 </a>
             </div>
         </div>
-
     );
 }
 

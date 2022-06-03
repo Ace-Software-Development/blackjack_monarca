@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
 import Header from './Header';
+import Environment from '../Environment';
 
 let idProduct = '';
 
@@ -18,7 +19,7 @@ function ModifyPackStatus() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -52,7 +53,7 @@ function ModifyPackStatus() {
      * @description Fetches existing registers from the database through the server
      */
     async function getRegister() {
-        const response = await fetch(`http://localhost:8888/producto/getProductById/${idProduct}`);
+        const response = await fetch(`${Environment()}/producto/getProductById/${idProduct}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -94,7 +95,7 @@ function ModifyPackStatus() {
 
         const inventory = { ...form };
 
-        await fetch('http://localhost:8888/producto/modifyInventory', {
+        await fetch(`${Environment()}/producto/modifyInventory'`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

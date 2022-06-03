@@ -17,6 +17,7 @@ import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsData from 'highcharts/modules/data';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
 
 HighchartsDrilldown(Highcharts);
 HighchartsAccesibility(Highcharts);
@@ -38,7 +39,7 @@ function Dashboard() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import './styles/styles.css';
 import PropTypes from 'prop-types';
 import Header from './Header';
+import Environment from '../Environment';
 
 /**
  * Products
@@ -67,7 +68,7 @@ function productInventory() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -86,7 +87,7 @@ function productInventory() {
     const [products, setProducts] = useState([]);
 
     async function getAllProducts() {
-        const response = await fetch('http://localhost:8888/producto/get');
+        const response = await fetch(`${Environment()}/producto/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);

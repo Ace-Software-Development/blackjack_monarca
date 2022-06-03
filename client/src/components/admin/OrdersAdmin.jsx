@@ -1,12 +1,9 @@
 // CU 14 Consultar pedido
 import 'bootstrap/dist/css/bootstrap.css';
-import Cookies from 'js-cookie';
-import '../admin/styles/dashboard.css';
+import './styles/dashboard.css';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import orderCard from '../orderCard';
-import Header from './Header';
-import Environment from '../Environment';
 
 /**
  * OrderElement
@@ -17,7 +14,9 @@ import Environment from '../Environment';
 function OrderElement({ order }) {
     return (
         <div className="col-4 px-5" value={order.objectId}>
-            <a href={`/empacado/pedidos/${order.objectId}`}>{orderCard('75', order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`)}</a>
+            <a href={`/dashboard/pedidos/${order.objectId}`}>
+                {orderCard(order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`)}
+            </a>
         </div>
     );
 }
@@ -25,40 +24,15 @@ OrderElement.propTypes = {
     order: PropTypes.string.isRequired,
 };
 
-function Orders() {
+function OrdersAdmin() {
     const [orders, setOrders] = useState([]);
-
-    const session = Cookies.get('sessionToken');
-    const [permission, setPermission] = useState([]);
-    /**
-     * getPermission
-     * @description Verifies that the user session token is valid
-     */
-    async function getPermission() {
-        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.customAlert(message);
-            return;
-        }
-
-        const perm = await response.json();
-        setPermission(perm.data);
-    }
-    useEffect(() => {
-        getPermission();
-    }, []);
-
-    if (!permission) {
-        return ('No tienes permisos');
-    }
 
     /**
      * getOrders
      * @description Fetches existing orders from the database through the server
      */
     async function getOrders() {
-        const response = await fetch(`${Environment()}/empacado/ordenes/get`);
+        const response = await fetch('http://localhost:8888/empacado/ordenes/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -85,12 +59,9 @@ function Orders() {
 
     return (
         <div className="row w-100 justify-content-center align-self-stretch">
-            <div>
-                <Header processName="Pedidos en curso" />
-            </div>
             {orderList()}
         </div>
     );
 }
 
-export default Orders;
+export default OrdersAdmin;

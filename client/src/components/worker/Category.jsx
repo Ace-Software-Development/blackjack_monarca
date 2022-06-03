@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Row, Container } from 'react-bootstrap';
 import ButtonNext from './ButtonNext';
 import Header from './Header';
+import Environment from '../Environment';
 
 let selectedCategory = '';
 let selectedWorker = '';
@@ -31,9 +33,9 @@ function setContext(id) {
 
 export function CardCategory(name, id) {
     return (
-        <div className="text-center my-4">
+        <div className="text-center my-2">
             <a href="#">
-                <button type="button" className="cardName btn text-center w-100 py-4" onClick={() => setContext(id)}>
+                <button type="button" className="cardName card-category btn text-center w-100 py-3" onClick={() => setContext(id)}>
                     {name}
                 </button>
             </a>
@@ -49,7 +51,7 @@ export function CardCategory(name, id) {
  */
 function Categories({ category }) {
     return (
-        <div className="col-4 px-5" value={category.objectId}>{CardCategory(category.name, category.objectId)}</div>
+        <div className="col-4 px-3" value={category.objectId}>{CardCategory(category.name, category.objectId)}</div>
     );
 }
 Categories.propTypes = {
@@ -72,7 +74,7 @@ function Category() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -95,7 +97,7 @@ function Category() {
      * @description Fetches existing categories from the database through the server
      */
     async function getCategories() {
-        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        const response = await fetch(`${Environment()}/entrega/categorias/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -121,12 +123,18 @@ function Category() {
     }
 
     return (
-        <div className="row w-100 justify-content-center align-self-stretch">
-            <Header processName={process} />
+        <Container className="container-fluid d-flex flex-column">
+            <Row>
+                <Header processName={process} />
+            </Row>
             <h3 className="text-center">Elige una categoría</h3>
-            {categoryList()}
+            <Row className="flex-grow-1 pt-2">
+                <div className="d-flex flex-wrap">
+                    {categoryList()}
+                </div>
+            </Row>
             {nextBtn}
-        </div>
+        </Container>
     );
 }
 export default Category;
