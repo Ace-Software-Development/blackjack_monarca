@@ -254,7 +254,7 @@ function Dashboard() {
                         <h3 className="my-2">{process}</h3>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="d-flex my-3">
                     <Col xs={3}>
                         <DateRangePicker
                           onApply={(e, p) => setDateForm(e, p)}
