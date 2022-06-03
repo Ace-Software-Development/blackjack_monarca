@@ -5,7 +5,7 @@ const moment = require('moment');
 
  /**
    * getProductionWorkerDay
-   * @description Gets all the scrap
+   * @description Gets all the work from a worker on specific days
    * @param response: status of the get and values of the query
    */
 exports.getProductionWorkerDay = async function (request, response) {

@@ -1,3 +1,4 @@
+// CU15 Consultar Merma del Producto
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -119,6 +120,10 @@ function Dashboard() {
     const [main2, setMain2] = useState([]);
     const [series2, setSeries2] = useState([]);
 
+    /**
+     * iterateListaMerma
+     * @description Set the data for the graph
+     */
     function iterateListaMerma() {
         let mermaAcum = 0;
         Object.keys(listaMermaDia).forEach((key1) => {

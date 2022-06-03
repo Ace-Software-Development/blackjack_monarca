@@ -16,7 +16,7 @@ exports.getAllMerma = async function (request, response) {
 
  /**
    * getAllMerma
-   * @description Gets all the scrap
+   * @description Gets all the scrap from specific days
    * @param response: status of the get and values of the query
    */
 exports.getAllMermaDate = async function (request, response) {

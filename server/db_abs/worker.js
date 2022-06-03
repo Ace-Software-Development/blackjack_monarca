@@ -35,9 +35,8 @@ class Worker
 
     /**
     * getAllWorkersQuery
-    * @description Query to get all existing models
-    * @param categoryId Id of category of model
-    * @returns Parse object with name and Id of the parts in table "Products" with category category
+    * @description Query to get all active workers
+    * @returns Parse object with name and Id of the workers in table "Worker"
     */
     static getAllWorkersQuery() {
         var query = new Parse.Query(Constants.Worker);

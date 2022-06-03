@@ -2,10 +2,11 @@ class Production
 {
      /**
    * getProductionDay
-   * @description Query to get all existing parts of merma in a range of dates
+   * @description Query to get all work done by an specific worker in a range of days
    * @param startDay first day of the interval
    * @param endDay last day of the interval
-   * @returns Parse object with all merma between dates
+   * @param idWorker Id from a worker
+   * @returns Parse object with all work don by a worker between dates
    */
     static getProductionDay(startDay, endDay, idWorker){
 

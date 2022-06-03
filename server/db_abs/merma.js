@@ -3,8 +3,8 @@ class Merma
 {
     /**
    * getMerma
-   * @description Query to get all existing parts
-   * @returns Parse object with name and Id of the parts in table "Parts"
+   * @description Query to get all scrap between dates
+   * @returns Parse object with al scrap 
    */
     static getMerma(process){
         const parts = new Parse.Query("PartInventory");

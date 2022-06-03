@@ -4,7 +4,7 @@ const { getAllWorkersQuery } = require('../db_abs/worker');
 
 /**
    * getAllProductsController
-   * @description Get all existing products from table "Products"
+   * @description Get all actives workers
    * @param response: status of the get and values of the query
    */
 exports.getAllTrabajadores = async function (request, response) {

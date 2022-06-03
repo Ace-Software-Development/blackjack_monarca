@@ -1,3 +1,4 @@
+// CU20 Consultar Desempeño del trabajador
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -5,7 +6,6 @@ import {
     Row,
     Col,
     Form,
-    // Container,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
@@ -63,8 +63,8 @@ function Dashboard() {
 
     const [trabajadores, setTrabajadores] = useState([]);
     /**
-     * getMermaDias
-     * @description Get scrap from all process during specific days
+     * getTrabajadores
+     * @description Get all active workers
      * */
     async function getTrabajadores() {
         const response = await fetch('http://localhost:8888/trabajadores/get');
@@ -102,8 +102,8 @@ function Dashboard() {
 
     const [produccionTrabajador, setProduccionTrabajador] = useState([]);
     /**
-     * getMermaDias
-     * @description Get scrap from all process during specific days
+     * getProduccionTrabajador
+     * @description Get al work from a worker during specific days
      * */
     async function getProduccionTrabajador() {
         const response = await fetch(`http://localhost:8888/produccion/${dateForm.startDate}/${dateForm.endDate}/${idWorker}/get`);
@@ -130,6 +130,10 @@ function Dashboard() {
     const main = [];
     const [main2, setMain2] = useState([]);
 
+    /**
+     * iterateListaProduccionTrabajadorDia
+     * @description Set the data for the graph
+     * */
     function iterateListaProduccionTrabajadorDia() {
         Object.keys(listaProduccionTrabajadorDia).forEach((key1) => {
             let cantidadaFecha = 0;
