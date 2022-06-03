@@ -80,7 +80,6 @@ function CreateProduct() {
             aluminium: '',
             keyP: '',
         });
-        window.location.reload();
     }
 
     useEffect(() => {

@@ -1,17 +1,17 @@
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
-const { registerCategory, modifyCategory, deleteCategory } = require('../db_abs/category');
+const { registerDisk, modifyDisk, deleteDisk } = require('../db_abs/disk');
 
 /**
-   * postCategoryController
-   * @description Post new category
+   * postDiskController
+   * @description Post new disk
    * @param request: values registered by user
    * @param response: status of the post
    */
-exports.postCategoryController = async function (request, response) {
+exports.postDiskController = async function (request, response) {
     try {
-        const category = registerCategory(request.body.name);
-        await category.save();
+        const disk = registerDisk(request.body.name);
+        await disk.save();
     } catch (error) {
         console.error(error.message);
         return (response.status(500).send({ status: "can't save" }));
@@ -20,15 +20,15 @@ exports.postCategoryController = async function (request, response) {
 }
 
 /**
-   * modifyCategoryController
-   * @description Modify category registered
+   * modifyDiskController
+   * @description Modify disk registered
    * @param request: values modified by user
    * @param response: status of the post
    */
-exports.modifyCategoryController = async function (request, response) {
+exports.modifyDiskController = async function (request, response) {
     try {
-        const category = modifyCategory(request.body.name, request.body.objectId);
-        await category.save();
+        const disk = modifyDisk(request.body.name, request.body.objectId);
+        await disk.save();
     } catch (error) {
         console.error(error.message);
         return (response.status(500).send({ status: "can't save" }));
@@ -37,15 +37,15 @@ exports.modifyCategoryController = async function (request, response) {
 }
 
 /**
-   * deleteCategoryController
-   * @description Delte category registered
+   * deleteDiskController
+   * @description Delte disk registered
    * @param request: values object id
    * @param response: status of the post
    */
-exports.deleteCategoryController = async function (request, response) {
+exports.deleteDiskController = async function (request, response) {
     try {
-        const category = deleteCategory(request.body.objectId);
-        await category.save();
+        const disk = deleteDisk(request.body.objectId);
+        await disk.save();
     } catch (error) {
         console.error(error.message);
         return (response.status(500).send({ status: "can't save" }));

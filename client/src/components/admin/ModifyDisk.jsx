@@ -4,14 +4,14 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * ModifyCategory
-   * @description Set of functions to display modal of Modify Category
+   * ModifyDisk
+   * @description Set of functions to display modal of Modify Disk
    * @returns HTML with fetched data
    */
-function ModifyCategory(catId, catName) {
+function ModifyDisk(disId, disName) {
     const [form, setForm] = useState({
-        objectId: catId,
-        name: catName,
+        objectId: disId,
+        name: disName,
     });
 
     /**
@@ -32,14 +32,14 @@ function ModifyCategory(catId, catName) {
     async function onSubmit(e) {
         e.preventDefault();
 
-        const newCategory = { ...form };
+        const newDisk = { ...form };
 
-        await fetch('http://localhost:8888/categoria/modify', {
+        await fetch('http://localhost:8888/disco/modify', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newCategory),
+            body: JSON.stringify(newDisk),
         });
 
         setForm({
@@ -69,4 +69,4 @@ function ModifyCategory(catId, catName) {
     );
 }
 
-export default ModifyCategory;
+export default ModifyDisk;

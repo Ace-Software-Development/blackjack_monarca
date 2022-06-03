@@ -16,6 +16,7 @@ const productOrder = require('./routes/productOrder');
 const dashboard = require('./routes/dashboard');
 const categoria = require('./routes/categoria');
 const comprador = require('./routes/comprador');
+const disco = require('./routes/disco');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -78,6 +79,7 @@ app.use('/productOrder', productOrder);
 app.use('/empacado', dashboard);
 app.use('/categoria', categoria);
 app.use('/comprador', comprador);
+app.use('/disco', disco);
 
 
 app.listen(8888);

@@ -3,18 +3,19 @@ import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import CreateProduct from './CreateProduct';
-import ModifyProduct from './ModifyProduct';
-import DeleteProduct from './DeleteProduct';
+import CreateDisk from './CreateDisk';
+import ModifyDisk from './ModifyDisk';
+import DeleteDisk from './DeleteDisk';
 import Sidebar from './Sidebar';
 
 /**
- * Products
- * @param {product} show all Product data
- * @description Shows the product information on the page
+ * Disks
+ * @param {disk} all disks
+ * @description Shows the disks information on the page and buttons for
+ * modals to create, modify and delete
  * @returns HTML with fetched data
  */
-function Products({ product }) {
+function Disks({ disk }) {
     const [show, setShow] = useState(false);
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
@@ -27,20 +28,8 @@ function Products({ product }) {
         <>
             <tr>
                 <th>
-                    <div>{product.id_category.name}</div>
-                    <div className="sub-text1">Categoría</div>
-                </th>
-                <th>
-                    <div>{product.model}</div>
-                    <div className="sub-text1">Modelo</div>
-                </th>
-                <th>
-                    <div>{product.aluminium}</div>
-                    <div className="sub-text1">Aluminio</div>
-                </th>
-                <th>
-                    <div>{product.key}</div>
-                    <div className="sub-text1">key</div>
+                    <div>{disk.name}</div>
+                    <div className="sub-text2">Nombre del disco</div>
                 </th>
                 <th>
                     <button type="button" onClick={handleShowMod}>
@@ -58,71 +47,63 @@ function Products({ product }) {
                 <Modal.Header closeButton>
                     <Modal.Title>Modificar</Modal.Title>
                 </Modal.Header>
-                {ModifyProduct(
-                    product.objectId,
-                    product.id_category.objectId,
-                    product.model,
-                    product.aluminium,
-                    product.key,
-                )}
+                {ModifyDisk(disk.objectId, disk.name)}
             </Modal>
 
             <Modal show={showD} onHide={handleCloseDMod}>
                 <Modal.Header closeButton>
                     <Modal.Title>Eliminar</Modal.Title>
                 </Modal.Header>
-                {DeleteProduct(
-                    product.objectId,
-                    product.id_category.name,
-                    product.model,
-                    product.aluminium,
-                )}
+                {DeleteDisk(disk.objectId, disk.name)}
             </Modal>
         </>
 
     );
 }
-Products.propTypes = {
-    product: PropTypes.string.isRequired,
+Disks.propTypes = {
+    disk: PropTypes.string.isRequired,
 };
 
 /**
-   * Product
-   * @description Set of functions to display Product
+   * Disk
+   * @description Set of functions to display Disks
    * @returns HTML with fetched data
    */
-function Product() {
+function Disk() {
+    const [disks, setDisks] = useState([]);
     const [show, setShow] = useState(false);
 
     const handleCloseCreate = () => setShow(false);
     const handleShowCreate = () => setShow(true);
 
-    const [products, setProducts] = useState([]);
-
-    async function getAllProducts() {
-        const response = await fetch('http://localhost:8888/producto/get');
+    /**
+     * getDisks
+     * @description Fetches existing disks from the database through the server
+     */
+    async function getDisks() {
+        const response = await fetch('http://localhost:8888/discos/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.cutomAlert(message);
+            window.customAlert(message);
             return;
         }
 
-        const product = await response.json();
-        setProducts(product.data);
+        const disk = await response.json();
+        setDisks(disk.data);
     }
 
     useEffect(() => {
-        getAllProducts();
+        getDisks();
     }, []);
 
     /**
-   * productsList
-   * @description Maps all products in the interface
-   * @returns Component with name and id of the product
+   * disksList
+   * @description Maps all disks in the interface
+   * @returns Component with name and id of the disk
    */
-    function productsList() {
-        return products.slice(0).reverse().map((product) => (
-            <Products product={product} key={product.objectId} />
+    function disksList() {
+        return disks.map((disk) => (
+            <Disks disk={disk} key={disk.objectId} />
         ));
     }
 
@@ -137,7 +118,7 @@ function Product() {
                                 <div>
                                     <div className="row justify-content-between">
                                         <div className="col-3">
-                                            Productos
+                                            Categorías
                                         </div>
                                         <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
                                             Agregar
@@ -146,16 +127,13 @@ function Product() {
                                     <table className="table table-striped" style={{ marginTop: 20 }}>
                                         <thead>
                                             <tr>
-                                                <th>Categoría</th>
-                                                <th>Modelo</th>
-                                                <th>Aluminio</th>
-                                                <th>Key</th>
+                                                <th>Nombre</th>
                                                 <th> </th>
                                                 <th> </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {productsList()}
+                                            {disksList()}
                                         </tbody>
                                     </table>
                                 </div>
@@ -167,12 +145,12 @@ function Product() {
 
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear producto</Modal.Title>
+                    <Modal.Title>Crear Disco</Modal.Title>
                 </Modal.Header>
-                <CreateProduct />
+                <CreateDisk />
             </Modal>
         </div>
     );
 }
 
-export default Product;
+export default Disk;

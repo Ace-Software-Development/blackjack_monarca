@@ -1,40 +1,39 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
-   * ModifyCategory
-   * @description Set of functions to display modal of Modify Category
+   * CreateDisk
+   * @description Set of functions to display modal of Create Disk
    * @returns HTML with fetched data
    */
-function ModifyCategory(catId, catName) {
+function CreateDisk() {
+    const navigate = useNavigate();
+
     const [form, setForm] = useState({
-        objectId: catId,
-        name: catName,
+        name: '',
     });
 
     /**
-   * updateForm
-   * @description updates data of a form
-   * @param value: new values of the form
-   * @returns an updated form
-   */
+* updateForm
+* @description updates data of a form
+* @param value: new values of the form
+* @returns an updated form
+*/
     function updateForm(value) {
         return setForm((prev) => ({ ...prev, ...value }));
     }
 
-    /**
-   * onSubmit
-   * @description Posts incoming disk through a fetch to the server
-   * @param e: Context
-   */
     async function onSubmit(e) {
         e.preventDefault();
 
+        console.log(form);
+
         const newCategory = { ...form };
 
-        await fetch('http://localhost:8888/categoria/modify', {
+        await fetch('http://localhost:8888/disco/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,10 +42,9 @@ function ModifyCategory(catId, catName) {
         });
 
         setForm({
-            objectId: '',
             name: '',
         });
-        window.location.reload();
+        navigate('/discos');
     }
 
     return (
@@ -62,11 +60,11 @@ function ModifyCategory(catId, catName) {
                     <Button variant="secondary" onClick={() => window.location.reload()}>
                         Cerrar
                     </Button>
-                    <button type="submit" className="col">Modificar</button>
+                    <button type="submit" className="col" onClick={() => window.location.reload()}>Crear</button>
                 </Modal.Footer>
             </form>
         </div>
     );
 }
 
-export default ModifyCategory;
+export default CreateDisk;

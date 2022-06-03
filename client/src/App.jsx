@@ -21,6 +21,7 @@ import ConfirmPart from './components/worker/ConfirmPart';
 import User from './components/admin/User';
 import Worker from './components/admin/Worker';
 import Buyer from './components/admin/Buyer';
+import Disk from './components/admin/Disk';
 import Classify from './components/worker/Classify';
 import ProductInventory from './components/worker/productInventory';
 import CategoryInventory from './components/worker/CategoryInventory';
@@ -53,6 +54,7 @@ function App() {
                 <Route excat path="/categoria" element={<CategoryList />} />
                 <Route exact path="/modelo" element={<ModelNumber />} />
                 <Route exact path="/cantidad" element={<Quantity />} />
+                <Route exact path="/discos" element={<Disk />} />
                 <Route exact path="/" element={<Login />} />
                 <Route exact path="/proceso/:prevProcess/:process/:nextProcess" element={<Process />} />
                 <Route exact path="/confirmar/:process/:prevProcess" element={<Confirm />} />
