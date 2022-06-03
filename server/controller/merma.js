@@ -22,7 +22,6 @@ exports.getAllMerma = async function (request, response) {
 exports.getAllMermaDate = async function (request, response) {
    const startDay = new Date(parseInt(request.params.startDay));
    const endDay = new Date(parseInt(request.params.endDay));
-   console.log("merma date controller");
    const merma = await getMermaDate(startDay, endDay);
    for (let i = 0; i < merma.length; i += 1) {
       merma[i].set('labelFecha', moment(merma[i].createdAt).format('MMM Do YY'));

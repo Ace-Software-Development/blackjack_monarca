@@ -13,6 +13,8 @@ const producto = require('./routes/producto');
 const productOrder = require('./routes/productOrder');
 const dashboard = require('./routes/dashboard');
 const merma = require('./routes/merma');
+const trabajadores = require('./routes/trabajadores');
+const produccion = require('./routes/produccion');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -72,5 +74,7 @@ app.use('/producto', producto);
 app.use('/productOrder', productOrder);
 app.use('/empacado', dashboard);
 app.use('/merma', merma);
+app.use('/trabajadores', trabajadores);
+app.use('/produccion', produccion);
 
 app.listen(8888);

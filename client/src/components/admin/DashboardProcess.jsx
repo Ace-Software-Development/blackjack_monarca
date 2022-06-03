@@ -1,7 +1,12 @@
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
+import {
+    Row,
+    Col,
+    Form,
+    // Container,
+} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
@@ -27,7 +32,6 @@ HighchartsData(Highcharts);
 let process = '';
 
 function Dashboard() {
-    let acum = 0;
     const session = Cookies.get('sessionToken');
     const admin = Cookies.get('is_admin');
     const params = useParams();
@@ -56,47 +60,26 @@ function Dashboard() {
         return ('No tienes permisos');
     }
 
-    function cardMermaNum() {
-        return (
-            <div className="admin-card text-center">
-                <div className="card-body text-center w-100 py-4">
-                    <h5>
-                        Merma
-                    </h5>
-                    <h2 className="processName">{acum}</h2>
-                </div>
-            </div>
-        );
-    }
-
-    const [merma, setMerma] = useState([]);
+    const [trabajadores, setTrabajadores] = useState([]);
     /**
-     * getMerma
-     * @description Get scrap from a process
+     * getMermaDias
+     * @description Get scrap from all process during specific days
      * */
-    async function getMerma() {
-        const response = await fetch(`http://localhost:8888/merma/${process}/get`);
+    async function getTrabajadores() {
+        const response = await fetch('http://localhost:8888/trabajadores/get');
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
             return;
         }
 
-        const mermaList = await response.json();
-        setMerma(mermaList.data);
-    }
-
-    function sumaMerma() {
-        for (let i = 0; i < merma.length; i += 1) {
-            acum += merma[i].number;
-        }
+        const trabajadoresList = await response.json();
+        setTrabajadores(trabajadoresList.data);
     }
 
     useEffect(() => {
-        getMerma();
+        getTrabajadores();
     }, []);
-
-    sumaMerma();
 
     const [dateForm, setDate] = useState({
         startDate: 0,
@@ -114,76 +97,59 @@ function Dashboard() {
         });
     }
 
-    const [mermaProcesos, setMermaProcesos] = useState([]);
+    const [idWorker, setIdWorker] = useState();
+
+    const [produccionTrabajador, setProduccionTrabajador] = useState([]);
     /**
      * getMermaDias
      * @description Get scrap from all process during specific days
      * */
-    async function getMermaDias() {
-        const response = await fetch(`http://localhost:8888/merma/${dateForm.startDate}/${dateForm.endDate}/get`);
+    async function getProduccionTrabajador() {
+        const response = await fetch(`http://localhost:8888/produccion/${dateForm.startDate}/${dateForm.endDate}/${idWorker}/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
             return;
         }
 
-        const mermaList = await response.json();
-        setMermaProcesos(mermaList.data);
+        const produccionList = await response.json();
+        setProduccionTrabajador(produccionList.data);
     }
 
     useEffect(() => {
-        getMermaDias();
-    }, [dateForm]);
+        getProduccionTrabajador();
+    }, [dateForm, idWorker]);
 
-    const [listaMermaDia, setListaMermaDia] = useState([]);
+    const [listaProduccionTrabajadorDia, setListaProduccionTrabajadorDia] = useState([]);
 
     useEffect(() => {
-        setListaMermaDia(_.groupBy(mermaProcesos, (item) => item.labelFecha));
-    }, [mermaProcesos]);
+        setListaProduccionTrabajadorDia(_.groupBy(produccionTrabajador, (item) => item.labelFecha));
+    }, [produccionTrabajador]);
 
     const main = [];
-    const series1 = [];
     const [main2, setMain2] = useState([]);
-    const [series2, setSeries2] = useState([]);
-    const [bandera, setBandera] = useState(false);
 
-    function iterateListaMerma() {
-        Object.keys(listaMermaDia).forEach((key1) => {
+    function iterateListaProduccionTrabajadorDia() {
+        Object.keys(listaProduccionTrabajadorDia).forEach((key1) => {
             let cantidadaFecha = 0;
-            const listaMermaProceso = _.groupBy(listaMermaDia[key1], (item) => item.id_process);
-            const datosProceso = [];
-            Object.keys(listaMermaProceso).forEach((key2) => {
-                const result = [key2, 0];
-                for (let i = 0; i < listaMermaProceso[key2].length; i += 1) {
-                    result[1] += listaMermaProceso[key2][i].number;
-                    cantidadaFecha += listaMermaProceso[key2][i].number;
-                }
-                datosProceso.push(result);
-            });
+            for (let i = 0; i < listaProduccionTrabajadorDia[key1].length; i += 1) {
+                cantidadaFecha += listaProduccionTrabajadorDia[key1][i].number;
+            }
             main.push({
                 name: key1,
                 y: cantidadaFecha,
-                drilldown: key1,
-            });
-            series1.push({
-                name: key1,
-                id: key1,
-                type: 'column',
-                data: datosProceso,
             });
         });
         setMain2(main);
-        setSeries2(series1);
-        setBandera(!bandera);
     }
 
     useEffect(() => {
-        iterateListaMerma();
-    }, [listaMermaDia]);
+        iterateListaProduccionTrabajadorDia();
+    }, [listaProduccionTrabajadorDia]);
 
     const [options, setOptions] = useState({
         title: {
-            text: 'Merma Semanal',
+            text: 'Producción de trabajador',
         },
         plotOptions: {
             series: {
@@ -192,6 +158,11 @@ function Dashboard() {
         },
         xAxis: {
             type: 'category',
+        },
+        yAxis: {
+            title: {
+                text: 'Cantidad',
+            },
         },
         legend: {
             enabled: false,
@@ -213,21 +184,12 @@ function Dashboard() {
                 data: main2,
             },
         ],
-        drilldown: {
-            breadcrumbs: {
-                position: {
-                    align: 'right',
-                },
-            },
-            series: series2,
-        },
     });
 
     useEffect(() => {
-        // console.log(main2);
         setOptions({
             title: {
-                text: 'Merma Semanal',
+                text: 'Producción de trabajador',
             },
             plotOptions: {
                 series: {
@@ -247,7 +209,7 @@ function Dashboard() {
             },
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>',
             },
             series: [
                 {
@@ -257,45 +219,47 @@ function Dashboard() {
                     data: main2,
                 },
             ],
-            drilldown: {
-                breadcrumbs: {
-                    position: {
-                        align: 'right',
-                    },
-                },
-                series: series2,
-            },
         });
     }, [main2]);
-
-    useEffect(() => {
-        console.log(options);
-    }, [options]);
 
     return (
         <div className="container-fluid">
             <Sidebar />
-            <div className="content d-flex px-4 pt-3 h-100">
+            <div className="content d-flex px-4 pt-3 w-75">
                 <Row>
                     <Col>
                         <h1 className="my-2">Dashboard</h1>
                         <h3 className="my-2">{process}</h3>
                     </Col>
                 </Row>
-                <Row>
-                    <Col xs={3}>
+                <Row className="d-flex my-3">
+                    <Col xs={4} className="d-flex align-content-center flex-wrap">
+                        <Form.Select
+                          onChange={(e) => setIdWorker(
+                              e.target.selectedOptions[0].value,
+                          )}
+                        >
+                            <option>Elegir trabajador</option>
+                            {trabajadores.map(({ name, objectId }) => (
+                                <option value={objectId}>
+                                    {name}
+                                </option>
+                            ))}
+                        </Form.Select>
+                    </Col>
+                    <Col md={{ span: 4, offset: 4 }} className="d-flex align-self-center">
                         <DateRangePicker
+                          md="auto"
                           onApply={(e, p) => setDateForm(e, p)}
                         >
                             <input />
                         </DateRangePicker>
                     </Col>
                 </Row>
-                <Row mt={4}>
-                    <Col xs={9}>
+                <Row className="d-flex">
+                    <Col xs={11} className="w-100">
                         <HighchartsReact highcharts={Highcharts} options={options} />
                     </Col>
-                    <Col xs={3}>{cardMermaNum()}</Col>
                 </Row>
             </div>
         </div>

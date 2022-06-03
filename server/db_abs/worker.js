@@ -33,6 +33,17 @@ class Worker
         return worker.first();
     }
 
+    /**
+    * getAllWorkersQuery
+    * @description Query to get all existing models
+    * @param categoryId Id of category of model
+    * @returns Parse object with name and Id of the parts in table "Products" with category category
+    */
+    static getAllWorkersQuery() {
+        var query = new Parse.Query(Constants.Worker);
+        query.notEqualTo("delete", true);
+        return query.find();
+    }
 
     static getEmpty()
     {
