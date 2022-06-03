@@ -46,10 +46,13 @@ function Dashboard() {
             <div className="container-fluid">
                 <Sidebar />
                 <div className="content d-flex px-4 pt-3 h-100">
-                    <div className="row">
-                        <div className="col">
-                            <h1 className="my-2">Dashboard</h1>
+                    <div className="row d-flex">
+                        <h1 className="my-2">Dashboard</h1>
+                        <div className="col-8">
                             <h3 className="my-2">{process}</h3>
+                        </div>
+                        <div className="col-4">
+                            <button placeholder="Cantidad" className="btn-order d-flex justify-content-center" type="button" href="/">Nuevo pedido</button>
                         </div>
                     </div>
                     <div className="row">

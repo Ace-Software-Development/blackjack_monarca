@@ -58,8 +58,10 @@ function OrdersAdmin() {
     }
 
     return (
-        <div className="row w-100 justify-content-center align-self-stretch">
-            {orderList()}
+        <div>
+            <div className="row w-100 justify-content-center align-self-stretch">
+                {orderList()}
+            </div>
         </div>
     );
 }
