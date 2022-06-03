@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import Card from './Card';
+import Card2 from './Card2';
 import Header from './Header';
 
 /**
@@ -72,12 +73,12 @@ function Process() {
                 <Row className="mt-5 mb-5 flex-grow-1">
                     <Col md={6}>
                         <a href={hrefConfirm}>
-                            {Card('mail-unread', 'Recibir')}
+                            {Card2('mail-unread', 'Recibir')}
                         </a>
                     </Col>
                     <Col md={6}>
                         <a href={hrefEntrega}>
-                            {Card('send', 'Entregar')}
+                            {Card2('send', 'Entregar')}
                         </a>
                     </Col>
                 </Row>

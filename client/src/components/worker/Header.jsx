@@ -6,7 +6,7 @@ function Header({ processName }) {
     return (
         <Container className="d-flex">
             <Row className="w-100 mt-2">
-                <Col xs={3} s={4} md={4} lg={5} className="d-flex align-items-start flex-column">
+                <Col xs={3} s={4} md={4} lg={3} className="d-flex align-items-start flex-column">
                     <a href="/inicio">
                         <ion-icon name="home-outline" size="large" />
                     </a>
