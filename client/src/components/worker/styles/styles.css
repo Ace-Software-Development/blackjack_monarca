@@ -281,3 +281,54 @@ ion-icon {
 	color: white;
 	font-size: 20px;
 }
+
+.login {
+	font-family: 'Inter';
+	font-style: normal;
+}
+
+.login h1 {
+	font-weight: 600;
+	font-size: 2.5em;
+}
+
+.login-title h1 {
+	color: white;
+}
+
+.login h3 {
+	color: white;
+	font-weight: 400;
+	font-size: 1.5em;
+}
+
+.login-form h1 {
+	font-size: 2em;
+}
+
+.login-form p {
+	font-size: 1em;
+}
+
+.login-form input {
+	border: 2px solid #F2F2F2;
+	border-radius: 6px;
+	height: 50px;
+}
+
+.login-form .btn-orange {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.3em;
+}
+
+.circle-logo {
+	/* Ellipse 1 */
+	width: 60%;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+.circle-logo img {
+	width: 200px;
+}
