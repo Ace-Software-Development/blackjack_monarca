@@ -10,9 +10,13 @@ const entradaDiscos = require('./routes/visualizarEntradaDiscos');
 const iniciarSesion = require('./routes/iniciarSesion');
 
 const confirmar = require('./routes/confirmar');
+const usuario = require('./routes/usuario');
+const trabajador = require('./routes/trabajador');
 const producto = require('./routes/producto');
 const productOrder = require('./routes/productOrder');
 const dashboard = require('./routes/dashboard');
+const categoria = require('./routes/categoria');
+const comprador = require('./routes/comprador');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -68,6 +72,8 @@ app.use('/discos', discos);
 app.use('/entradaDiscos', entradaDiscos);
 app.use('/login', iniciarSesion);
 app.use('/confirmar', confirmar);
+app.use('/usuario', usuario);
+app.use('/trabajador', trabajador);
 app.use('/producto', producto);
 app.use('/productOrder', productOrder);
 app.use('/empacado', dashboard);
@@ -81,5 +87,8 @@ app.get("*", (req, res) => {
       "../client/build/index.html")
   );
 });
+app.use('/categoria', categoria);
+app.use('/comprador', comprador);
+
 
 app.listen(8888);

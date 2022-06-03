@@ -1,9 +1,7 @@
 const Constants = require('../constants');
 
-class PartInventory
-{
-    constructor(pAssignObj)
-    {
+class PartInventory {
+    constructor(pAssignObj) {
         this.id = pAssignObj.id;
         /*TODO make all the field*/
     }
@@ -19,7 +17,7 @@ class PartInventory
    * @param is_incident: stat of part
    * @returns Parse object with number and id_disk
    */
-     static registerPart(id_part, id_worker, id_process, number, id_product, is_incident){
+    static registerPart(id_part, id_worker, id_process, number, id_product, is_incident) {
 
         var Part = Parse.Object.extend("Part");
         var pointerToPart = new Part();
@@ -51,7 +49,7 @@ class PartInventory
    * @param is_incident: stat of part
    * @returns Parse object with number and id_disk
    */
-    static getAllRegisters(id_process, is_incident, status){
+    static getAllRegisters(id_process, is_incident, status) {
         const query = new Parse.Query("PartInventory");
 
         query.equalTo("is_incident", is_incident);
@@ -66,13 +64,13 @@ class PartInventory
         return query.find();
     }
 
-     /**
-   * getAllIncidentRegisters
-   * @description Get al registers
-   * @param is_incident: stat of part
-   * @returns Parse object with number and id_disk
-   */
-      static getAllIncidentRegisters(is_incident, status){
+    /**
+  * getAllIncidentRegisters
+  * @description Get al registers
+  * @param is_incident: stat of part
+  * @returns Parse object with number and id_disk
+  */
+    static getAllIncidentRegisters(is_incident, status) {
         const query = new Parse.Query("PartInventory");
 
         query.equalTo("is_incident", is_incident);
@@ -94,7 +92,7 @@ class PartInventory
    * @param is_incident: stat of part
    * @returns Parse object with number and id_disk
    */
-     static getIncidentRegisters(is_incident, status, id){
+    static getIncidentRegisters(is_incident, status, id) {
         const query = new Parse.Query("PartInventory");
 
         query.equalTo("is_incident", is_incident);
@@ -112,12 +110,12 @@ class PartInventory
     }
 
     /**
-   * getOneRegisters
+   * getOneRegister
    * @description Get one register
    * @param id_register: objectId of the register
    * @returns Parse object with worker, product, category and part of the register
    */
-     static getOneRegister(id_register){
+    static getOneRegister(id_register) {
         const query = new Parse.Query("PartInventory");
 
         query.equalTo("objectId", id_register);
@@ -126,7 +124,7 @@ class PartInventory
         query.include("id_product");
         query.include("id_product.id_category");
         query.include("id_part");
-                
+
         return query.first();
     }
 
@@ -147,27 +145,23 @@ class PartInventory
         return query;
     }
 
-    static getEmpty()
-    {
-        return new PartInventory({id:null});/*TODO make all the field*/
+    static getEmpty() {
+        return new PartInventory({ id: null });/*TODO make all the field*/
     }
 
-    static getById(id)
-    {
+    static getById(id) {
         let oPartInventory = PartInventory.getEmpty();
         /*TODO implement*/
         return oPartInventory;
     }
 
-    static getByFromProcess(fromProcess)
-    {
+    static getByFromProcess(fromProcess) {
         let listPartInventory = [];
         /*TODO implement*/
         return listPartInventory;
     }
 
-    static getByToProcess(toProcess)
-    {
+    static getByToProcess(toProcess) {
         let listPartInventory = [];
         /*TODO implement*/
         return listPartInventory;
