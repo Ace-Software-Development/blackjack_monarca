@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @description Component that shows the worker and the part, making both sellectable
+ * @returns React component
+ */
 export default function SelectCard({
     identifier, name, siblingSelected, setSiblingSelected, onClickAction, type,
 }) {

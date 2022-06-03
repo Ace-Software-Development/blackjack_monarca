@@ -1,9 +1,9 @@
 // CU 3 Consultar piezas recibidas en el proceso
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-bootstrap';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { Container, Row, Col } from 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
 import Header from './Header';
@@ -62,7 +62,7 @@ function ConfirmPart() {
         }
 
         const regis = await response.json();
-        setWorker(regis.data.id_worker.name);
+        setWorker(regis.data.id_worker.nick_name);
         setNumber(regis.data.number);
         setPart(regis.data.id_part.name);
         setCategory(regis.data.id_product.id_category.name);
@@ -109,47 +109,54 @@ function ConfirmPart() {
     }
 
     return (
-        <Container className="d-flex h-100 flex-column">
+        <div>
             <Header processName="Confirmar pieza recibida" />
-            <form className="flex-grow-1" onSubmit={onSubmit}>
-                <Row className="form-group d-flex text-center h-100 p-4 ">
-                    <div className="card card-shadow bg-white">
-                        <div>
-                            <button type="button" onClick={() => navigate(-1)} className="col-1 btn">
-                                <ion-icon size="large" name="arrow-back-outline" />
-                            </button>
+            <form onSubmit={onSubmit}>
+                <div className="form-group row d-flex justify-content-center text-center">
+                    <div className="col-10 mt-4">
+                        <div className="card card-shadow bg-white">
+                            <div className="card-body">
+                                <div className="row">
+                                    <div className="col form group">
+                                        <h3>
+                                            {`${worker} reportó`}
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div className="row mt-4 mb-2">
+                                    <div className="col form group">
+                                        <h2>
+                                            {number}
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div className="row mt-2">
+                                    <div className="col mt-2">
+                                        <h4>
+                                            {`${part} ${category} ${model} ${aluminium}`}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div className="row justify-content-center mt-4">
+                                    <button type="button" onClick={() => navigate(-1)} className="col-1 btnBack">
+                                        <ion-icon size="large" name="arrow-back-outline" />
+                                    </button>
+                                    <div className="col-2" />
+                                    <button type="submit" className="col-2  btn-cancel" onClick={() => updateForm({ status: 'rejected' })}>
+                                        No recibí
+                                    </button>
+                                    <div className="col-2" />
+                                    <button type="submit" id="confirm" name="confirm" className="col-2 btn-accept" onClick={() => updateForm({ status: 'confirmed' })}>
+                                        Recibí
+                                    </button>
+                                    <div className="col-3" />
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <Col className="col form group">
-                                {`${worker} reportó`}
-                            </Col>
-                        </div>
-                        <div className="row mt-4 mb-2">
-                            <Col className="col form group">
-                                <h2>{number}</h2>
-                            </Col>
-                        </div>
-                        <div className="row mt-2">
-                            <Col className="col mt-2">
-                                <h4>{`${part} ${category} ${model} ${aluminium}`}</h4>
-                            </Col>
-                        </div>
-                        <Row className="justify-content-center mt-4">
-                            <Col>
-                                <button type="submit" className="btn-cancel" onClick={() => updateForm({ status: 'rejected' })}>
-                                    No recibí
-                                </button>
-                            </Col>
-                            <Col>
-                                <button type="submit" id="confirm" name="confirm" className="btn-accept" onClick={() => updateForm({ status: 'confirmed' })}>
-                                    Recibí
-                                </button>
-                            </Col>
-                        </Row>
                     </div>
-                </Row>
+                </div>
             </form>
-        </Container>
+        </div>
     );
 }
 
