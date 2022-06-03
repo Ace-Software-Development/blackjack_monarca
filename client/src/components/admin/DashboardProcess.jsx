@@ -9,7 +9,6 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import './styles/dashboard.css';
 import _ from 'underscore';
-// import moment from 'moment';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
@@ -62,8 +61,7 @@ function Dashboard() {
             <div className="admin-card text-center">
                 <div className="card-body text-center w-100 py-4">
                     <h5>
-                        Merma semanal en-
-                        { process }
+                        Merma
                     </h5>
                     <h2 className="processName">{acum}</h2>
                 </div>

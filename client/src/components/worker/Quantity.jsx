@@ -76,11 +76,6 @@ function Quantity() {
     const navigate = useNavigate();
     selectedProcess = params.process;
     selectedModel = params.model;
-    // if (params.model !== '-1') {
-    //     selectedModel = params.model;
-    // } else {
-    //     selectedModel = '-1';
-    // }
     selectedCategory = params.category;
     selectedWorker = params.worker;
     selectedPart = params.part;
@@ -271,6 +266,7 @@ function Quantity() {
     productsList();
 
     const [form, setForm] = useState({
+        incidentProcess: selectedProcess,
         process: nextProcess,
         worker: selectedWorker,
         part: selectedPart,
@@ -309,6 +305,7 @@ function Quantity() {
         });
 
         setForm({
+            incidentProcess: selectedProcess,
             process: nextProcess,
             worker: selectedWorker,
             part: selectedPart,
