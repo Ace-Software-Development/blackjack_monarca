@@ -2,8 +2,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import PropTypes from 'prop-types';
+import { Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import orderCard from '../orderCard';
+import CreateOrder from './CreateOrder';
 
 /**
  * OrderElement
@@ -26,6 +28,10 @@ OrderElement.propTypes = {
 
 function OrdersAdmin() {
     const [orders, setOrders] = useState([]);
+
+    const [show, setShow] = useState(false);
+    const handleCloseCreate = () => setShow(false);
+    const handleShowCreate = () => setShow(true);
 
     /**
      * getOrders
@@ -60,8 +66,19 @@ function OrdersAdmin() {
     return (
         <div>
             <div className="row w-100 justify-content-center align-self-stretch">
+                <div className="col-4 px-5">
+                    <a href onClick={handleShowCreate}>
+                        {orderCard('+', '')}
+                    </a>
+                </div>
                 {orderList()}
             </div>
+            <Modal show={show} onHide={handleCloseCreate}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Nuevo pedido</Modal.Title>
+                </Modal.Header>
+                <CreateOrder />
+            </Modal>
         </div>
     );
 }

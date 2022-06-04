@@ -35,6 +35,25 @@ class Order {
         return orders.first();
     }
 
+    /**
+   * registerOrder
+   * @description Register new order
+   * @param name: Name of order
+   * @param buyer: Buyer who requested an order
+   * @returns Parse object with name and buyer of an order
+   */
+    static registerOrder(name, id_buyer){
+        var Buyer = Parse.Object.extend("Buyer");
+        var pointerToBuyer = new Buyer();
+        pointerToBuyer.id = id_buyer;
+        console.log(id_buyer, " id");
+
+        const order = new Parse.Object("Order");
+        order.set('name', name);
+        order.set('id_buyer', pointerToBuyer);
+        return order;
+    }
+
 }
 
 module.exports = Order;

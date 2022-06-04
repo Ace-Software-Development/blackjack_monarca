@@ -1,6 +1,6 @@
 // CU 14 Consultar pedido
 import 'bootstrap/dist/css/bootstrap.css';
-import { Modal } from 'react-bootstrap';
+import 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import './styles/dashboard.css';
@@ -9,8 +9,6 @@ import '../worker/styles/styles.css';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { CreateOrder } from './CreateOrder';
-
 /**
  * Required
  * @description Consult how many are needed to complete the order
@@ -75,9 +73,6 @@ function OrderAdmin() {
     const [order, setOrder] = useState('');
     const [buyerName, setBuyerName] = useState('');
     const [buyerCity, setBuyerCity] = useState('');
-
-    const [show, setShow] = useState(false);
-    const handleCloseCreate = () => setShow(false);
 
     async function getAllProducts() {
         const response = await fetch(`http://localhost:8888/productOrder/get/${orderId}`);
@@ -173,12 +168,6 @@ function OrderAdmin() {
                     </div>
                 </div>
             </div>
-            <Modal show={show} onHide={handleCloseCreate}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Crear trabajador</Modal.Title>
-                </Modal.Header>
-                <CreateOrder />
-            </Modal>
         </div>
     );
 }

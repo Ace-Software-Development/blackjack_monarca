@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * CreateOrder
@@ -31,7 +32,7 @@ function CreateOrder() {
  * @description Fetches existing categories from the database through the server
  */
     async function getBuyers() {
-        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        const response = await fetch(`${Environment()}/comprador/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -64,7 +65,7 @@ function CreateOrder() {
 
         const newOrder = { ...form };
 
-        await fetch('http://localhost:8888/producto/post', {
+        await fetch(`${Environment()}/empacado/orden/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -93,7 +94,7 @@ function CreateOrder() {
                     </div>
                     <div className="row">
                         <div>Comprador del pedido</div>
-                        <select type="text" id="buyer" name="buyer" className="col" onChange={(e) => updateForm({ buyer: e.target.value })} required>
+                        <select type="text" id="buyer" name="buyer" className="col" onChange={(e) => updateForm({ id_buyer: e.target.value })} required>
                             <option value="" disabled selected>Selecciona el comprador</option>
                             {buyersList()}
                         </select>
