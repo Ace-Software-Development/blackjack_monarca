@@ -2,6 +2,7 @@ const express = require('express');
 const ParseServer = require('parse-server').ParseServer;
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const roles = require('./routes/role');
 const entrega = require('./routes/entrega');
 const discos = require('./routes/entradaDiscos');
@@ -77,9 +78,22 @@ app.use('/trabajador', trabajador);
 app.use('/producto', producto);
 app.use('/productOrder', productOrder);
 app.use('/empacado', dashboard);
+<<<<<<< HEAD
 app.use('/categoria', categoria);
 app.use('/comprador', comprador);
 app.use('/disco', disco);
 
+=======
+
+app.use(express.static(
+  path.join(__dirname,
+    "../client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname,
+      "../client/build/index.html")
+  );
+});
+>>>>>>> develop
 
 app.listen(8888);

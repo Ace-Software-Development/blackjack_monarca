@@ -1,6 +1,6 @@
-function Card(cardIcon, title) {
+function Card2(cardIcon, title) {
     return (
-        <div className="card home-card text-center ">
+        <div className="card home-card2 text-center ">
             <div className="card-body d-flex flex-column align-items-center justify-content-center">
                 <div>
                     <ion-icon className="card-icon align-middle" name={`${cardIcon}-outline`} />
@@ -14,4 +14,4 @@ function Card(cardIcon, title) {
     );
 }
 
-export default Card;
+export default Card2;
