@@ -173,6 +173,9 @@ ion-icon {
 	color: white;
 	box-shadow: 5px 10px 30px rgba(122, 137, 254, 0.04);
 }
+.div .CardName:hover {
+	color: white;
+}
 
 /* .cardName:focus {
 	background-color: #F69223;
