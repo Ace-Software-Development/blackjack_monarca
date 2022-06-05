@@ -8,7 +8,9 @@ import '../worker/styles/conteo.css';
 import '../worker/styles/styles.css';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
 
 /**
  * Required
@@ -69,6 +71,7 @@ Products.propTypes = {
    * @returns HTML with fetched data
    */
 function OrderAdmin() {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const { orderId } = useParams();
     const [order, setOrder] = useState('');
@@ -101,7 +104,7 @@ function OrderAdmin() {
         }
 
         const data = await response.json();
-        setOrder(data.data.name);
+        setOrder(data.data);
         setBuyerName(data.data.id_buyer.name);
         setBuyerCity(data.data.id_buyer.city);
     }
@@ -134,6 +137,7 @@ function OrderAdmin() {
         const perm = await response.json();
         setPermission(perm.data);
     }
+
     useEffect(() => {
         getPermission();
         getOrder();
@@ -143,11 +147,62 @@ function OrderAdmin() {
     if (!permission) {
         return ('No tienes permisos');
     }
+
+    const [confirmForm, setConfirmForm] = useState({
+        order: '',
+        name: '',
+        id_buyer: '',
+        id_Delivered: '',
+
+    });
+
+    /**
+   * ConfirmOrder
+   * @description Modifies order in inventory through a fetch to the server
+   * @param e: Context
+   */
+    async function ConfirmOrder(e) {
+        e.preventDefault();
+
+        const orderInfo = { ...confirmForm };
+
+        await fetch(`${Environment()}/productOrder/confirmar/post`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderInfo),
+        });
+
+        setConfirmForm({
+            order: '',
+            name: '',
+            id_buyer: '',
+            id_Delivered: '',
+        });
+
+        navigate('/dashboard/Administrador');
+    }
+
+    /**
+   * updateForm
+   * @description updates data of a form
+   * @param value: new values of the form
+   * @returns an updated form
+   */
+    function updateForm() {
+        return setConfirmForm({
+            order: order.objectId,
+            name: order.name,
+            id_buyer: order.id_buyer.objectId,
+            is_Delivered: true,
+        });
+    }
     return (
         <div className="container-fluid">
             <Sidebar />
             <div className="content d-flex px-4 pt-3 h-100">
-                <h1>{order}</h1>
+                <h1>{order.name}</h1>
                 <div className="row">
                     <div className="col-10 mt-1 card conteo-card">
                         <div className="card-body">
@@ -167,11 +222,11 @@ function OrderAdmin() {
                             </table>
                         </div>
                     </div>
-                </div>
-                <div className="row mt-5">
-                    <div className="col d-flex justify-content-center form group">
-                        <button placeholder="Cantidad" className="btn-order" type="submit">Completar pedido</button>
-                    </div>
+                    <form onSubmit={ConfirmOrder} className="row mt-5">
+                        <div className="col d-flex justify-content-center form group">
+                            <button placeholder="Cantidad" className="btn-order" type="submit" onClick={() => updateForm()}>Completar pedido</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

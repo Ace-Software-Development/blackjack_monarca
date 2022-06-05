@@ -33,7 +33,6 @@ class ProductOrder
    */
     static getProductOrderById(objectId)
     {
-        console.log(objectId);
         const productOrder = new Parse.Query("ProductOrder");
 
         var Order = Parse.Object.extend("Order");
