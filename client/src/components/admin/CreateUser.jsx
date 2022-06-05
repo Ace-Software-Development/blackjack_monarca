@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
 /**
@@ -10,8 +9,6 @@ import { Modal, Button } from 'react-bootstrap';
    * @returns HTML with fetched data
    */
 function CreateUser() {
-    const navigate = useNavigate();
-
     const [form, setForm] = useState({
         username: '',
         email: '',
@@ -50,7 +47,7 @@ function CreateUser() {
             password: '',
             is_admin: '',
         });
-        navigate('/usuarios');
+        window.location.reload();
     }
 
     return (

@@ -78,12 +78,10 @@ app.use('/trabajador', trabajador);
 app.use('/producto', producto);
 app.use('/productOrder', productOrder);
 app.use('/empacado', dashboard);
-<<<<<<< HEAD
 app.use('/categoria', categoria);
 app.use('/comprador', comprador);
 app.use('/disco', disco);
 
-=======
 
 app.use(express.static(
   path.join(__dirname,
@@ -94,6 +92,5 @@ app.get("*", (req, res) => {
       "../client/build/index.html")
   );
 });
->>>>>>> develop
 
 app.listen(8888);

@@ -45,6 +45,8 @@ function App() {
                 <Route exact path="/empacado/pedidos" element={<Orders />} />
                 <Route exact path="/empacado/pedidos/:orderId" element={<Order />} />
                 <Route exact path="/conteo" element={<Conteo />} />
+                <Route exact path="/conteo/:type" element={<Conteo />} />
+                <Route exact path="/rechazado/conteo/:type" element={<Conteo />} />
                 <Route exact path="/conteo/modificar/:id/:name" element={<ModifyQuantity />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/dashboard/:process" element={<DashboardProcess />} />

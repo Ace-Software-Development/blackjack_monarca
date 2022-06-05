@@ -41,6 +41,7 @@ function Process() {
     const hrefEntrega = `/parte/${process}/${nextProcess}`;
     const hrefConfirm = `/confirmar/${process}/${prevProcess}`;
     const hrefIncident = '/rechazado/incidente';
+    const hrefTake = '/rechazado/conteo/Tomar';
     if (process === 'Rechazado') {
         return (
             <Container className="h-100 d-flex flex-column">
@@ -48,8 +49,8 @@ function Process() {
                 <Container className="flex-grow-1 d-flex flex-column">
                     <Row className="flex-grow-1">
                         <Col md={6}>
-                            <a href={hrefConfirm}>
-                                {Card('mail-unread', 'Recibir')}
+                            <a href={hrefTake}>
+                                {Card('disc', 'Tomar discos')}
                             </a>
                         </Col>
                         <Col md={6}>

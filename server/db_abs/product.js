@@ -81,6 +81,8 @@ class Product {
         product.set('model', model);
         product.set('aluminium', aluminium);
         product.set('key', key);
+        product.set('with_lid', 0);
+        product.set('withOut_lid', 0);
         product.set('delete', false);
 
         return product;

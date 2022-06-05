@@ -35,9 +35,13 @@ class IncomeDisk {
    * @param id_disk: Id of the disks registered
    * @returns Parse object with number and id_disk
    */
-    static registerIncomingDisk(number, name) {
+    static registerIncomingDisk(number, name, where) {
         const incomeDisk = new Parse.Object(Constants.IncomeDisk);
-        incomeDisk.set('number', parseInt(number));
+        if (where === "Tomar") {
+            incomeDisk.set('number', parseInt(number) * -1);
+        } else {
+            incomeDisk.set('number', parseInt(number));
+        }
         incomeDisk.set('name', name);
         return incomeDisk;
     }

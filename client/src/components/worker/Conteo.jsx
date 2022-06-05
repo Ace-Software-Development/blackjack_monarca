@@ -5,12 +5,13 @@ import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import Header from './Header';
 import Environment from '../Environment';
 
+let type = '';
 /**
    * Disks
    * @description React component to asign an option value for each existing disk in a select
@@ -68,6 +69,9 @@ IncomeDisks.propTypes = {
    * @returns HTML with fetched data
    */
 function Conteo() {
+    const params = useParams();
+    type = params.type;
+
     const [disks, setDisks] = useState([]);
     const [incomeDisks, setIncomeDisks] = useState([]);
 
@@ -104,11 +108,11 @@ function Conteo() {
         getAllIncomeDisks();
     });
 
-    const navigate = useNavigate();
     const [form, setForm] = useState({
         number: '',
         id_disk: '',
         name: '',
+        where: type,
     });
 
     /**
@@ -149,9 +153,10 @@ function Conteo() {
             number: '',
             id_disk: '',
             name: '',
+            where: type,
         });
 
-        navigate('/conteo');
+        window.location.reload();
     }
 
     /**
@@ -202,7 +207,7 @@ function Conteo() {
     }
     return (
         <container>
-            <Header processName="Conteo" />
+            <Header processName={`${form.where} discos`} />
             <form onSubmit={onSubmit}>
                 <div className="form-group row d-flex justify-content-center">
                     <div className="col-10 mt-4">
