@@ -33,7 +33,8 @@ exports.postProductOrderController = async function (request, response){
 
 /**
    * confirmProductOrderController
-   * @description Change the status of an order
+   * @description Changes the status of an order and substracts the 
+   * numbers of products in the order from the inventory
    */
  exports.confirmProductOrderController = async function (request, response){
     try{
@@ -41,7 +42,6 @@ exports.postProductOrderController = async function (request, response){
         const id = productsOrder[0].orderId.objectId;
         const name = productsOrder[0].orderId.name;
         const id_buyer = productsOrder[0].orderId.id_buyer.objectId;
-        const is_Delivered = productsOrder[0].orderId.is_Delivered;
         const order = await confirmOrder(id, name, id_buyer, true);
         await order.save().then(() => {
             let product;

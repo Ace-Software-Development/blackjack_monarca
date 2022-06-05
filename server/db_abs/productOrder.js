@@ -47,26 +47,6 @@ class ProductOrder
 
         return productOrder.find();
     }
-
-     /**
-   * getProductOrderById
-   * @description Get a product order with its id
-   * @param objectId: id of the product order
-   * @returns Json with order, product and category info
-   */
-      static getProductOrderNumberById(objectId)
-      {
-          const productOrder = new Parse.Query("ProductOrder");
-  
-          var Order = Parse.Object.extend("Order");
-          var pointerToOrder = new Order();
-          pointerToOrder.id = objectId;
-  
-          productOrder.equalTo("orderId", pointerToOrder);
-  
-          return productOrder.find({useMasterKey: true});
-      }
-
 }
 
 module.exports = ProductOrder;

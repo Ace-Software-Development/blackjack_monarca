@@ -168,6 +168,11 @@ function OrderAdmin() {
         navigate('/dashboard/Administrador');
     }
 
+    /**
+   * onSubmit
+   * @description Confirms order verifying that there is enough inventory
+   * @param e: Context
+   */
     function onSubmit(e) {
         e.preventDefault();
 
