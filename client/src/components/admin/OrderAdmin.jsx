@@ -77,6 +77,7 @@ function OrderAdmin() {
     const [order, setOrder] = useState('');
     const [buyerName, setBuyerName] = useState('');
     const [buyerCity, setBuyerCity] = useState('');
+    const [error, setError] = useState('');
 
     async function getAllProducts() {
         const response = await fetch(`http://localhost:8888/productOrder/get/${orderId}`);
@@ -148,56 +149,43 @@ function OrderAdmin() {
         return ('No tienes permisos');
     }
 
-    const [confirmForm, setConfirmForm] = useState({
-        order: '',
-        name: '',
-        id_buyer: '',
-        id_Delivered: '',
-
-    });
-
     /**
    * ConfirmOrder
    * @description Modifies order in inventory through a fetch to the server
    * @param e: Context
    */
-    async function ConfirmOrder(e) {
+    async function confirmOrder(e) {
         e.preventDefault();
-
-        const orderInfo = { ...confirmForm };
 
         await fetch(`${Environment()}/productOrder/confirmar/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(orderInfo),
-        });
-
-        setConfirmForm({
-            order: '',
-            name: '',
-            id_buyer: '',
-            id_Delivered: '',
+            body: JSON.stringify(products),
         });
 
         navigate('/dashboard/Administrador');
     }
 
-    /**
-   * updateForm
-   * @description updates data of a form
-   * @param value: new values of the form
-   * @returns an updated form
-   */
-    function updateForm() {
-        return setConfirmForm({
-            order: order.objectId,
-            name: order.name,
-            id_buyer: order.id_buyer.objectId,
-            is_Delivered: true,
-        });
+    function onSubmit(e) {
+        e.preventDefault();
+
+        if (products.length < 1) {
+            setError('No hay productos que completar.');
+            return;
+        }
+
+        for (let i = 0; i < products.length; i += 1) {
+            if (products[i].number > products[i].id_product.with_lid) {
+                setError('No hay suficientes piezas en inventario para completar el pedido.');
+                return;
+            }
+        }
+
+        confirmOrder(e);
     }
+
     return (
         <div className="container-fluid">
             <Sidebar />
@@ -222,11 +210,16 @@ function OrderAdmin() {
                             </table>
                         </div>
                     </div>
-                    <form onSubmit={ConfirmOrder} className="row mt-5">
+                    <form onSubmit={onSubmit} className="row mt-5">
                         <div className="col d-flex justify-content-center form group">
-                            <button placeholder="Cantidad" className="btn-order" type="submit" onClick={() => updateForm()}>Completar pedido</button>
+                            <button placeholder="Cantidad" className="btn-order" type="submit">Completar pedido</button>
                         </div>
                     </form>
+                    <div className="row mt-3">
+                        <div className="col d-flex justify-content-center form group">
+                            <p className="red-text">{error}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
