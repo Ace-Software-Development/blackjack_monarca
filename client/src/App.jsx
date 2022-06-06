@@ -26,8 +26,9 @@ import RegisterPack from './components/worker/RegisterPack';
 import Orders from './components/worker/Orders';
 import Order from './components/worker/Order';
 import ModifyPackStatus from './components/worker/ModifyPackStatus';
-import DashboardProcess from './components/admin/DashboardProcess';
+import DashboardTrabajador from './components/admin/DashboardTrabajador';
 import OrderAdmin from './components/admin/OrderAdmin';
+import OrdersAdmin from './components/admin/OrdersAdmin';
 
 function App() {
     return (
@@ -41,7 +42,8 @@ function App() {
                 <Route exact path="/conteo" element={<Conteo />} />
                 <Route exact path="/conteo/modificar/:id/:name" element={<ModifyQuantity />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
-                <Route exact path="/dashboard/:process" element={<DashboardProcess />} />
+                <Route exact path="/dashboard/Trabajador" element={<DashboardTrabajador />} />
+                <Route exact path="/dashboard/Pedidos" element={<OrdersAdmin />} />
                 <Route exact path="/dashboard/pedidos/:orderId" element={<OrderAdmin />} />
                 <Route exact path="/proceso/:process" element={<Process />} />
                 <Route excat path="/parte" element={<NamePart />} />

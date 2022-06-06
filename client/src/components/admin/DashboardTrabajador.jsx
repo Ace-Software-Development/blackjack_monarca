@@ -1,7 +1,6 @@
 // CU20 Consultar Desempeño del trabajador
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import {
     Row,
     Col,
@@ -30,13 +29,9 @@ HighchartsExporting(Highcharts);
 HighchartsExportData(Highcharts);
 HighchartsData(Highcharts);
 
-let process = '';
-
 function Dashboard() {
     const session = Cookies.get('sessionToken');
     const admin = Cookies.get('is_admin');
-    const params = useParams();
-    process = params.process;
     const [permission, setPermission] = useState([]);
 
     /**
@@ -184,8 +179,8 @@ function Dashboard() {
         series: [
             {
                 type: 'column',
-                name: 'Merma',
-                id: 'Merma',
+                name: 'Producción',
+                id: 'Producción',
                 data: main2,
             },
         ],
@@ -219,8 +214,8 @@ function Dashboard() {
             series: [
                 {
                     type: 'column',
-                    name: 'Merma',
-                    id: 'Merma',
+                    name: 'Producción',
+                    id: 'Producción',
                     data: main2,
                 },
             ],
@@ -234,7 +229,7 @@ function Dashboard() {
                 <Row>
                     <Col>
                         <h1 className="my-2">Dashboard</h1>
-                        <h3 className="my-2">{process}</h3>
+                        <h3 className="my-2">Trabajador</h3>
                     </Col>
                 </Row>
                 <Row className="d-flex my-3">

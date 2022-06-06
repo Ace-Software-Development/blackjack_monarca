@@ -1,7 +1,6 @@
 // CU15 Consultar Merma del Producto
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
@@ -26,13 +25,9 @@ HighchartsExporting(Highcharts);
 HighchartsExportData(Highcharts);
 HighchartsData(Highcharts);
 
-let process = '';
-
 function Dashboard() {
     const session = Cookies.get('sessionToken');
     const admin = Cookies.get('is_admin');
-    const params = useParams();
-    process = params.process;
     const [permission, setPermission] = useState([]);
 
     /**
@@ -257,7 +252,6 @@ function Dashboard() {
                 <Row>
                     <Col>
                         <h1 className="my-2">Dashboard</h1>
-                        <h3 className="my-2">{process}</h3>
                     </Col>
                 </Row>
                 <Row className="d-flex my-3">
