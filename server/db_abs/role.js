@@ -14,7 +14,6 @@ module.exports = class role{
    * @param sessionToken: Session token of current user
    */
     static getPermission(sessionToken){
-        console.log(sessionToken);
         var sq = new Parse.Query('_Session')
         sq.equalTo('sessionToken', sessionToken);  
         return sq.first({ useMasterKey: true });
