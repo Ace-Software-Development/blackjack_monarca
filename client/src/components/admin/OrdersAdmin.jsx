@@ -3,7 +3,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import {
+    Col, Row,
+} from 'react-bootstrap';
 import orderCard from '../orderCard';
+import Environment from '../Environment';
+import Sidebar from './Sidebar';
 
 /**
  * OrderElement
@@ -32,7 +37,7 @@ function OrdersAdmin() {
      * @description Fetches existing orders from the database through the server
      */
     async function getOrders() {
-        const response = await fetch('http://localhost:8888/empacado/ordenes/get');
+        const response = await fetch(`${Environment()}/empacado/ordenes/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -58,8 +63,19 @@ function OrdersAdmin() {
     }
 
     return (
-        <div className="row w-100 justify-content-center align-self-stretch">
-            {orderList()}
+        <div className="container-fluid">
+            <Sidebar />
+            <div className="content d-flex px-4 pt-3 w-75">
+                <Row>
+                    <Col>
+                        <h1 className="my-2">Dashboard</h1>
+                        <h3 className="my-2">Pedidos</h3>
+                    </Col>
+                </Row>
+                <Row>
+                    {orderList()}
+                </Row>
+            </div>
         </div>
     );
 }

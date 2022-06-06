@@ -16,13 +16,18 @@ function logout() {
 function Sidebar() {
     return (
         <div className="sidebar d-flex flex-column flex-shrink-0 p-4">
-            <img src="../logo.svg" alt="Aluminios Monarca logo" />
+            <img src="../../logo.svg" alt="Aluminios Monarca logo" />
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 {TabSidebar('active', 'Dashboard', 'apps')}
                 {TabSidebar(null, 'Trabajador', 'apps')}
                 {TabSidebar(null, 'Procesos', 'apps')}
-                {TabSidebar(null, 'Administrador', 'apps')}
+                {TabSidebar(null, 'Pedidos', 'apps')}
+                {TabSidebar(null, 'Compradores', 'apps')}
+                {TabSidebar(null, 'Trabajadores', 'apps')}
+                {TabSidebar(null, 'Productos', 'apps')}
+                {TabSidebar(null, 'Categorías', 'apps')}
+                {TabSidebar(null, 'Usuarios', 'apps')}
             </ul>
             <div className="sidebar-footer">
                 <a
@@ -34,7 +39,7 @@ function Sidebar() {
                     </div>
                     Manual
                 </a>
-                <button type="button" onClick={() => logout()}>
+                <button type="button" className="btn" onClick={() => logout()}>
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name="log-out-outline" />
                     </div>

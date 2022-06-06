@@ -38,3 +38,31 @@ h5 {
 hr {
   color: #f2f2f2;
 }
+
+.btn-add {
+  background: #F69223;
+  color: #F4F5F4;
+  border-width: 0px;
+  border-radius: 5px;
+  height: 40px;
+  width: 190px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+input,
+input::placeholder {
+  font: 18px sans-serif;
+}
+
+.orange-text {
+  color: #F69223;
+}
