@@ -33,7 +33,6 @@ class ProductOrder
    */
     static getProductOrderById(objectId)
     {
-        console.log(objectId);
         const productOrder = new Parse.Query("ProductOrder");
 
         var Order = Parse.Object.extend("Order");
@@ -41,13 +40,13 @@ class ProductOrder
         pointerToOrder.id = objectId;
 
         productOrder.equalTo("orderId", pointerToOrder);
+        productOrder.include("orderId");
         productOrder.include("id_product");
         productOrder.include("id_product.id_category");
 
 
         return productOrder.find();
     }
-
 }
 
 module.exports = ProductOrder;
