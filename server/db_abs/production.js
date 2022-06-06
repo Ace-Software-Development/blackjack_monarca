@@ -1,62 +1,26 @@
-const cPartInventory = require('part_inventory.js');
-
 class Production
 {
-    constructor(pAssignObj)
-    {
-        this.id = pAssignObj.id;
-        /*TODO make all the field*/
-    }
+     /**
+   * getProductionDay
+   * @description Query to get all work done by an specific worker in a range of days
+   * @param startDay first day of the interval
+   * @param endDay last day of the interval
+   * @param idWorker Id from a worker
+   * @returns Parse object with all work don by a worker between dates
+   */
+    static getProductionDay(startDay, endDay, idWorker){
 
-    static getEmpty()
-    {
-        return new Production({id:null});/*TODO make all the field*/
-    }
+        var Worker = Parse.Object.extend("Worker");
+        var pointerToPart = new Worker();
+        pointerToPart.id = idWorker;
 
-    static getById(id)
-    {
-        let oProduction = Production.getEmpty();
-        /*TODO implement*/
-        return oProduction;
-    }
-
-    static getByProcess(process)
-    {
-        let listProduction = [];
-        /*TODO implement*/
-        return listProduction;
-    }
-
-    static getIncidenceNeedQualify()
-    {
-        let listProduction = [];
-        /*TODO implement*/
-        return listProduction;
-    }
-
-    checkout()
-    {
-        /*TODO implement*/
-    }
-
-    reportMissCounting(MissCountingNum)
-    {
-        /*TODO implement*/
-    }
-
-    reportIncident(IncidentNum)
-    {
-        /*TODO implement*/
-    }
-
-    qualifyIncident(SecondNum, ScrapNum)
-    {
-        let oProductionOk = Production.getEmpty();
-        let oProductionSecond = Production.getEmpty();
-        /*TODO implement*/
-
-        return [oProductionOk, oProductionSecond];
-    }
+        const parts = new Parse.Query("PartInventory");
+        parts.equalTo("status", "confirmed");
+        parts.greaterThanOrEqualTo('updatedAt', startDay);
+        parts.lessThanOrEqualTo('updatedAt', endDay);
+        parts.equalTo("id_worker",pointerToPart);
+        return parts.find();
+    } 
 }
 
 module.exports = Production;

@@ -34,6 +34,25 @@ class Order {
         orders.equalTo("objectId", objectId);
         return orders.first();
     }
+    
+    /**
+   * confirmOrder
+   * @description Modifies an order
+   * @returns Parse object with name and Id of the order in table "Order"
+   */
+     static confirmOrder(objectId, name, id_buyer, is_Delivered){
+        var Buyer = Parse.Object.extend("Buyer");
+        var pointerToBuyer = new Buyer();
+        pointerToBuyer.id = id_buyer;
+
+        const order = new Parse.Object("Order");
+        order.set("objectId", objectId);
+        order.set("name", name);
+        order.set("id_buyer", pointerToBuyer);
+        order.set("is_Delivered", is_Delivered);
+
+        return order;
+    }
 
 }
 

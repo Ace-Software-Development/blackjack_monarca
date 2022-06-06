@@ -18,6 +18,9 @@ const dashboard = require('./routes/dashboard');
 const categoria = require('./routes/categoria');
 const comprador = require('./routes/comprador');
 const disco = require('./routes/disco');
+const merma = require('./routes/merma');
+const trabajadores = require('./routes/trabajadores');
+const produccion = require('./routes/produccion');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -81,16 +84,18 @@ app.use('/empacado', dashboard);
 app.use('/categoria', categoria);
 app.use('/comprador', comprador);
 app.use('/disco', disco);
+app.use('/merma', merma);
+app.use('/trabajadores', trabajadores);
+app.use('/produccion', produccion);
 
-
-app.use(express.static(
-  path.join(__dirname,
-    "../client/build")));
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname,
-      "../client/build/index.html")
-  );
-});
+// app.use(express.static(
+//   path.join(__dirname,
+//     "../client/build")));
+// app.get("*", (req, res) => {
+//   res.sendFile(
+//     path.join(__dirname,
+//       "../client/build/index.html")
+//   );
+// });
 
 app.listen(8888);

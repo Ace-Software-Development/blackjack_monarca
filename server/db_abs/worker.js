@@ -92,6 +92,16 @@ class Worker {
         return worker.first();
     }
 
+    /**
+    * getAllWorkersQuery
+    * @description Query to get all active workers
+    * @returns Parse object with name and Id of the workers in table "Worker"
+    */
+    static getAllWorkersQuery() {
+        var query = new Parse.Query(Constants.Worker);
+        query.notEqualTo("delete", true);
+        return query.find();
+    }
 
     static getEmpty() {
         return new Worker({ id: null });/*TODO make all the field*/
