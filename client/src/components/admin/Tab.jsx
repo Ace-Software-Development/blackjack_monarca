@@ -6,7 +6,19 @@ function TabSidebar(activeProperty, tabName, tabIcon) {
     if (tabName === 'Dashboard') {
         return (
             <li className="nav-item sidebar-tab mt-2">
-                <a className={`${activeProperty} nav-link`} href="/dash">
+                <a className={`${activeProperty} nav-link`} href="/dashboard">
+                    <div className="nav-link-icon">
+                        <ion-icon className="tab-icon" name={`${tabIcon}-outline`} />
+                    </div>
+                    {tabName}
+                </a>
+            </li>
+        );
+    }
+    if (tabName === 'Categorías') {
+        return (
+            <li className="nav-item sidebar-tab mt-2">
+                <a className={`${activeProperty} nav-link`} href="/dashboard/Categorias">
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name={`${tabIcon}-outline`} />
                     </div>
@@ -17,7 +29,7 @@ function TabSidebar(activeProperty, tabName, tabIcon) {
     }
     return (
         <li className="nav-item sidebar-tab mt-2">
-            <a className={`${activeProperty} nav-link`} href={`/dash/${tabName}`}>
+            <a className={`${activeProperty} nav-link`} href={`/dashboard/${tabName}`}>
                 <div className="nav-link-icon">
                     <ion-icon className="tab-icon" name={`${tabIcon}-outline`} />
                 </div>

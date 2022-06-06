@@ -1,21 +1,21 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 function Header({ processName }) {
+    const navigate = useNavigate();
     return (
         <Container className="d-flex">
             <Row className="w-100 mt-2">
-                <Col xs={3} s={4} md={4} lg={3} className="d-flex align-items-start flex-column">
-                    <a href="/inicio">
-                        <ion-icon name="home-outline" size="large" />
-                    </a>
-                </Col>
-                <Col className="justify-content-center">
+                <div className="col-1 d-flex justify-content-start flex-column href=/inicio home">
+                    <ion-icon name="home-outline" size="large" onClick={() => navigate('/inicio')} />
+                </div>
+                <div className="d-flex justify-content-center">
                     <div className="justify-content-center">
                         <h1>{processName}</h1>
                     </div>
-                </Col>
+                </div>
             </Row>
         </Container>
     );

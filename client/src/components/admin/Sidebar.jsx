@@ -23,18 +23,21 @@ function Sidebar() {
                 {TabSidebar(null, 'Trabajador', 'apps')}
                 {TabSidebar(null, 'Procesos', 'apps')}
                 {TabSidebar(null, 'Pedidos', 'apps')}
+                {TabSidebar(null, 'Clientes', 'apps')}
+                {TabSidebar(null, 'Trabajadores', 'apps')}
+                {TabSidebar(null, 'Productos', 'apps')}
+                {TabSidebar(null, 'Categorías', 'apps')}
+                {TabSidebar(null, 'Discos', 'apps')}
+                {TabSidebar(null, 'Usuarios', 'apps')}
             </ul>
             <div className="sidebar-footer">
-                <a
-                  className="nav-link"
-                  href="https://getbootstrap.com/docs/5.1/examples/sidebars/#"
-                >
+                <a className="nav-link" href="https://getbootstrap.com/docs/5.1/examples/sidebars/#">
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name="book-outline" />
                     </div>
                     Manual
                 </a>
-                <button type="button" onClick={() => logout()}>
+                <button type="button" className="btn" onClick={() => logout()}>
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name="log-out-outline" />
                     </div>
