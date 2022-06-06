@@ -16,13 +16,13 @@ function logout() {
 function Sidebar() {
     return (
         <div className="sidebar d-flex flex-column flex-shrink-0 p-4">
-            <img src="../logo.svg" alt="Aluminios Monarca logo" />
+            <img src="../../logo.svg" alt="Aluminios Monarca logo" />
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 {TabSidebar('active', 'Dashboard', 'apps')}
                 {TabSidebar(null, 'Trabajador', 'apps')}
                 {TabSidebar(null, 'Procesos', 'apps')}
-                {TabSidebar(null, 'Administrador', 'apps')}
+                {TabSidebar(null, 'Pedidos', 'apps')}
             </ul>
             <div className="sidebar-footer">
                 <a
