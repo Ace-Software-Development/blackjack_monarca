@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * CreateBuyer
@@ -31,7 +32,7 @@ function CreateBuyer() {
 
         const newBuyer = { ...form };
 
-        await fetch('http://localhost:8888/comprador/post', {
+        await fetch(`${Environment()}/comprador/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,29 +53,18 @@ function CreateBuyer() {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <Modal.Body>
-                    <div className="row">
-                        <div>Nombre</div>
-                        <input type="text" id="name" name="name" className="col" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
-                    </div>
-                    <div className="row">
-                        <div>Ciudad</div>
-                        <input type="text" id="city" name="city" className="col" placeholder="Ciudad" value={form.city} onChange={(e) => updateForm({ city: e.target.value })} required />
-                    </div>
-                    <div className="row">
-                        <div>Teléfono</div>
-                        <input type="text" id="phone" name="phone" className="col" placeholder="Teléfono" value={form.phone} onChange={(e) => updateForm({ phone: e.target.value })} required />
-                    </div>
-                    <div className="row">
-                        <div>Correo</div>
-                        <input type="mail" id="mail" name="mail" className="col" placeholder="Correo" value={form.mail} onChange={(e) => updateForm({ mail: e.target.value })} required />
-                    </div>
+                <Modal.Body className="p-2">
+                    <h5>Nombre</h5>
+                    <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="Juan Pérez" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                    <h5>Ciudad</h5>
+                    <input type="text" id="city" name="city" className="h-75 w-100 ml-4 mb-3" placeholder="Querétaro" value={form.city} onChange={(e) => updateForm({ city: e.target.value })} required />
+                    <h5>Teléfono</h5>
+                    <input type="text" id="phone" name="phone" className="h-75 w-100 ml-4 mb-3" placeholder="442 354 8266" value={form.phone} onChange={(e) => updateForm({ phone: e.target.value })} required />
+                    <h5>Correo</h5>
+                    <input type="mail" id="mail" name="mail" className="h-75 w-100 ml-4 mb-3" placeholder="ejemplo@mail.com" value={form.mail} onChange={(e) => updateForm({ mail: e.target.value })} required />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col" onClick={() => window.location.reload()}>Crear</button>
+                    <button type="submit" className="btn-add" onClick={() => window.location.reload()}>Crear</button>
                 </Modal.Footer>
             </form>
         </div>

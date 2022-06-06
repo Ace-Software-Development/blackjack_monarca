@@ -3,10 +3,12 @@ import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import CreateProduct from './CreateProduct';
 import ModifyProduct from './ModifyProduct';
 import DeleteProduct from './DeleteProduct';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
 
 /**
  * Products
@@ -15,6 +17,30 @@ import Sidebar from './Sidebar';
  * @returns HTML with fetched data
  */
 function Products({ product }) {
+    const session = Cookies.get('sessionToken');
+    const admin = Cookies.get('is_admin');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, [session, admin]);
+    if (admin === 'false' || !permission) {
+        return ('No tienes permisos');
+    }
     const [show, setShow] = useState(false);
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
@@ -27,28 +53,28 @@ function Products({ product }) {
         <>
             <tr>
                 <th>
-                    <div>{product.id_category.name}</div>
-                    <div className="sub-text1">Categoría</div>
+                    <h5>{product.id_category.name}</h5>
+                    <h6 className="sub-text1">Categoría</h6>
                 </th>
                 <th>
-                    <div>{product.model}</div>
-                    <div className="sub-text1">Modelo</div>
+                    <h5>{product.model}</h5>
+                    <h6 className="sub-text1">Modelo</h6>
                 </th>
                 <th>
-                    <div>{product.aluminium}</div>
-                    <div className="sub-text1">Aluminio</div>
+                    <h5>{product.aluminium}</h5>
+                    <h6 className="sub-text1">Aluminio</h6>
                 </th>
                 <th>
-                    <div>{product.key}</div>
-                    <div className="sub-text1">key</div>
+                    <h5>{product.key}</h5>
+                    <h6 className="sub-text1">key</h6>
                 </th>
                 <th>
-                    <button type="button" onClick={handleShowMod}>
+                    <button type="button" className="btn" onClick={handleShowMod}>
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
                 <th>
-                    <button type="button" onClick={handleShowDMod}>
+                    <button type="button" className="btn" onClick={handleShowDMod}>
                         <ion-icon size="large" name="trash-outline" />
                     </button>
                 </th>
@@ -100,7 +126,7 @@ function Product() {
     const [products, setProducts] = useState([]);
 
     async function getAllProducts() {
-        const response = await fetch('http://localhost:8888/producto/get');
+        const response = await fetch(`${Environment()}/producto/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -143,7 +169,7 @@ function Product() {
                                             Agregar
                                         </button>
                                     </div>
-                                    <table className="table table-striped" style={{ marginTop: 20 }}>
+                                    <table className="w-100 mt-4" style={{ marginTop: 20 }}>
                                         <thead>
                                             <tr>
                                                 <th>Categoría</th>

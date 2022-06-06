@@ -3,9 +3,11 @@ import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import CreateUser from './CreateUser';
 import ModifyUser from './ModifyUser';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
 
 /**
    * isAdmin
@@ -49,6 +51,30 @@ function getRole(role) {
  * @returns HTML with fetched data
  */
 function Users({ user }) {
+    const session = Cookies.get('sessionToken');
+    const admin = Cookies.get('is_admin');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, [session, admin]);
+    if (admin === 'false' || !permission) {
+        return ('No tienes permisos');
+    }
     const [show, setShow] = useState(false);
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
@@ -57,15 +83,15 @@ function Users({ user }) {
         <>
             <tr>
                 <th>
-                    <div>{user.username}</div>
-                    <div className="sub-text2">Nombre de usuario</div>
+                    <h5>{user.username}</h5>
+                    <h6 className="sub-text2">Nombre de usuario</h6>
                 </th>
                 <th>
-                    {isAdmin(user.is_admin)}
-                    <div className="sub-text1">Rol</div>
+                    <h5>{isAdmin(user.is_admin)}</h5>
+                    <h6 className="sub-text1">Rol</h6>
                 </th>
                 <th>
-                    <button type="button" onClick={handleShowMod}>
+                    <button type="button" className="btn" onClick={handleShowMod}>
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
@@ -98,7 +124,7 @@ function User() {
     const handleShowCreate = () => setShow(true);
 
     async function getAllUsers() {
-        const response = await fetch('http://localhost:8888/usuario/get');
+        const response = await fetch(`${Environment()}/usuario/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);

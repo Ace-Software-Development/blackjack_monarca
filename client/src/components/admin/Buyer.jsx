@@ -3,10 +3,12 @@ import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import CreateBuyer from './CreateBuyer';
 import ModifyBuyer from './ModifyBuyer';
 import DeleteBuyer from './DeleteBuyer';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
 
 /**
  * Buyers
@@ -15,6 +17,30 @@ import Sidebar from './Sidebar';
  * @returns HTML with fetched data
  */
 function Buyers({ buyer }) {
+    const session = Cookies.get('sessionToken');
+    const admin = Cookies.get('is_admin');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, [session, admin]);
+    if (admin === 'false' || !permission) {
+        return ('No tienes permisos');
+    }
     const [show, setShow] = useState(false);
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
@@ -24,31 +50,31 @@ function Buyers({ buyer }) {
     const handleShowDMod = () => setShowD(true);
 
     return (
-        <>
+        <container>
             <tr>
                 <th>
-                    <div>{buyer.name}</div>
-                    <div className="sub-text2">Nombre del comprador</div>
+                    <h5>{buyer.name}</h5>
+                    <h6 className="sub-text2">Nombre del comprador</h6>
                 </th>
                 <th>
-                    <div>{buyer.city}</div>
-                    <div className="sub-text1">Ciudad</div>
+                    <h5>{buyer.city}</h5>
+                    <h6 className="sub-text1">Ciudad</h6>
                 </th>
                 <th>
-                    <div>{buyer.phone}</div>
-                    <div className="sub-text1">Teléfono</div>
+                    <h5>{buyer.phone}</h5>
+                    <h6 className="sub-text1">Teléfono</h6>
                 </th>
                 <th>
-                    <div>{buyer.mail}</div>
-                    <div className="sub-text1">Correo</div>
+                    <h5>{buyer.mail}</h5>
+                    <h6 className="sub-text1">Correo</h6>
                 </th>
                 <th>
-                    <button type="button" onClick={handleShowMod}>
+                    <button type="button" className="btn" onClick={handleShowMod}>
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
                 <th>
-                    <button type="button" onClick={handleShowDMod}>
+                    <button type="button" className="btn" onClick={handleShowDMod}>
                         <ion-icon size="large" name="trash-outline" />
                     </button>
                 </th>
@@ -67,7 +93,7 @@ function Buyers({ buyer }) {
                 </Modal.Header>
                 {DeleteBuyer(buyer.objectId, buyer.name)}
             </Modal>
-        </>
+        </container>
 
     );
 }
@@ -88,7 +114,7 @@ function Buyer() {
     const handleShowCreate = () => setShow(true);
 
     async function getAllBuyers() {
-        const response = await fetch('http://localhost:8888/comprador/get');
+        const response = await fetch(`${Environment()}/comprador/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -123,15 +149,15 @@ function Buyer() {
                         <div className="card conteo-card">
                             <div className="card-body">
                                 <div>
-                                    <div className="row justify-content-between">
-                                        <div className="col-3">
+                                    <div className="row justify-content-between mb-4">
+                                        <h3 className="col-4">
                                             Compradores
-                                        </div>
-                                        <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
+                                        </h3>
+                                        <button type="button" variant="primary" className="btn-add" onClick={handleShowCreate}>
                                             Agregar
                                         </button>
                                     </div>
-                                    <table className="table table-striped" style={{ marginTop: 20 }}>
+                                    <table className="w-100 mt-4" style={{ marginTop: 20 }}>
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
@@ -155,7 +181,7 @@ function Buyer() {
 
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear trabajador</Modal.Title>
+                    <Modal.Title>Crear comprador</Modal.Title>
                 </Modal.Header>
                 <CreateBuyer />
             </Modal>

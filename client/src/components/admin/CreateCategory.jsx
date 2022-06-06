@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * CreateCategory
@@ -30,7 +31,7 @@ function CreateCategory() {
 
         const newCategory = { ...form };
 
-        await fetch('http://localhost:8888/categoria/post', {
+        await fetch(`${Environment()}/categoria/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,15 +50,12 @@ function CreateCategory() {
             <form onSubmit={onSubmit}>
                 <Modal.Body>
                     <div className="row">
-                        <div>Nombre</div>
-                        <input type="text" id="name" name="name" className="col" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                        <h5>Nombre</h5>
+                        <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="Vaporera" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col" onClick={() => window.location.reload()}>Crear</button>
+                    <button type="submit" className="btn-add" onClick={() => window.location.reload()}>Crear</button>
                 </Modal.Footer>
             </form>
         </div>

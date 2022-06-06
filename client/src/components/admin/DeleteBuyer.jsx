@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * DeleteBuyer
@@ -23,7 +24,7 @@ function DeleteBuyer(buyerId, buyerName) {
 
         const newBuyer = { ...form };
 
-        await fetch('http://localhost:8888/comprador/delete', {
+        await fetch(`${Environment()}/comprador/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,15 +44,12 @@ function DeleteBuyer(buyerId, buyerName) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Seguro que quieres eliminar al usuario ${buyerName}`}
+                            {`Confima que quieres eliminar al usuario ${buyerName}`}
                         </div>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col">Eliminar</button>
+                    <button type="submit" className="btn btn-danger btn-md">Eliminar</button>
                 </Modal.Footer>
             </form>
         </div>

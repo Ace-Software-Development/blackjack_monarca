@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * CreateUser
@@ -33,7 +34,7 @@ function CreateUser() {
 
         const newUser = { ...form };
 
-        await fetch('http://localhost:8888/usuario/post', {
+        await fetch(`${Environment()}/usuario/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,19 +56,19 @@ function CreateUser() {
             <form onSubmit={onSubmit}>
                 <Modal.Body>
                     <div className="row">
-                        <div>Usuario</div>
-                        <input type="text" id="username" name="username" className="col" placeholder="Usuario" value={form.username} onChange={(e) => updateForm({ username: e.target.value })} required />
+                        <h5>Usuario</h5>
+                        <input type="text" id="username" name="username" className="h-75 w-100 ml-4 mb-3" placeholder="Usuario" value={form.username} onChange={(e) => updateForm({ username: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <div>Correo</div>
-                        <input type="email" id="email" name="email" className="col" placeholder="ejemplo@mail.com" value={form.email} onChange={(e) => updateForm({ email: e.target.value })} required />
+                        <h5>Correo</h5>
+                        <input type="email" id="email" name="email" className="h-75 w-100 ml-4 mb-3" placeholder="ejemplo@mail.com" value={form.email} onChange={(e) => updateForm({ email: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <div>Contraseña</div>
-                        <input type="password" id="password" name="password" className="col" placeholder="Contraseña" value={form.password} onChange={(e) => updateForm({ password: e.target.value })} required />
+                        <h5>Contraseña</h5>
+                        <input type="password" id="password" name="password" className="h-75 w-100 ml-4 mb-3" placeholder="Contraseña" value={form.password} onChange={(e) => updateForm({ password: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <div>Elige el rol</div>
+                        <h5>Elige el rol</h5>
                         <select type="text" id="is_admin" name="is_admin" className="col" placeholder="Rol" value={form.is_admin} onChange={(e) => updateForm({ is_admin: e.target.value })} required>
                             <option value="" disabled selected>Selecciona el rol</option>
                             <option value="true">Administrador</option>
@@ -76,10 +77,7 @@ function CreateUser() {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col" onClick={() => window.location.reload()}>Crear</button>
+                    <button type="submit" className="btn-add" onClick={() => window.location.reload()}>Crear</button>
                 </Modal.Footer>
             </form>
         </div>

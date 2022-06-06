@@ -1,13 +1,13 @@
 // CU 2 Registrar entrada de discos
 // CU 6 Modificar entrada de discos
 import 'bootstrap/dist/css/bootstrap.css';
-import 'react-bootstrap';
 import '../admin/styles/dashboard.css';
 import './styles/conteo.css';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
+import { Col, Row, Container } from 'react-bootstrap';
 import Header from './Header';
 import Environment from '../Environment';
 
@@ -206,65 +206,57 @@ function Conteo() {
         return ('No tienes permisos');
     }
     return (
-        <container>
-            <Header processName={`${form.where} discos`} />
+        <Container>
+            <Header processName="Conteo" />
             <form onSubmit={onSubmit}>
-                <div className="form-group row d-flex justify-content-center">
-                    <div className="col-10 mt-4">
+                <Row className="form-group d-flex justify-content-center">
+                    <Col className="mt-4">
                         <div className="card conteo-card">
                             <div className="card-body">
-                                <div className="row">
-                                    <div className="col-8">
-                                        <p>Medidas</p>
-                                    </div>
-                                    <div className="col">
-                                        <p>Cantidad</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-8 form group">
+                                <Row>
+                                    <Col lg={8} className="form group">
+                                        <h5>Medidas</h5>
                                         <select className="form-control form-select form-select-lg" id="id_disk" name="id_disk" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required>
                                             <option value="" disabled selected>Selecciona un disco</option>
                                             {disksList()}
                                         </select>
-                                    </div>
-                                    <div className="col form group">
-                                        <input type="number" className="conteo-input form-control" id="number" name="number" min="1" pattern="^[0-9]+" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
-                                    </div>
-                                    <div className="col d-flex align-content-center form group">
-                                        <button placeholder="Cantidad" className="btn-orange" type="submit">Agregar</button>
-                                    </div>
-                                </div>
+                                    </Col>
+                                    <Col lg={2} className="align-content-center form group">
+                                        <h5>Cantidad</h5>
+                                        <input placeholder="Cantidad" type="number" className="py-2 form-control" id="number" name="number" min="1" pattern="^[0-9]+" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
+                                    </Col>
+                                    <Col lg={2} className="d-flex align-content-center justify-content-center form group align-self-end">
+                                        <button className="btn-orange" type="submit">Agregar</button>
+                                    </Col>
+                                </Row>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </Col>
+                </Row>
             </form>
-            <div className="row d-flex justify-content-center">
-                <div className="col-10 mt-4">
+            <Row className="row d-flex justify-content-center mt-3">
+                <Col className="mt-4">
                     <div className="card conteo-card">
                         <div className="card-body">
-                            <div>
-                                <p>Resumen</p>
-                                <table className="table table-striped" style={{ marginTop: 20 }}>
-                                    <thead>
-                                        <tr>
-                                            <th>Material</th>
-                                            <th>Cantidad</th>
-                                            <th>Fecha</th>
-                                            <th> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {incomeDisksList()}
-                                    </tbody>
-                                </table>
-                            </div>
+                            <h3>Resumen</h3>
+                            <table className="w-100 mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>Cantidad</th>
+                                        <th>Fecha</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {incomeDisksList()}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
-            </div>
-        </container>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

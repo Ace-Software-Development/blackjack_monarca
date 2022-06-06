@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * ModifyCategory
@@ -34,7 +35,7 @@ function ModifyCategory(catId, catName) {
 
         const newCategory = { ...form };
 
-        await fetch('http://localhost:8888/categoria/modify', {
+        await fetch(`${Environment()}/categoria/modify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,16 +54,11 @@ function ModifyCategory(catId, catName) {
         <div>
             <form onSubmit={onSubmit}>
                 <Modal.Body>
-                    <div className="row">
-                        <div>Nombre</div>
-                        <input type="text" id="name" name="name" className="col" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
-                    </div>
+                    <h6>Nombre</h6>
+                    <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="Vaporera" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col">Modificar</button>
+                    <button type="submit" className="btn-add">Modificar</button>
                 </Modal.Footer>
             </form>
         </div>

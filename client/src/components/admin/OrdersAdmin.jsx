@@ -4,6 +4,7 @@ import './styles/dashboard.css';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import orderCard from '../orderCard';
+import Environment from '../Environment';
 
 /**
  * OrderElement
@@ -32,7 +33,7 @@ function OrdersAdmin() {
      * @description Fetches existing orders from the database through the server
      */
     async function getOrders() {
-        const response = await fetch('http://localhost:8888/empacado/ordenes/get');
+        const response = await fetch(`${Environment()}/empacado/ordenes/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

@@ -9,6 +9,7 @@ import '../worker/styles/styles.css';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
 
 /**
  * Required
@@ -76,7 +77,7 @@ function OrderAdmin() {
     const [buyerCity, setBuyerCity] = useState('');
 
     async function getAllProducts() {
-        const response = await fetch(`http://localhost:8888/productOrder/get/${orderId}`);
+        const response = await fetch(`${Environment()}/productOrder/get/${orderId}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -93,7 +94,7 @@ function OrderAdmin() {
    * @returns Component with name and id of the order
    */
     async function getOrder() {
-        const response = await fetch(`http://localhost:8888/empacado/ordenes/getOne/${orderId}`);
+        const response = await fetch(`${Environment()}/empacado/ordenes/getOne/${orderId}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -124,7 +125,7 @@ function OrderAdmin() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
