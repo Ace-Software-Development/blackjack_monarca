@@ -39,7 +39,6 @@ class Disk {
 * @returns Parse object
 */
     static deleteDisk(id) {
-        console.log("id", id);
         const disk = new Parse.Object("Disk");
         disk.set('objectId', id);
         disk.set("delete", true);

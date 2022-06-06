@@ -10,7 +10,6 @@ const { registerUser, getAllUsers, modifyUser, deleteUser } = require('../db_abs
    */
 exports.postUserController = async function (request, response) {
     try {
-        console.log(request);
         const user = registerUser(request.body.username, request.body.email, request.body.password, request.body.is_admin);
         await user.save();
     } catch (error) {

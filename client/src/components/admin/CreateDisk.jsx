@@ -26,8 +26,6 @@ function CreateDisk() {
     async function onSubmit(e) {
         e.preventDefault();
 
-        console.log(form);
-
         const newCategory = { ...form };
 
         await fetch('http://localhost:8888/disco/post', {

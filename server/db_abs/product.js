@@ -74,7 +74,6 @@ class Product {
         var Category = Parse.Object.extend("Category");
         var pointerToCategory = new Category();
         pointerToCategory.id = category;
-        console.log("categoria", category);
 
         let product = new Parse.Object('Product');
         product.set('id_category', pointerToCategory);

@@ -28,8 +28,6 @@ function CreateWorker() {
     async function onSubmit(e) {
         e.preventDefault();
 
-        console.log(form);
-
         const newWorker = { ...form };
 
         await fetch('http://localhost:8888/trabajador/post', {

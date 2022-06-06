@@ -104,8 +104,6 @@ class PartInventory {
         query.include("id_product.id_category");
         query.include("id_part");
 
-        console.log(query);
-
         return query.first();
     }
 
