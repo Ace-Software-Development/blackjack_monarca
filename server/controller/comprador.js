@@ -11,7 +11,7 @@ const { registerBuyer, getAllBuyer, modifyBuyer, deleteBuyer } = require('../db_
 exports.postBuyerController = async function (request, response) {
     try {
         console.log(request);
-        const worker = registerBuyer(request.body.name, request.body.mail, request.body.city, request.body.phone);
+        const worker = registerBuyer(request.body.name, request.body.mail, request.body.city, request.body.phone, request.body.address);
         await worker.save();
     } catch (error) {
         console.error(error.message);
@@ -38,7 +38,7 @@ exports.getAllBuyerController = async function (request, response) {
    */
 exports.modifyBuyerController = async function (request, response) {
     try {
-        const worker = modifyBuyer(request.body.name, request.body.mail, request.body.city, request.body.phone, request.body.objectId);
+        const worker = modifyBuyer(request.body.name, request.body.mail, request.body.city, request.body.phone, request.body.objectId, request.body.address);
         await worker.save();
     } catch (error) {
         console.error(error.message);

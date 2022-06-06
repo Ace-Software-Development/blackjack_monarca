@@ -97,7 +97,7 @@ function CreateProduct() {
                     <input type="text" id="aluminium" name="aluminium" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Triple Fuerte" value={form.aluminium} onChange={(e) => updateForm({ aluminium: e.target.value })} required />
                     <h5>Key</h5>
                     <input type="text" id="keyP" name="keyP" className="h-75 w-100 ml-4 mb-3" placeholder="ej. vap90" value={form.keyP} onChange={(e) => updateForm({ keyP: e.target.value })} required />
-                    <h5>Elige el proceso</h5>
+                    <h5>Elige la categoría</h5>
                     <select type="text" id="category" name="category" className="h-75 w-100 ml-4 mb-3" onChange={(e) => updateForm({ category: e.target.value })} required>
                         <option value="" disabled selected>Selecciona la categoría</option>
                         {categoriesList()}

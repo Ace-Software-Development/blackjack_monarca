@@ -46,7 +46,7 @@ function DeleteUser(userId, userName) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Seguro que quieres eliminar al usuario ${userName}`}
+                            {`¿Seguro que quieres eliminar al usuario ${userName}?`}
                         </div>
                     </div>
                 </Modal.Body>

@@ -15,6 +15,7 @@ function CreateBuyer() {
         city: '',
         phone: '',
         mail: '',
+        address: '',
     });
 
     /**
@@ -45,6 +46,7 @@ function CreateBuyer() {
             city: '',
             phone: '',
             mail: '',
+            address: '',
         });
     }
 
@@ -60,6 +62,8 @@ function CreateBuyer() {
                     <input type="text" id="phone" name="phone" className="h-75 w-100 ml-4 mb-3" placeholder="ej. 442 354 8266" value={form.phone} onChange={(e) => updateForm({ phone: e.target.value })} required />
                     <h5>Correo</h5>
                     <input type="mail" id="mail" name="mail" className="h-75 w-100 ml-4 mb-3" placeholder="ej. ejemplo@mail.com" value={form.mail} onChange={(e) => updateForm({ mail: e.target.value })} required />
+                    <h5>Correo</h5>
+                    <input type="text" id="address" name="address" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Jacaranda 915 UH 27 de mayo" value={form.address} onChange={(e) => updateForm({ address: e.target.value })} required />
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="submit" className="btn-add" onClick={() => window.location.reload()}>Crear</button>

@@ -51,7 +51,7 @@ function App() {
                 <Route exact path="/conteo/modificar/:id/:name" element={<ModifyQuantity />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/dashboard/Trabajadores" element={<Worker />} />
-                <Route exact path="/dashboard/Compradores" element={<Buyer />} />
+                <Route exact path="/dashboard/Clientes" element={<Buyer />} />
                 <Route exact path="/dashboard/Productos" element={<Product />} />
                 <Route exact path="/dashboard/pedidos" element={<OrdersAdmin />} />
                 <Route exact path="/dashboard/Categorias" element={<CategoryList />} />
@@ -61,7 +61,7 @@ function App() {
                 <Route excat path="/parte" element={<NamePart />} />
                 <Route exact path="/modelo" element={<ModelNumber />} />
                 <Route exact path="/cantidad" element={<Quantity />} />
-                <Route exact path="/discos" element={<Disk />} />
+                <Route exact path="/dashboard/Discos" element={<Disk />} />
                 <Route exact path="/" element={<Login />} />
                 <Route exact path="/proceso/:prevProcess/:process/:nextProcess" element={<Process />} />
                 <Route exact path="/confirmar/:process/:prevProcess" element={<Confirm />} />

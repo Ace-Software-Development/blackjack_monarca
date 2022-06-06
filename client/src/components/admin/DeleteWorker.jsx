@@ -48,7 +48,7 @@ function DeleteWorker(workerId, workerName, workerNick) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Confirma que quieres eliminar al trabajador ${workerName} (${workerNick})`}
+                            {`¿Seguro que quieres eliminar al trabajador ${workerName} (${workerNick})?`}
                         </div>
                     </div>
                 </Modal.Body>

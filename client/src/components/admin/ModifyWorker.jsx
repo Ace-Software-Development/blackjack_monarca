@@ -64,7 +64,7 @@ function ModifyWorker(woekerId, workerName, workerNick, workerProcess) {
                     <input type="text" id="nick_name" name="nick_name" className="h-75 w-100 ml-4 mb-3" placeholder="Apodo" value={form.nick_name} onChange={(e) => updateForm({ nick_name: e.target.value })} required />
                     <h5>Elige el proceso</h5>
                     <select type="text" id="id_process" name="id_process" className="h-75 w-100 ml-4 mb-3" value={form.id_process} onChange={(e) => updateForm({ id_process: e.target.value })} required>
-                        <option value="" disabled>Selecciona el rol</option>
+                        <option value="" disabled>Selecciona el proceso</option>
                         <option value="Conteo">Conteo</option>
                         <option value="Rechazado">Rechazado</option>
                         <option value="Esmerilado">Esmerilado</option>
