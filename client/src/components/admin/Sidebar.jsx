@@ -39,7 +39,7 @@ function Sidebar() {
                     </div>
                     Manual
                 </a>
-                <button type="button" onClick={() => logout()}>
+                <button type="button" className="btn" onClick={() => logout()}>
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name="log-out-outline" />
                     </div>

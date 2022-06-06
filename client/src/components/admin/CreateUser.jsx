@@ -48,7 +48,6 @@ function CreateUser() {
             password: '',
             is_admin: '',
         });
-        window.location.reload();
     }
 
     return (
@@ -57,7 +56,7 @@ function CreateUser() {
                 <Modal.Body>
                     <div className="row">
                         <h5>Usuario</h5>
-                        <input type="text" id="username" name="username" className="h-75 w-100 ml-4 mb-3" placeholder="Usuario" value={form.username} onChange={(e) => updateForm({ username: e.target.value })} required />
+                        <input type="text" id="username" name="username" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Leonardo Alvarado" value={form.username} onChange={(e) => updateForm({ username: e.target.value })} required />
                     </div>
                     <div className="row">
                         <h5>Correo</h5>

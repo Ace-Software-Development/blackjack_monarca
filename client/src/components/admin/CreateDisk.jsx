@@ -40,7 +40,6 @@ function CreateDisk() {
         setForm({
             name: '',
         });
-        window.location.reload();
     }
 
     return (
@@ -49,7 +48,7 @@ function CreateDisk() {
                 <Modal.Body>
                     <div className="row">
                         <h5>Nombre</h5>
-                        <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="70 x 200" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                        <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="ej. 70 x 200" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

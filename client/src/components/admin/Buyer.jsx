@@ -127,7 +127,7 @@ function Buyer() {
 
     useEffect(() => {
         getAllBuyers();
-    }, []);
+    }, [buyers]);
 
     /**
    * workersList

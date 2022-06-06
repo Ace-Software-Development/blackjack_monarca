@@ -44,7 +44,6 @@ function CreateWorker() {
             nick_name: '',
             id_process: '',
         });
-        window.location.reload();
     }
 
     return (
@@ -53,11 +52,11 @@ function CreateWorker() {
                 <Modal.Body>
                     <div className="row">
                         <h5>Nombre</h5>
-                        <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="Juan Pérez" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                        <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Juan Pérez" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
                     </div>
                     <div className="row">
                         <h5>Apodo</h5>
-                        <input type="text" id="nick_name" name="nick_name" className="h-75 w-100 ml-4 mb-3" placeholder="Juancho" value={form.nick_name} onChange={(e) => updateForm({ nick_name: e.target.value })} required />
+                        <input type="text" id="nick_name" name="nick_name" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Juancho" value={form.nick_name} onChange={(e) => updateForm({ nick_name: e.target.value })} required />
                     </div>
                     <div className="row">
                         <h5>Elige el proceso</h5>

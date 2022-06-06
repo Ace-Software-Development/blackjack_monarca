@@ -139,7 +139,7 @@ function Product() {
 
     useEffect(() => {
         getAllProducts();
-    }, []);
+    }, [products]);
 
     /**
    * productsList
@@ -162,9 +162,9 @@ function Product() {
                             <div className="card-body">
                                 <div>
                                     <div className="row justify-content-between">
-                                        <div className="col-3">
+                                        <h3 className="col-3">
                                             Productos
-                                        </div>
+                                        </h3>
                                         <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
                                             Agregar
                                         </button>

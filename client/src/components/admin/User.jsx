@@ -137,7 +137,7 @@ function User() {
 
     useEffect(() => {
         getAllUsers();
-    }, []);
+    }, [users]);
 
     /**
    * usersList
@@ -154,20 +154,20 @@ function User() {
         <div className="container-fluid">
             <Sidebar />
             <div className="content d-flex px-4 pt-3 h-100">
-                <div className="row d-flex justify-content-center">
+                <div className="row d-flex">
                     <div className="col-10 mt-4">
                         <div className="card conteo-card">
                             <div className="card-body">
                                 <div>
                                     <div className="row justify-content-between">
-                                        <div className="col-2">
+                                        <h3 className="col-2">
                                             Usuarios
-                                        </div>
+                                        </h3>
                                         <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
                                             Agregar usuario
                                         </button>
                                     </div>
-                                    <table className="table table-striped" style={{ marginTop: 20 }}>
+                                    <table className="w-100 mt-4" style={{ marginTop: 20 }}>
                                         <thead>
                                             <tr>
                                                 <th>Usuario</th>

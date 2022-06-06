@@ -116,7 +116,7 @@ function Category() {
 
     useEffect(() => {
         getCategories();
-    }, []);
+    }, [categories]);
 
     /**
    * categoriesList
@@ -167,7 +167,7 @@ function Category() {
 
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear trabajador</Modal.Title>
+                    <Modal.Title>Crear categoría</Modal.Title>
                 </Modal.Header>
                 <CreateCategory />
             </Modal>

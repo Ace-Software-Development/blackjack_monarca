@@ -54,12 +54,11 @@ function App() {
                 <Route exact path="/dashboard/Compradores" element={<Buyer />} />
                 <Route exact path="/dashboard/Productos" element={<Product />} />
                 <Route exact path="/dashboard/pedidos" element={<OrdersAdmin />} />
-                <Route exact path="/dashboard/Categorias" element={<Category />} />
+                <Route exact path="/dashboard/Categorias" element={<CategoryList />} />
                 <Route exact path="/dashboard/Usuarios" element={<User />} />
                 <Route exact path="/dashboard/pedidos/:orderId" element={<OrderAdmin />} />
                 <Route exact path="/proceso/:process" element={<Process />} />
                 <Route excat path="/parte" element={<NamePart />} />
-                <Route excat path="/categoria" element={<CategoryList />} />
                 <Route exact path="/modelo" element={<ModelNumber />} />
                 <Route exact path="/cantidad" element={<Quantity />} />
                 <Route exact path="/discos" element={<Disk />} />
