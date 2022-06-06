@@ -41,7 +41,7 @@ function Login() {
         } else if (response.status === 403) {
             //  window.alert('El usuario o contraseña ingresados son incorrectos.');
         } else if (data.is_admin) {
-            navigate('/dashboard');
+            navigate('/dash');
         } else {
             navigate('/inicio');
         }

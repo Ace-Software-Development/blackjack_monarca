@@ -16,6 +16,7 @@ const dashboard = require('./routes/dashboard');
 const merma = require('./routes/merma');
 const trabajadores = require('./routes/trabajadores');
 const produccion = require('./routes/produccion');
+const procesos = require('./routes/procesos');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -77,6 +78,7 @@ app.use('/empacado', dashboard);
 app.use('/merma', merma);
 app.use('/trabajadores', trabajadores);
 app.use('/produccion', produccion);
+app.use('/procesos', procesos);
 
 // app.use(express.static(
 //   path.join(__dirname,
