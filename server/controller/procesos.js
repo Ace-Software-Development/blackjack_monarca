@@ -15,7 +15,7 @@ const {
 
 /**
    * getAllIncidentsController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of incidents from today
    * @param response: status of the get and values of the query
    */
 exports.getAllIncidentsController = async function (request, response) {
@@ -25,7 +25,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getAllDisksController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of disks from today
    * @param response: status of the get and values of the query
    */
  exports.getAllDisksController = async function (request, response) {
@@ -35,7 +35,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getAllEsmeriladosController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of Esmerilado from today
    * @param response: status of the get and values of the query
    */
  exports.getAllEsmeriladosController = async function (request, response) {
@@ -45,7 +45,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getEsmeriladosIncidentController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of Esmerilado incidents from today
    * @param response: status of the get and values of the query
    */
  exports.getEsmeriladosIncidentController = async function (request, response) {
@@ -55,7 +55,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getAllPulidosController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of Pulido from today
    * @param response: status of the get and values of the query
    */
  exports.getAllPulidosController = async function (request, response) {
@@ -65,7 +65,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getPulidosIncidentController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of Pulido incidents from today
    * @param response: status of the get and values of the query
    */
  exports.getPulidosIncidentController = async function (request, response) {
@@ -75,7 +75,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getAllRemachadosController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of Remachado from today
    * @param response: status of the get and values of the query
    */
  exports.getAllRemachadosController = async function (request, response) {
@@ -85,7 +85,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getRemachadosIncidentController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of Remachado incidents from today
    * @param response: status of the get and values of the query
    */
  exports.getRemachadosIncidentController = async function (request, response) {
@@ -95,7 +95,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getAllEmpaquetadosController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of Empaquetado from today
    * @param response: status of the get and values of the query
    */
  exports.getAllEmpaquetadosController = async function (request, response) {
@@ -105,7 +105,7 @@ exports.getAllIncidentsController = async function (request, response) {
 
 /**
    * getAllEmpaquetadosInvController
-   * @description Get all pieces of processes from today
+   * @description Get all pieces of Empaquetado inventory from today
    * @param response: status of the get and values of the query
    */
  exports.getAllEmpaquetadosInvController = async function (request, response) {

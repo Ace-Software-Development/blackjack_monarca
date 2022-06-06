@@ -228,7 +228,10 @@ function DashboardProcesos() {
         getAllEmpaquetados();
         getAllEmpaquetadosInv();
     }, []);
-
+    /**
+     * sumAll
+     * @description Sum all numbers of pieces sended in the query
+     * */
     function sumAll(query) {
         let acum = 0;
         for (let i = 0; i < query.length; i += 1) {
@@ -236,7 +239,10 @@ function DashboardProcesos() {
         }
         return acum;
     }
-
+    /**
+     * sumAllEmpaquetado
+     * @description Sum all numbers of products with lid and without lid sended in the query
+     * */
     function sumAllEmpaquetado(query) {
         let acum = 0;
         for (let i = 0; i < query.length; i += 1) {
@@ -245,7 +251,10 @@ function DashboardProcesos() {
         }
         return acum;
     }
-
+    /**
+     * sumAllDisks
+     * @description Sum all numbers of disks sended in the query
+     * */
     function sumAllDisks(query) {
         let acum = 0;
         for (let i = 0; i < query.length; i += 1) {
@@ -290,19 +299,31 @@ function DashboardProcesos() {
         empaquetados,
         empaquetadosInv,
     ]);
-
+    /**
+     * totalRechazado
+     * @description Gets the total of pieces in Rechazado process
+     * */
     function totalRechazado() {
         return (totalEntradaIncidentes + totalEntradaDiscos) - totalEntradaEsmerilados;
     }
-
+    /**
+     * totalEsmerilado
+     * @description Gets the total of pieces in Esmerilado process
+     * */
     function totalEsmerilado() {
         return totalEntradaEsmerilados - (totalEntradaEsmeriladosIncident + totalEntradaPulidos);
     }
-
+    /**
+     * totalPulido
+     * @description Gets the total of pieces in Pulido process
+     * */
     function totalPulido() {
         return totalEntradaPulidos - (totalEntradaPulidosIncident + totalEntradaRemachados);
     }
-
+    /**
+     * totalRemachado
+     * @description Gets the total of pieces in Remachado process
+     * */
     function totalRemachado() {
         return totalEntradaRemachados - (totalEntradaRemachadosIncident + totalEntradaEmpaquetados);
     }

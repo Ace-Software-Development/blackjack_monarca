@@ -9,8 +9,8 @@ class Procesos
 
     /**
    * getAllIncidents
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers where is_incident is true and has a confirmed status
+   * @returns Parse object with name and Id of the parts in table "PartInventory"
    */
     static getAllIncidents(){
         const incidents = new Parse.Query(Constants.PartInventory);
@@ -22,8 +22,8 @@ class Procesos
 
     /**
    * getAllDisks
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all disks
+   * @returns Parse object with name and Id of the parts in table "IncomeDisk"
    */
      static getAllDisks(){
         const disks = new Parse.Query(Constants.IncomeDisk);
@@ -33,8 +33,8 @@ class Procesos
 
     /**
    * getAllEsmerilados
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers where is_incident is false, has a confirmed status and has the process of Esmerilado
+   * @returns Parse object with name and Id of the parts in table "PartInventory"
    */
      static getAllEsmerilados(){
         const esmerilados = new Parse.Query(Constants.PartInventory);
@@ -47,8 +47,8 @@ class Procesos
 
     /**
    * getEsmeriladosIncident
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers where is_incident is true, has a confirmed status and has the process of Esmerilado
+   * @returns Parse object with name and Id of the parts in table "PartInventory"
    */
      static getEsmeriladosIncident(){
         const esmeriladosIncident = new Parse.Query(Constants.PartInventory);
@@ -61,8 +61,8 @@ class Procesos
 
     /**
    * getAllPulidos
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers where is_incident is false, has a confirmed status and has the process of Pulido
+   * @returns Parse object with name and Id of the parts in table "PartInventory"
    */
      static getAllPulidos(){
         const pulidos = new Parse.Query(Constants.PartInventory);
@@ -75,8 +75,8 @@ class Procesos
 
     /**
    * getPulidosIncident
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers where is_incident is true, has a confirmed status and has the process of Pulido
+   * @returns Parse object with name and Id of the parts in table "PartInventory"
    */
      static getPulidosIncident(){
         const pulidosIncident = new Parse.Query(Constants.PartInventory);
@@ -89,8 +89,8 @@ class Procesos
 
     /**
    * getAllRemachados
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers where is_incident is false, has a confirmed status and has the process of Remachado
+   * @returns Parse object with name and Id of the parts in table "PartInventory"
    */
      static getAllRemachados(){
         const remachados = new Parse.Query(Constants.PartInventory);
@@ -103,8 +103,8 @@ class Procesos
 
     /**
    * getRemachadosIncident
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers where is_incident is true, has a confirmed status and has the process of Remachado
+   * @returns Parse object with name and Id of the parts in table "PartInventory"
    */
      static getRemachadosIncident(){
         const remachadosIncident = new Parse.Query(Constants.PartInventory);
@@ -117,8 +117,8 @@ class Procesos
 
     /**
    * getAllEmpaquetados
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers from product
+   * @returns Parse object with name and Id of the parts in table "Product"
    */
      static getAllEmpaquetados(){
         const empaquetados = new Parse.Query(Constants.Product);
@@ -128,8 +128,8 @@ class Procesos
 
     /**
    * getAllEmpaquetadosInv
-   * @description Query to get all existing workers
-   * @returns Parse object with name and Id of the parts in table "Workers"
+   * @description Query to get all registers where is_incident is false, has a confirmed status and has the process of Empaquetado
+   * @returns Parse object with name and Id of the parts in table "PartInventory"
    */
      static getAllEmpaquetadosInv(){
         const empaquetadosInv = new Parse.Query(Constants.PartInventory);
