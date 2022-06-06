@@ -11,6 +11,3 @@ exports.getAllTrabajadores = async function (request, response) {
    const trabajadores = await getAllWorkersQuery();
    response.status(200).send({ status: "success", data: trabajadores });
 }
-
-
-
