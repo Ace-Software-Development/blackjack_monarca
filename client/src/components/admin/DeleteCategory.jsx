@@ -44,7 +44,7 @@ function DeleteCategory(categoryId, categoryName) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Confima que quieres eliminar la categoría ${categoryName}`}
+                            {`¿Seguro que quieres eliminar la categoría ${categoryName}?`}
                         </div>
                     </div>
                 </Modal.Body>

@@ -12,12 +12,13 @@ class Buyer {
 * @param phone: phone of buyer registered
 * @returns Parse object
 */
-    static registerBuyer(name, mail, city, phone) {
+    static registerBuyer(name, mail, city, phone, address) {
         const buyer = new Parse.Object("Buyer");
         buyer.set('name', name);
         buyer.set('city', city);
         buyer.set('phone', parseInt(phone));
         buyer.set('mail', mail);
+        buyer.set('address', address);
         buyer.set("delete", false);
 
         return buyer;
@@ -50,6 +51,7 @@ class Buyer {
         buyer.set('city', city);
         buyer.set('phone', parseInt(phone));
         buyer.set('mail', mail);
+        buyer.set('address', address);
         buyer.set("delete", false);
 
         return buyer;
@@ -62,11 +64,11 @@ class Buyer {
 * @returns Parse object
 */
     static deleteBuyer(id) {
-        const category = new Parse.Object("Buyer");
-        category.set('objectId', id);
-        category.set("delete", true);
+        const buyer = new Parse.Object("Buyer");
+        buyer.set('objectId', id);
+        buyer.set("delete", true);
 
-        return category;
+        return buyer;
     }
 
 

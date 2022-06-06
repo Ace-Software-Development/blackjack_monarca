@@ -44,7 +44,7 @@ function DeleteBuyer(buyerId, buyerName) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Confima que quieres eliminar al usuario ${buyerName}`}
+                            {`¿Seguro que quieres eliminar al cliente ${buyerName}?`}
                         </div>
                     </div>
                 </Modal.Body>

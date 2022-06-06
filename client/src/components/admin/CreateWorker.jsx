@@ -61,7 +61,7 @@ function CreateWorker() {
                     <div className="row">
                         <h5>Elige el proceso</h5>
                         <select type="text" id="id_process" name="id_process" className="col" value={form.id_process} onChange={(e) => updateForm({ id_process: e.target.value })} required>
-                            <option value="" disabled selected>Selecciona el rol</option>
+                            <option value="" disabled selected>Selecciona el proceso</option>
                             <option value="Conteo">Conteo</option>
                             <option value="Rechazado">Rechazado</option>
                             <option value="Esmerilado">Esmerilado</option>

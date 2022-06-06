@@ -306,10 +306,10 @@ function Quantity() {
                                         <h3 className="text-center">Cantidad de productos a entregar</h3>
                                         <ul className="nav nav-pills nav-fill mb-3 tab-select" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
-                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Con tapa</button>
+                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Completo</button>
                                             </li>
                                             <li className="nav-item" role="presentation">
-                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Sin tapa</button>
+                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Incompleto</button>
                                             </li>
                                         </ul>
                                         <div className="tab-content" id="pills-tabContent">

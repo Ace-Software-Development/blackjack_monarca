@@ -46,7 +46,7 @@ function DeleteDisk(diskId, diskName) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Confima que quieres eliminar el disco ${diskName}`}
+                            {`¿Seguro que quieres eliminar el disco ${diskName}?`}
                         </div>
                     </div>
                 </Modal.Body>

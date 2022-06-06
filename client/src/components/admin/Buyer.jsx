@@ -54,7 +54,7 @@ function Buyers({ buyer }) {
             <tr>
                 <th>
                     <h5>{buyer.name}</h5>
-                    <h6 className="sub-text2">Nombre del comprador</h6>
+                    <h6 className="sub-text2">Nombre del cliente</h6>
                 </th>
                 <th>
                     <h5>{buyer.city}</h5>
@@ -67,6 +67,10 @@ function Buyers({ buyer }) {
                 <th>
                     <h5>{buyer.mail}</h5>
                     <h6 className="sub-text1">Correo</h6>
+                </th>
+                <th>
+                    <h5>{buyer.address}</h5>
+                    <h6 className="sub-text1">Dirección</h6>
                 </th>
                 <th>
                     <button type="button" className="btn" onClick={handleShowMod}>
@@ -84,7 +88,14 @@ function Buyers({ buyer }) {
                 <Modal.Header closeButton>
                     <Modal.Title>Modificar</Modal.Title>
                 </Modal.Header>
-                {ModifyBuyer(buyer.objectId, buyer.name, buyer.phone, buyer.city, buyer.mail)}
+                {ModifyBuyer(
+                    buyer.objectId,
+                    buyer.name,
+                    buyer.phone,
+                    buyer.city,
+                    buyer.mail,
+                    buyer.address,
+                )}
             </Modal>
 
             <Modal show={showD} onHide={handleCloseDMod}>
@@ -151,7 +162,7 @@ function Buyer() {
                                 <div>
                                     <div className="row justify-content-between mb-4">
                                         <h3 className="col-4">
-                                            Compradores
+                                            Clientes
                                         </h3>
                                         <button type="button" variant="primary" className="btn-add" onClick={handleShowCreate}>
                                             Agregar
@@ -164,6 +175,7 @@ function Buyer() {
                                                 <th>Ciudad</th>
                                                 <th>Teléfono</th>
                                                 <th>Correo</th>
+                                                <th>Dirección</th>
                                                 <th> </th>
                                                 <th> </th>
                                             </tr>

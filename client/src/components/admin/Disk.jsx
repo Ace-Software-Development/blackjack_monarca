@@ -144,7 +144,7 @@ function Disk() {
                                 <div>
                                     <div className="row justify-content-between">
                                         <div className="col-3">
-                                            Categorías
+                                            Discos
                                         </div>
                                         <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
                                             Agregar

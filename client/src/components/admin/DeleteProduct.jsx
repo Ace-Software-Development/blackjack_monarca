@@ -44,7 +44,7 @@ function DeleteProduct(productId, category, model, aluminium) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Confirma que quieres eliminar el producto ${category} ${model} ${aluminium}`}
+                            {`¿Seguro que quieres eliminar el producto ${category} ${model} ${aluminium}?`}
                         </div>
                     </div>
                 </Modal.Body>

@@ -30,11 +30,11 @@ function Products({ product }) {
             </th>
             <th>
                 <div>{product.with_lid}</div>
-                <div className="sub-text1">Con tapa</div>
+                <div className="sub-text1">Completo</div>
             </th>
             <th>
                 <div>{product.withOut_lid}</div>
-                <div className="sub-text1">Sin tapa</div>
+                <div className="sub-text1">Incompleto</div>
             </th>
             <th>
                 <div>{product.withOut_lid + product.with_lid}</div>
@@ -135,8 +135,8 @@ function productInventory() {
                                             <th>Categoría</th>
                                             <th>Modelo</th>
                                             <th>Aluminio</th>
-                                            <th>Con tapa</th>
-                                            <th>Sin tapa</th>
+                                            <th>Completo</th>
+                                            <th>Incompleto</th>
                                             <th>Total</th>
                                             <th> </th>
                                         </tr>

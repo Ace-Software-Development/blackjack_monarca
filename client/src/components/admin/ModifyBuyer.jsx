@@ -9,13 +9,14 @@ import Environment from '../Environment';
    * @description Set of functions to display modal of Modify Worker
    * @returns HTML with fetched data
    */
-function ModifyBuyer(buyerId, buyerName, buyerPhone, buyerCity, buyerMail) {
+function ModifyBuyer(buyerId, buyerName, buyerPhone, buyerCity, buyerMail, buyerAddress) {
     const [form, setForm] = useState({
         objectId: buyerId,
         name: buyerName,
         city: buyerCity,
         phone: buyerPhone,
         mail: buyerMail,
+        address: buyerAddress,
     });
 
     /**
@@ -52,6 +53,7 @@ function ModifyBuyer(buyerId, buyerName, buyerPhone, buyerCity, buyerMail) {
             city: '',
             phone: '',
             mail: '',
+            address: '',
         });
         window.location.reload();
     }
@@ -68,6 +70,8 @@ function ModifyBuyer(buyerId, buyerName, buyerPhone, buyerCity, buyerMail) {
                     <input type="text" id="phone" name="phone" className="h-75 w-100 ml-4 mb-3" placeholder="442 354 8266" value={form.phone} onChange={(e) => updateForm({ phone: e.target.value })} required />
                     <div>Correo</div>
                     <input type="mail" id="mail" name="mail" className="h-75 w-100 ml-4 mb-3" placeholder="ejemplo@mail.com" value={form.mail} onChange={(e) => updateForm({ mail: e.target.value })} required />
+                    <div>Dirección</div>
+                    <input type="text" id="address" name="address" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Jacaranda 915 UH 27 de mayo" value={form.address} onChange={(e) => updateForm({ address: e.target.value })} required />
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="submit" className="btn-add">Modificar</button>
