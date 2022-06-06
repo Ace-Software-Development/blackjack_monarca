@@ -5,15 +5,16 @@ import { Modal, Button } from 'react-bootstrap';
 import Environment from '../Environment';
 
 /**
-   * CreateOrder
-   * @description Set of functions to display modal of Create Order
+   * ModifyOrder
+   * @description Set of functions to display modify modal of Create Order
    * @returns HTML with fetched data
    */
-function CreateOrder() {
+function ModifyOrder(nameOrder, idBuyer, pDate, orderId) {
     const [form, setForm] = useState({
-        name: '',
-        id_buyer: '',
-        possible_day: '',
+        name: nameOrder,
+        id_buyer: idBuyer,
+        possible_day: pDate,
+        objectId: orderId,
     });
 
     /**
@@ -66,7 +67,7 @@ function CreateOrder() {
 
         const newOrder = { ...form };
 
-        await fetch(`${Environment()}/empacado/orden/post`, {
+        await fetch(`${Environment()}/empacado/orden/modify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -78,6 +79,7 @@ function CreateOrder() {
             name: '',
             id_buyer: '',
             possible_day: '',
+            objectId: orderId,
         });
         window.location.reload();
     }
@@ -100,8 +102,9 @@ function CreateOrder() {
                     </div>
                     <div className="row">
                         <div>Comprador del pedido</div>
-                        <select type="text" id="buyer" name="buyer" className="col" onChange={(e) => updateForm({ id_buyer: e.target.value })} required>
-                            <option value="" disabled selected>Selecciona el comprador</option>
+                        {console.log(form.id_buyer)}
+                        <select type="text" id="id_buyer" name="id_buyer" className="col" value={form.id_buyer} onChange={(e) => updateForm({ id_buyer: e.target.value })} required>
+                            <option value="" disabled>Selecciona el comprador</option>
                             {buyersList()}
                         </select>
                     </div>
@@ -110,11 +113,11 @@ function CreateOrder() {
                     <Button variant="secondary" onClick={() => window.location.reload()}>
                         Cerrar
                     </Button>
-                    <button type="submit" className="col">Crear</button>
+                    <button type="submit" className="col">Modificar</button>
                 </Modal.Footer>
             </form>
         </div>
     );
 }
 
-export default CreateOrder;
+export default ModifyOrder;
