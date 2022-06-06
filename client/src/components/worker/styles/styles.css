@@ -379,3 +379,7 @@ ion-icon {
 	font-size: 2rem;
 	font-weight: bold;
 }
+
+.home {
+	cursor: pointer;
+}

@@ -42,7 +42,7 @@ function Products({ product }) {
             </th>
             <th>
                 <a href={href}>
-                    <button type="button">
+                    <button type="button" className="btn">
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </a>
@@ -129,7 +129,7 @@ function productInventory() {
                                         </button>
                                     </a>
                                 </div>
-                                <table className="table table-striped" style={{ marginTop: 20 }}>
+                                <table className="w-100 my-4" style={{ marginTop: 20 }}>
                                     <thead>
                                         <tr>
                                             <th>Categoría</th>
