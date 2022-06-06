@@ -17,7 +17,7 @@ import Environment from '../Environment';
 function OrderElement({ order }) {
     return (
         <div className="col-4 px-5" value={order.objectId}>
-            <a href={`/empacado/pedidos/${order.objectId}`}>{orderCard('75', order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`)}</a>
+            <a href={`/empacado/pedidos/${order.objectId}`}>{orderCard(order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`)}</a>
         </div>
     );
 }
