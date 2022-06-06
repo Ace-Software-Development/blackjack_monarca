@@ -13,11 +13,7 @@ module.exports = class role {
    * @description Finds the first element in the table Session that has the session token
    * @param sessionToken: Session token of current user
    */
-<<<<<<< HEAD
     static getPermission(sessionToken) {
-=======
-    static getPermission(sessionToken){
->>>>>>> develop
         var sq = new Parse.Query('_Session')
         sq.equalTo('sessionToken', sessionToken);
         return sq.first({ useMasterKey: true });

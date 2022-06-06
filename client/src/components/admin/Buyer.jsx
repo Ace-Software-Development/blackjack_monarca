@@ -50,7 +50,7 @@ function Buyers({ buyer }) {
     const handleShowDMod = () => setShowD(true);
 
     return (
-        <container>
+        <>
             <tr>
                 <th>
                     <h5>{buyer.name}</h5>
@@ -93,7 +93,7 @@ function Buyers({ buyer }) {
                 </Modal.Header>
                 {DeleteBuyer(buyer.objectId, buyer.name)}
             </Modal>
-        </container>
+        </>
 
     );
 }

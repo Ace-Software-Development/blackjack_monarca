@@ -30,11 +30,11 @@ import RegisterPack from './components/worker/RegisterPack';
 import Orders from './components/worker/Orders';
 import Order from './components/worker/Order';
 import ModifyPackStatus from './components/worker/ModifyPackStatus';
-import DashboardTrabajador from './components/admin/DashboardTrabajador';
 import OrderAdmin from './components/admin/OrderAdmin';
 import Product from './components/admin/Product';
 import CategoryList from './components/admin/Category';
 import OrdersAdmin from './components/admin/OrdersAdmin';
+import DashboardTrabajador from './components/admin/DashboardTrabajador';
 
 function App() {
     return (
@@ -50,8 +50,12 @@ function App() {
                 <Route exact path="/rechazado/conteo/:type" element={<Conteo />} />
                 <Route exact path="/conteo/modificar/:id/:name" element={<ModifyQuantity />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
-                <Route exact path="/dashboard/Trabajador" element={<DashboardTrabajador />} />
-                <Route exact path="/dashboard/Pedidos" element={<OrdersAdmin />} />
+                <Route exact path="/dashboard/Trabajadores" element={<Worker />} />
+                <Route exact path="/dashboard/Compradores" element={<Buyer />} />
+                <Route exact path="/dashboard/Productos" element={<Product />} />
+                <Route exact path="/dashboard/pedidos" element={<OrdersAdmin />} />
+                <Route exact path="/dashboard/Categorias" element={<Category />} />
+                <Route exact path="/dashboard/Usuarios" element={<User />} />
                 <Route exact path="/dashboard/pedidos/:orderId" element={<OrderAdmin />} />
                 <Route exact path="/proceso/:process" element={<Process />} />
                 <Route excat path="/parte" element={<NamePart />} />
@@ -68,11 +72,7 @@ function App() {
                 <Route exact path="/modelo/:process/:nextProcess/:worker/:part/:category" element={<ModelNumber />} />
                 <Route exact path="/cantidad/:process/:nextProcess/:worker/:part/:category/:model" element={<Quantity />} />
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
-                <Route exact path="/usuarios" element={<User />} />
-                <Route exact path="/trabajadores" element={<Worker />} />
-                <Route exact path="/productos" element={<Product />} />
-                <Route exact path="/categorias" element={<Category />} />
-                <Route exact path="/compradores" element={<Buyer />} />
+                <Route exact path="dashboard/trabajador" element={<DashboardTrabajador />} />
                 <Route exact path="/rechazado/:id" element={<Classify />} />
                 <Route exact path="/empacado/inventario" element={<ProductInventory />} />
                 <Route exact path="/empacado/registrar/" element={<CategoryInventory />} />

@@ -23,6 +23,11 @@ function Sidebar() {
                 {TabSidebar(null, 'Trabajador', 'apps')}
                 {TabSidebar(null, 'Procesos', 'apps')}
                 {TabSidebar(null, 'Pedidos', 'apps')}
+                {TabSidebar(null, 'Compradores', 'apps')}
+                {TabSidebar(null, 'Trabajadores', 'apps')}
+                {TabSidebar(null, 'Productos', 'apps')}
+                {TabSidebar(null, 'Categorías', 'apps')}
+                {TabSidebar(null, 'Usuarios', 'apps')}
             </ul>
             <div className="sidebar-footer">
                 <a
