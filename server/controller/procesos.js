@@ -9,7 +9,8 @@ const {
    getPulidosIncident,
    getAllRemachados,
    getRemachadosIncident,
-   getAllEmpaquetados
+   getAllEmpaquetados,
+   getAllEmpaquetadosInv,
 } = require('../db_abs/procesos');
 
 /**
@@ -100,4 +101,14 @@ exports.getAllIncidentsController = async function (request, response) {
  exports.getAllEmpaquetadosController = async function (request, response) {
    const empaquetados = await getAllEmpaquetados();
    response.status(200).send({ status: "success", data: empaquetados });
+}
+
+/**
+   * getAllEmpaquetadosInvController
+   * @description Get all pieces of processes from today
+   * @param response: status of the get and values of the query
+   */
+ exports.getAllEmpaquetadosInvController = async function (request, response) {
+   const empaquetadosInv = await getAllEmpaquetadosInv();
+   response.status(200).send({ status: "success", data: empaquetadosInv });
 }

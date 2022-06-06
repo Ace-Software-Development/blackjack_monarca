@@ -12,5 +12,6 @@ router.get('/PulidosIncident/get', procesosController.getPulidosIncidentControll
 router.get('/allRemachados/get', procesosController.getAllRemachadosController);
 router.get('/RemachadosIncident/get', procesosController.getRemachadosIncidentController);
 router.get('/allEmpaquetados/get', procesosController.getAllEmpaquetadosController);
+router.get('/EmpaquetadosInv/get', procesosController.getAllEmpaquetadosInvController);
 
 module.exports = router;
