@@ -94,7 +94,7 @@ exports.postPartController = async function (request, response){
 
    if(request.body.numberSecond != 0){
       try{
-         const second = registerPart(request.body.part, request.body.worker, request.body.process, request.body.numberSecond, request.body.model, true);
+         const second = registerPart(request.body.part, request.body.worker, request.body.incidentProcess, request.body.numberSecond, request.body.model, true);
          await second.save();
       } catch(error){
          console.error(error.message);
