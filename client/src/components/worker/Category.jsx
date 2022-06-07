@@ -4,9 +4,8 @@
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Row, Container } from 'react-bootstrap';
-import ButtonNext from './ButtonNext';
 import Header from './Header';
 import Environment from '../Environment';
 
@@ -14,7 +13,6 @@ let selectedCategory = '';
 let selectedWorker = '';
 let selectedPart = '';
 let nextProcess = '';
-let nextBtn;
 let url = '';
 let process = '';
 
@@ -28,7 +26,8 @@ function setContext(id) {
 
     url = `/modelo/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}`;
 
-    nextBtn = ButtonNext(url);
+    const button = document.getElementById('buttonNext');
+    button.hidden = false;
 }
 
 export function CardCategory(name, id) {
@@ -59,6 +58,7 @@ Categories.propTypes = {
 };
 
 function Category() {
+    const navigate = useNavigate();
     const params = useParams();
     process = params.process;
     selectedWorker = params.worker;
@@ -133,7 +133,11 @@ function Category() {
                     {categoryList()}
                 </div>
             </Row>
-            {nextBtn}
+            <div className="d-flex justify-content-center mb-4">
+                <button className="btn buttonNext cardNext w-25 card-shadow" id="buttonNext" type="button" onClick={() => navigate(url)} hidden>
+                    Siguiente
+                </button>
+            </div>
         </Container>
     );
 }

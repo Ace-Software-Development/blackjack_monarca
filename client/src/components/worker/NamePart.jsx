@@ -3,18 +3,17 @@
 import {
     useEffect, useState, React,
 } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Row, Col, Container } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import Header from './Header';
-import ButtonNext from './ButtonNext';
 import './styles/styles.css';
 import SelectCard from './SelectCard';
 import Environment from '../Environment';
 
 let selectedWorker = '';
 let selectedPart = '';
-let nextBtn;
+// let nextBtn;
 let url = '';
 let process = '';
 let nextProcess = '';
@@ -35,11 +34,13 @@ function setContext(id, type) {
     url = `/categoria/${process}/${nextProcess}/${selectedWorker}/${selectedPart}`;
 
     if (selectedWorker && selectedPart) {
-        nextBtn = ButtonNext(url);
+        const button = document.getElementById('buttonNext');
+        button.hidden = false;
     }
 }
 
 function NamePart() {
+    const navigate = useNavigate();
     const session = Cookies.get('sessionToken');
     const [permission, setPermission] = useState([]);
     /**
@@ -152,8 +153,10 @@ function NamePart() {
                     </Col>
                 </Row>
             </Row>
-            <div className="buttonNext">
-                {nextBtn}
+            <div className="d-flex justify-content-center mb-4">
+                <button className="btn buttonNext cardNext w-25 card-shadow" id="buttonNext" type="button" onClick={() => navigate(url)} hidden>
+                    Siguiente
+                </button>
             </div>
         </Container>
     );

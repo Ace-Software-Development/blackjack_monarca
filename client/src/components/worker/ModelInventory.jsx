@@ -4,13 +4,11 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useParams, useNavigate } from 'react-router-dom';
-import ButtonNext from './ButtonNext';
 import Header from './Header';
 import Environment from '../Environment';
 
 let selectedModel = '';
 let selectedCategory = '';
-let nextBtn = '';
 let url = '';
 
 /**
@@ -23,13 +21,10 @@ function setContext(id) {
     if (id) {
         selectedModel = id;
         url = `/empacado/registrar/${selectedCategory}/${selectedModel}`;
-        nextBtn = ButtonNext(url);
         button.hidden = false;
     } else {
         url = `/empacado/registrar/${selectedCategory}/${selectedModel}`;
-        if (nextBtn) {
-            button.href = url;
-        }
+        button.hidden = false;
     }
 }
 
@@ -181,7 +176,7 @@ function ModelInventory() {
         getCategory();
         getCategories();
         getModels();
-    }, [nextBtn, products]);
+    }, [products]);
 
     categoriesList();
 
@@ -207,7 +202,9 @@ function ModelInventory() {
                                 <h5>Resumen</h5>
                             </div>
                             <div className="col">
-                                {nextBtn}
+                                <button className="" id="buttonNext" type="button" onClick={() => navigate(url)} hidden>
+                                    Siguiente
+                                </button>
                             </div>
                             <p>
                                 {categoryName.name}

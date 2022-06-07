@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import ButtonNext from './ButtonNext';
 import Header from './Header';
 import Environment from '../Environment';
 
@@ -15,7 +14,6 @@ let selectedCategory = '';
 let selectedWorker = '';
 let selectedPart = '';
 let nextProcess = '';
-let nextBtn = '';
 let url = '';
 let process = '';
 
@@ -29,13 +27,10 @@ function setContext(id) {
     if (id) {
         selectedModel = id;
         url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
-        nextBtn = ButtonNext(url);
         button.hidden = false;
     } else {
         url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
-        if (nextBtn) {
-            button.href = url;
-        }
+        button.hidden = false;
     }
 }
 
@@ -216,7 +211,7 @@ function ModelNumber() {
         getModels();
         getWorker();
         getCategory();
-    }, [nextBtn]);
+    }, []);
 
     workersList();
     categoriesList();

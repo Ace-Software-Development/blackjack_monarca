@@ -289,6 +289,9 @@ ion-icon {
 	background-color: #FF800A;
 	color: white;
 }
+.buttonNext {
+	padding: 0 !important;
+}
 
 .buttonNext:focus {
 	color: white;
