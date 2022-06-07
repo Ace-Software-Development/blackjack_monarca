@@ -10,9 +10,18 @@ const entradaDiscos = require('./routes/visualizarEntradaDiscos');
 const iniciarSesion = require('./routes/iniciarSesion');
 
 const confirmar = require('./routes/confirmar');
+const usuario = require('./routes/usuario');
+const trabajador = require('./routes/trabajador');
 const producto = require('./routes/producto');
 const productOrder = require('./routes/productOrder');
 const dashboard = require('./routes/dashboard');
+const categoria = require('./routes/categoria');
+const comprador = require('./routes/comprador');
+const disco = require('./routes/disco');
+const merma = require('./routes/merma');
+const trabajadores = require('./routes/trabajadores');
+const produccion = require('./routes/produccion');
+const procesos = require('./routes/procesos');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -68,18 +77,27 @@ app.use('/discos', discos);
 app.use('/entradaDiscos', entradaDiscos);
 app.use('/login', iniciarSesion);
 app.use('/confirmar', confirmar);
+app.use('/usuario', usuario);
+app.use('/trabajador', trabajador);
 app.use('/producto', producto);
 app.use('/productOrder', productOrder);
 app.use('/empacado', dashboard);
+app.use('/categoria', categoria);
+app.use('/comprador', comprador);
+app.use('/disco', disco);
+app.use('/merma', merma);
+app.use('/trabajadores', trabajadores);
+app.use('/produccion', produccion);
+app.use('/procesos', procesos);
 
-app.use(express.static(
-  path.join(__dirname,
-    "../client/build")));
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname,
-      "../client/build/index.html")
-  );
-});
+// app.use(express.static(
+//   path.join(__dirname,
+//     "../client/build")));
+// app.get("*", (req, res) => {
+//   res.sendFile(
+//     path.join(__dirname,
+//       "../client/build/index.html")
+//   );
+// });
 
 app.listen(8888);

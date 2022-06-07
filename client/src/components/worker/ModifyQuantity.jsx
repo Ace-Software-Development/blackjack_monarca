@@ -69,7 +69,7 @@ function ModifyQuantity() {
             number: '',
             objectId: '',
         });
-        navigate('/conteo');
+        navigate('/inicio');
     }
 
     const session = Cookies.get('sessionToken');
@@ -114,7 +114,7 @@ function ModifyQuantity() {
                                 <div className="row mt-4 mb-2">
                                     <div className="col form group">
                                         <h2>
-                                            <input type="number" id="number" name="number" min="1" pattern="^[0-9]+" className="col-3 text-center modify-conteo-input" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
+                                            <input type="number" id="number" name="number" pattern="^[0-9]+" className="col-3 text-center modify-conteo-input" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
                                         </h2>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@ function ModifyQuantity() {
                                     </div>
                                 </div>
                                 <div className="row justify-content-center mt-4">
-                                    <button type="button" onClick={() => navigate('/conteo')} className="col-2 btn-cancel">
+                                    <button type="button" onClick={() => navigate('/inicio')} className="col-2 btn-cancel">
                                         Cancelar
                                     </button>
                                     <div className="col-1" />

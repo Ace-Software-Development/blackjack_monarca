@@ -22,11 +22,11 @@ h1 {
 }
 
 .home-card {
-	width: 300px;
-	height: 205px;
+	height: 90%;
 	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
 	border-radius: 21px;
 	margin-top: 30px;
+	margin: 10px;
 }
 
 div>a {
@@ -46,11 +46,11 @@ div>a:visited {
 	font-style: bold;
 }
 
-.home-card>.card-title {
-	font-family: 'Poppins';
+.home-card .card-title {
+	margin-top: 8px;
 	font-style: bold;
-	font-weight: 600;
-	font-size: 100px;
+	font-weight: 400;
+	font-size: 2em;
 	line-height: 143%;
 	/* or 57px */
 
@@ -67,9 +67,47 @@ div>a:visited {
 }
 
 .home-card ion-icon {
-	font-size: 64px;
+	font-size: 80px;
 	color: rgba(245, 143, 61, 1);
 	--ionicon-stroke-width: 25px;
+}
+
+.home-card2 {
+	height: 90%;
+	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
+	border-radius: 21px;
+	margin-top: 30px;
+	margin: 10px;
+}
+
+.home-card2 ion-icon {
+	font-size: 10em;
+	color: rgba(245, 143, 61, 1);
+	--ionicon-stroke-width: 25px;
+}
+
+.home-card2>h6 {
+	font-style: bold;
+}
+
+.home-card2 .card-title {
+	margin-top: 8px;
+	font-style: bold;
+	font-weight: 400;
+	font-size: 3em;
+	line-height: 143%;
+	/* or 57px */
+
+	text-align: center;
+	letter-spacing: -0.03em;
+
+
+	color: #1F1F1F;
+}
+
+.home-card2>.card-icon {
+	width: 100px;
+	height: 100px;
 }
 
 .header-icon {
@@ -135,11 +173,14 @@ ion-icon {
 	color: white;
 	box-shadow: 5px 10px 30px rgba(122, 137, 254, 0.04);
 }
-
-.cardName:focus {
-	background-color: #FF800A;
+.div .CardName:hover {
 	color: white;
 }
+
+/* .cardName:focus {
+	background-color: #F69223;
+	color: white;
+} */
 
 .numberBtn {
 	border-radius: 8px;
@@ -155,7 +196,7 @@ ion-icon {
 }
 
 .card-shadow {
-	box-shadow: rgba(42, 80, 118, 0.25) 3px 3px 5px 3px;
+	box-shadow: 0px 3px 5px rgb(42 80 118 / 25%);
 	border-radius: 16px;
 	padding: 20px;
 }
@@ -233,17 +274,10 @@ ion-icon {
 .cardNext {
 	transition-duration: 0.4s;
 	border-radius: 10px;
-	box-shadow: rgba(122, 104, 45, 0.25) 5px 5px 7px 5px;
+	box-shadow: 0px 3px 5px rgb(42 80 118 / 25%);
 	color: #1F1F1F;
-	font-size: 20px;
-}
-
-.cardNext {
-	transition-duration: 0.4s;
-	border-radius: 10px;
-	box-shadow: rgba(122, 104, 45, 0.25) 5px 5px 7px 5px;
-	color: #1F1F1F;
-	font-size: 20px;
+	font-size: 1.5em;
+	padding: 0 10px;
 }
 
 .cardNext:focus {
@@ -268,8 +302,52 @@ ion-icon {
 	color: #dc2121
 }
 
+.workers-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.workers-list div {
+	flex-grow: 1;
+}
+
+.workers-list {
+	font-size: 10vw !important;
+}
+
+.workers-list .cardName:focus {
+	box-shadow: 0px 3px 5px rgba(42, 80, 118, 0.25);
+}
+
+.parts-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.parts-list div {
+	flex-grow: 1;
+}
+
+.parts-list .cardName {
+	box-shadow: 0px 3px 5px rgba(42, 80, 118, 0.25);
+}
+
+/* .parts-list .cardName:focus {
+	background-color: #F69223;
+	box-shadow: none;
+} */
+
+.parts-list .cardName:hover {
+	background-color: #F69223;
+	box-shadow: none;
+}
+
 .green-text {
 	color: #0c950a
+}
+
+.orange-text {
+	color: #F69223;
 }
 
 .btn-nxt {
@@ -331,4 +409,28 @@ ion-icon {
 
 .circle-logo img {
 	width: 200px;
+}
+
+.card-category {
+	background: #FFFFFF;
+}
+
+.select-card {
+	transition-duration: 0.4s;
+	border-radius: 21px;
+	color: #1F1F1F;
+	font-size: 2rem;
+	font-weight: bold;
+}
+.select-card-active {
+	background-color: #FF800A;
+	transition-duration: 0.4s;
+	border-radius: 21px;
+	color: #1F1F1F;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.home {
+	cursor: pointer;
 }
