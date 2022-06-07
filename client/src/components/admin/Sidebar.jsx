@@ -28,6 +28,7 @@ function Sidebar() {
                 {TabSidebar(null, 'Productos', 'apps')}
                 {TabSidebar(null, 'Categorías', 'apps')}
                 {TabSidebar(null, 'Discos', 'apps')}
+                {TabSidebar(null, 'Inventario Discos', 'apps')}
                 {TabSidebar(null, 'Usuarios', 'apps')}
             </ul>
             <div className="sidebar-footer">
