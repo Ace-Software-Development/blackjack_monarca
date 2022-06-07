@@ -122,7 +122,7 @@ function Order() {
                         <div className="card-body">
                             <div>
                                 <p>{`${buyerName} - ${buyerCity}`}</p>
-                                <table className="table table-striped" style={{ marginTop: 20 }}>
+                                <table className="w-100 mt-3" style={{ marginTop: 20 }}>
                                     <thead>
                                         <tr>
                                             <th>Producto</th>

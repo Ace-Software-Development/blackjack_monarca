@@ -66,3 +66,7 @@ input::placeholder {
 .orange-text {
   color: #F69223;
 }
+
+.Order-Admin {
+  cursor: pointer;
+}
