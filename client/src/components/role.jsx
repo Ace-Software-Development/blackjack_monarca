@@ -1,4 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { propTypes } from 'react-bootstrap/esm/Image';
+import Environment from './Environment';
+
+function ListElement(props) {
+    const { record } = props;
+    return (
+        <tr>
+            <td>{record.id}</td>
+            <td>{record.name}</td>
+        </tr>
+    );
+}
+
+ListElement.propTypes = {
+    record: propTypes.string.isRequired,
+};
 
 export default function Roles() {
     const [roles, setRoles] = useState([]);
@@ -6,7 +22,7 @@ export default function Roles() {
     // Fetches roles from database
     useEffect(() => {
         async function getRoles() {
-            const response = await fetch('http://localhost:8888/role');
+            const response = await fetch(`${Environment()}/role`);
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
                 window.alert(message);
