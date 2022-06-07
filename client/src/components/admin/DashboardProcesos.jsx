@@ -52,7 +52,7 @@ function DashboardProcesos() {
      * @description Get all incidents confirmed
      * */
     async function getAllIncidents() {
-        const response = await fetch('http://localhost:8888/procesos/allIncidents/get');
+        const response = await fetch(`${Environment()}/procesos/allIncidents/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -69,7 +69,7 @@ function DashboardProcesos() {
      * @description Get all history of disks
      * */
     async function getAllDisks() {
-        const response = await fetch('http://localhost:8888/procesos/allDisks/get');
+        const response = await fetch(`${Environment()}/procesos/allDisks/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -86,7 +86,7 @@ function DashboardProcesos() {
      * @description Get all pieces confirmed in esmerilado
      * */
     async function getAllEsmerilados() {
-        const response = await fetch('http://localhost:8888/procesos/allEsmerilados/get');
+        const response = await fetch(`${Environment()}/procesos/allEsmerilados/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -103,7 +103,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in esmerilado
      * */
     async function getEsmeriladosIncident() {
-        const response = await fetch('http://localhost:8888/procesos/EsmeriladosIncident/get');
+        const response = await fetch(`${Environment()}/procesos/EsmeriladosIncident/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -120,7 +120,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in pulido
      * */
     async function getAllPulidos() {
-        const response = await fetch('http://localhost:8888/procesos/allPulidos/get');
+        const response = await fetch(`${Environment()}/procesos/allPulidos/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -137,7 +137,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in pulido
      * */
     async function getPulidosIncident() {
-        const response = await fetch('http://localhost:8888/procesos/PulidosIncident/get');
+        const response = await fetch(`${Environment()}/procesos/PulidosIncident/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -154,7 +154,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in pulido
      * */
     async function getAllRemachados() {
-        const response = await fetch('http://localhost:8888/procesos/allRemachados/get');
+        const response = await fetch(`${Environment()}/procesos/allRemachados/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -171,7 +171,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in pulido
      * */
     async function getRemachadosIncident() {
-        const response = await fetch('http://localhost:8888/procesos/RemachadosIncident/get');
+        const response = await fetch(`${Environment()}/procesos/RemachadosIncident/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -188,7 +188,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in pulido
      * */
     async function getAllEmpaquetados() {
-        const response = await fetch('http://localhost:8888/procesos/allEmpaquetados/get');
+        const response = await fetch(`${Environment()}/procesos/allEmpaquetados/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -205,7 +205,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in pulido
      * */
     async function getAllEmpaquetadosInv() {
-        const response = await fetch('http://localhost:8888/procesos/EmpaquetadosInv/get');
+        const response = await fetch(`${Environment()}/procesos/EmpaquetadosInv/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

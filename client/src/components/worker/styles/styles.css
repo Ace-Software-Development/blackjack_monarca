@@ -441,3 +441,37 @@ ion-icon {
 	width: 40%;
 	height: 80%;
 }
+
+.confirmar {
+	height: 95%;
+}
+
+.btn-confirm {
+	background: #F69223;
+	color: #F4F5F4;
+	font-size: 20px;
+	border-width: 0px;
+	border-radius: 5px;
+	height: 100%;
+}
+
+.confirm-number {
+	font-size: 5rem;
+}
+
+.text-confirmar {
+	font-size: 2rem;
+}
+
+.cardName:focus{
+	background: #F69223;
+}
+
+.btn-next {
+	width: 100%;
+	height: 100%;
+}
+
+.card-checkout {
+	height: 90%;
+}

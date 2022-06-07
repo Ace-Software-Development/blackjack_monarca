@@ -205,9 +205,9 @@ function ModelInventory() {
                             <div className="col-9">
                                 <h5>Resumen</h5>
                             </div>
-                            <a type="button" className="col-2 text-center buttonNext cardNext" id="buttonNext" href={url} hidden>
-                                Siguiente
-                            </a>
+                            <div className="col-9">
+                                {ButtonNext}
+                            </div>
                             <p>
                                 {categoryName.name}
                             </p>

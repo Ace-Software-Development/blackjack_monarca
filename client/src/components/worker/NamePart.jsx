@@ -110,12 +110,12 @@ function NamePart() {
     }, []);
 
     return (
-        <Container className="container-fluid d-flex flex-column">
+        <Container className="container-fluid d-flex flex-column flex-grow-1">
             <Row>
                 <Header processName={process} />
             </Row>
-            <Row className="flex-grow-1 pt-2">
-                <Row className="d-flex w-100">
+            <Row className="pt-2 card-checkout">
+                <Row className="d-flex w-100 ">
                     <Col className="px-5 workers-list" lg={6}>
                         <h3 className="text-center">Elige un trabajador</h3>
                         <Col className="d-flex flex-column align-items-stretch">

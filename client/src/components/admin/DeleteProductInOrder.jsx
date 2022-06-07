@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * DeleteProductInOrder
@@ -23,7 +24,7 @@ function DeleteProductInOrder(productId, category, modelNumber, aluminiumModel) 
 
         const newWorker = { ...form };
 
-        await fetch('http://localhost:8888/productOrder/delete', {
+        await fetch(`${Environment()}/productOrder/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
