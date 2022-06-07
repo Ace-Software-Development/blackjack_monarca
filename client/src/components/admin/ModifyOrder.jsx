@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import Environment from '../Environment';
 
 /**
@@ -93,27 +93,24 @@ function ModifyOrder(nameOrder, idBuyer, pDate, orderId) {
             <form onSubmit={onSubmit}>
                 <Modal.Body>
                     <div className="row">
-                        <div>Nombre del pedido</div>
-                        <input type="text" id="name" name="name" className="col" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                        <h5>Nombre del pedido</h5>
+                        <input type="text" id="name" name="name" className="form-control" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <div>Posible dia de entrega</div>
-                        <input type="date" id="possible_day" name="possible_day" className="col" value={form.possible_day} onChange={(e) => updateForm({ possible_day: e.target.value })} required />
+                        <h5>Posible dia de entrega</h5>
+                        <input type="date" id="possible_day" name="possible_day" className="form-control" value={form.possible_day} onChange={(e) => updateForm({ possible_day: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <div>Comprador del pedido</div>
+                        <h5>Comprador del pedido</h5>
                         {console.log(form.id_buyer)}
-                        <select type="text" id="id_buyer" name="id_buyer" className="col" value={form.id_buyer} onChange={(e) => updateForm({ id_buyer: e.target.value })} required>
+                        <select type="text" id="id_buyer" name="id_buyer" className="form-control" value={form.id_buyer} onChange={(e) => updateForm({ id_buyer: e.target.value })} required>
                             <option value="" disabled>Selecciona el comprador</option>
                             {buyersList()}
                         </select>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col">Modificar</button>
+                    <button type="submit" className="btn-add">Modificar</button>
                 </Modal.Footer>
             </form>
         </div>

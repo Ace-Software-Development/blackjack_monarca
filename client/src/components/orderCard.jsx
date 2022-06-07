@@ -26,12 +26,12 @@ function orderCard(title, city, date, order) {
                         </a>
                         <div className="row">
                             <div className="col">
-                                <button type="button" onClick={handleShowMod}>
+                                <button type="button" className="btn" onClick={handleShowMod}>
                                     <ion-icon size="large" name="create-outline" />
                                 </button>
                             </div>
                             <div className="col">
-                                <button type="button" onClick={handleShowDMod}>
+                                <button type="button" className="btn" onClick={handleShowDMod}>
                                     <ion-icon size="large" name="trash-outline" />
                                 </button>
                             </div>

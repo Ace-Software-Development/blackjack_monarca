@@ -61,7 +61,7 @@ function ModifyProductInOrder(productId, category, modelNumber, aluminiumModel, 
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button type="submit" className="col">Modificar</button>
+                    <button type="submit" className="btn-add">Modificar</button>
                 </Modal.Footer>
             </form>
         </div>

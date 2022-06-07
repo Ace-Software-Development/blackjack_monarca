@@ -68,6 +68,11 @@ function CreateProductOrder(orderId) {
         return setForm((prev) => ({ ...prev, ...value }));
     }
 
+    /**
+    * onSubmit
+    * @description saves the new product in the corresponding order
+    * @param e: context
+    */
     async function onSubmit(e) {
         e.preventDefault();
 
@@ -109,6 +114,11 @@ function CreateProductOrder(orderId) {
         setModelsOption(auxModelsOption);
     }
 
+    /**
+   * modelSelect
+   * @param model: selected model
+   * @description finds the id of the model and saves it
+   */
     function modelSelect(model) {
         for (let i = 0; i < models.length; i += 1) {
             if (model.value === models[i].objectId) {
@@ -132,6 +142,11 @@ function CreateProductOrder(orderId) {
 
     categoriesList();
 
+    /**
+   * categorySelect
+   * @param category: selected category
+   * @description finds the id of the category and saves it
+   */
     function categorySelect(category) {
         for (let i = 0; i < categories.length; i += 1) {
             if (category.value === categories[i].objectId) {

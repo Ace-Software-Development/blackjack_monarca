@@ -17,7 +17,6 @@ function OrderElement({ order }) {
     return (
         <div className="col-4 px-5" value={order.objectId}>
             {orderCard(order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`, order.possible_day, order)}
-            {console.log(order.possible_day)}
         </div>
     );
 }
@@ -64,19 +63,17 @@ function OrdersAdmin() {
 
     return (
         <div>
-            <div className="row w-100 justify-content-center align-self-stretch">
-                {orderList()}
+            <div className="row d-flex w-100 justify-content-center align-self-stretch">
                 <div className="col-4 px-5">
                     <a href onClick={handleShowCreate}>
                         <div className="card home-card text-center ">
-                            <div className="card-body align-items-center justify-content-center">
-                                <div>
-                                    <h2 className="card-title align-middle mt-3">+</h2>
-                                </div>
+                            <div className="card-body d-flex align-items-center justify-content-center">
+                                <ion-icon className="justify-content-center align-items-center" name="add-outline" />
                             </div>
                         </div>
                     </a>
                 </div>
+                {orderList()}
             </div>
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>

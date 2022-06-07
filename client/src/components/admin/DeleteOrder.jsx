@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import Environment from '../Environment';
 
 /**
@@ -44,15 +44,12 @@ function DeleteOrder(orderId, orderName) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Seguro que quieres eliminar el pedido ${orderName}`}
+                            {`¿Seguro que quieres eliminar el pedido ${orderName}?`}
                         </div>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col">Eliminar</button>
+                    <button type="submit" className="btn btn-danger btn-md">Eliminar</button>
                 </Modal.Footer>
             </form>
         </div>
