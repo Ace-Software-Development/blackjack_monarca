@@ -20,16 +20,16 @@ function Sidebar() {
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 {TabSidebar(null, 'Dashboard', 'apps')}
-                {TabSidebar(null, 'Trabajador', 'apps')}
-                {TabSidebar(null, 'Procesos', 'apps')}
-                {TabSidebar(null, 'Pedidos', 'apps')}
-                {TabSidebar(null, 'Clientes', 'apps')}
-                {TabSidebar(null, 'Trabajadores', 'apps')}
-                {TabSidebar(null, 'Productos', 'apps')}
-                {TabSidebar(null, 'Categorías', 'apps')}
-                {TabSidebar(null, 'Discos', 'apps')}
-                {TabSidebar(null, 'Inventario Discos', 'apps')}
-                {TabSidebar(null, 'Usuarios', 'apps')}
+                {TabSidebar(null, 'Trabajador', 'hammer')}
+                {TabSidebar(null, 'Procesos', 'settings')}
+                {TabSidebar(null, 'Pedidos', 'file-tray-full')}
+                {TabSidebar(null, 'Inventario Discos', 'server')}
+                {TabSidebar(null, 'Clientes', 'wallet')}
+                {TabSidebar(null, 'Trabajadores', 'person-add')}
+                {TabSidebar(null, 'Productos', 'bag-add')}
+                {TabSidebar(null, 'Categorías', 'cube')}
+                {TabSidebar(null, 'Discos', 'disc')}
+                {TabSidebar(null, 'Usuarios', 'people')}
             </ul>
             <div className="sidebar-footer">
                 <button type="button" className="btn" onClick={() => logout()}>

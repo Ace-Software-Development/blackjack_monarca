@@ -104,7 +104,7 @@ function CreateProduct() {
                     </select>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button type="submit" className="btn-add">Crear</button>
+                    <button type="submit" className="btn-add" onClick={() => window.location.reload()}>Crear</button>
                 </Modal.Footer>
             </form>
         </div>
