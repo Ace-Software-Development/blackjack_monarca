@@ -173,14 +173,14 @@ ion-icon {
 	color: white;
 	box-shadow: 5px 10px 30px rgba(122, 137, 254, 0.04);
 }
-.div .CardName:hover {
-	color: white;
+.h5 .CardName:hover {
+	color: white !important;
 }
 
-/* .cardName:focus {
+.cardName:focus {
 	background-color: #F69223;
-	color: white;
-} */
+	color: white !important;
+} 
 
 .numberBtn {
 	border-radius: 8px;
@@ -429,6 +429,11 @@ ion-icon {
 	color: #1F1F1F;
 	font-size: 2rem;
 	font-weight: bold;
+	color: white;	
+}
+
+.select-card-active:focus {
+	color: white;
 }
 
 .home {
@@ -465,6 +470,7 @@ ion-icon {
 
 .cardName:focus{
 	background: #F69223;
+	color: white !important;
 }
 
 .btn-next {

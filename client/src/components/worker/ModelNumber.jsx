@@ -50,8 +50,8 @@ export function CardModel(name, id, aluminium) {
     return (
         <a href="#">
             <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
-                <div>{name}</div>
-                <h5>{aluminium}</h5>
+                <p>{name}</p>
+                <p>{aluminium}</p>
             </button>
         </a>
 

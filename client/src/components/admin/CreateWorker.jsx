@@ -67,7 +67,7 @@ function CreateWorker() {
                             <option value="Esmerilado">Esmerilado</option>
                             <option value="Pulido">Pulido</option>
                             <option value="Remachado">Remachado</option>
-                            <option value="Empaquetado">Empaquetado</option>
+                            <option value="Empaquetado">Empacado</option>
                         </select>
                     </div>
                 </Modal.Body>

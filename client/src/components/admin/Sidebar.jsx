@@ -2,6 +2,8 @@
 import Cookies from 'js-cookie';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/sidebar.css';
+import React, { useState } from 'react';
+import { Collapse } from 'react-bootstrap';
 import TabSidebar from './Tab';
 
 function logout() {
@@ -14,6 +16,8 @@ function logout() {
 }
 
 function Sidebar() {
+    const [open, setOpen] = useState(false);
+
     return (
         <div className="sidebar d-flex flex-column flex-shrink-0 p-4">
             <img src="../../logo.svg" alt="Aluminios Monarca logo" />
@@ -24,12 +28,21 @@ function Sidebar() {
                 {TabSidebar(null, 'Procesos', 'settings')}
                 {TabSidebar(null, 'Pedidos', 'file-tray-full')}
                 {TabSidebar(null, 'Inventario Discos', 'server')}
-                {TabSidebar(null, 'Clientes', 'wallet')}
-                {TabSidebar(null, 'Trabajadores', 'person-add')}
-                {TabSidebar(null, 'Productos', 'bag-add')}
-                {TabSidebar(null, 'Categorías', 'cube')}
-                {TabSidebar(null, 'Discos', 'disc')}
-                {TabSidebar(null, 'Usuarios', 'people')}
+                <li className="nav-item sidebar-tab p-1">
+                    <button type="button" className="btn btn-sidebar" onClick={() => setOpen(!open)} aria-expanded={open}>
+                        Registros
+                    </button>
+                </li>
+                <Collapse className="btn" in={open}>
+                    <div id="example-collapse-text">
+                        {TabSidebar(null, 'Clientes', 'wallet')}
+                        {TabSidebar(null, 'Trabajadores', 'person-add')}
+                        {TabSidebar(null, 'Productos', 'bag-add')}
+                        {TabSidebar(null, 'Categorías', 'cube')}
+                        {TabSidebar(null, 'Discos', 'disc')}
+                        {TabSidebar(null, 'Usuarios', 'people')}
+                    </div>
+                </Collapse>
             </ul>
             <div className="sidebar-footer">
                 <button type="button" className="btn" onClick={() => logout()}>

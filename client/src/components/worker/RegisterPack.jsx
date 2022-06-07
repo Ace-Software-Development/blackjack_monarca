@@ -85,7 +85,13 @@ function Quantity() {
     const [products, setProducts] = useState([]);
 
     const [categoryName, setCategory] = useState(0);
-    const [modelName, setModel] = useState(0);
+    const [modelName, setModel] = useState(
+        {
+            aluminium: '',
+            model: '',
+            objectId: '',
+        },
+    );
 
     /**
    * categoriesList
@@ -182,7 +188,7 @@ function Quantity() {
         getModels();
         getCategory();
         getModel();
-    }, []);
+    }, [selectedModel, selectedCategory, modelName]);
 
     categoriesList();
     productsList();
@@ -264,6 +270,13 @@ function Quantity() {
    * @param category: Id of the most resent selected category
    */
     function onChangeCategory(category) {
+        setModel(
+            {
+                aluminium: '',
+                model: '',
+                objectId: '',
+            },
+        );
         navigate(`/empacado/registrar/${category.value}/${-1}`);
         window.location.reload();
     }
@@ -303,7 +316,7 @@ function Quantity() {
                             <div className="row">
                                 <div className="col">
                                     <div>
-                                        <h3 className="text-center">Cantidad de productos a entregar</h3>
+                                        <h3 className="text-center">Cantidad de productos empacados</h3>
                                         <ul className="nav nav-pills nav-fill mb-3 tab-select" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
                                                 <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Completo</button>

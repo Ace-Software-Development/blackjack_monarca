@@ -75,11 +75,11 @@ function Login() {
                                     <p className="text-center">Por favor ingresa tu usuario y contraseña.</p>
 
                                     <div className="mb-4">
-                                        <input type="email" id="username" className="form-control" placeholder="usuario@mail.com" onChange={(e) => updateForm({ username: e.target.value })} />
+                                        <input type="email" id="username" className="form-control" placeholder="usuario@mail.com" onChange={(e) => updateForm({ username: e.target.value })} required />
                                     </div>
 
                                     <div className="mb-4">
-                                        <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} />
+                                        <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} required />
                                     </div>
 
                                     <div className="text-center pt-1 pb-1">

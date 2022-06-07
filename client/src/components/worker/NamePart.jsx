@@ -152,7 +152,9 @@ function NamePart() {
                     </Col>
                 </Row>
             </Row>
-            {nextBtn}
+            <div className="buttonNext">
+                {nextBtn}
+            </div>
         </Container>
     );
 }

@@ -17,7 +17,7 @@ let url = '';
      * setContext
      * @description Saves selected model in a variable
      * @param name: name of the model
-     */
+ */
 function setContext(id) {
     const button = document.getElementById('buttonNext');
     if (id) {
@@ -44,8 +44,8 @@ export function CardModel(name, id, aluminium) {
     return (
         <a href="#">
             <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
-                <div>{name}</div>
-                <h5>{aluminium}</h5>
+                <p className="cardName">{name}</p>
+                <p className="cardName">{aluminium}</p>
             </button>
         </a>
 
@@ -72,6 +72,8 @@ Products.propTypes = {
 function ModelInventory() {
     const session = Cookies.get('sessionToken');
     const [permission, setPermission] = useState([]);
+    const navigate = useNavigate();
+
     /**
      * getPermission
      * @description Verifies that the user session token is valid
@@ -94,7 +96,6 @@ function ModelInventory() {
         return ('No tienes permisos');
     }
     const params = useParams();
-    const navigate = useNavigate();
 
     selectedCategory = params.category;
 
@@ -103,7 +104,7 @@ function ModelInventory() {
 
     const [categories, setCategories] = useState([]);
 
-    const [categoryName, setCategory] = useState(0);
+    const [categoryName, setCategory] = useState('');
 
     /**
     * categoriesList
@@ -180,7 +181,7 @@ function ModelInventory() {
         getCategory();
         getCategories();
         getModels();
-    }, [nextBtn]);
+    }, [nextBtn, products]);
 
     categoriesList();
 
@@ -197,16 +198,16 @@ function ModelInventory() {
 
     return (
         <div className="row d-flex justify-content-center">
-            <Header processName="Conteo" />
+            <Header processName="Empacado" />
             <div className="card-shadow bg-white col-10 p-4">
                 <div className="row">
                     <div className="col">
                         <div className="row">
-                            <div className="col-9">
+                            <div className="col-7">
                                 <h5>Resumen</h5>
                             </div>
-                            <div className="col-9">
-                                {ButtonNext}
+                            <div className="col">
+                                {nextBtn}
                             </div>
                             <p>
                                 {categoryName.name}

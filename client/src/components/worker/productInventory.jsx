@@ -117,7 +117,7 @@ function productInventory() {
 
     return (
         <div>
-            <Header processName="Inventario empacados" />
+            <Header processName="Inventario empacado" />
             <div className="row d-flex justify-content-center">
                 <div className="col-10 mt-4">
                     <div className="card conteo-card">
@@ -130,7 +130,7 @@ function productInventory() {
                                     <div className="col-2" />
                                     <a href="/empacado/registrar" className="col-2">
                                         <button type="button" className="btn-nxt">
-                                            Registrar empacado
+                                            Empacar producto
                                         </button>
                                     </a>
                                 </div>

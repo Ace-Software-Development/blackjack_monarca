@@ -15,18 +15,6 @@ function TabSidebar(activeProperty, tabName, tabIcon) {
             </li>
         );
     }
-    if (tabName === 'Categorías') {
-        return (
-            <li className="nav-item sidebar-tab p-1">
-                <a className="nav-link" href="/dashboard/Categorias">
-                    <div className="nav-link-icon">
-                        <ion-icon className="tab-icon" name={`${tabIcon}-outline`} />
-                    </div>
-                    {tabName}
-                </a>
-            </li>
-        );
-    }
     if (tabName === 'Inventario Discos') {
         return (
             <li className="nav-item sidebar-tab p-1">
@@ -41,7 +29,7 @@ function TabSidebar(activeProperty, tabName, tabIcon) {
     }
     return (
         <li className="nav-item sidebar-tab p-1">
-            <a href={`/dashboard/${tabName}`} className="nav-link">
+            <a href={`/dashboard/${tabName}`} className="text-start nav-link">
                 <div className="nav-link-icon">
                     <ion-icon className="tab-icon" name={`${tabIcon}-outline`} />
                 </div>
