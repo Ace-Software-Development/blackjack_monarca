@@ -67,7 +67,7 @@ function Login() {
                             <Container className="h-100 d-flex flex-column justify-content-center p-lg-5 login-card">
                                 <img src="./MariposaOllas.svg" alt="logo" className="h-50 w-50 align-self-center" />
                                 <div className="text-center align-self-center">
-                                    <h1 className="mt-1 pb-1">Inicia Sesión</h1>
+                                    <h2 className="text-center">Inventario Aluminio Monarca</h2>
                                 </div>
 
                                 <form onSubmit={onSubmit} id="loginForm">
