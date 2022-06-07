@@ -63,38 +63,26 @@ function Login() {
             <section className="h-100 gradient-form">
                 <div className="container-fluid p-4 h-100">
                     <Row className="h-100 login">
-                        <Col md={6} className="login-title">
-                            <div className="rounded-3 gradient-custom-2 h-100 d-flex flex-column justify-content-center align-items-center">
-                                <div className="circle-logo d-flex justify-content-center mb-5 p-4">
-                                    <img src="./MariposaOllas.svg" alt="logo" />
-                                </div>
-                                <h1 className="text-center mb-4">Capullo</h1>
-                                <h3 className="text-center">Sistema de inventario</h3>
-                                {/* <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                                </div> */}
-                            </div>
-                        </Col>
-                        <Col md={6} className="login-form">
-                            <Container className="h-100 d-flex flex-column justify-content-center p-lg-5 w-75">
-                                <div className="text-center align-self-start">
+                        <Col md={12} className="login-form">
+                            <Container className="h-100 d-flex flex-column justify-content-center p-lg-5 login-card">
+                                <img src="./MariposaOllas.svg" alt="logo" className="h-50 w-50 align-self-center" />
+                                <div className="text-center align-self-center">
                                     <h1 className="mt-1 pb-1">Inicia Sesión</h1>
                                 </div>
 
                                 <form onSubmit={onSubmit} id="loginForm">
-                                    <p>Por favor ingresa tu usuario y contraseña.</p>
+                                    <p className="text-center">Por favor ingresa tu usuario y contraseña.</p>
 
                                     <div className="mb-4">
-                                        <input type="email" id="username" className="form-control" placeholder="Usuario" onChange={(e) => updateForm({ username: e.target.value })} />
+                                        <input type="email" id="username" className="form-control" placeholder="usuario@mail.com" onChange={(e) => updateForm({ username: e.target.value })} />
                                     </div>
 
                                     <div className="mb-4">
                                         <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} />
                                     </div>
 
-                                    <div className="text-center pt-1 mb-5 pb-1">
+                                    <div className="text-center pt-1 pb-1">
                                         <button className="btn-orange fa-lg mb-3" type="submit" form="loginForm">Ingresar</button>
-                                        <br />
-                                        <a className="text-muted" href="#!">¿Olvidaste tu contraseña?</a>
                                     </div>
                                 </form>
                             </Container>

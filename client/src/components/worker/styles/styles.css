@@ -434,3 +434,10 @@ ion-icon {
 .home {
 	cursor: pointer;
 }
+
+.login-card {
+	box-shadow: rgba(42, 80, 118, 0.25) 0px 3px 5px 0px;
+	border-radius: 21px;
+	width: 40%;
+	height: 80%;
+}
