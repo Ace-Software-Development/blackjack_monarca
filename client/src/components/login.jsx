@@ -1,6 +1,7 @@
 // CU 9 LogIn
 import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
+import { Col, Row, Container } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import Environment from './Environment';
 
@@ -58,54 +59,37 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className="h-100 bg-white">
             <section className="h-100 gradient-form">
-                <div className="container py-5 h-100">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                        <div className="col-xl-10">
-                            <div className="card rounded-3 text-black">
-                                <div className="row g-0">
-                                    <div className="col-lg-6 d-flex align-items-center justify-content-center gradient-custom-2">
-                                        <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                                            <img src="./logo.svg" style={{ width: '300px' }} alt="logo" />
-                                            <br />
-                                            <br />
-                                            <h5 className="mb-0 text-center">Capullo</h5>
-                                            <h5 className="mb-0 text-center">Sistema de inventario</h5>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-lg-6">
-                                        <div className="card-body p-md-5 mx-md-4">
-                                            <div className="text-center">
-                                                <h4 className="mt-1 mb-5 pb-1">Inicia Sesión</h4>
-                                            </div>
-
-                                            <form onSubmit={onSubmit} id="loginForm">
-                                                <p>Por favor ingresa tu usuario y contraseña.</p>
-
-                                                <div className="form-outline mb-4">
-                                                    <input type="email" id="username" className="form-control" placeholder="Usuario" onChange={(e) => updateForm({ username: e.target.value })} />
-                                                </div>
-
-                                                <div className="form-outline mb-4">
-                                                    <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} />
-                                                </div>
-
-                                                <div className="text-center pt-1 mb-5 pb-1">
-                                                    <button className="btn-orange fa-lg mb-3" type="submit" form="loginForm">Ingresar</button>
-                                                    <br />
-                                                    <a className="text-muted" href="#!">¿Olvidaste tu contraseña?</a>
-                                                </div>
-
-                                            </form>
-
-                                        </div>
-                                    </div>
+                <div className="container-fluid p-4 h-100">
+                    <Row className="h-100 login">
+                        <Col md={12} className="login-form">
+                            <Container className="h-100 d-flex flex-column justify-content-center p-lg-5 login-card">
+                                <img src="./MariposaOllas.svg" alt="logo" className="h-50 w-50 align-self-center" />
+                                <div className="text-center align-self-center">
+                                    <h2 className="text-center">Inventario Aluminio Monarca</h2>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+
+                                <form onSubmit={onSubmit} id="loginForm">
+                                    <p className="text-center">Por favor ingresa tu usuario y contraseña.</p>
+
+                                    <div className="mb-4">
+                                        <input type="email" id="username" className="form-control" placeholder="usuario@mail.com" onChange={(e) => updateForm({ username: e.target.value })} />
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} />
+                                    </div>
+
+                                    <div className="text-center pt-1 pb-1">
+                                        <button className="btn-orange fa-lg mb-3" type="submit" form="loginForm">Ingresar</button>
+                                    </div>
+                                </form>
+                            </Container>
+                            {/* <div className="p-md-5 mx-md-4 h-100">
+                            </div> */}
+                        </Col>
+                    </Row>
                 </div>
             </section>
         </div>
