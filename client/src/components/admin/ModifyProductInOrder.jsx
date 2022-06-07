@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 /**
    * ModifyProduct
@@ -54,16 +54,13 @@ function ModifyProductInOrder(productId, category, modelNumber, aluminiumModel, 
             <form onSubmit={onSubmit}>
                 <Modal.Body>
                     <div className="row">
-                        {`Ingresa la nueva cantidad para ${category} ${modelNumber} ${aluminiumModel}`}
+                        <h5>{`Ingresa la nueva cantidad para ${category} ${modelNumber} ${aluminiumModel}`}</h5>
                     </div>
                     <div className="row">
-                        <input type="number" id="number" name="number" className="col" placeholder="Cantidad" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
+                        <input min="0" pattern="^[0-9]+" type="number" id="number" name="number" className="form-control" placeholder="Cantidad" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
                     <button type="submit" className="col">Modificar</button>
                 </Modal.Footer>
             </form>

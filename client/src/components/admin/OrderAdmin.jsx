@@ -54,25 +54,25 @@ function Products({ product }) {
         <>
             <tr>
                 <th>
-                    <div>{`${product.id_product.id_category.name} ${product.id_product.model} ${product.id_product.aluminium}`}</div>
-                    <div className="sub-text2">Nombre</div>
+                    <h5>{`${product.id_product.id_category.name} ${product.id_product.model} ${product.id_product.aluminium}`}</h5>
+                    <h6 className="sub-text2">Nombre</h6>
                 </th>
                 <th>
-                    <div>{product.number}</div>
-                    <div className="sub-text1">piezas</div>
+                    <h5>{product.number}</h5>
+                    <h6 className="sub-text1">piezas</h6>
                 </th>
                 <th>
-                    <div>{`${product.id_product.with_lid}`}</div>
-                    <div className="sub-text1">piezas</div>
+                    <h5>{`${product.id_product.with_lid}`}</h5>
+                    <h6 className="sub-text1">piezas</h6>
                 </th>
                 {Required(product.number, product.id_product.with_lid)}
                 <th>
-                    <button type="button" onClick={handleShowMod}>
+                    <button type="button" className="btn" onClick={handleShowMod}>
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
                 <th>
-                    <button type="button" onClick={handleShowDMod}>
+                    <button type="button" className="btn" onClick={handleShowDMod}>
                         <ion-icon size="large" name="trash-outline" />
                     </button>
                 </th>
@@ -215,7 +215,7 @@ function OrderAdmin() {
                                         </button>
                                     </div>
                                 </div>
-                                <table className="table table-striped" style={{ marginTop: 20 }}>
+                                <table className="w-100 mt-4" style={{ marginTop: 20 }}>
                                     <thead>
                                         <tr>
                                             <th>Producto</th>
@@ -239,7 +239,7 @@ function OrderAdmin() {
                 <Modal.Header closeButton>
                     <Modal.Title>Agregar producto</Modal.Title>
                 </Modal.Header>
-                <CreateProductOrder />
+                {CreateProductOrder(orderId)}
             </Modal>
         </div>
     );

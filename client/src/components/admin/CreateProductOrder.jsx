@@ -1,29 +1,69 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
+import Select from 'react-select';
+import Environment from '../Environment';
 
 /**
    * CreateProductOrder
    * @description Set of functions to display modal of Create Worker
    * @returns HTML with fetched data
    */
-function CreateProductOrder() {
-    const navigate = useNavigate();
-
+function CreateProductOrder(orderId) {
     const [form, setForm] = useState({
         number: '',
-        orderId: '',
+        orderId,
         id_product: '',
     });
 
+    const [models, setModels] = useState([]);
+    const [selectedCategory, setCategorySelected] = useState('');
+    const [selectedModel, setModelSelected] = useState('');
+    const [modelsOption, setModelsOption] = useState([]);
+    const [modelName, setModelName] = useState([]);
+    const [categoryName, setCategoryName] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const categoriesOption = [];
+
     /**
-* updateForm
-* @description updates data of a form
-* @param value: new values of the form
-* @returns an updated form
-*/
+     * getModels
+     * @description Fetches existing products from the database through the server
+     */
+    async function getModels() {
+        const response = await fetch(`${Environment()}/entrega/modelos/get/${selectedCategory}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const product = await response.json();
+        setModels(product.data);
+    }
+
+    /**
+     * getCategories
+     * @description Fetches existing categories from the database through the server
+     */
+    async function getCategories() {
+        const response = await fetch(`${Environment()}/entrega/categorias/get`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const category = await response.json();
+        setCategories(category.data);
+    }
+
+    /**
+    * updateForm
+    * @description updates data of a form
+    * @param value: new values of the form
+    * @returns an updated form
+    */
     function updateForm(value) {
         return setForm((prev) => ({ ...prev, ...value }));
     }
@@ -35,7 +75,7 @@ function CreateProductOrder() {
 
         const newWorker = { ...form };
 
-        await fetch('http://localhost:8888/trabajador/post', {
+        await fetch(`${Environment()}/productOrder/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,37 +87,103 @@ function CreateProductOrder() {
             number: '',
             orderId: '',
             id_product: '',
+            model: '',
+            category: '',
         });
-        navigate('/trabajadores');
+        window.location.reload();
     }
+
+    /**
+   * ModelsList
+   * @description Maps all models in the interface
+   * @returns Component with name and id of the model
+   */
+    async function modelsList() {
+        const auxModelsOption = [];
+        for (let i = 0; i < models.length; i += 1) {
+            auxModelsOption[i] = {
+                label: `${models[i].model} ${models[i].aluminium}`,
+                value: models[i].objectId,
+            };
+        }
+        setModelsOption(auxModelsOption);
+    }
+
+    function modelSelect(model) {
+        for (let i = 0; i < models.length; i += 1) {
+            if (model.value === models[i].objectId) {
+                setModelName(`${models[i].model} ${models[i].aluminium}`);
+                setModelSelected(models[i].objectId);
+                updateForm({ id_product: models[i].objectId });
+            }
+        }
+    }
+
+    /**
+   * categoriesList
+   * @description Maps all categories in the interface
+   * @returns Component with name and id of the category
+   */
+    function categoriesList() {
+        for (let i = 0; i < categories.length; i += 1) {
+            categoriesOption[i] = { label: categories[i].name, value: categories[i].objectId };
+        }
+    }
+
+    categoriesList();
+
+    function categorySelect(category) {
+        for (let i = 0; i < categories.length; i += 1) {
+            if (category.value === categories[i].objectId) {
+                setCategorySelected(categories[i].objectId);
+                setCategoryName(categories[i].name);
+                updateForm(
+                    {
+                        category: categoryName,
+                        id_product: '',
+                    },
+                );
+                setModelName('');
+                setModelSelected('');
+            }
+        }
+    }
+
+    useEffect(() => {
+        getModels();
+        modelsList();
+        getCategories();
+        categoriesList();
+    }, [selectedCategory, models, modelName]);
 
     return (
         <div>
             <form onSubmit={onSubmit}>
                 <Modal.Body>
                     <div className="row">
-                        <h5>Nombre</h5>
-                        <input type="text" id="name" name="name" className="col" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                        <h5>Categoría</h5>
+                        <Select
+                          options={categoriesOption}
+                          onChange={(e) => categorySelect(e)}
+                          required
+                        />
                     </div>
                     <div className="row">
-                        <h5>Apodo</h5>
-                        <input type="text" id="nick_name" name="nick_name" className="col" placeholder="Apodo" value={form.nick_name} onChange={(e) => updateForm({ nick_name: e.target.value })} required />
+                        <h5>Modelo</h5>
+                        <Select
+                          value={{ label: modelName, value: selectedModel }}
+                          options={modelsOption}
+                          onChange={(e) => modelSelect(e)}
+                          required
+                        />
                     </div>
                     <div className="row">
-                        <h5>Elige el proceso</h5>
-                        <select type="text" id="id_process" name="id_process" className="col" value={form.id_process} onChange={(e) => updateForm({ id_process: e.target.value })} required>
-                            <option value="" disabled selected>Selecciona el rol</option>
-                            <option value="Conteo">Conteo</option>
-                            <option value="Rechazado">Rechazado</option>
-                            <option value="Esmerilado">Esmerilado</option>
-                            <option value="Pulido">Pulido</option>
-                            <option value="Remachado">Remachado</option>
-                            <option value="Empaquetado">Empaquetado</option>
-                        </select>
+                        <h5>Número de piezas</h5>
+                        <input className="form-control" type="number" id="number" min="0" pattern="^[0-9]+" name="number" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button type="submit" className="btn-add" onClick={() => window.location.reload()}>Crear</button>
+                    <button type="submit" className="btn-add">Crear</button>
                 </Modal.Footer>
             </form>
         </div>

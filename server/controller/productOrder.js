@@ -10,7 +10,7 @@ const { registerProductOrder, getProductOrderById, modifyProductOrder, deletePro
    */
 exports.postProductOrderController = async function (request, response) {
     try {
-        const productOrder = registerProductOrder(request.body.catName, request.body.modName, request.body.number);
+        const productOrder = await registerProductOrder(request.body.orderId, request.body.id_product, request.body.number);
         await productOrder.save();
     } catch (error) {
         console.error(error.message);

@@ -14,10 +14,19 @@ class ProductOrder {
    * @param modName: Name of the model registered
    * @returns Parse object
    */
-    static registerProductOrder(catName, modName, number) {
+    static registerProductOrder(orderId, id_product, number) {
         const productOrder = new Parse.Object("ProductOrder");
-        productOrder.set('category_name', catName);
-        productOrder.set('model_name', modName);
+
+        var Order = Parse.Object.extend("Order");
+        var pointerToOrder = new Order();
+        pointerToOrder.id = orderId;
+
+        var Product = Parse.Object.extend("Product");
+        var pointerToProduct = new Product();
+        pointerToProduct.id = id_product;
+
+        productOrder.set('orderId', pointerToOrder);
+        productOrder.set('id_product', pointerToProduct);
         productOrder.set('number', parseInt(number));
         return productOrder;
     }
