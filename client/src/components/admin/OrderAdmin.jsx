@@ -219,7 +219,7 @@ function OrderAdmin() {
             body: JSON.stringify(products),
         });
 
-        navigate('/dashboard/Administrador');
+        navigate('/dashboard/pedidos');
     }
 
     /**
@@ -245,10 +245,23 @@ function OrderAdmin() {
         confirmOrder(e);
     }
 
+    /**
+   * goBack
+   * @description Goes back to Pedidos
+   */
+    function goBack() {
+        navigate('/dashboard/pedidos');
+    }
+
     return (
         <div className="container-fluid">
             <Sidebar />
             <div className="content d-flex px-4 pt-3 h-100">
+                <div>
+                    <button type="button" className="btn" onClick={goBack}>
+                        <ion-icon size="large" name="arrow-back-outline" />
+                    </button>
+                </div>
                 <h1>{order.name}</h1>
                 <div className="row">
                     <div className="col-10 mt-1 card conteo-card">
