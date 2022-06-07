@@ -74,13 +74,14 @@ class Product {
         var Category = Parse.Object.extend("Category");
         var pointerToCategory = new Category();
         pointerToCategory.id = category;
-        console.log("categoria", category);
 
         let product = new Parse.Object('Product');
         product.set('id_category', pointerToCategory);
         product.set('model', model);
         product.set('aluminium', aluminium);
         product.set('key', key);
+        product.set('with_lid', 0);
+        product.set('withOut_lid', 0);
         product.set('delete', false);
 
         return product;

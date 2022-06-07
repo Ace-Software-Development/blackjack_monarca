@@ -4,23 +4,30 @@ class Buyer {
         /*TODO make all the field*/
     }
     /**
-* registerCategory
-* @description Register new category
-* @param name: Name of category registered
+* registerBuyer
+* @description Register new buyer
+* @param name: Name of buyer registered
+* @param mail: mail of buyer registered
+* @param city: city of buyer registered
+* @param phone: phone of buyer registered
 * @returns Parse object
 */
-    static registerBuyer(name) {
-        const category = new Parse.Object("Category");
-        category.set('name', name);
-        category.set("delete", false);
+    static registerBuyer(name, mail, city, phone, address) {
+        const buyer = new Parse.Object("Buyer");
+        buyer.set('name', name);
+        buyer.set('city', city);
+        buyer.set('phone', parseInt(phone));
+        buyer.set('mail', mail);
+        buyer.set('address', address);
+        buyer.set("delete", false);
 
-        return category;
+        return buyer;
     }
 
     /**
-* getAllWorkers
-* @description Query to get all existing workers
-* @returns Parse object with name and Id of the parts in table "Workers"
+* getAllBuyer
+* @description Query to get all existing buyers
+* @returns Parse object
 */
     static getAllBuyer() {
         const buyers = new Parse.Query("Buyer");
@@ -29,33 +36,39 @@ class Buyer {
     }
 
     /**
-* modifyCategory
-* @description Modify category
-* @param name: name of category
-* @param id: Id of category
+* registerBuyer
+* @description Register new buyer
+* @param name: Name of buyer registered
+* @param mail: mail of buyer registered
+* @param city: city of buyer registered
+* @param phone: phone of buyer registered
 * @returns Parse object
 */
-    static modifyBuyer(name, id) {
-        console.log("cos que no sirve");
-        const category = new Parse.Object("Category");
-        category.set('objectId', id);
-        category.set('name', name);
+    static modifyBuyer(name, mail, city, phone, id) {
+        const buyer = new Parse.Object("Buyer");
+        buyer.set('objectId', id);
+        buyer.set('name', name);
+        buyer.set('city', city);
+        buyer.set('phone', parseInt(phone));
+        buyer.set('mail', mail);
+        buyer.set('address', address);
+        buyer.set("delete", false);
 
-        return category;
+        return buyer;
     }
 
     /**
-* deleteCategory
-* @description Delete a category
-* @param id: id of category
+* deleteBuyer
+* @description Delete a buyer
+* @param id: id of buyer
 * @returns Parse object
 */
     static deleteBuyer(id) {
-        const category = new Parse.Object("Category");
-        category.set('objectId', id);
-        category.set("delete", true);
+        const buyer = new Parse.Object("Buyer");
+        buyer.set('objectId', id);
+        buyer.set("delete", true);
 
-        return category;
+        return buyer;
     }
 
 

@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * ModifyWorker
@@ -36,7 +37,7 @@ function ModifyWorker(woekerId, workerName, workerNick, workerProcess) {
 
         const newWorker = { ...form };
 
-        await fetch('http://localhost:8888/trabajador/modify', {
+        await fetch(`${Environment()}/trabajador/modify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -57,32 +58,23 @@ function ModifyWorker(woekerId, workerName, workerNick, workerProcess) {
         <div>
             <form onSubmit={onSubmit}>
                 <Modal.Body>
-                    <div className="row">
-                        <div>Nombre</div>
-                        <input type="text" id="name" name="name" className="col" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
-                    </div>
-                    <div className="row">
-                        <div>Apodo</div>
-                        <input type="text" id="nick_name" name="nick_name" className="col" placeholder="Apodo" value={form.nick_name} onChange={(e) => updateForm({ nick_name: e.target.value })} required />
-                    </div>
-                    <div className="row">
-                        <div>Elige el proceso</div>
-                        <select type="text" id="id_process" name="id_process" className="col" value={form.id_process} onChange={(e) => updateForm({ id_process: e.target.value })} required>
-                            <option value="" disabled>Selecciona el rol</option>
-                            <option value="Conteo">Conteo</option>
-                            <option value="Rechazado">Rechazado</option>
-                            <option value="Esmerilado">Esmerilado</option>
-                            <option value="Pulido">Pulido</option>
-                            <option value="Remachado">Remachado</option>
-                            <option value="Empaquetado">Empaquetado</option>
-                        </select>
-                    </div>
+                    <h5>Nombre</h5>
+                    <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                    <h5>Apodo</h5>
+                    <input type="text" id="nick_name" name="nick_name" className="h-75 w-100 ml-4 mb-3" placeholder="Apodo" value={form.nick_name} onChange={(e) => updateForm({ nick_name: e.target.value })} required />
+                    <h5>Elige el proceso</h5>
+                    <select type="text" id="id_process" name="id_process" className="h-75 w-100 ml-4 mb-3" value={form.id_process} onChange={(e) => updateForm({ id_process: e.target.value })} required>
+                        <option value="" disabled>Selecciona el proceso</option>
+                        <option value="Conteo">Conteo</option>
+                        <option value="Rechazado">Rechazado</option>
+                        <option value="Esmerilado">Esmerilado</option>
+                        <option value="Pulido">Pulido</option>
+                        <option value="Remachado">Remachado</option>
+                        <option value="Empaquetado">Empaquetado</option>
+                    </select>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col">Modificar</button>
+                    <button type="submit" className="btn-add">Modificar</button>
                 </Modal.Footer>
             </form>
         </div>

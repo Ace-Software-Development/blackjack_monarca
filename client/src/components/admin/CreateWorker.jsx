@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * CreateWorker
@@ -10,8 +10,6 @@ import { Modal, Button } from 'react-bootstrap';
    * @returns HTML with fetched data
    */
 function CreateWorker() {
-    const navigate = useNavigate();
-
     const [form, setForm] = useState({
         name: '',
         nick_name: '',
@@ -31,11 +29,9 @@ function CreateWorker() {
     async function onSubmit(e) {
         e.preventDefault();
 
-        console.log(form);
-
         const newWorker = { ...form };
 
-        await fetch('http://localhost:8888/trabajador/post', {
+        await fetch(`${Environment()}/trabajador/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +44,6 @@ function CreateWorker() {
             nick_name: '',
             id_process: '',
         });
-        navigate('/trabajadores');
     }
 
     return (
@@ -56,17 +51,17 @@ function CreateWorker() {
             <form onSubmit={onSubmit}>
                 <Modal.Body>
                     <div className="row">
-                        <div>Nombre</div>
-                        <input type="text" id="name" name="name" className="col" placeholder="Nombre" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                        <h5>Nombre</h5>
+                        <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Juan Pérez" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <div>Apodo</div>
-                        <input type="text" id="nick_name" name="nick_name" className="col" placeholder="Apodo" value={form.nick_name} onChange={(e) => updateForm({ nick_name: e.target.value })} required />
+                        <h5>Apodo</h5>
+                        <input type="text" id="nick_name" name="nick_name" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Juancho" value={form.nick_name} onChange={(e) => updateForm({ nick_name: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <div>Elige el proceso</div>
+                        <h5>Elige el proceso</h5>
                         <select type="text" id="id_process" name="id_process" className="col" value={form.id_process} onChange={(e) => updateForm({ id_process: e.target.value })} required>
-                            <option value="" disabled selected>Selecciona el rol</option>
+                            <option value="" disabled selected>Selecciona el proceso</option>
                             <option value="Conteo">Conteo</option>
                             <option value="Rechazado">Rechazado</option>
                             <option value="Esmerilado">Esmerilado</option>
@@ -77,10 +72,7 @@ function CreateWorker() {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col" onClick={() => window.location.reload()}>Crear</button>
+                    <button type="submit" className="btn-add" onClick={() => window.location.reload()}>Crear</button>
                 </Modal.Footer>
             </form>
         </div>

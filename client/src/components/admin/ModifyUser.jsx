@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * ModifyUser
@@ -35,7 +36,7 @@ function ModifyUser(userId, userName, userRol) {
 
         const newUser = { ...form };
 
-        await fetch('http://localhost:8888/usuario/modify', {
+        await fetch(`${Environment()}/usuario/modify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,12 +57,12 @@ function ModifyUser(userId, userName, userRol) {
             <form onSubmit={onSubmit}>
                 <Modal.Body>
                     <div className="row">
-                        <div>Nombre de usuario</div>
-                        <input type="text" id="username" name="username" className="col" placeholder="Usuario" value={form.username} onChange={(e) => updateForm({ username: e.target.value })} required />
+                        <h5>Nombre de usuario</h5>
+                        <input type="text" id="username" name="username" className="h-75 w-100 ml-4 mb-3" placeholder="Usuario" value={form.username} onChange={(e) => updateForm({ username: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <div>Elige el rol</div>
-                        <select type="text" id="is_admin" name="is_admin" className="col" placeholder="Rol" value={form.is_admin} onChange={(e) => updateForm({ is_admin: e.target.value })} required>
+                        <h5>Elige el rol</h5>
+                        <select type="text" id="is_admin" name="is_admin" className="h-75 w-100 ml-4 mb-3" placeholder="Rol" value={form.is_admin} onChange={(e) => updateForm({ is_admin: e.target.value })} required>
                             <option value="" disabled>Selecciona el rol</option>
                             <option value="true">Administrador</option>
                             <option value="false">Trabajador</option>
@@ -69,10 +70,7 @@ function ModifyUser(userId, userName, userRol) {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col">Realizar modificación</button>
+                    <button type="submit" className="btn-add">Modificar</button>
                 </Modal.Footer>
             </form>
         </div>

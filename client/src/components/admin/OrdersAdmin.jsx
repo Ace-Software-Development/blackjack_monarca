@@ -2,10 +2,12 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import PropTypes from 'prop-types';
-import { Modal } from 'react-bootstrap';
+import { Modal, Row, Col } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import orderCard from '../orderCard';
 import CreateOrder from './CreateOrder';
+import Environment from '../Environment';
+import Sidebar from './Sidebar';
 
 /**
  * OrderElement
@@ -36,7 +38,7 @@ function OrdersAdmin() {
      * @description Fetches existing orders from the database through the server
      */
     async function getOrders() {
-        const response = await fetch('http://localhost:8888/empacado/ordenes/get');
+        const response = await fetch(`${Environment()}/empacado/ordenes/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -62,18 +64,27 @@ function OrdersAdmin() {
     }
 
     return (
-        <div>
-            <div className="row d-flex w-100 justify-content-center align-self-stretch">
-                <div className="col-4 px-5">
-                    <a href onClick={handleShowCreate}>
-                        <div className="card home-card text-center ">
-                            <div className="card-body d-flex align-items-center justify-content-center">
-                                <ion-icon className="justify-content-center align-items-center" name="add-outline" />
+        <div className="container-fluid">
+            <Sidebar />
+            <div className="content d-flex px-4 pt-3 w-75">
+                <Row>
+                    <Col>
+                        <h1 className="my-2">Dashboard</h1>
+                        <h3 className="my-2">Pedidos</h3>
+                    </Col>
+                </Row>
+                <Row>
+                    <div className="col-4 px-5">
+                        <a href onClick={handleShowCreate}>
+                            <div className="card home-card text-center ">
+                                <div className="card-body d-flex align-items-center justify-content-center">
+                                    <ion-icon className="justify-content-center align-items-center" name="add-outline" />
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                {orderList()}
+                        </a>
+                    </div>
+                    {orderList()}
+                </Row>
             </div>
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>

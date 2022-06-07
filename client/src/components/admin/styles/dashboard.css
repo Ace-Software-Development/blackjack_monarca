@@ -57,3 +57,12 @@ hr {
   width: 60px;
   height: 34px;
 }
+
+input,
+input::placeholder {
+  font: 18px sans-serif;
+}
+
+.orange-text {
+  color: #F69223;
+}

@@ -7,11 +7,14 @@ import '../worker/styles/conteo.css';
 import '../worker/styles/styles.css';
 import { Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import CreateProductOrder from './CreateProductOrder';
 import ModifyProductInOrder from './ModifyProductInOrder';
 import DeleteProductInOrder from './DeleteProductInOrder';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
+
 /**
  * Required
  * @description Consult how many are needed to complete the order
@@ -117,11 +120,13 @@ Products.propTypes = {
    * @returns HTML with fetched data
    */
 function OrderAdmin() {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const { orderId } = useParams();
     const [order, setOrder] = useState('');
     const [buyerName, setBuyerName] = useState('');
     const [buyerCity, setBuyerCity] = useState('');
+    const [error, setError] = useState('');
 
     const [show, setShow] = useState(false);
 
@@ -129,7 +134,7 @@ function OrderAdmin() {
     const handleShowCreate = () => setShow(true);
 
     async function getAllProducts() {
-        const response = await fetch(`http://localhost:8888/productOrder/get/${orderId}`);
+        const response = await fetch(`${Environment()}/productOrder/get/${orderId}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -146,7 +151,7 @@ function OrderAdmin() {
    * @returns Component with name and id of the order
    */
     async function getOrder() {
-        const response = await fetch(`http://localhost:8888/empacado/ordenes/getOne/${orderId}`);
+        const response = await fetch(`${Environment()}/empacado/ordenes/getOne/${orderId}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.cutomAlert(message);
@@ -154,7 +159,7 @@ function OrderAdmin() {
         }
 
         const data = await response.json();
-        setOrder(data.data.name);
+        setOrder(data.data);
         setBuyerName(data.data.id_buyer.name);
         setBuyerCity(data.data.id_buyer.city);
     }
@@ -177,7 +182,7 @@ function OrderAdmin() {
      * @description Verifies that the user session token is valid
      */
     async function getPermission() {
-        const response = await fetch(`http://localhost:8888/login/getPermission/${session}`);
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -187,6 +192,7 @@ function OrderAdmin() {
         const perm = await response.json();
         setPermission(perm.data);
     }
+
     useEffect(() => {
         getPermission();
         getOrder();
@@ -196,11 +202,54 @@ function OrderAdmin() {
     if (!permission) {
         return ('No tienes permisos');
     }
+
+    /**
+   * ConfirmOrder
+   * @description Modifies order in inventory through a fetch to the server
+   * @param e: Context
+   */
+    async function confirmOrder(e) {
+        e.preventDefault();
+
+        await fetch(`${Environment()}/productOrder/confirmar/post`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(products),
+        });
+
+        navigate('/dashboard/Administrador');
+    }
+
+    /**
+   * onSubmit
+   * @description Confirms order verifying that there is enough inventory
+   * @param e: Context
+   */
+    function onSubmit(e) {
+        e.preventDefault();
+
+        if (products.length < 1) {
+            setError('No hay productos que completar.');
+            return;
+        }
+
+        for (let i = 0; i < products.length; i += 1) {
+            if (products[i].number > products[i].id_product.with_lid) {
+                setError('No hay suficientes piezas en inventario para completar el pedido.');
+                return;
+            }
+        }
+
+        confirmOrder(e);
+    }
+
     return (
         <div className="container-fluid">
             <Sidebar />
             <div className="content d-flex px-4 pt-3 h-100">
-                <h1>{order}</h1>
+                <h1>{order.name}</h1>
                 <div className="row">
                     <div className="col-10 mt-1 card conteo-card">
                         <div className="justify-content-between">
@@ -231,6 +280,16 @@ function OrderAdmin() {
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                    <form onSubmit={onSubmit} className="row mt-5">
+                        <div className="col d-flex justify-content-center form group">
+                            <button placeholder="Cantidad" className="btn-order" type="submit">Completar pedido</button>
+                        </div>
+                    </form>
+                    <div className="row mt-3">
+                        <div className="col d-flex justify-content-center form group">
+                            <p className="red-text">{error}</p>
                         </div>
                     </div>
                 </div>

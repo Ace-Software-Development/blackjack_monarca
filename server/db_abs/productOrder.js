@@ -64,8 +64,8 @@ class ProductOrder {
    * @param objectId: id of the product order
    * @returns Json with order, product and category info
    */
-    static getProductOrderById(objectId) {
-        console.log(objectId);
+    static getProductOrderById(objectId)
+    {
         const productOrder = new Parse.Query("ProductOrder");
 
         var Order = Parse.Object.extend("Order");
@@ -73,13 +73,13 @@ class ProductOrder {
         pointerToOrder.id = objectId;
 
         productOrder.equalTo("orderId", pointerToOrder);
+        productOrder.include("orderId");
         productOrder.include("id_product");
         productOrder.include("id_product.id_category");
 
 
         return productOrder.find();
     }
-
 }
 
 module.exports = ProductOrder;

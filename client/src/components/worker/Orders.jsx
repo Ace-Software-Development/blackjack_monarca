@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import '../admin/styles/dashboard.css';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import orderCard from '../orderCard';
+import orderCard from '../orderCardWorker';
 import Header from './Header';
 import Environment from '../Environment';
 
@@ -17,7 +17,7 @@ import Environment from '../Environment';
 function OrderElement({ order }) {
     return (
         <div className="col-4 px-5" value={order.objectId}>
-            <a href={`/empacado/pedidos/${order.objectId}`}>{orderCard('75', order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`)}</a>
+            <a href={`/empacado/pedidos/${order.objectId}`}>{orderCard(order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`, `${(order.createdAt).slice(0, 10)} - ${(order.possible_day).slice(0, 10)}`, order)}</a>
         </div>
     );
 }

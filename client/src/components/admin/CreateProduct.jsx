@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * CreateProduct
@@ -33,7 +34,7 @@ function CreateProduct() {
  * @description Fetches existing categories from the database through the server
  */
     async function getCategories() {
-        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        const response = await fetch(`${Environment()}/entrega/categorias/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -66,7 +67,7 @@ function CreateProduct() {
 
         const newProduct = { ...form };
 
-        await fetch('http://localhost:8888/producto/post', {
+        await fetch(`${Environment()}/producto/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +81,6 @@ function CreateProduct() {
             aluminium: '',
             keyP: '',
         });
-        window.location.reload();
     }
 
     useEffect(() => {
@@ -91,31 +91,20 @@ function CreateProduct() {
         <div>
             <form onSubmit={onSubmit}>
                 <Modal.Body>
-                    <div className="row">
-                        <div>Modelo</div>
-                        <input type="text" id="model" name="model" className="col" placeholder="Modelo" value={form.model} onChange={(e) => updateForm({ model: e.target.value })} required />
-                    </div>
-                    <div className="row">
-                        <div>Aluminio</div>
-                        <input type="text" id="aluminium" name="aluminium" className="col" placeholder="Tipo de aluminio" value={form.aluminium} onChange={(e) => updateForm({ aluminium: e.target.value })} required />
-                    </div>
-                    <div className="row">
-                        <div>Key</div>
-                        <input type="text" id="keyP" name="keyP" className="col" placeholder="key" value={form.keyP} onChange={(e) => updateForm({ keyP: e.target.value })} required />
-                    </div>
-                    <div className="row">
-                        <div>Elige el proceso</div>
-                        <select type="text" id="category" name="category" className="col" onChange={(e) => updateForm({ category: e.target.value })} required>
-                            <option value="" disabled selected>Selecciona la categoría</option>
-                            {categoriesList()}
-                        </select>
-                    </div>
+                    <h5>Modelo</h5>
+                    <input type="text" id="model" name="model" className="h-75 w-100 ml-4 mb-3" placeholder="ej. 70" value={form.model} onChange={(e) => updateForm({ model: e.target.value })} required />
+                    <h5>Aluminio</h5>
+                    <input type="text" id="aluminium" name="aluminium" className="h-75 w-100 ml-4 mb-3" placeholder="ej. Triple Fuerte" value={form.aluminium} onChange={(e) => updateForm({ aluminium: e.target.value })} required />
+                    <h5>Key</h5>
+                    <input type="text" id="keyP" name="keyP" className="h-75 w-100 ml-4 mb-3" placeholder="ej. vap90" value={form.keyP} onChange={(e) => updateForm({ keyP: e.target.value })} required />
+                    <h5>Elige la categoría</h5>
+                    <select type="text" id="category" name="category" className="h-75 w-100 ml-4 mb-3" onChange={(e) => updateForm({ category: e.target.value })} required>
+                        <option value="" disabled selected>Selecciona la categoría</option>
+                        {categoriesList()}
+                    </select>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => window.location.reload()}>
-                        Cerrar
-                    </Button>
-                    <button type="submit" className="col">Crear</button>
+                    <button type="submit" className="btn-add">Crear</button>
                 </Modal.Footer>
             </form>
         </div>

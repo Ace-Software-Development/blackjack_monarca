@@ -17,6 +17,11 @@ const productOrder = require('./routes/productOrder');
 const empacado = require('./routes/dashboard');
 const categoria = require('./routes/categoria');
 const comprador = require('./routes/comprador');
+const disco = require('./routes/disco');
+const merma = require('./routes/merma');
+const trabajadores = require('./routes/trabajadores');
+const produccion = require('./routes/produccion');
+const procesos = require('./routes/procesos');
 
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -89,6 +94,10 @@ app.use('/empacado', empacado);
 // });
 app.use('/categoria', categoria);
 app.use('/comprador', comprador);
-
+app.use('/disco', disco);
+app.use('/merma', merma);
+app.use('/trabajadores', trabajadores);
+app.use('/produccion', produccion);
+app.use('/procesos', procesos);
 
 app.listen(8888);

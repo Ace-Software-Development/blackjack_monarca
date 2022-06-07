@@ -8,15 +8,15 @@ const { registerIncomingDisk, getAllDisks, modifyIncomingDisk } = require('../db
    * @param request: values registered by user
    * @param response: status of the post
    */
-exports.postIncomingDiskController = async function (request, response){
-    try{
-        const incomeDisk = registerIncomingDisk(request.body.number, request.body.name);
+exports.postIncomingDiskController = async function (request, response) {
+    try {
+        const incomeDisk = registerIncomingDisk(request.body.number, request.body.name, request.body.where);
         await incomeDisk.save();
-    } catch(error){
+    } catch (error) {
         console.error(error.message);
-        return(response.status(500).send({status:"can't save"}));
+        return (response.status(500).send({ status: "can't save" }));
     }
-    response.status(200).send({status:"success"});
+    response.status(200).send({ status: "success" });
 }
 
 /**
@@ -24,9 +24,9 @@ exports.postIncomingDiskController = async function (request, response){
    * @description Get all existing disks from table "Disks"
    * @param response: status of the get and values of the query
    */
-exports.getAllDisksController = async function (request, response){
+exports.getAllDisksController = async function (request, response) {
     const disks = await getAllDisks();
-    response.status(200).send({status:"success", data:disks});
+    response.status(200).send({ status: "success", data: disks });
 }
 
 /**
@@ -35,15 +35,15 @@ exports.getAllDisksController = async function (request, response){
    * @param request: values modified by user
    * @param response: status of the post
    */
- exports.modifyIncomingDiskController = async function (request, response){
-    try{
+exports.modifyIncomingDiskController = async function (request, response) {
+    try {
         const incomeDisk = modifyIncomingDisk(request.body.number, request.body.objectId);
         await incomeDisk.save();
-    } catch(error){
+    } catch (error) {
         console.error(error.message);
-        return(response.status(500).send({status:"can't save"}));
+        return (response.status(500).send({ status: "can't save" }));
     }
-    response.status(200).send({status:"success"});
+    response.status(200).send({ status: "success" });
 }
 
 

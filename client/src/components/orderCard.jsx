@@ -19,9 +19,9 @@ function orderCard(title, city, date, order) {
                     <div>
                         <a href={`/dashboard/pedidos/${order.objectId}`}>
                             <div className="row">
-                                <h2 className="card-title align-middle mt-3">{title}</h2>
-                                <h5 className="card-title align-middle mt-1">{city}</h5>
-                                <h5 className="card-title align-middle mt-1">{date}</h5>
+                                <h2 className="align-middle mt-3">{title}</h2>
+                                <h5 className="align-middle mt-1 orange-text">{city}</h5>
+                                <h5 className="align-middle mt-1">{date}</h5>
                             </div>
                         </a>
                         <div className="row">

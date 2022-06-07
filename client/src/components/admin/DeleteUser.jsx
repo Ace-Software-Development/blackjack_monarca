@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * DeleteUser
@@ -24,7 +25,7 @@ function DeleteUser(userId, userName) {
 
         const newUser = { ...form };
 
-        await fetch('http://localhost:8888/usuario/delete', {
+        await fetch(`${Environment()}/usuario/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +46,7 @@ function DeleteUser(userId, userName) {
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            {`Seguro que quieres eliminar al usuario ${userName}`}
+                            {`¿Seguro que quieres eliminar al usuario ${userName}?`}
                         </div>
                     </div>
                 </Modal.Body>

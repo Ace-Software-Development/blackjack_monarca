@@ -3,10 +3,12 @@ import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import CreateCategory from './CreateCategory';
 import ModifyCategory from './ModifyCategory';
 import DeleteCategory from './DeleteCategory';
 import Sidebar from './Sidebar';
+import Environment from '../Environment';
 
 /**
  * Categories
@@ -16,6 +18,30 @@ import Sidebar from './Sidebar';
  * @returns HTML with fetched data
  */
 function Categories({ category }) {
+    const session = Cookies.get('sessionToken');
+    const admin = Cookies.get('is_admin');
+    const [permission, setPermission] = useState([]);
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, [session, admin]);
+    if (admin === 'false' || !permission) {
+        return ('No tienes permisos');
+    }
     const [show, setShow] = useState(false);
     const handleCloseMod = () => setShow(false);
     const handleShowMod = () => setShow(true);
@@ -28,16 +54,16 @@ function Categories({ category }) {
         <>
             <tr>
                 <th>
-                    <div>{category.name}</div>
-                    <div className="sub-text2">Nombre de usuario</div>
+                    <h5>{category.name}</h5>
+                    <h6 className="sub-text2">Nombre de categoría</h6>
                 </th>
                 <th>
-                    <button type="button" onClick={handleShowMod}>
+                    <button type="button" className="btn" onClick={handleShowMod}>
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </th>
                 <th>
-                    <button type="button" onClick={handleShowDMod}>
+                    <button type="button" className="btn" onClick={handleShowDMod}>
                         <ion-icon size="large" name="trash-outline" />
                     </button>
                 </th>
@@ -77,7 +103,7 @@ function Category() {
     const handleShowCreate = () => setShow(true);
 
     async function getCategories() {
-        const response = await fetch('http://localhost:8888/entrega/categorias/get');
+        const response = await fetch(`${Environment()}/entrega/categorias/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -90,7 +116,7 @@ function Category() {
 
     useEffect(() => {
         getCategories();
-    }, []);
+    }, [categories]);
 
     /**
    * categoriesList
@@ -113,14 +139,14 @@ function Category() {
                             <div className="card-body">
                                 <div>
                                     <div className="row justify-content-between">
-                                        <div className="col-3">
+                                        <h3 className="col-3">
                                             Categorías
-                                        </div>
-                                        <button type="button" variant="primary" className="col-2 btn-add" onClick={handleShowCreate}>
+                                        </h3>
+                                        <button type="button" variant="primary" className="mr-2 btn-add" onClick={handleShowCreate}>
                                             Agregar
                                         </button>
                                     </div>
-                                    <table className="table table-striped" style={{ marginTop: 20 }}>
+                                    <table className="w-100 mt-4" style={{ marginTop: 20 }}>
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
@@ -141,7 +167,7 @@ function Category() {
 
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear trabajador</Modal.Title>
+                    <Modal.Title>Crear categoría</Modal.Title>
                 </Modal.Header>
                 <CreateCategory />
             </Modal>

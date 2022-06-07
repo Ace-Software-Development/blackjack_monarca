@@ -10,7 +10,6 @@ const { registerCategory, modifyCategory, deleteCategory } = require('../db_abs/
    */
 exports.postCategoryController = async function (request, response) {
     try {
-        console.log(request);
         const category = registerCategory(request.body.name);
         await category.save();
     } catch (error) {
