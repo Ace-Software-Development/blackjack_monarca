@@ -27,7 +27,7 @@ class Procesos
    */
      static getAllDisks(){
         const disks = new Parse.Query(Constants.IncomeDisk);
-        disks.select("number");
+        disks.select("number", "name");
         return disks.find();
     }
 

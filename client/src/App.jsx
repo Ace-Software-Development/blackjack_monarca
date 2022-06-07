@@ -36,6 +36,7 @@ import CategoryList from './components/admin/Category';
 import OrdersAdmin from './components/admin/OrdersAdmin';
 import Procesos from './components/admin/DashboardProcesos';
 import DashboardTrabajador from './components/admin/DashboardTrabajador';
+import InvDiscos from './components/admin/InvDiscos';
 
 function App() {
     return (
@@ -76,6 +77,7 @@ function App() {
                 <Route exact path="/confirmar/:idPartInventory" element={<ConfirmPart />} />
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
                 <Route exact path="/rechazado/:id" element={<Classify />} />
+                <Route exact path="/dashboard/Inventario/Discos" element={<InvDiscos />} />
 
             </Routes>
         </BrowserRouter>
