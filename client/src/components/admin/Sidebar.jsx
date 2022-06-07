@@ -19,7 +19,7 @@ function Sidebar() {
             <img src="../../logo.svg" alt="Aluminios Monarca logo" />
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
-                {TabSidebar('active', 'Dashboard', 'apps')}
+                {TabSidebar(null, 'Dashboard', 'apps')}
                 {TabSidebar(null, 'Trabajador', 'apps')}
                 {TabSidebar(null, 'Procesos', 'apps')}
                 {TabSidebar(null, 'Pedidos', 'apps')}
@@ -32,12 +32,6 @@ function Sidebar() {
                 {TabSidebar(null, 'Usuarios', 'apps')}
             </ul>
             <div className="sidebar-footer">
-                <a className="nav-link" href="https://getbootstrap.com/docs/5.1/examples/sidebars/#">
-                    <div className="nav-link-icon">
-                        <ion-icon className="tab-icon" name="book-outline" />
-                    </div>
-                    Manual
-                </a>
                 <button type="button" className="btn" onClick={() => logout()}>
                     <div className="nav-link-icon">
                         <ion-icon className="tab-icon" name="log-out-outline" />

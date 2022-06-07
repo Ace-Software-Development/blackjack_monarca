@@ -1,14 +1,17 @@
 // CU 14 Consultar pedido
 import 'bootstrap/dist/css/bootstrap.css';
-import 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import './styles/dashboard.css';
 import '../worker/styles/conteo.css';
 import '../worker/styles/styles.css';
+import { Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import { useParams } from 'react-router-dom';
+import CreateProductOrder from './CreateProductOrder';
+import ModifyProductInOrder from './ModifyProductInOrder';
+import DeleteProductInOrder from './DeleteProductInOrder';
 import Sidebar from './Sidebar';
 import Environment from '../Environment';
 
@@ -43,22 +46,68 @@ function Required(req, inv) {
  * @returns HTML with fetched data
  */
 function Products({ product }) {
+    const [show, setShow] = useState(false);
+    const handleCloseMod = () => setShow(false);
+    const handleShowMod = () => setShow(true);
+
+    const [showD, setShowD] = useState(false);
+    const handleCloseDMod = () => setShowD(false);
+    const handleShowDMod = () => setShowD(true);
     return (
-        <tr>
-            <th>
-                <div>{`${product.id_product.id_category.name} ${product.id_product.model} ${product.id_product.aluminium}`}</div>
-                <div className="sub-text2">Nombre</div>
-            </th>
-            <th>
-                <div>{product.number}</div>
-                <div className="sub-text1">piezas</div>
-            </th>
-            <th>
-                <div>{`${product.id_product.with_lid}`}</div>
-                <div className="sub-text1">piezas</div>
-            </th>
-            {Required(product.number, product.id_product.with_lid)}
-        </tr>
+        <>
+            <tr>
+                <th>
+                    <h5>{`${product.id_product.id_category.name} ${product.id_product.model} ${product.id_product.aluminium}`}</h5>
+                    <h6 className="sub-text2">Nombre</h6>
+                </th>
+                <th>
+                    <h5>{product.number}</h5>
+                    <h6 className="sub-text1">piezas</h6>
+                </th>
+                <th>
+                    <h5>{`${product.id_product.with_lid}`}</h5>
+                    <h6 className="sub-text1">piezas</h6>
+                </th>
+                {Required(product.number, product.id_product.with_lid)}
+                <th>
+                    <button type="button" className="btn" onClick={handleShowMod}>
+                        <ion-icon size="large" name="create-outline" />
+                    </button>
+                </th>
+                <th>
+                    <button type="button" className="btn" onClick={handleShowDMod}>
+                        <ion-icon size="large" name="trash-outline" />
+                    </button>
+                </th>
+            </tr>
+
+            <Modal show={show} onHide={handleCloseMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modificar</Modal.Title>
+                </Modal.Header>
+                {ModifyProductInOrder(
+                    product.objectId,
+                    product.id_product.id_category.name,
+                    product.id_product.model,
+                    product.id_product.aluminium,
+                    product.number,
+                )}
+            </Modal>
+
+            <Modal show={showD} onHide={handleCloseDMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                {DeleteProductInOrder(
+                    product.objectId,
+                    product.id_product.id_category.name,
+                    product.id_product.model,
+                    product.id_product.aluminium,
+                    product.number,
+                )}
+            </Modal>
+        </>
+
     );
 }
 Products.propTypes = {
@@ -78,6 +127,11 @@ function OrderAdmin() {
     const [buyerName, setBuyerName] = useState('');
     const [buyerCity, setBuyerCity] = useState('');
     const [error, setError] = useState('');
+
+    const [show, setShow] = useState(false);
+
+    const handleCloseCreate = () => setShow(false);
+    const handleShowCreate = () => setShow(true);
 
     async function getAllProducts() {
         const response = await fetch(`${Environment()}/productOrder/get/${orderId}`);
@@ -198,21 +252,34 @@ function OrderAdmin() {
                 <h1>{order.name}</h1>
                 <div className="row">
                     <div className="col-10 mt-1 card conteo-card">
-                        <div className="card-body">
-                            <p>{`${buyerName} - ${buyerCity}`}</p>
-                            <table className="table table-striped" style={{ marginTop: 20 }}>
-                                <thead>
-                                    <tr>
-                                        <th>Producto</th>
-                                        <th>Cantidad</th>
-                                        <th>Inventario</th>
-                                        <th>Faltantes</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {ProductList()}
-                                </tbody>
-                            </table>
+                        <div className="justify-content-between">
+                            <div className="card-body">
+                                <div className="row justify-content-between">
+                                    <div className="col-3">
+                                        <p>{`${buyerName} - ${buyerCity}`}</p>
+                                    </div>
+                                    <div className="col-3">
+                                        <button type="button" variant="primary" className="btn-add" onClick={handleShowCreate}>
+                                            Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                                <table className="w-100 mt-4" style={{ marginTop: 20 }}>
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Inventario</th>
+                                            <th>Faltantes</th>
+                                            <th> </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {ProductList()}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <form onSubmit={onSubmit} className="row mt-5">
@@ -227,6 +294,12 @@ function OrderAdmin() {
                     </div>
                 </div>
             </div>
+            <Modal show={show} onHide={handleCloseCreate}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Agregar producto</Modal.Title>
+                </Modal.Header>
+                {CreateProductOrder(orderId)}
+            </Modal>
         </div>
     );
 }

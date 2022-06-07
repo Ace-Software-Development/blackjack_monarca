@@ -12,6 +12,7 @@ const Constants = {
 	Process: "Process",
 	Buyer: "Buyer",
 	Category: "Category",
+	Order: "Order",
 }
 
 module.exports = Constants;

@@ -2,11 +2,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import PropTypes from 'prop-types';
+import { Modal, Row, Col } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
-import {
-    Col, Row,
-} from 'react-bootstrap';
 import orderCard from '../orderCard';
+import CreateOrder from './CreateOrder';
 import Environment from '../Environment';
 import Sidebar from './Sidebar';
 
@@ -19,9 +18,7 @@ import Sidebar from './Sidebar';
 function OrderElement({ order }) {
     return (
         <div className="col-4 px-5" value={order.objectId}>
-            <a href={`/dashboard/pedidos/${order.objectId}`}>
-                {orderCard(order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`)}
-            </a>
+            {orderCard(order.name, `${order.id_buyer.name} - ${order.id_buyer.city}`, order.possible_day, order)}
         </div>
     );
 }
@@ -31,6 +28,10 @@ OrderElement.propTypes = {
 
 function OrdersAdmin() {
     const [orders, setOrders] = useState([]);
+
+    const [show, setShow] = useState(false);
+    const handleCloseCreate = () => setShow(false);
+    const handleShowCreate = () => setShow(true);
 
     /**
      * getOrders
@@ -73,9 +74,24 @@ function OrdersAdmin() {
                     </Col>
                 </Row>
                 <Row>
+                    <div className="col-4 px-5">
+                        <a href onClick={handleShowCreate}>
+                            <div className="card home-card text-center ">
+                                <div className="card-body d-flex align-items-center justify-content-center">
+                                    <ion-icon className="justify-content-center align-items-center" name="add-outline" />
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                     {orderList()}
                 </Row>
             </div>
+            <Modal show={show} onHide={handleCloseCreate}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Nuevo pedido</Modal.Title>
+                </Modal.Header>
+                <CreateOrder />
+            </Modal>
         </div>
     );
 }
