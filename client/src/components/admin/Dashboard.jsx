@@ -1,4 +1,6 @@
-// CU15 Consultar Merma del Producto
+// CU 15
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -257,7 +259,7 @@ function Dashboard() {
                 <Row className="d-flex my-3">
                     <Col xs={3}>
                         <DateRangePicker
-                          onApply={(e, p) => setDateForm(e, p)}
+                            onApply={(e, p) => setDateForm(e, p)}
                         >
                             <input />
                         </DateRangePicker>

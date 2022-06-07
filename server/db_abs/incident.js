@@ -1,7 +1,9 @@
+// CU 12 13
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 const Constants = require("../constants");
 
-class Incident
-{
+class Incident {
     /**
    * registerCompleted
    * @description Register new partInventory
@@ -15,8 +17,8 @@ class Incident
    * @param is_second: Bool to know if its a second product
    * @returns Parse object with all data
    */
-    static registerCompleted(id_worker, completedNumber, id_process, id_part, id_product, status,  is_incident, is_second){
-        
+    static registerCompleted(id_worker, completedNumber, id_process, id_part, id_product, status, is_incident, is_second) {
+
         const Part = Parse.Object.extend("Part");
         const pointerToPart = new Part();
         pointerToPart.id = id_part;
@@ -38,7 +40,7 @@ class Incident
         newRegist.set('status', status);
         newRegist.set('is_incident', is_incident);
         newRegist.set('is_second', is_second);
-        
+
         return newRegist;
     }
 
@@ -47,7 +49,7 @@ class Incident
     * @description Register new partInventory
     * @param id_incident: Id of the incident
     */
-    static modifyIncident(id_incident){
+    static modifyIncident(id_incident) {
         const modRegist = new Parse.Object(Constants.PartInventory);
         modRegist.set('objectId', id_incident);
         modRegist.set('status', 'confirmed');

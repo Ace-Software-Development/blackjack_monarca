@@ -1,11 +1,7 @@
-// CU 14 Consultar pedido
-class ProductOrder {
-    constructor(catName, modName, number) {
-        this.catName = catName;
-        this.modName = modName;
-        this.number = number;
-    }
+// CU 14 51 52 53 16
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
 
+class ProductOrder {
     /**
    * registerProductOrder
    * @description Register new product order
@@ -35,8 +31,7 @@ class ProductOrder {
 * modifyProductOrder
 * @description Register new product order
 * @param number: Number of products registered
-* @param catName: Name of the category registered
-* @param modName: Name of the model registered
+* @param id: product to delete in order
 * @returns Parse object
 */
     static modifyProductOrder(id, number) {
@@ -47,7 +42,7 @@ class ProductOrder {
     }
 
     /**
-* modifyProductOrder
+* deleteProductOrder
 * @description Delete product in order
 * @param id: Of product in order to delete
 * @returns Parse object
@@ -64,8 +59,7 @@ class ProductOrder {
    * @param objectId: id of the product order
    * @returns Json with order, product and category info
    */
-    static getProductOrderById(objectId)
-    {
+    static getProductOrderById(objectId) {
         const productOrder = new Parse.Query("ProductOrder");
 
         var Order = Parse.Object.extend("Order");

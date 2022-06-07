@@ -1,3 +1,6 @@
+// CU 9
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 const { getPermission } = require('../db_abs/role');
 
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
@@ -34,11 +37,11 @@ exports.getPermissionController = async function (request, response) {
     const sessionToken = request.params.session;
     try {
         const result = await getPermission(sessionToken);
-        
+
         if (result === undefined) {
             response.status(200).send({ status: "success", data: false });
         }
-        response.status(200).send({status:"success", data: true});
+        response.status(200).send({ status: "success", data: true });
     } catch (error) {
         response.status(403).send(error);
     }

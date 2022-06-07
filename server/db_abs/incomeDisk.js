@@ -1,3 +1,6 @@
+// CU 2 6 50
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 const Constants = require('../constants');
 
 function initializeParse() {
@@ -12,22 +15,6 @@ function initializeParse() {
 }
 
 class IncomeDisk {
-    constructor(number, id_disk) {
-        this.number = number;
-        this.id_disk = id_disk;
-
-    }
-
-    static getEmpty() {
-        return new cIncomeDisk({ id: null });/*TODO make all the field*/
-    }
-
-    static getById(id) {
-        let oIncomeDisk = oIncomeDisk.getEmpty();
-        /*TODO implement*/
-        return oIncomeDisk;
-    }
-
     /**
    * registerIncomingDisk
    * @description Register new incoming disk
@@ -59,7 +46,7 @@ class IncomeDisk {
     }
 
     /**
-   * getAllDisks
+   * getAllIncomeDisks
    * @description Query to get all existing Income disks
    * @returns Parse object with name, number and the Update date of the disks in table "IncomeDisks"
    */
@@ -71,7 +58,7 @@ class IncomeDisk {
 
     /**
    * modifyIncomingDisk
-   * @description Query to get all existing Income disks
+   * @description Query to modify existing Income disks
    * @returns Parse object with name, number and the Update date of the disks in table "IncomeDisks"
    */
     static modifyIncomingDisk(number, id) {

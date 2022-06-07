@@ -1,3 +1,6 @@
+// CU 24 51 52 53
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
 const { registerProductOrder, getProductOrderById, modifyProductOrder, deleteProductOrder } = require('../db_abs/productOrder');
@@ -62,7 +65,7 @@ exports.deleteProductOrderController = async function (request, response) {
 exports.getProductOrderController = async function (request, response) {
     const id = request.params.id;
     const products = await getProductOrderById(id);
-    response.status(200).send({status:"success", data:products});
+    response.status(200).send({ status: "success", data: products });
 }
 
 /**
@@ -70,8 +73,8 @@ exports.getProductOrderController = async function (request, response) {
    * @description Changes the status of an order and substracts the 
    * numbers of products in the order from the inventory
    */
- exports.confirmProductOrderController = async function (request, response){
-    try{
+exports.confirmProductOrderController = async function (request, response) {
+    try {
         const productsOrder = request.body;
         const id = productsOrder[0].orderId.objectId;
         const name = productsOrder[0].orderId.name;
@@ -84,17 +87,17 @@ exports.getProductOrderController = async function (request, response) {
                     productsOrder[i].id_product.withOut_lid, productsOrder[i].id_product.objectId)
                 product.save(), (error) => {
                     console.log(error.message);
-                    return(response.status(500).send({status:"can't save"}));
+                    return (response.status(500).send({ status: "can't save" }));
                 };
             }
         }, (error) => {
             console.log(error.message);
-            return(response.status(500).send({status:"can't save"}));
+            return (response.status(500).send({ status: "can't save" }));
         });
-    } catch(error){
+    } catch (error) {
         console.error(error.message);
-        return(response.status(500).send({status:"can't save"}));
+        return (response.status(500).send({ status: "can't save" }));
     }
-    response.status(200).send({status:"success"});
+    response.status(200).send({ status: "success" });
 }
 

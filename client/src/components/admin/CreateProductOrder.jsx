@@ -1,3 +1,6 @@
+// CU 51
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState, useEffect } from 'react';
@@ -178,18 +181,18 @@ function CreateProductOrder(orderId) {
                     <div className="row">
                         <h5>Categoría</h5>
                         <Select
-                          options={categoriesOption}
-                          onChange={(e) => categorySelect(e)}
-                          required
+                            options={categoriesOption}
+                            onChange={(e) => categorySelect(e)}
+                            required
                         />
                     </div>
                     <div className="row">
                         <h5>Modelo</h5>
                         <Select
-                          value={{ label: modelName, value: selectedModel }}
-                          options={modelsOption}
-                          onChange={(e) => modelSelect(e)}
-                          required
+                            value={{ label: modelName, value: selectedModel }}
+                            options={modelsOption}
+                            onChange={(e) => modelSelect(e)}
+                            required
                         />
                     </div>
                     <div className="row">
