@@ -99,7 +99,7 @@ function CreateOrder() {
                         <input type="date" id="possible_day" name="possible_day" className="form-control" value={form.possible_day} onChange={(e) => updateForm({ possible_day: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <h5>Comprador del pedido</h5>
+                        <h5>Cliente del pedido</h5>
                         <select type="text" id="buyer" name="buyer" className="form-control" onChange={(e) => updateForm({ id_buyer: e.target.value })} required>
                             <option value="" disabled selected>Selecciona el comprador</option>
                             {buyersList()}
