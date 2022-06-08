@@ -1,5 +1,9 @@
+// CU 17 18
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 import './styles/styles.css';
 import PropTypes from 'prop-types';
@@ -30,11 +34,11 @@ function Products({ product }) {
             </th>
             <th>
                 <div>{product.with_lid}</div>
-                <div className="sub-text1">Con tapa</div>
+                <div className="sub-text1">Completo</div>
             </th>
             <th>
                 <div>{product.withOut_lid}</div>
-                <div className="sub-text1">Sin tapa</div>
+                <div className="sub-text1">Incompleto</div>
             </th>
             <th>
                 <div>{product.withOut_lid + product.with_lid}</div>
@@ -42,7 +46,7 @@ function Products({ product }) {
             </th>
             <th>
                 <a href={href}>
-                    <button type="button">
+                    <button type="button" className="btn">
                         <ion-icon size="large" name="create-outline" />
                     </button>
                 </a>
@@ -61,6 +65,7 @@ Products.propTypes = {
    * @returns HTML with fetched data
    */
 function productInventory() {
+    const navigate = useNavigate();
     const session = Cookies.get('sessionToken');
     const [permission, setPermission] = useState([]);
     /**
@@ -115,28 +120,31 @@ function productInventory() {
 
     return (
         <div>
-            <Header processName="Inventario empacados" />
+            <Header processName="Inventario empacado" />
             <div className="row d-flex justify-content-center">
                 <div className="col-10 mt-4">
                     <div className="card conteo-card">
                         <div className="card-body">
                             <div>
                                 <div className="row justify-content-between">
+                                    <button type="button" onClick={() => navigate(-1)} className="col-1 btnBack btn">
+                                        <ion-icon size="large" name="arrow-back-outline" />
+                                    </button>
                                     <div className="col-2" />
                                     <a href="/empacado/registrar" className="col-2">
                                         <button type="button" className="btn-nxt">
-                                            Registrar empacado
+                                            Empacar producto
                                         </button>
                                     </a>
                                 </div>
-                                <table className="table table-striped" style={{ marginTop: 20 }}>
+                                <table className="w-100 my-4" style={{ marginTop: 20 }}>
                                     <thead>
                                         <tr>
                                             <th>Categoría</th>
                                             <th>Modelo</th>
                                             <th>Aluminio</th>
-                                            <th>Con tapa</th>
-                                            <th>Sin tapa</th>
+                                            <th>Completo</th>
+                                            <th>Incompleto</th>
                                             <th>Total</th>
                                             <th> </th>
                                         </tr>

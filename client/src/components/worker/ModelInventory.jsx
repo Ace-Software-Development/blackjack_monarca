@@ -1,35 +1,33 @@
+// CU 4
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useParams, useNavigate } from 'react-router-dom';
-import ButtonNext from './ButtonNext';
 import Header from './Header';
 import Environment from '../Environment';
 
 let selectedModel = '';
 let selectedCategory = '';
-let nextBtn = '';
 let url = '';
 
 /**
      * setContext
      * @description Saves selected model in a variable
      * @param name: name of the model
-     */
+ */
 function setContext(id) {
     const button = document.getElementById('buttonNext');
     if (id) {
         selectedModel = id;
         url = `/empacado/registrar/${selectedCategory}/${selectedModel}`;
-        nextBtn = ButtonNext(url);
         button.hidden = false;
     } else {
         url = `/empacado/registrar/${selectedCategory}/${selectedModel}`;
-        if (nextBtn) {
-            button.href = url;
-        }
+        button.hidden = false;
     }
 }
 
@@ -44,8 +42,8 @@ export function CardModel(name, id, aluminium) {
     return (
         <a href="#">
             <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
-                <div>{name}</div>
-                <h5>{aluminium}</h5>
+                <p className="cardName">{name}</p>
+                <p className="cardName">{aluminium}</p>
             </button>
         </a>
 
@@ -72,6 +70,8 @@ Products.propTypes = {
 function ModelInventory() {
     const session = Cookies.get('sessionToken');
     const [permission, setPermission] = useState([]);
+    const navigate = useNavigate();
+
     /**
      * getPermission
      * @description Verifies that the user session token is valid
@@ -94,7 +94,6 @@ function ModelInventory() {
         return ('No tienes permisos');
     }
     const params = useParams();
-    const navigate = useNavigate();
 
     selectedCategory = params.category;
 
@@ -103,7 +102,7 @@ function ModelInventory() {
 
     const [categories, setCategories] = useState([]);
 
-    const [categoryName, setCategory] = useState(0);
+    const [categoryName, setCategory] = useState('');
 
     /**
     * categoriesList
@@ -180,7 +179,7 @@ function ModelInventory() {
         getCategory();
         getCategories();
         getModels();
-    }, [nextBtn]);
+    }, [products]);
 
     categoriesList();
 
@@ -197,17 +196,19 @@ function ModelInventory() {
 
     return (
         <div className="row d-flex justify-content-center">
-            <Header processName="Conteo" />
+            <Header processName="Empacado" />
             <div className="card-shadow bg-white col-10 p-4">
                 <div className="row">
                     <div className="col">
                         <div className="row">
-                            <div className="col-9">
+                            <div className="col-7">
                                 <h5>Resumen</h5>
                             </div>
-                            <a type="button" className="col-2 text-center buttonNext cardNext" id="buttonNext" href={url} hidden>
-                                Siguiente
-                            </a>
+                            <div className="col">
+                                <button className="" id="buttonNext" type="button" onClick={() => navigate(url)} hidden>
+                                    Siguiente
+                                </button>
+                            </div>
                             <p>
                                 {categoryName.name}
                             </p>

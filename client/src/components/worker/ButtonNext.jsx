@@ -1,13 +1,12 @@
 function ButtonNext(url) {
     return (
-        <div className="row d-flex justify-content-center mt-3">
-            <div className="col-2 text-center cardNext">
-                <a type="button" className="buttonNext mt-2 mb-2" id="buttonNext" href={url}>
+        <div className="d-flex justify-content-center mb-4 buttonNext">
+            <div className="text-center cardNext btn px-4 py-1 buttonNext">
+                <a type="button" className="buttonNext" id="buttonNext" href={url}>
                     Siguiente
                 </a>
             </div>
         </div>
-
     );
 }
 

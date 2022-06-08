@@ -1,4 +1,4 @@
-// CU 3 Consultar piezas recibidas en el proceso
+// CU 13
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import Cookies from 'js-cookie';
@@ -95,7 +95,7 @@ function ModifyPackStatus() {
 
         const inventory = { ...form };
 
-        await fetch(`${Environment()}/producto/modifyInventory'`, {
+        await fetch(`${Environment()}/producto/modifyInventory`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -123,14 +123,14 @@ function ModifyPackStatus() {
                                 <div className="row mt-4 mb-2">
                                     <div className="col form group">
                                         <h2>
-                                            Con tapa
+                                            Completo
                                             <br />
                                             <input type="number" id="with_lid" name="with_lid" min="0" pattern="^[0-9]+" className="col-3 text-center modify-conteo-input" value={form.with_lid} onChange={(e) => updateForm({ with_lid: e.target.value })} required />
                                         </h2>
                                     </div>
                                     <div className="col form group">
                                         <h2>
-                                            Sin tapa
+                                            Incompleto
                                             <br />
                                             <input type="number" id="withOut_lid" name="withOut_lid" min="0" pattern="^[0-9]+" className="col-3 text-center modify-conteo-input" value={form.withOut_lid} onChange={(e) => updateForm({ withOut_lid: e.target.value })} required />
                                         </h2>

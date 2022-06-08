@@ -1,7 +1,12 @@
+// CU 1
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import Card from './Card';
+import Card2 from './Card2';
 import Header from './Header';
 import Environment from '../Environment';
 
@@ -39,45 +44,51 @@ function Process() {
     const hrefEntrega = `/parte/${process}/${nextProcess}`;
     const hrefConfirm = `/confirmar/${process}/${prevProcess}`;
     const hrefIncident = '/rechazado/incidente';
+    const hrefTake = '/rechazado/conteo/Tomar';
     if (process === 'Rechazado') {
         return (
-            <div>
+            <Container className="h-100 d-flex flex-column">
                 <Header processName={process} />
-                <div className="d-flex flex-column align-items-center">
-                    <div className="row mt-5 pt-5">
-                        <div className="col">
-                            <a href={hrefIncident}>
-                                {Card('trash-bin', 'Incidentes')}
+                <Container className="flex-grow-1 d-flex flex-column">
+                    <Row className="flex-grow-1">
+                        <Col md={6}>
+                            <a href={hrefTake}>
+                                {Card('disc', 'Tomar discos')}
                             </a>
-                        </div>
-                        <div className="col">
+                        </Col>
+                        <Col md={6}>
                             <a href={hrefEntrega}>
                                 {Card('send', 'Entregar')}
                             </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </Col>
+                        <Col>
+                            <a href={hrefIncident}>
+                                {Card('trash-bin', 'Incidentes')}
+                            </a>
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
         );
     }
     return (
-        <div>
+        <Container className="h-100 d-flex flex-column">
             <Header processName={process} />
-            <div className="d-flex flex-column align-items-center">
-                <div className="row mt-5 pt-5">
-                    <div className="col">
+            <Container className="flex-grow-1 d-flex flex-column">
+                <Row className="mt-5 mb-5 flex-grow-1">
+                    <Col md={6}>
                         <a href={hrefConfirm}>
-                            {Card('mail-unread', 'Recibir')}
+                            {Card2('mail-unread', 'Recibir')}
                         </a>
-                    </div>
-                    <div className="col">
+                    </Col>
+                    <Col md={6}>
                         <a href={hrefEntrega}>
-                            {Card('send', 'Entregar')}
+                            {Card2('send', 'Entregar')}
                         </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </Container>
     );
 }
 

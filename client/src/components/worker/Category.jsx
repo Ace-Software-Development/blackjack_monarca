@@ -4,8 +4,8 @@
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ButtonNext from './ButtonNext';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Row, Container } from 'react-bootstrap';
 import Header from './Header';
 import Environment from '../Environment';
 
@@ -13,7 +13,6 @@ let selectedCategory = '';
 let selectedWorker = '';
 let selectedPart = '';
 let nextProcess = '';
-let nextBtn;
 let url = '';
 let process = '';
 
@@ -27,14 +26,15 @@ function setContext(id) {
 
     url = `/modelo/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}`;
 
-    nextBtn = ButtonNext(url);
+    const button = document.getElementById('buttonNext');
+    button.hidden = false;
 }
 
 export function CardCategory(name, id) {
     return (
-        <div className="text-center my-4">
+        <div className="text-center my-2">
             <a href="#">
-                <button type="button" className="cardName btn text-center w-100 py-4" onClick={() => setContext(id)}>
+                <button type="button" className="cardName card-category btn text-center w-100 py-3" onClick={() => setContext(id)}>
                     {name}
                 </button>
             </a>
@@ -50,7 +50,7 @@ export function CardCategory(name, id) {
  */
 function Categories({ category }) {
     return (
-        <div className="col-4 px-5" value={category.objectId}>{CardCategory(category.name, category.objectId)}</div>
+        <div className="col-4 px-3" value={category.objectId}>{CardCategory(category.name, category.objectId)}</div>
     );
 }
 Categories.propTypes = {
@@ -58,6 +58,7 @@ Categories.propTypes = {
 };
 
 function Category() {
+    const navigate = useNavigate();
     const params = useParams();
     process = params.process;
     selectedWorker = params.worker;
@@ -122,12 +123,22 @@ function Category() {
     }
 
     return (
-        <div className="row w-100 justify-content-center align-self-stretch">
-            <Header processName={process} />
+        <Container className="container-fluid d-flex flex-column">
+            <Row>
+                <Header processName={process} />
+            </Row>
             <h3 className="text-center">Elige una categoría</h3>
-            {categoryList()}
-            {nextBtn}
-        </div>
+            <Row className="flex-grow-1 pt-2">
+                <div className="d-flex flex-wrap">
+                    {categoryList()}
+                </div>
+            </Row>
+            <div className="d-flex justify-content-center mb-4">
+                <button className="btn buttonNext cardNext w-25 card-shadow" id="buttonNext" type="button" onClick={() => navigate(url)} hidden>
+                    Siguiente
+                </button>
+            </div>
+        </Container>
     );
 }
 export default Category;

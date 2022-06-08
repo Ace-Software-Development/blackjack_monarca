@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import { Col, Container, Row } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import Header from './Header';
 import Environment from '../Environment';
@@ -24,24 +25,18 @@ function setContext(id) {
 
 export function CardPart(part, category, model, aluminium, number, date, id) {
     return (
-        <div className="text-center my-4">
+        <Container className="text-center">
             <a href={`/confirmar/${id}`}>
-                <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
-                    <div>
-                        <div>
-                            <h4>{`${part} ${category}`}</h4>
-                        </div>
-                        <h4>{`${model} ${aluminium}`}</h4>
-                    </div>
-                    <div>
+                <button type="button" className="cardName btn text-center w-100 py-4 text-center my-3 card-shadow" onClick={() => setContext(id)}>
+                    <h4>{`${category} ${model}`}</h4>
+                    <h5>{`${part} ${aluminium}`}</h5>
+                    <div className="orange-text">
                         {number}
                     </div>
-                    <h5>
-                        {date.slice(0, 10)}
-                    </h5>
+                    <h5>{date.slice(0, 10)}</h5>
                 </button>
             </a>
-        </div>
+        </Container>
     );
 }
 
@@ -53,7 +48,7 @@ export function CardPart(part, category, model, aluminium, number, date, id) {
  */
 function Parts({ part }) {
     return (
-        <div className="col-3 px-5" value={part.objectId}>{CardPart(part.id_part.name, part.id_product.id_category.name, part.id_product.model, part.id_product.aluminium, part.number, part.createdAt, part.objectId)}</div>
+        <Col xs={12} s={12} m={6} lg={4} className="px-5" value={part.objectId}>{CardPart(part.id_part.name, part.id_product.id_category.name, part.id_product.model, part.id_product.aluminium, part.number, part.createdAt, part.objectId)}</Col>
     );
 }
 Parts.propTypes = {
@@ -61,6 +56,36 @@ Parts.propTypes = {
 };
 
 function Confirm() {
+    const session = Cookies.get('sessionToken');
+    const [permission, setPermission] = useState([]);
+    let processName = process;
+
+    if (process === 'Empaquetado') {
+        processName = 'Empacado';
+    }
+
+    /**
+     * getPermission
+     * @description Verifies that the user session token is valid
+     */
+    async function getPermission() {
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, []);
+
+    if (!permission) {
+        return ('No tienes permisos');
+    }
     const params = useParams();
     process = params.process;
 
@@ -97,35 +122,11 @@ function Confirm() {
         ));
     }
 
-    const session = Cookies.get('sessionToken');
-    const [permission, setPermission] = useState([]);
-    /**
-     * getPermission
-     * @description Verifies that the user session token is valid
-     */
-    async function getPermission() {
-        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.customAlert(message);
-            return;
-        }
-
-        const perm = await response.json();
-        setPermission(perm.data);
-    }
-    useEffect(() => {
-        getPermission();
-    }, []);
-
-    if (!permission) {
-        return ('No tienes permisos');
-    }
     return (
-        <div className="row w-100 justify-content-center align-self-stretch">
-            <Header processName={process} />
+        <Row className="w-100 justify-content-center align-self-stretch">
+            <Header processName={processName} />
             {partsList()}
-        </div>
+        </Row>
     );
 }
 export default Confirm;
