@@ -1,3 +1,6 @@
+// CU 29 30 31 33
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
 const { registerWorker, getAllWorkersWOP, modifyWorker, deleteWorker } = require('../db_abs/worker');

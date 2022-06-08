@@ -1,4 +1,4 @@
-// CU 40
+// CU 25
 // MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -8,25 +8,14 @@ import { Modal } from 'react-bootstrap';
 import Environment from '../Environment';
 
 /**
-   * ModifyCategory
-   * @description Set of functions to display modal of Modify Category
+   * DeleteWorker
+   * @description Set of functions to display modal of Delete Worker
    * @returns HTML with fetched data
    */
-function ModifyCategory(catId, catName) {
+function DeleteOrder(orderId, orderName) {
     const [form, setForm] = useState({
-        objectId: catId,
-        name: catName,
+        objectId: orderId,
     });
-
-    /**
-   * updateForm
-   * @description updates data of a form
-   * @param value: new values of the form
-   * @returns an updated form
-   */
-    function updateForm(value) {
-        return setForm((prev) => ({ ...prev, ...value }));
-    }
 
     /**
    * onSubmit
@@ -36,19 +25,18 @@ function ModifyCategory(catId, catName) {
     async function onSubmit(e) {
         e.preventDefault();
 
-        const newCategory = { ...form };
+        const newOrder = { ...form };
 
-        await fetch(`${Environment()}/categoria/modify`, {
+        await fetch(`${Environment()}/empacado/orden/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newCategory),
+            body: JSON.stringify(newOrder),
         });
 
         setForm({
             objectId: '',
-            name: '',
         });
         window.location.reload();
     }
@@ -57,15 +45,18 @@ function ModifyCategory(catId, catName) {
         <div>
             <form onSubmit={onSubmit}>
                 <Modal.Body>
-                    <h6>Nombre</h6>
-                    <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="Vaporera" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                    <div className="row">
+                        <div className="col">
+                            {`¿Seguro que quieres eliminar el pedido ${orderName}?`}
+                        </div>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button type="submit" className="btn-add">Modificar</button>
+                    <button type="submit" className="btn btn-danger btn-md">Eliminar</button>
                 </Modal.Footer>
             </form>
         </div>
     );
 }
 
-export default ModifyCategory;
+export default DeleteOrder;

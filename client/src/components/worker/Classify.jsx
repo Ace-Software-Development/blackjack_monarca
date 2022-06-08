@@ -1,3 +1,6 @@
+// CU 10
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
@@ -188,13 +191,13 @@ function Classify() {
         if (completed + second + scrap > number || completed + second + scrap < number) {
             return (
                 <div className="col-12 text-center">
-                    <h3 className="red-text">{ completed + second + scrap }</h3>
+                    <h3 className="red-text">{completed + second + scrap}</h3>
                 </div>
             );
         }
         return (
             <div className="col-12 text-center">
-                <h3 className="green-text">{ completed + second + scrap }</h3>
+                <h3 className="green-text">{completed + second + scrap}</h3>
             </div>
         );
     }

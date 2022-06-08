@@ -1,3 +1,6 @@
+// CU 19
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import {
@@ -79,7 +82,7 @@ function DashboardProcesos() {
      * @description Get all pieces confirmed in Esmerilado
      * */
     async function getAllEsmerilados() {
-        const response = await fetch('http://localhost:8888/procesos/allEsmerilados/get');
+        const response = await fetch(`${Environment()}/procesos/allEsmerilados/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -95,7 +98,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in Esmerilado
      * */
     async function getEsmeriladosIncident() {
-        const response = await fetch('http://localhost:8888/procesos/EsmeriladosIncident/get');
+        const response = await fetch(`${Environment()}/procesos/EsmeriladosIncident/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -111,7 +114,7 @@ function DashboardProcesos() {
      * @description Get all pieces confirmed in Pulido
      * */
     async function getAllPulidos() {
-        const response = await fetch('http://localhost:8888/procesos/allPulidos/get');
+        const response = await fetch(`${Environment()}/procesos/allPulidos/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -127,7 +130,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in pulido
      * */
     async function getPulidosIncident() {
-        const response = await fetch('http://localhost:8888/procesos/PulidosIncident/get');
+        const response = await fetch(`${Environment()}/procesos/PulidosIncident/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -143,7 +146,7 @@ function DashboardProcesos() {
      * @description Get all pieces confirmed in Remachado
      * */
     async function getAllRemachados() {
-        const response = await fetch('http://localhost:8888/procesos/allRemachados/get');
+        const response = await fetch(`${Environment()}/procesos/allRemachados/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -159,7 +162,7 @@ function DashboardProcesos() {
      * @description Get all pieces sended as incident and confirmed in Remachado
      * */
     async function getRemachadosIncident() {
-        const response = await fetch('http://localhost:8888/procesos/RemachadosIncident/get');
+        const response = await fetch(`${Environment()}/procesos/RemachadosIncident/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -175,7 +178,7 @@ function DashboardProcesos() {
      * @description Get all pieces confirmed in Empaquetado
      * */
     async function getAllEmpaquetados() {
-        const response = await fetch('http://localhost:8888/procesos/allEmpaquetados/get');
+        const response = await fetch(`${Environment()}/procesos/allEmpaquetados/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

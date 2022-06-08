@@ -1,3 +1,6 @@
+// CU 34 35 36 37
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 const Constants = require("../constants");
 
 class Product {
@@ -68,6 +71,10 @@ class Product {
     /**
    * postProduct
    * @description Query to create a new product
+   * @param category category of product
+   * @param model model of product
+   * @param aluminium aluminium of product
+   * @param key key of product
    * @returns Parse object
    */
     static postProduct(category, model, aluminium, key) {
@@ -91,6 +98,7 @@ class Product {
    * modifyProduct
    * @description Query to modify the state and quantity of a product
     * @param model: model
+    * @param category categoru of product
     * @param aluminium: aluminium of product
     * @param key: key of product
     * @param id: id of product
@@ -137,41 +145,6 @@ class Product {
         return product.first();
     }
 
-    static getEmpty() {
-        return new Product({ id: null });/*TODO make all the field*/
-    }
-
-    static getById(id) {
-        let oProduct = Product.getEmpty();
-        /*TODO implement*/
-        return oProduct;
-    }
-
-    static getByKey(key) {
-        let oProduct = Product.getEmpty();
-        /*TODO implement*/
-        return oProduct;
-    }
-
-    static getByName(name) {
-        let listProduct = [];
-        /*TODO implement*/
-        return listProduct;
-    }
-
-    static getByCategory(category) {
-        let listProduct = [];
-        /*TODO implement*/
-        return listProduct;
-    }
-
-    add() {
-
-    }
-
-    remove() {
-
-    }
 }
 
 module.exports = Product;

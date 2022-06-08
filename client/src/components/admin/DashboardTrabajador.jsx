@@ -62,7 +62,7 @@ function Dashboard() {
      * @description Get all active workers
      * */
     async function getTrabajadores() {
-        const response = await fetch('http://localhost:8888/trabajadores/get');
+        const response = await fetch(`${Environment()}/trabajadores/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -101,7 +101,7 @@ function Dashboard() {
      * @description Get al work from a worker during specific days
      * */
     async function getProduccionTrabajador() {
-        const response = await fetch(`http://localhost:8888/produccion/${dateForm.startDate}/${dateForm.endDate}/${idWorker}/get`);
+        const response = await fetch(`${Environment()}/produccion/${dateForm.startDate}/${dateForm.endDate}/${idWorker}/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

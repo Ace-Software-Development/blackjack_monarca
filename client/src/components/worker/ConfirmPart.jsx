@@ -110,53 +110,50 @@ function ConfirmPart() {
     }
 
     return (
-        <div>
+        <div className="h-100 d-flex flex-column">
             <Header processName="Confirmar pieza recibida" />
-            <form onSubmit={onSubmit}>
-                <div className="form-group row d-flex justify-content-center text-center">
-                    <div className="col-10 mt-4">
-                        <div className="card card-shadow bg-white">
-                            <div className="card-body">
+            <container className="h-100 d-flex flex-column">
+                <form className="form-group row d-flex flex-column justify-content-center text-center h-100" onSubmit={onSubmit}>
+                    <div className="form-group row d-flex justify-content-center text-center h-100">
+                        <div className="col-10 mt-4">
+                            <div className="confirmar flex-grow-1 card card-shadow bg-white">
                                 <div className="row">
-                                    <div className="col form group">
-                                        <h3>
-                                            {`${worker} reportó`}
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div className="row mt-4 mb-2">
-                                    <div className="col form group">
-                                        <h2>
-                                            {number}
-                                        </h2>
-                                    </div>
-                                </div>
-                                <div className="row mt-2">
-                                    <div className="col mt-2">
-                                        <h4>
-                                            {`${part} ${category} ${model} ${aluminium}`}
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div className="row justify-content-center mt-4">
-                                    <button type="button" onClick={() => navigate(-1)} className="col-1 btnBack">
+                                    <button type="button" onClick={() => navigate(-1)} className="col-1 btnBack btn">
                                         <ion-icon size="large" name="arrow-back-outline" />
                                     </button>
-                                    <div className="col-2" />
-                                    <button type="submit" className="col-2  btn-cancel" onClick={() => updateForm({ status: 'rejected' })}>
-                                        No recibí
-                                    </button>
-                                    <div className="col-2" />
-                                    <button type="submit" id="confirm" name="confirm" className="col-2 btn-accept" onClick={() => updateForm({ status: 'confirmed' })}>
-                                        Recibí
-                                    </button>
-                                    <div className="col-3" />
+                                </div>
+                                <div className="row d-flex justify-content-center my-4">
+                                    <p className="mb-3 text-confirmar">
+                                        {`${worker} reportó`}
+                                    </p>
+                                </div>
+                                <div className="row my-4">
+                                    <h1 className="confirm-number">
+                                        {number}
+                                    </h1>
+                                </div>
+                                <div className="row my-2">
+                                    <p className="mt-3 text-confirmar">
+                                        {`${part} ${category} ${model} ${aluminium}`}
+                                    </p>
+                                </div>
+                                <div className="row d-flex justify-content-betwen mt-5">
+                                    <div className="col mt-5">
+                                        <button type="submit" className="btn btn-secondary btn-lg w-25" onClick={() => updateForm({ status: 'rejected' })}>
+                                            No recibí
+                                        </button>
+                                    </div>
+                                    <div className="col mt-5">
+                                        <button type="submit" id="confirm" name="confirm" className="btn-confirm w-25" onClick={() => updateForm({ status: 'confirmed' })}>
+                                            Recibí
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </container>
         </div>
     );
 }

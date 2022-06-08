@@ -1,11 +1,9 @@
+// CU 19
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 const Constants = require('../constants');
 
-class Procesos
-{
-    constructor(pAssignObj)
-    {
-        this.id = pAssignObj.id;
-    }
+class Procesos {
 
     /**
    * getAllIncidents
@@ -22,16 +20,16 @@ class Procesos
         return incidents.find();
     }
 
-    /**
-   * getAllDisks
-   * @description Query to get all disks
-   * @returns Parse object with name and Id of the parts in table "IncomeDisk"
-   */
-     static getAllDisks(){
-        const disks = new Parse.Query(Constants.IncomeDisk);
-        disks.select("number", "name");
-        return disks.find();
-    }
+  /**
+ * getAllDisks
+ * @description Query to get all disks
+ * @returns Parse object with name and Id of the parts in table "IncomeDisk"
+ */
+  static getAllDisks() {
+    const disks = new Parse.Query(Constants.IncomeDisk);
+    disks.select("number", "name");
+    return disks.find();
+  }
 
     /**
    * getEsmeriladosIncident

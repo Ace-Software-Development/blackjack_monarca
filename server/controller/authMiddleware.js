@@ -1,3 +1,5 @@
+//CU 9
+//MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
 authMiddleware.requireLogin = function (req, res, next) {
     // debug(req.session);
 
@@ -14,10 +16,10 @@ authMiddleware.requireLogin = function (req, res, next) {
         Parse.Cloud.useMasterKey();
 
         var sq = new Parse.Query('_Session')
-                          .equalTo('sessionToken', req.session.token)
-                          .include('user');
+            .equalTo('sessionToken', req.session.token)
+            .include('user');
 
-        sq.first().then(function(sessionResult) {
+        sq.first().then(function (sessionResult) {
             if (sessionResult == undefined) {
                 debug("No matching session");
                 res.redirect('/account/pub/login');
@@ -29,7 +31,7 @@ authMiddleware.requireLogin = function (req, res, next) {
 
                 next();
             }
-        }, function(err) {
+        }, function (err) {
             debug("Error or no matching session: " + err);
             res.redirect('/account/pub/login');
         });

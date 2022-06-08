@@ -1,3 +1,6 @@
+// CU 34 35 36 37 13 17 18
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
 const { getAllProducts, modifyProductInventory, getProductById, modifyProduct, postProduct, deleteProduct } = require('../db_abs/product');
@@ -24,9 +27,6 @@ exports.postProductInventoryController = async function (request, response) {
       response.status(500).send({ status: "can't save" })
    }
 }
-
-
-
 
 /**
    * getAllProductsController

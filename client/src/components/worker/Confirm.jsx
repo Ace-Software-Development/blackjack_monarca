@@ -58,6 +58,12 @@ Parts.propTypes = {
 function Confirm() {
     const session = Cookies.get('sessionToken');
     const [permission, setPermission] = useState([]);
+    let processName = process;
+
+    if (process === 'Empaquetado') {
+        processName = 'Empacado';
+    }
+
     /**
      * getPermission
      * @description Verifies that the user session token is valid
@@ -118,7 +124,7 @@ function Confirm() {
 
     return (
         <Row className="w-100 justify-content-center align-self-stretch">
-            <Header processName={process} />
+            <Header processName={processName} />
             {partsList()}
         </Row>
     );

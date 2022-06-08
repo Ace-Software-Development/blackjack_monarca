@@ -1,4 +1,4 @@
-// CU 40
+// CU 52
 // MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -8,22 +8,22 @@ import { Modal } from 'react-bootstrap';
 import Environment from '../Environment';
 
 /**
-   * ModifyCategory
-   * @description Set of functions to display modal of Modify Category
+   * ModifyProduct
+   * @description Set of functions to display modal of Modify Product
    * @returns HTML with fetched data
    */
-function ModifyCategory(catId, catName) {
+function ModifyProductInOrder(productId, category, modelNumber, aluminiumModel, cant) {
     const [form, setForm] = useState({
-        objectId: catId,
-        name: catName,
+        objectId: productId,
+        number: cant,
     });
 
     /**
-   * updateForm
-   * @description updates data of a form
-   * @param value: new values of the form
-   * @returns an updated form
-   */
+* updateForm
+* @description updates data of a form
+* @param value: new values of the form
+* @returns an updated form
+*/
     function updateForm(value) {
         return setForm((prev) => ({ ...prev, ...value }));
     }
@@ -36,19 +36,19 @@ function ModifyCategory(catId, catName) {
     async function onSubmit(e) {
         e.preventDefault();
 
-        const newCategory = { ...form };
+        const newProduct = { ...form };
 
-        await fetch(`${Environment()}/categoria/modify`, {
+        await fetch(`${Environment()}/productOrder/modify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newCategory),
+            body: JSON.stringify(newProduct),
         });
 
         setForm({
             objectId: '',
-            name: '',
+            number: '',
         });
         window.location.reload();
     }
@@ -57,8 +57,12 @@ function ModifyCategory(catId, catName) {
         <div>
             <form onSubmit={onSubmit}>
                 <Modal.Body>
-                    <h6>Nombre</h6>
-                    <input type="text" id="name" name="name" className="h-75 w-100 ml-4 mb-3" placeholder="Vaporera" value={form.name} onChange={(e) => updateForm({ name: e.target.value })} required />
+                    <div className="row">
+                        <h5>{`Ingresa la nueva cantidad para ${category} ${modelNumber} ${aluminiumModel}`}</h5>
+                    </div>
+                    <div className="row">
+                        <input min="0" pattern="^[0-9]+" type="number" id="number" name="number" className="form-control" placeholder="Cantidad" value={form.number} onChange={(e) => updateForm({ number: e.target.value })} required />
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="submit" className="btn-add">Modificar</button>
@@ -68,4 +72,4 @@ function ModifyCategory(catId, catName) {
     );
 }
 
-export default ModifyCategory;
+export default ModifyProductInOrder;
