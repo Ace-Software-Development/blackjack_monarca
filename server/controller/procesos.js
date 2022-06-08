@@ -3,6 +3,7 @@ Parse.serverURL = process.env.SERVER_URL;
 const {
    getAllIncidents,
    getAllDisks,
+   getRechazadosIncident,
    getAllEsmerilados,
    getEsmeriladosIncident,
    getAllPulidos,
@@ -11,6 +12,8 @@ const {
    getRemachadosIncident,
    getAllEmpaquetados,
    getAllEmpaquetadosInv,
+   getAllPendingIncidents,
+   getAllPendingRechazados,
 } = require('../db_abs/procesos');
 
 /**
@@ -31,6 +34,16 @@ exports.getAllIncidentsController = async function (request, response) {
  exports.getAllDisksController = async function (request, response) {
    const disks = await getAllDisks();
    response.status(200).send({ status: "success", data: disks });
+}
+
+/**
+   * getRechazadosIncidentController
+   * @description Get all pieces of Rechazado incidents from today
+   * @param response: status of the get and values of the query
+   */
+ exports.getRechazadosIncidentController = async function (request, response) {
+   const rechazadosIncident = await getRechazadosIncident();
+   response.status(200).send({ status: "success", data: rechazadosIncident });
 }
 
 /**
@@ -111,4 +124,24 @@ exports.getAllIncidentsController = async function (request, response) {
  exports.getAllEmpaquetadosInvController = async function (request, response) {
    const empaquetadosInv = await getAllEmpaquetadosInv();
    response.status(200).send({ status: "success", data: empaquetadosInv });
+}
+
+/**
+   * getAllPendingIncidentsController
+   * @description Get all pieces of Empaquetado inventory from today
+   * @param response: status of the get and values of the query
+   */
+ exports.getAllPendingIncidentsController = async function (request, response) {
+   const PendingIncident = await getAllPendingIncidents();
+   response.status(200).send({ status: "success", data: PendingIncident });
+}
+
+/**
+   * getAllPendingRechazadosController
+   * @description Get all pieces of Empaquetado inventory from today
+   * @param response: status of the get and values of the query
+   */
+ exports.getAllPendingRechazadosController = async function (request, response) {
+   const pendingRechazado = await getAllPendingRechazados();
+   response.status(200).send({ status: "success", data: pendingRechazado });
 }
