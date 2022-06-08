@@ -1,3 +1,6 @@
+//CU 46 47 48 49
+//MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
 const { registerBuyer, getAllBuyer, modifyBuyer, deleteBuyer } = require('../db_abs/buyer');
@@ -31,8 +34,8 @@ exports.getAllBuyerController = async function (request, response) {
 }
 
 /**
-   * modifyWorkerController
-   * @description Modify incoming worker registered
+   * modifyBuyerController
+   * @description Modify buyer registered
    * @param request: values modified by user
    * @param response: status of the post
    */

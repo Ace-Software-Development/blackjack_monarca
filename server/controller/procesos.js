@@ -1,3 +1,6 @@
+// CU 15
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 Parse.initialize(process.env.APP_ID, "YOUR_JAVASCRIPT_KEY", process.env.MASTER_KEY);
 Parse.serverURL = process.env.SERVER_URL;
 const {
@@ -28,7 +31,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of disks from today
    * @param response: status of the get and values of the query
    */
- exports.getAllDisksController = async function (request, response) {
+exports.getAllDisksController = async function (request, response) {
    const disks = await getAllDisks();
    response.status(200).send({ status: "success", data: disks });
 }
@@ -38,7 +41,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of Esmerilado from today
    * @param response: status of the get and values of the query
    */
- exports.getAllEsmeriladosController = async function (request, response) {
+exports.getAllEsmeriladosController = async function (request, response) {
    const esmerilados = await getAllEsmerilados();
    response.status(200).send({ status: "success", data: esmerilados });
 }
@@ -48,7 +51,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of Esmerilado incidents from today
    * @param response: status of the get and values of the query
    */
- exports.getEsmeriladosIncidentController = async function (request, response) {
+exports.getEsmeriladosIncidentController = async function (request, response) {
    const esmeriladosIncident = await getEsmeriladosIncident();
    response.status(200).send({ status: "success", data: esmeriladosIncident });
 }
@@ -58,7 +61,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of Pulido from today
    * @param response: status of the get and values of the query
    */
- exports.getAllPulidosController = async function (request, response) {
+exports.getAllPulidosController = async function (request, response) {
    const pulidos = await getAllPulidos();
    response.status(200).send({ status: "success", data: pulidos });
 }
@@ -68,7 +71,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of Pulido incidents from today
    * @param response: status of the get and values of the query
    */
- exports.getPulidosIncidentController = async function (request, response) {
+exports.getPulidosIncidentController = async function (request, response) {
    const pulidosIncident = await getPulidosIncident();
    response.status(200).send({ status: "success", data: pulidosIncident });
 }
@@ -78,7 +81,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of Remachado from today
    * @param response: status of the get and values of the query
    */
- exports.getAllRemachadosController = async function (request, response) {
+exports.getAllRemachadosController = async function (request, response) {
    const remachados = await getAllRemachados();
    response.status(200).send({ status: "success", data: remachados });
 }
@@ -88,7 +91,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of Remachado incidents from today
    * @param response: status of the get and values of the query
    */
- exports.getRemachadosIncidentController = async function (request, response) {
+exports.getRemachadosIncidentController = async function (request, response) {
    const remachadosIncident = await getRemachadosIncident();
    response.status(200).send({ status: "success", data: remachadosIncident });
 }
@@ -98,7 +101,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of Empaquetado from today
    * @param response: status of the get and values of the query
    */
- exports.getAllEmpaquetadosController = async function (request, response) {
+exports.getAllEmpaquetadosController = async function (request, response) {
    const empaquetados = await getAllEmpaquetados();
    response.status(200).send({ status: "success", data: empaquetados });
 }
@@ -108,7 +111,7 @@ exports.getAllIncidentsController = async function (request, response) {
    * @description Get all pieces of Empaquetado inventory from today
    * @param response: status of the get and values of the query
    */
- exports.getAllEmpaquetadosInvController = async function (request, response) {
+exports.getAllEmpaquetadosInvController = async function (request, response) {
    const empaquetadosInv = await getAllEmpaquetadosInv();
    response.status(200).send({ status: "success", data: empaquetadosInv });
 }

@@ -1,4 +1,5 @@
-// CU 14 Consultar pedido
+// CU 14 21 22 23 24 25
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
 
 const Constants = require('../constants');
 
@@ -32,13 +33,13 @@ class Order {
         orders.equalTo("objectId", objectId);
         return orders.first();
     }
-    
+
     /**
    * confirmOrder
    * @description Modifies an order
    * @returns Parse object with name and Id of the order in table "Order"
    */
-     static confirmOrder(objectId, name, id_buyer, is_Delivered){
+    static confirmOrder(objectId, name, id_buyer, is_Delivered) {
         var Buyer = Parse.Object.extend("Buyer");
         var pointerToBuyer = new Buyer();
         pointerToBuyer.id = id_buyer;
