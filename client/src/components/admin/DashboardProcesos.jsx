@@ -194,7 +194,7 @@ function DashboardProcesos() {
      * @description Get all pieces confirmed in Empaquetado
      * */
     async function getAllPendingIncidents() {
-        const response = await fetch('http://localhost:8888/procesos/PendingIncidents/get');
+        const response = await fetch(`${Environment()}/procesos/PendingIncidents/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
@@ -210,7 +210,7 @@ function DashboardProcesos() {
      * @description Get all pieces confirmed in Empaquetado
      * */
     async function getAllPendingRechazados() {
-        const response = await fetch('http://localhost:8888/procesos/PendingRechazados/get');
+        const response = await fetch(`${Environment()}/procesos/PendingRechazados/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
