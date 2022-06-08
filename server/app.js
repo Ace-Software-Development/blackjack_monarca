@@ -82,16 +82,6 @@ app.use('/trabajador', trabajador);
 app.use('/producto', producto);
 app.use('/productOrder', productOrder);
 app.use('/empacado', empacado);
-
-// app.use(express.static(
-//   path.join(__dirname,
-//     "../client/build")));
-// app.get("*", (req, res) => {
-//   res.sendFile(
-//     path.join(__dirname,
-//       "../client/build/index.html")
-//   );
-// });
 app.use('/categoria', categoria);
 app.use('/comprador', comprador);
 app.use('/disco', disco);
@@ -99,5 +89,15 @@ app.use('/merma', merma);
 app.use('/trabajadores', trabajadores);
 app.use('/produccion', produccion);
 app.use('/procesos', procesos);
+
+app.use(express.static(
+  path.join(__dirname,
+    "../client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname,
+      "../client/build/index.html")
+  );
+});
 
 app.listen(8888);
