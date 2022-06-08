@@ -59,7 +59,7 @@ function InvDiscos() {
      * @description Get all history of disks
      * */
     async function getAllDisks() {
-        const response = await fetch('http://localhost:8888/procesos/allDisks/get');
+        const response = await fetch(`${Environment()}/procesos/allDisks/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

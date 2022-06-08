@@ -67,18 +67,19 @@ function Login() {
                             <Container className="h-100 d-flex flex-column justify-content-center p-lg-5 login-card">
                                 <img src="./MariposaOllas.svg" alt="logo" className="h-50 w-50 align-self-center" />
                                 <div className="text-center align-self-center">
-                                    <h2 className="text-center">Inventario Aluminio Monarca</h2>
+                                    <h2 className="text-center">Inventario</h2>
+                                    <h2 className="text-center">Aluminio Monarca</h2>
                                 </div>
 
                                 <form onSubmit={onSubmit} id="loginForm">
                                     <p className="text-center">Por favor ingresa tu usuario y contraseña.</p>
 
                                     <div className="mb-4">
-                                        <input type="email" id="username" className="form-control" placeholder="usuario@mail.com" onChange={(e) => updateForm({ username: e.target.value })} />
+                                        <input type="email" id="username" className="form-control" placeholder="usuario@mail.com" onChange={(e) => updateForm({ username: e.target.value })} required />
                                     </div>
 
                                     <div className="mb-4">
-                                        <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} />
+                                        <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} required />
                                     </div>
 
                                     <div className="text-center pt-1 pb-1">

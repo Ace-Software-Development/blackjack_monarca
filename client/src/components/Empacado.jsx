@@ -43,7 +43,7 @@ function Empacado() {
                     </Col>
                     <Col md={6}>
                         <a href="/confirmar/Empaquetado/Remachado">
-                            {Card('checkbox', 'Confirmar')}
+                            {Card('mail-unread', 'Recibir')}
                         </a>
                     </Col>
                     <Col>

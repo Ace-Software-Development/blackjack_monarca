@@ -91,7 +91,7 @@ function Dashboard() {
      * @description Get scrap from all process during specific days
      * */
     async function getMermaDias() {
-        const response = await fetch(`http://localhost:8888/merma/${dateForm.startDate}/${dateForm.endDate}/get`);
+        const response = await fetch(`${Environment()}/merma/${dateForm.startDate}/${dateForm.endDate}/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);
