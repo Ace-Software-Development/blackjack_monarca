@@ -104,7 +104,7 @@ function ModifyOrder(nameOrder, idBuyer, pDate, orderId) {
                         <input type="date" id="possible_day" name="possible_day" className="form-control" value={form.possible_day} onChange={(e) => updateForm({ possible_day: e.target.value })} required />
                     </div>
                     <div className="row">
-                        <h5>Comprador del pedido</h5>
+                        <h5>Cliente del pedido</h5>
                         {console.log(form.id_buyer)}
                         <select type="text" id="id_buyer" name="id_buyer" className="form-control" value={form.id_buyer} onChange={(e) => updateForm({ id_buyer: e.target.value })} required>
                             <option value="" disabled>Selecciona el comprador</option>
