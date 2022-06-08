@@ -219,7 +219,7 @@ function OrderAdmin() {
             body: JSON.stringify(products),
         });
 
-        navigate('/dashboard/Administrador');
+        navigate('/dashboard/pedidos');
     }
 
     /**

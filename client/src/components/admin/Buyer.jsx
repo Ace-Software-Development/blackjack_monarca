@@ -196,7 +196,7 @@ function Buyer() {
 
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear comprador</Modal.Title>
+                    <Modal.Title>Crear cliente</Modal.Title>
                 </Modal.Header>
                 <CreateBuyer />
             </Modal>

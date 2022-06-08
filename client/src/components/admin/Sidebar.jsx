@@ -38,7 +38,7 @@ function Sidebar() {
                         {TabSidebar(null, 'Clientes', 'wallet')}
                         {TabSidebar(null, 'Trabajadores', 'person-add')}
                         {TabSidebar(null, 'Productos', 'bag-add')}
-                        {TabSidebar(null, 'Categorías', 'cube')}
+                        {TabSidebar(null, 'Categorias', 'cube')}
                         {TabSidebar(null, 'Discos', 'disc')}
                         {TabSidebar(null, 'Usuarios', 'people')}
                     </div>
