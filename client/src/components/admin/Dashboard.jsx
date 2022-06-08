@@ -259,7 +259,7 @@ function Dashboard() {
                 <Row className="d-flex my-3">
                     <Col xs={3}>
                         <DateRangePicker
-                            onApply={(e, p) => setDateForm(e, p)}
+                          onApply={(e, p) => setDateForm(e, p)}
                         >
                             <input />
                         </DateRangePicker>

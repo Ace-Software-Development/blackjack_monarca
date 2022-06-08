@@ -213,9 +213,9 @@ function Classify() {
                         </div>
                         <div className="col-2 text-center">
                             <button
-                                type="submit"
-                                className="btn cardNext buttonNext mt-2 mb-2"
-                                id="buttonNext"
+                              type="submit"
+                              className="btn cardNext buttonNext mt-2 mb-2"
+                              id="buttonNext"
                             >
                                 Confirmar
                             </button>
@@ -237,29 +237,29 @@ function Classify() {
                             <Row>Primera</Row>
                             <Row>
                                 <input
-                                    className="w-100 h-100 form-control text-center"
-                                    type="number"
-                                    min="0"
-                                    pattern="^[0-9]+"
-                                    value={completed}
-                                    onChange={(e) => getCompleted(e.target.value)}
+                                  className="w-100 h-100 form-control text-center"
+                                  type="number"
+                                  min="0"
+                                  pattern="^[0-9]+"
+                                  value={completed}
+                                  onChange={(e) => getCompleted(e.target.value)}
                                 />
                             </Row>
                             <Row className="mt-4">
                                 <Col xs={6}>
                                     <button
-                                        className="btn btnNumber ratio ratio-1x1 p-5"
-                                        type="button"
-                                        onClick={() => setCompleted((a) => a - 1)}
+                                      className="btn btnNumber ratio ratio-1x1 p-5"
+                                      type="button"
+                                      onClick={() => setCompleted((a) => a - 1)}
                                     >
                                         <ion-icon name="remove-outline" />
                                     </button>
                                 </Col>
                                 <Col xs={6}>
                                     <button
-                                        className="btn btnNumber ratio ratio-1x1 p-5"
-                                        type="button"
-                                        onClick={() => setCompleted((a) => a + 1)}
+                                      className="btn btnNumber ratio ratio-1x1 p-5"
+                                      type="button"
+                                      onClick={() => setCompleted((a) => a + 1)}
                                     >
                                         <ion-icon name="add-outline" />
                                     </button>
@@ -270,29 +270,29 @@ function Classify() {
                             <Row>Segunda</Row>
                             <Row>
                                 <input
-                                    className="w-100 h-100 form-control text-center"
-                                    type="number"
-                                    min="0"
-                                    pattern="^[0-9]+"
-                                    value={second}
-                                    onChange={(e) => getSecond(e.target.value)}
+                                  className="w-100 h-100 form-control text-center"
+                                  type="number"
+                                  min="0"
+                                  pattern="^[0-9]+"
+                                  value={second}
+                                  onChange={(e) => getSecond(e.target.value)}
                                 />
                             </Row>
                             <Row className="mt-4">
                                 <Col xs={6}>
                                     <button
-                                        className="btn btnNumber ratio ratio-1x1 p-5"
-                                        type="button"
-                                        onClick={() => setSecond((a) => a - 1)}
+                                      className="btn btnNumber ratio ratio-1x1 p-5"
+                                      type="button"
+                                      onClick={() => setSecond((a) => a - 1)}
                                     >
                                         <ion-icon name="remove-outline" />
                                     </button>
                                 </Col>
                                 <Col xs={6}>
                                     <button
-                                        className="btn btnNumber ratio ratio-1x1 p-5"
-                                        type="button"
-                                        onClick={() => setSecond((a) => a + 1)}
+                                      className="btn btnNumber ratio ratio-1x1 p-5"
+                                      type="button"
+                                      onClick={() => setSecond((a) => a + 1)}
                                     >
                                         <ion-icon name="add-outline" />
                                     </button>
@@ -303,29 +303,29 @@ function Classify() {
                             <Row>Chatarra</Row>
                             <Row>
                                 <input
-                                    className="w-100 h-100 form-control text-center"
-                                    type="number"
-                                    min="0"
-                                    pattern="^[0-9]+"
-                                    value={scrap}
-                                    onChange={(e) => getScrap(e.target.value)}
+                                  className="w-100 h-100 form-control text-center"
+                                  type="number"
+                                  min="0"
+                                  pattern="^[0-9]+"
+                                  value={scrap}
+                                  onChange={(e) => getScrap(e.target.value)}
                                 />
                             </Row>
                             <Row className="mt-4">
                                 <Col xs={6}>
                                     <button
-                                        className="btn btnNumber ratio ratio-1x1 p-5"
-                                        type="button"
-                                        onClick={() => setScrap((a) => a - 1)}
+                                      className="btn btnNumber ratio ratio-1x1 p-5"
+                                      type="button"
+                                      onClick={() => setScrap((a) => a - 1)}
                                     >
                                         <ion-icon name="remove-outline" />
                                     </button>
                                 </Col>
                                 <Col xs={6}>
                                     <button
-                                        className="btn btnNumber ratio ratio-1x1 p-5"
-                                        type="button"
-                                        onClick={() => setScrap((a) => a + 1)}
+                                      className="btn btnNumber ratio ratio-1x1 p-5"
+                                      type="button"
+                                      onClick={() => setScrap((a) => a + 1)}
                                     >
                                         <ion-icon name="add-outline" />
                                     </button>
@@ -334,10 +334,10 @@ function Classify() {
                         </Col>
                     </Row>
                     <Form.Select
-                        className="mt-3"
-                        onChange={(e) => setWorker({
-                            workerName: e.target.selectedOptions[0].label,
-                            workerId: e.target.selectedOptions[0].value,
+                      className="mt-3"
+                      onChange={(e) => setWorker({
+                          workerName: e.target.selectedOptions[0].label,
+                          workerId: e.target.selectedOptions[0].value,
                         })}
                     >
                         <option>Trabajador encargado de la reparación</option>
