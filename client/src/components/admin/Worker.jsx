@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-unused-vars */
+/* eslint prefer-destructuring: ["error", {VariableDeclarator: {object: true}}] */
 // CU 29 30 31 33
 // MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
 
@@ -7,26 +10,26 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
+import { useTable, ReactTable, useSortBy } from 'react-table';
 import CreateWorker from './CreateWorker';
 import ModifyWorker from './ModifyWorker';
 import DeleteWorker from './DeleteWorker';
 import Sidebar from './Sidebar';
 import Environment from '../Environment';
 
+let countHu = 0;
 /**
  * Workers
  * @param {worker} show all Worker data
  * @description Shows the worker information on the page
  * @returns HTML with fetched data
  */
+/*
 function Workers({ worker }) {
     const session = Cookies.get('sessionToken');
     const admin = Cookies.get('is_admin');
     const [permission, setPermission] = useState([]);
-    /**
-     * getPermission
-     * @description Verifies that the user session token is valid
-     */
+
     async function getPermission() {
         const response = await fetch(`${Environment()}/login/getPermission/${session}`);
         if (!response.ok) {
@@ -96,9 +99,224 @@ function Workers({ worker }) {
 
     );
 }
+
 Workers.propTypes = {
     worker: PropTypes.string.isRequired,
 };
+*/
+/*
+function workerDeleter(workerObj){
+    const [showD, setShowD] = useState(false);
+    const handleCloseDMod = () => setShowD(false);
+    const handleShowDMod = () => setShowD(true);
+
+    return (
+        <th>
+            <button type="button" className="btn" onClick={handleShowDMod}>
+                <ion-icon size="large" name="trash-outline" />
+            </button>
+
+            <Modal show={showD} onHide={handleCloseDMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                {DeleteWorker(
+                    workerObj.objectId,
+                    workerObj.name,
+                    workerObj.nick_name,
+                    )}
+            </Modal>
+        </th>
+    );
+}
+
+function wokerModifior(workerObj){
+    const [show, setShow] = useState(false);
+    const handleCloseMod = () => setShow(false);
+    const handleShowMod = () => setShow(true);
+
+    return (
+        <th>
+            <button type="button" className="btn" onClick={handleShowMod}>
+                <ion-icon size="large" name="create-outline" />
+            </button>
+
+            <Modal show={show} onHide={handleCloseMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modificar</Modal.Title>
+                </Modal.Header>
+                {ModifyWorker(
+                    workerObj.objectId,
+                    workerObj.name,
+                    workerObj.nick_name,
+                    workerObj.id_process,
+                    )}
+            </Modal>
+        </th>
+    );
+}
+*/
+
+/*
+let workerModifyDeleteObj = {
+    name: 'Pablo',
+    nick_name: 'Pabo',
+    id_process: 'A',
+};
+*/
+
+function workerSortingTable({ columns, data }) {
+    const session = Cookies.get('sessionToken');
+    const admin = Cookies.get('is_admin');
+    const [permission, setPermission] = useState([]);
+
+    async function getPermission() {
+        const response = await fetch(`${Environment()}/login/getPermission/${session}`);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.customAlert(message);
+            return;
+        }
+
+        const perm = await response.json();
+        setPermission(perm.data);
+    }
+    useEffect(() => {
+        getPermission();
+    }, [session, admin]);
+    if (admin === 'false' || !permission) {
+        return ('No tienes permisos');
+    }
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+    } = useTable({ columns, data }, useSortBy);
+
+    const [workerModifyDeleteObj, setWorkerModifyDeleteObj] = useState(false);
+    const [show, setShow] = useState(false);
+    const handleCloseMod = () => setShow(false);
+    const handleShowMod = () => setShow(true);
+    const handleShowModWrapper = (workerObj) => {
+        setWorkerModifyDeleteObj(workerObj);
+        /*
+        console.log('Test Hu:' + JSON.stringify(workerObj));
+        */
+        handleShowMod();
+    };
+
+    const [showD, setShowD] = useState(false);
+    const handleCloseDMod = () => setShowD(false);
+    const handleShowDMod = () => setShowD(true);
+    const handleShowDModWrapper = (workerObj) => {
+        setWorkerModifyDeleteObj(workerObj);
+        /*
+        console.log('Test Hu:' + JSON.stringify(workerObj));
+        */
+        handleShowDMod();
+    };
+
+    /*
+    We don't want to render all 2000 rows for this example, so cap
+    it at 20 for this use case
+    */
+    const firstPageRows = rows.slice(0, 20);
+
+    function drawSortDirection(isSorted, isSortedDesc) {
+        let icon = '';
+        if (isSorted) {
+            if (isSortedDesc) {
+                icon = ' -';
+            } else {
+                icon = ' +';
+            }
+        } else {
+            icon = '';
+        }
+
+        return icon;
+    }
+
+    return (
+        <>
+            <table {...getTableProps()} className="w-100 mt-4" style={{ marginTop: 20 }}>
+                <thead>
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th
+                                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                                >
+                                    {column.render('Header')}
+                                    {/* Add a sort direction indicator */}
+                                    {drawSortDirection(column.isSorted, column.isSortedDesc)}
+                                </th>
+                            ))}
+                            <th> </th>
+                            <th> </th>
+                        </tr>
+                    ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {firstPageRows.map((row, i) => {
+                        prepareRow(row);
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map((cell) => (
+                                    <th
+                                      {...cell.getCellProps()}
+                                      style={{
+                                        padding: '10px',
+                                        border: 'solid 1px gray',
+                                        background: 'papayawhip',
+                                    }}
+                                    >
+                                        {cell.render('Cell')}
+                                    </th>
+                                ))}
+                                <th>
+                                    <button type="button" className="btn" onClick={() => handleShowModWrapper(row.original)}>
+                                        <ion-icon size="large" name="create-outline" />
+                                    </button>
+                                </th>
+                                <th>
+                                    <button type="button" className="btn" onClick={() => handleShowDModWrapper(row.original)}>
+                                        <ion-icon size="large" name="trash-outline" />
+                                    </button>
+                                </th>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+            <Modal show={show} onHide={handleCloseMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modificar</Modal.Title>
+                </Modal.Header>
+                {ModifyWorker(
+                    workerModifyDeleteObj.objectId,
+                    workerModifyDeleteObj.name,
+                    workerModifyDeleteObj.nick_name,
+                    workerModifyDeleteObj.id_process,
+                    )}
+            </Modal>
+
+            <Modal show={showD} onHide={handleCloseDMod}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                {DeleteWorker(
+                    workerModifyDeleteObj.objectId,
+                    workerModifyDeleteObj.name,
+                    workerModifyDeleteObj.nick_name,
+                    )}
+            </Modal>
+        </>
+    );
+}
 
 /**
    * Worker
@@ -133,10 +351,65 @@ function Worker() {
    * @description Maps all workers in the interface
    * @returns Component with name and id of the worker
    */
+    /*
     function workersList() {
         return workers.slice(0).reverse().map((worker) => (
             <Workers worker={worker} key={worker.name} />
         ));
+    }
+    */
+
+    /* Code for React Table */
+
+    countHu += 1;
+
+    const testData = React.useMemo(
+        () => [
+            {
+                name: 'Pablo',
+                nick_name: 'Pabo',
+                id_process: 'A',
+            },
+            {
+                name: 'Jose',
+                nick_name: 'JJ',
+                id_process: 'B',
+            },
+        ],
+        [],
+    );
+
+    const tableColumn = React.useMemo(
+        () => [
+            {
+                Header: 'Nombre de usuario',
+                accessor: 'name',
+            },
+            {
+                Header: 'Apodo',
+                accessor: 'nick_name',
+            },
+            {
+                Header: 'Proceso',
+                accessor: 'id_process',
+            },
+        ],
+        [],
+    );
+
+    console.log('Hu Start');
+    console.log(testData);
+    /*
+    console.log(workerSortingTable(
+        tableColumn,
+        testData,
+    ));
+    */
+    console.log(countHu);
+    const tableObj = { columns: tableColumn, data: workers };
+
+    function dummyFunction({ pColumn, pData }) {
+        return (<p>nothing</p>);
     }
 
     return (
@@ -156,20 +429,9 @@ function Worker() {
                                             Agregar
                                         </button>
                                     </div>
-                                    <table className="w-100 mt-4" style={{ marginTop: 20 }}>
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>Apodo</th>
-                                                <th>Proceso</th>
-                                                <th> </th>
-                                                <th> </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {workersList()}
-                                        </tbody>
-                                    </table>
+                                    <div>
+                                        {workerSortingTable(tableObj)}
+                                    </div>
                                 </div>
                             </div>
                         </div>
