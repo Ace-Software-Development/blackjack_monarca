@@ -45,7 +45,7 @@ class Buyer {
 * @param address addres of buyer registrered
 * @returns Parse object
 */
-    static modifyBuyer(name, mail, city, phone, id) {
+    static modifyBuyer(name, mail, city, phone, id, address) {
         const buyer = new Parse.Object("Buyer");
         buyer.set('objectId', id);
         buyer.set('name', name);

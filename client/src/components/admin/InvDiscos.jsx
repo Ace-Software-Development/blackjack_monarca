@@ -103,7 +103,7 @@ function InvDiscos() {
 
     useEffect(() => {
         iterateListaDiscos();
-    }, [listaDisks]);
+    }, []);
 
     /**
    * diskList

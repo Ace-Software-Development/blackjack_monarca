@@ -142,7 +142,7 @@ function Product() {
 
     useEffect(() => {
         getAllProducts();
-    }, [products]);
+    }, []);
 
     /**
    * productsList

@@ -123,7 +123,7 @@ function Disk() {
 
     useEffect(() => {
         getDisks();
-    }, [disks]);
+    }, []);
 
     /**
    * disksList
