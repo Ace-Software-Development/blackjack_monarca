@@ -28,7 +28,6 @@ Mains.propTypes = {
 
 function InvDiscos() {
     const session = Cookies.get('sessionToken');
-    const admin = Cookies.get('is_admin');
     const [permission, setPermission] = useState([]);
 
     /**
@@ -48,8 +47,9 @@ function InvDiscos() {
     }
     useEffect(() => {
         getPermission();
-    }, [session, admin]);
-    if (admin === 'false' || !permission) {
+    }, []);
+
+    if (!permission) {
         return ('No tienes permisos');
     }
 
