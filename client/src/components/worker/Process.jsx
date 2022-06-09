@@ -45,6 +45,8 @@ function Process() {
     const hrefConfirm = `/confirmar/${process}/${prevProcess}`;
     const hrefIncident = '/rechazado/incidente';
     const hrefTake = '/rechazado/conteo/Tomar';
+    const hrefIncome = '/rechazado/conteo/Contar';
+    const hrefDiskInv = '/discos/inventario';
     if (process === 'Rechazado') {
         return (
             <Container className="h-100 d-flex flex-column">
@@ -64,6 +66,27 @@ function Process() {
                         <Col>
                             <a href={hrefIncident}>
                                 {Card('trash-bin', 'Incidentes')}
+                            </a>
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
+        );
+    }
+    if (process === 'Conteo') {
+        return (
+            <Container className="h-100 d-flex flex-column">
+                <Header processName={process} />
+                <Container className="flex-grow-1 d-flex flex-column">
+                    <Row className="flex-grow-1">
+                        <Col md={6}>
+                            <a href={hrefIncome}>
+                                {Card('disc', 'Registrar discos')}
+                            </a>
+                        </Col>
+                        <Col md={6}>
+                            <a href={hrefDiskInv}>
+                                {Card('bar-chart', 'Inventario')}
                             </a>
                         </Col>
                     </Row>

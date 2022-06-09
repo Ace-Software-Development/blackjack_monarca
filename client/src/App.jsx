@@ -37,6 +37,7 @@ import OrdersAdmin from './components/admin/OrdersAdmin';
 import Procesos from './components/admin/DashboardProcesos';
 import DashboardTrabajador from './components/admin/DashboardTrabajador';
 import InvDiscos from './components/admin/InvDiscos';
+import InvDiscosW from './components/worker/InvDiscos';
 
 function App() {
     return (
@@ -78,6 +79,7 @@ function App() {
                 <Route exact path="/rechazado/incidente" element={<Incidente />} />
                 <Route exact path="/rechazado/:id" element={<Classify />} />
                 <Route exact path="/dashboard/Inventario/Discos" element={<InvDiscos />} />
+                <Route exact path="/discos/inventario" element={<InvDiscosW />} />
 
             </Routes>
         </BrowserRouter>
