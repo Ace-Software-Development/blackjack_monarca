@@ -141,7 +141,7 @@ function Buyer() {
 
     useEffect(() => {
         getAllBuyers();
-    }, [buyers]);
+    }, []);
 
     /**
    * workersList
@@ -183,7 +183,7 @@ function Buyer() {
                                                 <th> </th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody className="colapse-txt">
                                             {buyersList()}
                                         </tbody>
                                     </table>

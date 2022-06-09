@@ -126,7 +126,7 @@ function Worker() {
 
     useEffect(() => {
         getAllWorkers();
-    }, [workers]);
+    }, []);
 
     /**
    * workersList

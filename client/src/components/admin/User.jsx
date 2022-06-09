@@ -140,7 +140,7 @@ function User() {
 
     useEffect(() => {
         getAllUsers();
-    }, [users]);
+    }, []);
 
     /**
    * usersList

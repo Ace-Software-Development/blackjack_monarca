@@ -119,7 +119,7 @@ function Category() {
 
     useEffect(() => {
         getCategories();
-    }, [categories]);
+    }, []);
 
     /**
    * categoriesList
