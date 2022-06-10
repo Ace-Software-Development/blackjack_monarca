@@ -51,6 +51,7 @@ function CreateUser() {
             password: '',
             is_admin: '',
         });
+        window.location.reload();
     }
 
     return (

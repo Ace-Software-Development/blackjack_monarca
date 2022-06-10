@@ -201,11 +201,11 @@ function ModelInventory() {
                 <div className="row">
                     <div className="col">
                         <div className="row">
-                            <div className="col-7">
+                            <div className="col-9">
                                 <h5>Resumen</h5>
                             </div>
-                            <div className="col">
-                                <button className="" id="buttonNext" type="button" onClick={() => navigate(url)} hidden>
+                            <div className="col-2">
+                                <button className="buttonNext cardNext btn align-self-right" id="buttonNext" type="button" onClick={() => navigate(url)} hidden>
                                     Siguiente
                                 </button>
                             </div>
