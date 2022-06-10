@@ -13,11 +13,14 @@ exports.validateLogin = async function (request, response) {
     var user = Parse.User
         .logIn(request.body.username, request.body.password).then(function (user) {
             const sessionToken = user.getSessionToken();
-            const admin = user.attributes.is_admin
+            const admin = user.attributes.is_admin;
             const json = { sessionToken: sessionToken, is_admin: admin };
             if (sessionToken) {
 
                 response.status(200).send(json);
+            }
+            else {
+                response.status(403).send();
             }
         }).catch(function (error) {
             response.status(403).send();

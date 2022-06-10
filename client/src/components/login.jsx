@@ -11,7 +11,8 @@ function Login() {
         username: '',
         password: '',
     });
-    const [res, setRes] = useState(new Response());
+    const [error, setError] = useState('');
+
     /**
    * onSubmit
    * @description Posts the auth data to the api and receives the status
@@ -22,6 +23,7 @@ function Login() {
         e.preventDefault();
         console.log('iniciando sesión');
         const credentials = { ...form };
+
         const response = await fetch(`${Environment()}/login/post`, {
             method: 'POST',
             headers: {
@@ -30,20 +32,27 @@ function Login() {
             body: JSON.stringify(credentials),
         });
 
-        const data = await response.json();
-        console.log(data.is_admin);
-        setRes(response);
-        console.log(res);
-        console.log('user logged in: ', response);
-        Cookies.set('sessionToken', data.sessionToken);
-        Cookies.set('is_admin', data.is_admin);
+        let data;
+        try {
+            data = await response.json();
+        } catch (err) {
+            console.log(err);
+        }
+
+        const endline = document.getElementById('endline');
         if (response.status === 500) {
-            //  window.alert('Lo sentimos, en este momento no es posible procesar tu solicitud.');
+            setError('Lo sentimos, en este momento no es posible procesar tu solicitud.');
+            endline.hidden = true;
         } else if (response.status === 403) {
-            //  window.alert('El usuario o contraseña ingresados son incorrectos.');
+            setError('El usuario o contraseña ingresados son incorrectos.');
+            endline.hidden = true;
         } else if (data.is_admin) {
+            Cookies.set('sessionToken', data.sessionToken);
+            Cookies.set('is_admin', data.is_admin);
             navigate('/dashboard');
-        } else {
+        } else if (!data.is_admin) {
+            Cookies.set('sessionToken', data.sessionToken);
+            Cookies.set('is_admin', data.is_admin);
             navigate('/inicio');
         }
     }
@@ -74,12 +83,15 @@ function Login() {
                                     <p className="text-center">Por favor ingresa tu usuario y contraseña.</p>
 
                                     <div className="mb-4">
-                                        <input type="email" id="username" className="form-control" placeholder="usuario@mail.com" onChange={(e) => updateForm({ username: e.target.value })} />
+                                        <input type="email" id="username" className="form-control" placeholder="usuario@mail.com" onChange={(e) => updateForm({ username: e.target.value })} required />
                                     </div>
 
                                     <div className="mb-4">
-                                        <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} />
+                                        <input type="password" id="password" className="form-control" placeholder="Contraseña" onChange={(e) => updateForm({ password: e.target.value })} required />
                                     </div>
+
+                                    <p className="text-center text-danger">{error}</p>
+                                    <br id="endline" />
 
                                     <div className="text-center pt-1 pb-1">
                                         <button className="btn-orange fa-lg mb-3" type="submit" form="loginForm">Ingresar</button>
