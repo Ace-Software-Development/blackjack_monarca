@@ -72,7 +72,7 @@ function Buyers({ buyer }) {
                     <h6 className="sub-text1">Correo</h6>
                 </th>
                 <th>
-                    <h5>{buyer.address}</h5>
+                    <h5 className="colapse-txt">{buyer.address}</h5>
                     <h6 className="sub-text1">Dirección</h6>
                 </th>
                 <th>
@@ -183,7 +183,7 @@ function Buyer() {
                                                 <th> </th>
                                             </tr>
                                         </thead>
-                                        <tbody className="colapse-txt">
+                                        <tbody>
                                             {buyersList()}
                                         </tbody>
                                     </table>

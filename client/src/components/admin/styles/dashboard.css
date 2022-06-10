@@ -51,8 +51,7 @@ hr {
 }
 
 .colapse-txt {
-  text-overflow: ellipsis;
-  overflow: hidden;
+  word-break: break-all;
 }
 
 /* The switch - the box around the slider */
