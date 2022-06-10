@@ -1,3 +1,6 @@
+// CU 46 47 48 49
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
@@ -138,7 +141,7 @@ function Buyer() {
 
     useEffect(() => {
         getAllBuyers();
-    }, [buyers]);
+    }, []);
 
     /**
    * workersList
@@ -180,7 +183,7 @@ function Buyer() {
                                                 <th> </th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody className="colapse-txt">
                                             {buyersList()}
                                         </tbody>
                                     </table>
@@ -193,7 +196,7 @@ function Buyer() {
 
             <Modal show={show} onHide={handleCloseCreate}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear comprador</Modal.Title>
+                    <Modal.Title>Crear cliente</Modal.Title>
                 </Modal.Header>
                 <CreateBuyer />
             </Modal>

@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import ButtonNext from './ButtonNext';
 import Header from './Header';
 import Environment from '../Environment';
 
@@ -15,7 +14,6 @@ let selectedCategory = '';
 let selectedWorker = '';
 let selectedPart = '';
 let nextProcess = '';
-let nextBtn = '';
 let url = '';
 let process = '';
 
@@ -29,13 +27,10 @@ function setContext(id) {
     if (id) {
         selectedModel = id;
         url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
-        nextBtn = ButtonNext(url);
         button.hidden = false;
     } else {
         url = `/cantidad/${process}/${nextProcess}/${selectedWorker}/${selectedPart}/${selectedCategory}/${selectedModel}`;
-        if (nextBtn) {
-            button.href = url;
-        }
+        button.hidden = false;
     }
 }
 
@@ -50,8 +45,8 @@ export function CardModel(name, id, aluminium) {
     return (
         <a href="#">
             <button type="button" className="cardName btn text-center w-100 py-4 text-center my-4 card-shadow" onClick={() => setContext(id)}>
-                <div>{name}</div>
-                <h5>{aluminium}</h5>
+                <p>{name}</p>
+                <p>{aluminium}</p>
             </button>
         </a>
 
@@ -216,7 +211,7 @@ function ModelNumber() {
         getModels();
         getWorker();
         getCategory();
-    }, [nextBtn]);
+    }, []);
 
     workersList();
     categoriesList();

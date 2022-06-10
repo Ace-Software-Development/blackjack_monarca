@@ -50,6 +50,11 @@ hr {
   font-weight: bold;
 }
 
+.colapse-txt {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -65,4 +70,8 @@ input::placeholder {
 
 .orange-text {
   color: #F69223;
+}
+
+.Order-Admin {
+  cursor: pointer;
 }

@@ -1,10 +1,13 @@
+// CU 43 44 45
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 class Disk {
     constructor(pAssignObj) {
         this.id = pAssignObj.id;
         /*TODO make all the field*/
     }
     /**
-* registerCategory
+* registerDisk
 * @description Register new disk
 * @param name: Name of disk registered
 * @returns Parse object
@@ -18,7 +21,7 @@ class Disk {
     }
 
     /**
-* modifyCategory
+* modifyDisk
 * @description Modify disk
 * @param name: name of disk
 * @param id: Id of disk

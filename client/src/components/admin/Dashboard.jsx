@@ -1,4 +1,6 @@
-// CU15 Consultar Merma del Producto
+// CU 15
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -89,7 +91,7 @@ function Dashboard() {
      * @description Get scrap from all process during specific days
      * */
     async function getMermaDias() {
-        const response = await fetch(`http://localhost:8888/merma/${dateForm.startDate}/${dateForm.endDate}/get`);
+        const response = await fetch(`${Environment()}/merma/${dateForm.startDate}/${dateForm.endDate}/get`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.customAlert(message);

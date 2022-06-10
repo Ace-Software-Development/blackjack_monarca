@@ -1,3 +1,6 @@
+// CU 34 35 36 37
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useEffect, useState } from 'react';
@@ -139,7 +142,7 @@ function Product() {
 
     useEffect(() => {
         getAllProducts();
-    }, [products]);
+    }, []);
 
     /**
    * productsList

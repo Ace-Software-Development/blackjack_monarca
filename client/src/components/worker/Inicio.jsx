@@ -62,7 +62,7 @@ function Inicio() {
             </Row>
             <Row className="text-center justify-content-center flex-grow-1">
                 <Col xs={12} s={12} md={6} lg={4} className="text-center justify-content-center">
-                    <a href="/conteo/Contar">
+                    <a href="/proceso/Conteo">
                         {Card('calculator', 'Conteo')}
                     </a>
                 </Col>
@@ -88,7 +88,7 @@ function Inicio() {
                 </Col>
                 <Col xs={12} s={12} md={6} lg={4}>
                     <a href="/empacado">
-                        {Card('cube', 'Empaquetado')}
+                        {Card('cube', 'Empacado')}
                     </a>
                 </Col>
             </Row>

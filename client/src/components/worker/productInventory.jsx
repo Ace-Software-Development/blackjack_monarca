@@ -1,5 +1,9 @@
+// CU 17 18
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 import './styles/styles.css';
 import PropTypes from 'prop-types';
@@ -61,6 +65,7 @@ Products.propTypes = {
    * @returns HTML with fetched data
    */
 function productInventory() {
+    const navigate = useNavigate();
     const session = Cookies.get('sessionToken');
     const [permission, setPermission] = useState([]);
     /**
@@ -115,17 +120,20 @@ function productInventory() {
 
     return (
         <div>
-            <Header processName="Inventario empacados" />
+            <Header processName="Inventario empacado" />
             <div className="row d-flex justify-content-center">
                 <div className="col-10 mt-4">
                     <div className="card conteo-card">
                         <div className="card-body">
                             <div>
                                 <div className="row justify-content-between">
+                                    <button type="button" onClick={() => navigate(-1)} className="col-1 btnBack btn">
+                                        <ion-icon size="large" name="arrow-back-outline" />
+                                    </button>
                                     <div className="col-2" />
                                     <a href="/empacado/registrar" className="col-2">
                                         <button type="button" className="btn-nxt">
-                                            Registrar empacado
+                                            Empacar producto
                                         </button>
                                     </a>
                                 </div>

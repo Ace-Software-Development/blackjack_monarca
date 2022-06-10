@@ -1,8 +1,7 @@
+// CU 46 47 48 49
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 class Buyer {
-    constructor(pAssignObj) {
-        this.id = pAssignObj.id;
-        /*TODO make all the field*/
-    }
     /**
 * registerBuyer
 * @description Register new buyer
@@ -10,6 +9,7 @@ class Buyer {
 * @param mail: mail of buyer registered
 * @param city: city of buyer registered
 * @param phone: phone of buyer registered
+* @param address addres of buyer registrered
 * @returns Parse object
 */
     static registerBuyer(name, mail, city, phone, address) {
@@ -42,9 +42,10 @@ class Buyer {
 * @param mail: mail of buyer registered
 * @param city: city of buyer registered
 * @param phone: phone of buyer registered
+* @param address addres of buyer registrered
 * @returns Parse object
 */
-    static modifyBuyer(name, mail, city, phone, id) {
+    static modifyBuyer(name, mail, city, phone, id, address) {
         const buyer = new Parse.Object("Buyer");
         buyer.set('objectId', id);
         buyer.set('name', name);

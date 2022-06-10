@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'underscore';
 import Environment from '../Environment';
-import Sidebar from './Sidebar';
+import Header from './Header';
 
 function Mains({ m }) {
     return (
@@ -28,7 +28,6 @@ Mains.propTypes = {
 
 function InvDiscos() {
     const session = Cookies.get('sessionToken');
-    const admin = Cookies.get('is_admin');
     const [permission, setPermission] = useState([]);
 
     /**
@@ -48,8 +47,9 @@ function InvDiscos() {
     }
     useEffect(() => {
         getPermission();
-    }, [session, admin]);
-    if (admin === 'false' || !permission) {
+    }, []);
+
+    if (!permission) {
         return ('No tienes permisos');
     }
 
@@ -103,7 +103,7 @@ function InvDiscos() {
 
     useEffect(() => {
         iterateListaDiscos();
-    }, []);
+    }, [listaDisks]);
 
     /**
    * diskList
@@ -117,31 +117,29 @@ function InvDiscos() {
     }
 
     return (
-        <div className="container-fluid">
-            <Sidebar />
-            <div>
-                <div className="content d-flex px-4 pt-3 h-100">
-                    <div className="col-10 mt-4">
-                        <div className="card conteo-card">
-                            <div className="card-body">
-                                <div>
-                                    <div className="row justify-content-between">
-                                        <h3 className="col-9">
-                                            Inventario de Discos
-                                        </h3>
-                                    </div>
-                                    <table className="w-100 mt-4" style={{ marginTop: 20 }}>
-                                        <thead>
-                                            <tr>
-                                                <th>Disco</th>
-                                                <th>Cantidad</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {diskList2()}
-                                        </tbody>
-                                    </table>
+        <div>
+            <Header processName="Empacado" />
+            <div className="content d-flex px-4 pt-3 h-100">
+                <div className="col-10 mt-4">
+                    <div className="card conteo-card">
+                        <div className="card-body">
+                            <div>
+                                <div className="row justify-content-between">
+                                    <h3 className="col-9">
+                                        Inventario de Discos
+                                    </h3>
                                 </div>
+                                <table className="w-100 mt-4" style={{ marginTop: 20 }}>
+                                    <thead>
+                                        <tr>
+                                            <th>Disco</th>
+                                            <th>Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {diskList2()}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

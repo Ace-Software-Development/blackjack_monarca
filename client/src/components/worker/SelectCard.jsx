@@ -26,7 +26,7 @@ export default function SelectCard({
         }
     }, [active]);
     return (
-        <button type="button" className={`select-card${active ? '-active' : ''} card-shadow btn text-center w-100 py-4 mt-4 mb-5`} onClick={handleClick}>
+        <button type="button" className={`select-card${active ? '-active' : ''} card-shadow btn text-center w-100 my-4`} onClick={handleClick}>
             <p>{name}</p>
         </button>
     );

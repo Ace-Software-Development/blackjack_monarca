@@ -1,4 +1,4 @@
-// CU 3 Consultar piezas recibidas en el proceso
+// CU 13
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
 import Cookies from 'js-cookie';

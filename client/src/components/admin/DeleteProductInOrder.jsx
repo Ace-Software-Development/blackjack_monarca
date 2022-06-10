@@ -1,7 +1,11 @@
+// CU 53
+// MT https://docs.google.com/spreadsheets/d/1geuVnd1ByaFLBXFXNAlN5PL-K0QVR2rq/edit?usp=sharing&ouid=103960253138118107632&rtpof=true&sd=true
+
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/dashboard.css';
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
+import Environment from '../Environment';
 
 /**
    * DeleteProductInOrder
@@ -23,7 +27,7 @@ function DeleteProductInOrder(productId, category, modelNumber, aluminiumModel) 
 
         const newWorker = { ...form };
 
-        await fetch('http://localhost:8888/productOrder/delete', {
+        await fetch(`${Environment()}/productOrder/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
